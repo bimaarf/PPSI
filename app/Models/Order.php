@@ -6,27 +6,20 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 
-class Product extends Model
+class Order extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'provinsi_a',
-        'kab_kota_a',
-        'telp_a',
-        'alamat_a',
         'armada',
         'jadwal',
-        'multi',
-        'jenis_barang',
-        'jumlah_barang',
-        'panjang',
-        'lebar',
-        'tinggi',
-        'provinsi_b',
-        'kab_kota_b',
-        'telp_b',
+        'jemput',
+        'telp_jemput',
+        'alamat_jemput',
+        'feed_m',
+        'tujuan',
+        'telp_tujuan',
         'total',
-        'alamat_b',
+        'alamat_tujuan',
         'user_id'
     ];
     public function user()

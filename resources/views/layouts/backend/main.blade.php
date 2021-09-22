@@ -21,7 +21,7 @@
 </head>
 
 <body>
- @include('layouts.backend.partial.navigation')
+ {{-- @include('layouts.backend.partial.navigation') --}}
 
   <main style="margin-top: 58px">
     <div class="container pt-4">
@@ -41,7 +41,7 @@
   var i = 0;
   $("#dynamic-ar").click(function () {
       ++i;
-      $("#dynamicAddRemove").append('<tr><td><input type="text" name="alamat_b[]" placeholder="Enter subject" class="form-control" /></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Delete</button></td></tr>'
+      $("#dynamicAddRemove").append('<tr><td><select class="form-control mt-1" name="tujuan[]" id="tujuan"><option value="">-- Tujuan --</option><option value="ketapang">Ketapang</option><option value="pontianak">Pontianak</option><option value="rasau">Rasau Jaya</option></select></td><td><input type="text" name="nama_penerima[]" class="form-control mt-1" placeholder="Nama Penerima" /></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Del</button></td></tr><tr><td><input type="text" name="alamat_tujuan[]" placeholder="Alamat Lengkap" class="form-control mt-1" /></td><td><input type="num" name="telp_tujuan[]" class="form-control mt-1" placeholder="628XXXXX"></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Del</button></td></tr>'
           );
   });
   $(document).on('click', '.remove-input-field', function () {

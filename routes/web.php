@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,5 +23,5 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
-Route::get('/user-form', [ProductController::class, 'index'])->name('user.dashboard');
-Route::post('/store-input-fields', [ProductController::class, 'tambah'])->name('user.order');
+Route::get('/user-form', [OrderController::class, 'index'])->name('user.index');
+Route::post('/store-input-fields', [OrderController::class, 'tambah'])->name('user.order');
