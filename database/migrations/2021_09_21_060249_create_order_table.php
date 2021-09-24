@@ -15,6 +15,8 @@ class CreateOrderTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->string('key', 255);
+            $table->string('status', 255)->nullable();
             $table->string('jemput', 255);
             $table->string('nama_pengirim', 255);
             $table->string('start_time', 255);

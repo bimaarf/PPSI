@@ -36,6 +36,7 @@ class AuthenticatedSessionController extends Controller
             if ($request->session()->get('pesan')) {
                 $pesan = $request->session()->get('pesan');
                 $orders = new Order();
+                $orders->key                 = $pesan['key'];
                 $orders->jemput              = $pesan['jemput'];
                 $orders->nama_pengirim       = $pesan['nama_pengirim'];
                 $orders->start_time          = $pesan['start_time'];
@@ -52,7 +53,7 @@ class AuthenticatedSessionController extends Controller
                 $orders->user_id = Auth::id();
                 $orders->save();
                 $request->session()->forget('pesan');
-                return redirect()->route('user.dashboard')->with('success', 'New subject has been added.');
+                return redirect()->route('user.detail', ['key'=>$orders->key,'id'=>$orders->id])->with('success', 'New subject has been added.');
             }
             
         }

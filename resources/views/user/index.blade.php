@@ -1,5 +1,5 @@
 @extends('layouts.backend.main')
-<div class="container">
+<div class="container mt-4">
     <form class="row g-3 justify-content-center" method="POST" action="{{ route('user.order') }}">
         @csrf
         @if ($errors->any())
@@ -26,9 +26,10 @@
                         <label for="jemput">Dari</label>
                         <select class="form-control mt-1" name="jemput" id="jemput">
                             <option value="">-- Pilih --</option>
-                            <option value="ketapang">Ketapang</option>
-                            <option value="pontianak">Pontianak</option>
-                            <option value="rasau">Rasau Jaya</option>
+                            @foreach ($zone as $item)
+                                
+                            <option value="{{ $item->zone }}">{{ $item->zone }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group mt-2">
@@ -104,9 +105,10 @@
                                         <select class="form-control mt-1" name="tujuan[]">
                                             <option value="">-- Tujuan --</option>
         
-                                            <option value="ketapang">Ketapang</option>
-                                            <option value="pontianak">Pontianak</option>
-                                            <option value="rasau">Rasau Jaya</option>
+                                            @foreach ($zone as $item)
+                                
+                                            <option value="{{ $item->zone }}">{{ $item->zone }}</option>
+                                            @endforeach
                                         </select>
                                     </td>
                                     <td>

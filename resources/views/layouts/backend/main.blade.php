@@ -7,7 +7,7 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <title>User | Dashboard</title>
   <link rel="icon" href="" type="image/x-icon">
-
+  <link rel="manifest" href="/manifest.json">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
   <!-- Google Fonts Roboto -->
@@ -21,11 +21,10 @@
 </head>
 
 <body>
- {{-- @include('layouts.backend.partial.navigation') --}}
 
   <main style="margin-top: 58px">
     <div class="container pt-4">
-  @yield('content')
+      @yield('content')
     </div>
   </main>
 

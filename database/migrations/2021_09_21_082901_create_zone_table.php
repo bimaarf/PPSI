@@ -16,9 +16,11 @@ class CreateZoneTable extends Migration
         Schema::create('zone', function (Blueprint $table) {
             $table->id();
             $table->string('zone', 255);
-            $table->unsignedBigInteger('path_id');
-            $table->foreign('path_id')->references('id')->on('path');
             $table->timestamps();
+
+
+          
+    
         });
     }
 

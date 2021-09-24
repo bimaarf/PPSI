@@ -5,87 +5,57 @@ namespace App\Http\Controllers;
 use App\Models\Alamat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\Models\Order;
+use App\Models\Zone;
+use App\Models\User;
+use App\Models\RoleUser;
+use App\Models\Checkout;
+use Illuminate\Support\Facades\DB;
 use RajaOngkir;
 
 class OrderController extends Controller
 {
     public function index() 
     {
-        // $provinsi = RajaOngkir::province()->get();
-        // $city = RajaOngkir::city()->get();
-        // $city = RajaOngkir::city()->where('province_id', $request->get('id'))
-        //     ->pluck('name', 'id');
-    
-        // return response()->json($cities);
+        $zone = Zone::get();
         
-        return view("user.index");
+        return view("user.index", compact('zone'));
+    }
+    public function dashboard()
+    {
+        $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
+        return view("user.dashboard", compact('orders'));
+    }
+
+    public function detail($id) 
+    {
+        $orders = Order::find($id);
+        $tujuan = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->tujuan));
+        $nama_penerima = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->nama_penerima));
+        $alamat_tujuan = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->alamat_tujuan));
+        $telp_tujuan = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->telp_tujuan));
+        $driver = RoleUser::where('role_id', 2)->inRandomOrder()->limit(1)->get();
+        $user   = User::all();
+
+        return view("user.detail", compact('orders', 'tujuan', 'nama_penerima', 'alamat_tujuan', 'telp_tujuan', 'driver', 'user' ));
+    }
+    public function hapus($id)
+    {
+        $orders = Order::find($id);
+        $checkout = Checkout::where('orders_id', $orders->id)->get();
+        foreach ($checkout as $checkouts) {
+            DB::table('checkout')->delete();
+
+        }
+        $orders->delete();
+
+        return redirect()->route('user.dashboard')->with('success', 'Terima kasih orderan sudah dihapus.');
     }
 
     public function tambah(Request $request)
     {
-        // $request->validate([
-            
-            // 'provinsi_a' => 'required',
-            // 'kab_kota_a' => 'required',
-            // 'telp_a' => 'required',
-            // 'alamat_a' => 'required',
-            // 'armada' => 'required',
-            // 'jadwal' => 'required',
-            // 'multi' => 'required',
-            // 'jenis_barang' => 'required',
-            // 'panjang' => 'required',
-            // 'lebar' => 'required',
-            // 'tinggi' => 'required',
-            // 'provinsi_b' => 'required',
-            // 'kab_kota_b' => 'required',
-            // 'telp_b' => 'required',
-            // 'total' => 'required',
-            // 'alamat_b' => 'required',
-            // 'user_id' => 'required'.Auth::user()->id,
-        //     'alamat_b' => 'required'
-        // ]);
-     
-        // foreach ($request->addMoreInputFields as $key => $value) {
-        //     Product::create($value);
-        // }
-        // foreach ($request->alamat_b as $key => $value) {
-        //     Product::create([
-        //         'provinsi_a'    => $request->provinsi_a,
-        //         'kab_kota_a'    => $request->kab_kota_a,
-        //         'telp_a'        => $request->telp_a,
-        //         'alamat_a'      => $request->alamat_a,
-        //         'armada'        => $request->armada,
-        //         'jadwal'        => $request->jadwal,
-        //         'multi'         => $request->multi,
-        //         'jenis_barang'  => $request->jenis_barang,
-        //         'jumlah_barang' => $request->jumlah_barang,
-        //         'panjang'       => $request->panjang,
-        //         'lebar'         => $request->lebar,
-        //         'tinggi'        => $request->tinggi,
-        //         'provinsi_b'    => $request->provinsi_b,
-        //         'kab_kota_b'    => $request->kab_kota_b,
-        //         'telp_b'        => $request->telp_b,
-        //         'total'         => $request->total,
-        //         'user_id'       => Auth::user()->id
-        //     ]);
-        // }
-      
-        // $orders = new Order();
-        // $orders->armada              = $request->armada;
-        // $orders->jadwal              = $request->jadwal;
-        // $orders->jemput              = $request->jemput;
-        // $orders->telp_jemput         = $request->telp_jemput;
-        // $orders->alamat_jemput       = $request->alamat_jemput;
-        // $orders->feed_m              = $request->feed_m;
-        // $orders->tujuan              = json_encode($request->tujuan);
-        // $orders->telp_tujuan         = json_encode($request->telp_tujuan);
-        // $orders->alamat_tujuan       = json_encode($request->alamat_tujuan);
-        // $orders->user_id             = Auth::id();
-        // $orders->save();
-        // return dd();
-        // return back()->with('success', 'New subject has been added.');
-
+        $pesan['key']                 = Str::random(30);
         $pesan['jemput']              = $request->jemput;
         $pesan['nama_pengirim']       = $request->nama_pengirim;
         $pesan['start_time']          = $request->start_time;
@@ -102,6 +72,7 @@ class OrderController extends Controller
         // return dd($pesan);
         if (Auth::check()) {
             $orders = new Order();
+            $orders->key                 = $pesan['key'];
             $orders->jemput              = $pesan['jemput'];
             $orders->nama_pengirim       = $pesan['nama_pengirim'];
             $orders->start_time          = $pesan['start_time'];
@@ -117,7 +88,9 @@ class OrderController extends Controller
             $orders->telp_tujuan         = $pesan['telp_tujuan'];
             $orders->user_id = Auth::id();
             $orders->save();
-            return back()->with('success', 'Terima kasih orderan anda sedang diproses.');
+            // return back()->with('success', 'Terima kasih orderan anda sedang diproses.');
+            return redirect()->route('user.detail', ['key'=>$orders->key, 'id'=>$orders->id ])->with('success', 'Terima kasih orderan anda sedang diproses.');
+
         } else {
             $request->session()->put('pesan', $pesan);
             return redirect()->route('login');

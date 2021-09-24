@@ -3,8 +3,10 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Role;
+use App\Models\User;
 
-class CreatePathTable extends Migration
+class MenjodohkanRole extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +15,9 @@ class CreatePathTable extends Migration
      */
     public function up()
     {
-        Schema::create('path', function (Blueprint $table) {
-            $table->id();
-            $table->string('path',255);
-            $table->timestamps();
-        });
+        $user = User::find(1);
+        $admin = Role::where('name', 'admin')->first();
+        $user->attachRole($admin);
     }
 
     /**
@@ -27,6 +27,6 @@ class CreatePathTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('path');
+        //
     }
 }
