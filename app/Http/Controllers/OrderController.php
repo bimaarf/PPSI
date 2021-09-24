@@ -24,8 +24,11 @@ class OrderController extends Controller
     }
     public function dashboard()
     {
+        // shipper
         $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
-        return view("user.dashboard", compact('orders'));
+        // driver
+        $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
+        return view("user.dashboard", compact('orders', 'checkout'));
     }
 
     public function detail($id) 
@@ -44,10 +47,8 @@ class OrderController extends Controller
     {
         $orders = Order::find($id);
         $checkout = Checkout::where('orders_id', $orders->id)->get();
-        foreach ($checkout as $checkouts) {
             DB::table('checkout')->delete();
 
-        }
         $orders->delete();
 
         return redirect()->route('user.dashboard')->with('success', 'Terima kasih orderan sudah dihapus.');

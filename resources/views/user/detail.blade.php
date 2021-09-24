@@ -68,6 +68,7 @@
                             </div>
                         </div>
                     </div>
+                    @if($orders->status == null)
                     <div class="card-body">
                         <form action="{{ route('driver.find', ['id'=>$orders->id]) }}" method="POST">
                             @csrf
@@ -85,6 +86,7 @@
                             <input type="submit" class="btn btn-success" value="Find Driver"> <br> <small class="text-danger"><i>*You haven't found the driver yet</i></small>
                         </form>
                     </div>
+                    @endif
                 </div>
             </div>
             {{-- ------------------------------------------------------------------------------------------- --}}
