@@ -43,8 +43,10 @@ Route::get('/clear-cache', function() {
     Artisan::call('cache:clear', $output);
     dd($output);
 });
-
+// form-orders
 Route::get('/user-form', [OrderController::class, 'index'])->name('user.index');
+Route::get('/user-form2', [OrderController::class, 'index2'])->name('user.index2');
+
 Route::get('/dashboard', [OrderController::class, 'dashboard'])->name('user.dashboard')->middleware('auth');
 Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('user.detail');
 Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('user.hapus');
@@ -52,7 +54,10 @@ Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, '
 Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'deleteCheckout'])->name('driver.delete');
 // Route::post('/store-input-fields/checkout/orders{id}{key}', [DriverController::class, 'ordersUpdate'])->name('orders.update');
 Route::post('/store-input-fields/driver/{id}', [FindDriverController::class, 'find'])->name('driver.find');
+
+// orders
 Route::post('/store-input-fields', [OrderController::class, 'tambah'])->name('user.order');
+Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('user.order2');
 
 Route::post('/store-input-fields/jemput-barang/{id}', [DriverController::class, 'jemputBarang'])->name('driver.jemput');
 Route::post('/store-input-fields/antar-barang/{id}', [DriverController::class, 'antarBarang'])->name('driver.antar');
