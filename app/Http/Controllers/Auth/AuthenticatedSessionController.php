@@ -46,6 +46,8 @@ class AuthenticatedSessionController extends Controller
                 $orders->armada              = $pesan['armada'];
                 $orders->jadwal              = $pesan['jadwal'];
                 $orders->feed_m              = $pesan['feed_m'];
+                $orders->nama_barang         = $pesan['nama_barang'];
+                $orders->jenis_barang        = $pesan['jenis_barang'];
                 $orders->tujuan              = $pesan['tujuan'];
                 $orders->nama_penerima       = $pesan['nama_penerima'];
                 $orders->alamat_tujuan       = $pesan['alamat_tujuan'];

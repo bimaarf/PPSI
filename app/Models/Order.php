@@ -17,6 +17,8 @@ class Order extends Model
         'telp_jemput',
         'alamat_jemput',
         'feed_m',
+        'nama_barang',
+        'jenis_barang',
         'tujuan',
         'telp_tujuan',
         'total',

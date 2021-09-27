@@ -34,38 +34,53 @@
                                     <form action="{{ route('driver.delete', ['id'=>$item->orders->id, 'key' => $item->orders->key]) }}" method="put">
                                         <a href="{{ route('user.detail', ['id' => $item->orders->id, 'key' => $item->orders->key]) }}" class="btn btn-sm btn-info btn-sm m-0 py-1 px-2">View</a>
                                         @csrf
+                                        @if ($item->orders->status == 1)
                                         <button class="btn btn-sm btn-danger btn-sm m-0 py-1 px-2">
                                             <i class="bi icon dripicons-view-list"></i>Delete
                                         </button>
+                                        @endif
                                     </form>
                                 </td>
                                 <td>
                                     @if ($item->orders->status == 1)
-                                    <form action="{{ route('driver.jemput', ['id'=>$item->orders->id]) }}" method="post">
+                                    <form action="{{ route('driver.terima', ['id'=>$item->orders->id]) }}" method="post">
                                         @csrf
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                        
                                             <button type="submit" class=" btn btn-sm btn-primary btn-sm m-0 py-1 px-2  text-capitalize"
                                                 data-toggle="tooltip">
-                                                <div class="bi icon dripicons-trash"></div>Jemput Barang
+                                                <div class="bi icon dripicons-trash"></div>Terima orderan
                                             </button>
                                         </div>
                                     </form>
                                     @endif
                                     @if ($item->orders->status == 2)
-                                    <form action="{{ route('driver.antar', ['id'=>$item->orders->id]) }}" method="post">
+                                    <form action="{{ route('driver.jemput', ['id'=>$item->orders->id]) }}" method="post">
                                         @csrf
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                        
                                             <button type="submit" class=" btn btn-sm btn-success btn-sm m-0 py-1 px-2  text-capitalize"
                                                 data-toggle="tooltip">
-                                                <div class="bi icon dripicons-trash"></div>Proses Antar
+                                                <div class="bi icon dripicons-trash"></div>Jemput barang
                                             </button>
                                         </div>
                                     </form>
                                         
                                     @endif
                                     @if ($item->orders->status == 3)
+                                    <form action="{{ route('driver.antar', ['id'=>$item->orders->id]) }}" method="post">
+                                        @csrf
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                       
+                                            <button type="submit" class=" btn btn-sm btn-secondary btn-sm m-0 py-1 px-2  text-capitalize"
+                                                data-toggle="tooltip">
+                                                <div class="bi icon dripicons-trash"></div>Antar Barang
+                                            </button>
+                                        </div>
+                                    </form>
+                                        
+                                    @endif
+                                    @if ($item->orders->status == 4)
                                     <form action="{{ route('driver.sampai', ['id'=>$item->orders->id]) }}" method="post">
                                         @csrf
                                         <div class="btn-group" role="group" aria-label="Basic example">
@@ -78,11 +93,11 @@
                                     </form>
                                         
                                     @endif
-                                    @if ($item->orders->status == 4)
+                                    @if ($item->orders->status == 5)
                                     <h6 class="btn btn-success rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">Menunggu Konfirmasi</h6>
                                         
                                     @endif
-                                    @if ($item->orders->status == 5)
+                                    @if ($item->orders->status == 6)
                                     <h6 class="btn btn-success rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">Barang diterima</h6>
                                         
                                     @endif

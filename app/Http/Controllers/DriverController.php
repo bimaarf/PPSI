@@ -22,25 +22,33 @@ class DriverController extends Controller
         return redirect()->route('user.dashboard')->with('success', 'Terima kasih orderan sudah dihapus.');
     }
     
-    public function jemputBarang($id)
+    public function terima($id)
     {
         $orders = Order::find($id);
         $orders->status = '2';
+        $orders->update();
+        return redirect()->route('user.dashboard')->with('success', 'Orderan Diterima');
+    }
+    public function jemputBarang($id)
+    {
+        $orders = Order::find($id);
+        $orders->status = '3';
         $orders->update();
         return redirect()->route('user.dashboard')->with('success', 'Barang akan dijemput');
     }
     public function antarBarang($id)
     {
         $orders = Order::find($id);
-        $orders->status = '3';
+        $orders->status = '4';
         $orders->update();
         return redirect()->route('user.dashboard')->with('success', 'Barang sedang dalam proses antar');
     }
     public function sampaiBarang($id)
     {
         $orders = Order::find($id);
-        $orders->status = '4';
+        $orders->status = '5';
         $orders->update();
-        return redirect()->route('user.dashboard')->with('success', 'Barang sedang dalam proses antar');
+        return redirect()->route('user.dashboard')->with('success', 'Barang sudah sampai');
     }
+    
 }

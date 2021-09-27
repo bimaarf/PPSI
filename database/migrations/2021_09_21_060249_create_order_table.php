@@ -25,7 +25,9 @@ class CreateOrderTable extends Migration
             $table->string('alamat_jemput',255);
             $table->string('armada',255);
             $table->string('jadwal', 255);
-            $table->boolean('feed_m');
+            $table->bigInteger('feed_m')->nullable();
+            $table->string('nama_barang', 255)->nullable();
+            $table->string('jenis_barang', 255)->nullable();
             $table->string('tujuan', 255);
             $table->string('nama_penerima', 255);
             $table->string('alamat_tujuan', 255);

@@ -18,6 +18,6 @@ class FindDriverController extends Controller
         $orders = Order::find($id);
         $orders->status = '1';
         $orders->update();
-        return redirect()->route('user.dashboard')->with('success', 'Driver sudah ditemukan');
+        return redirect()->route('user.dashboard')->with('success', 'Sedang mencari driver');
     }
 }

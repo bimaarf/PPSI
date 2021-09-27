@@ -21,15 +21,20 @@
                                 value="{{ $orders->nama_pengirim }}" disabled>
                         </div>
                         <div class="row">
-                            <div class="form-group mt-2 col-6">
-                                <label for="start_time">Start time</label>
-                                <input class="form-control mt-1" type="time" name="start_time" id="start_time"
-                                    value="{{ $orders->start_time }}" disabled>
+                            <div class="form-group mt-2 col-lg-6">
+                                <label for="jadwal">Tanggal Muat</label>
+                                <input type="date" name="jadwal" id="jadwal" value="{{ $orders->jadwal }}"
+                                    class="form-control mt-1" disabled>
                             </div>
-                            <div class="form-group mt-2 col-6">
+                            <div class="form-group mt-2 col-lg-3">
+                                <label for="start_time">Start time</label>
+                                <input class="form-control mt-1" type="time" value="{{ $orders->start_time }}"
+                                    name="start_time" id="start_time" disabled>
+                            </div>
+                            <div class="form-group mt-2 col-lg-3">
                                 <label for="arrival_time">Arrival time</label>
-                                <input class="form-control mt-1" type="time" name="arrival_time" id="arrival_time"
-                                    value="{{ $orders->arrival_time }}" disabled>
+                                <input class="form-control mt-1" type="time" value="{{ $orders->arrival_time }}"
+                                    name="arrival_time" id="arrival_time" disabled>
                             </div>
                         </div>
                         <div class="form-group mt-2">
@@ -43,49 +48,55 @@
                                 disabled>{{ $orders->alamat_jemput }}</textarea>
                         </div>
                         <div class="row">
-                            <div class="form-group mt-2 col-lg-4">
+                            <div class="form-group mt-2 col-lg-6">
                                 <label for="armada">Jenis Armada</label>
                                 <select class="form-control mt-1" name="armada" id="armada" disabled>
                                     <option value="CDD Box">{{ $orders->armada }}</option>
                                 </select>
                             </div>
-                            <div class="form-group mt-2 col-lg-5">
-                                <label for="jadwal">Tanggal Muat</label>
-                                <input type="date" name="jadwal" id="jadwal" class="form-control mt-1"
-                                    value="{{ $orders->jadwal }}" disabled>
-                            </div>
-                            <div class="form-group mt-2 col-lg-3">
-                                <label for="feed_m">Feed Manager</label>
+                            <div class="form-group mt-2 col-lg-6">
+                                <label for="feed_m">Jumlah Truk</label>
                                 <select class="form-control mt-1" name="feed_m" disabled>
                                     <option value="0">
                                         @if ($orders->feed_m == 1)
-                                            {{ 'Ya' }}
-                                        @else
-                                            {{ 'Tidak' }}
+                                            {{ '1' }}
+                                        @endif
+                                        @if ($orders->feed_m == 2)
+                                            {{ '2' }}
+                                        @endif
+                                        @if ($orders->feed_m == 3)
+                                            {{ '3' }}
+                                        @endif
+                                        @if ($orders->feed_m == 4)
+                                            {{ '4' }}
+                                        @endif
+                                        @if ($orders->feed_m == 0)
+                                            {{ 'Need Checker' }}
                                         @endif
                                     </option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    @if($orders->status == null)
-                    <div class="card-body">
-                        <form action="{{ route('driver.find', ['id'=>$orders->id]) }}" method="POST">
-                            @csrf
-                            @foreach ($driver as $drv)
-                                    
+                    @if ($orders->status == null)
+                        <div class="card-body">
+                            <form action="{{ route('driver.find', ['id' => $orders->id]) }}" method="POST">
+                                @csrf
+                                @foreach ($driver as $drv)
+
                                     <label for="">Driver id</label>
                                     <input type="text" name="driver_id" value="{{ $drv->user_id }}">
-                            
-                            @endforeach
-                            <br>
-                            <label for="">orders_id</label>
-                            <input type="text" name="orders_id" value="{{ $orders->id }}">
-                            <input type="hidden" name="message" value="drivers found">
-                            {{-- <input type="hidden" name="status" value="Accupied"> --}}
-                            <input type="submit" class="btn btn-success" value="Find Driver"> <br> <small class="text-danger"><i>*You haven't found the driver yet</i></small>
-                        </form>
-                    </div>
+
+                                @endforeach
+                                <br>
+                                <label for="">orders_id</label>
+                                <input type="text" name="orders_id" value="{{ $orders->id }}">
+                                <input type="hidden" name="message" value="drivers found">
+                                {{-- <input type="hidden" name="status" value="Accupied"> --}}
+                                <input type="submit" class="btn btn-success" value="Find Driver"> <br> <small
+                                    class="text-danger"><i>*You haven't found the driver yet</i></small>
+                            </form>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -96,7 +107,14 @@
                         <h1 class="fs-5 text-center">Titik Tujuan</h1>
                     </div>
                     <div class="card-body">
-
+                        <div class="form-group mt-2">
+                            <label for="nama_barang">Nama Barang</label>
+                            <input type="text" class="form-control mt-1" id="nama_barang" name="nama_barang" value="{{ $orders->nama_barang }}" disabled>
+                        </div>
+                        <div class="form-group mt2">
+                            <label for="jenis_barang">Jenis Barang</label>
+                            <input type="text" class="form-control mt-1" value="{{ $orders->jenis_barang }}" disabled>
+                        </div>
                         <div class="form-group mt-2">
                             <label for="jemput">Ke</label>
                             @foreach ($tujuan as $item)
@@ -115,7 +133,7 @@
                             @endforeach
                         </div>
                         <div class="form-group mt-2">
-                            <label for="nama_pengirim">Nama Penerima</label>
+                            <label for="nama_pengirim">No. Telp</label>
                             @foreach ($telp_tujuan as $item)
 
                                 <input class="form-control mt-1" type="text"
@@ -128,19 +146,6 @@
                                 <textarea class="form-control mt-1" name="alamat_jemput" id="alamat_jemput" rows="5"
                                     disabled>{{ $loop->iteration }}. {{ $item }}</textarea>
                             @endforeach
-                        </div>
-                        <div class="row">
-                            <div class="form-group mt-2 col-lg-4">
-                                <label for="armada">Jenis Armada</label>
-                                <select class="form-control mt-1" name="armada" id="armada" disabled>
-                                    <option value="CDD Box">{{ $orders->armada }}</option>
-                                </select>
-                            </div>
-                            <div class="form-group mt-2 col-lg-5">
-                                <label for="jadwal">Tanggal Muat</label>
-                                <input type="date" name="jadwal" id="jadwal" class="form-control mt-1"
-                                    value="{{ $orders->jadwal }}" disabled>
-                            </div>
                         </div>
                     </div>
                 </div>

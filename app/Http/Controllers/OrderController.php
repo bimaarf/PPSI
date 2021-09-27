@@ -48,6 +48,8 @@ class OrderController extends Controller
     public function tambah2(Request $request)
     {
         $pesan = $request->session()->get('pesan');
+        $pesan['nama_barang']         = $request->nama_barang;
+        $pesan['jenis_barang']        = $request->jenis_barang;
         $pesan['tujuan']              = json_encode($request->tujuan);
         $pesan['nama_penerima']       = json_encode($request->nama_penerima);
         $pesan['alamat_tujuan']       = json_encode($request->alamat_tujuan);
@@ -67,6 +69,8 @@ class OrderController extends Controller
                 $orders->armada              = $pesan['armada'];
                 $orders->jadwal              = $pesan['jadwal'];
                 $orders->feed_m              = $pesan['feed_m'];
+                $orders->nama_barang         = $pesan['nama_barang'];
+                $orders->jenis_barang        = $pesan['jenis_barang'];
                 $orders->tujuan              = $pesan['tujuan'];
                 $orders->nama_penerima       = $pesan['nama_penerima'];
                 $orders->alamat_tujuan       = $pesan['alamat_tujuan'];

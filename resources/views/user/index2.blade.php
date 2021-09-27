@@ -26,6 +26,19 @@
 
                     
                 <div class="card-body">
+                    <div class="form-group mt-2">
+                        <label for="nama_barang">Nama Barang</label>
+                        <input type="text" class="form-control mt-1" id="nama_barang" name="nama_barang" placeholder="Nama Barang" required>
+                    </div>
+                    <div class="form-group mt2">
+                        <label for="jenis_barang">Jenis Barang</label>
+                        <select class="form-control mt-1" name="jenis_barang" id="jenis_barang" >
+                            <option value="">-- Pilih --</option>
+                            <option value="Plastik">Plastik</option>
+                            <option value="Sampah">Sampah</option>
+                            <option value="Apa aja">Apa aja</option>
+                        </select>
+                    </div>
                     <div class="table-responsive">
                         <table class="table table-bordered mt-4" id="dynamicAddRemove" required>
                             <thead>

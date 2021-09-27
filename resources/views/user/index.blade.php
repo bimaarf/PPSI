@@ -23,36 +23,42 @@
                 </div>
                 <div class="card-body">
                     <div class="form-group mt-2">
-                        <label for="jemput">Dari</label>
+                        <label for="jemput">Titik jemput</label>
                         <select class="form-control mt-1" name="jemput" id="jemput">
                             <option value="">-- Pilih --</option>
                             @foreach ($zone as $item)
-                                
-                            <option value="{{ $item->zone }}">{{ $item->zone }}</option>
+
+                                <option value="{{ $item->zone }}">{{ $item->zone }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group mt-2">
                         <label for="nama_pengirim">Nama Pengirim</label>
-                        <input class="form-control mt-1" type="text" name="nama_pengirim" id="nama_pengirim" required>
+                        <input class="form-control mt-1" type="text" name="nama_pengirim" id="nama_pengirim" placeholder="Nama Penerima" required>
                     </div>
-                    <div class="row">
-                        <div class="form-group mt-2 col-6">
-                            <label for="start_time">Start time</label>
-                            <input class="form-control mt-1" type="time" name="start_time" id="start_time" required> 
+                    <div class="row m-0 mt-2" style="border: 1px solid #f0f0f0; padding:10px">
+                        <div class="form-group mt-2 col-lg-6">
+                            <label for="jadwal">Tanggal Muat</label>
+                            <input type="date" name="jadwal" id="jadwal" class="form-control mt-1" required>
                         </div>
-                        <div class="form-group mt-2 col-6">
+                        <div class="form-group mt-2 col-lg-3">
+                            <label for="start_time">Start time</label>
+                            <input class="form-control mt-1" type="time" name="start_time" id="start_time" required>
+                        </div>
+                        <div class="form-group mt-2 col-lg-3">
                             <label for="arrival_time">Arrival time</label>
                             <input class="form-control mt-1" type="time" name="arrival_time" id="arrival_time" required>
                         </div>
                     </div>
+
                     <div class="form-group mt-2">
                         <label for="telp_jemput">No. Telp</label>
                         <input type="num" name="telp_jemput" class="form-control mt-1" placeholder="628XXXXX" required>
                     </div>
                     <div class="form-group mt-2">
                         <label for="alamat_jemput">Alamat Lengkap</label>
-                        <textarea class="form-control mt-1" name="alamat_jemput" id="alamat_jemput" rows="5" required></textarea>
+                        <textarea class="form-control mt-1" name="alamat_jemput" id="alamat_jemput" rows="5"
+                            required></textarea>
                     </div>
                     <div class="row">
                         <div class="form-group mt-2 col-lg-6">
@@ -64,90 +70,37 @@
                                 <option value="Blindvan">Blindvan</option>
                             </select>
                         </div>
-                        <div class="form-group mt-2 col-lg-3">
-                            <label for="jadwal">Tanggal Muat</label>
-                            <input type="date" name="jadwal" id="jadwal" class="form-control mt-1" required>
+
+                        <div class="form-group mt-2 col-lg-6">
+                            <label for="feed_m">Jumlah Truk</label> <br>
+                            <div class="form-control">
+                                <input type="radio" name="feed_m" class="m-2" value="1" id="feed_m1"> <label
+                                    for="feed_m1">1</label>
+                                <input type="radio" name="feed_m" class="m-2" value="2" id="feed_m2"> <label
+                                    for="feed_m2">2</label>
+                                <input type="radio" name="feed_m" class="m-2" value="3" id="feed_m3"> <label
+                                    for="feed_m3">3</label>
+                                <input type="radio" name="feed_m" class="m-2" value="4" id="feed_m4"> <label
+                                    for="feed_m4">4</label> <br>
+                                <input type="radio" name="feed_m" class="m-2" value="0" id="feed_m0">
+                                <label for="feed_m0">Feed Manager</label>
+                            </div>
+
                         </div>
-                        <div class="form-group mt-2 col-lg-3">
-                            <label for="feed_m">Feed Manager</label>
-                            <select class="form-control mt-1" name="feed_m" required>
-                                <option value="0">-- Pilih --</option>
-                                <option value="1">Ya</option>
-                                <option value="0">Tidak</option>
-                            </select>
-                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <button type="submit" class="btn btn-primary">Next</button>
+            
                     </div>
                 </div>
             </div>
         </div>
         {{-- ------------------------------------------------------------------------------------------- --}}
-        <div class="col-lg-7">
-            {{-- <div class="card my-3">
-                <div class="card-header">
-                    <h1 class="fs-5 text-center">Titik Tujuan </h1>
-                </div>
-
-                    
-                <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered mt-4" id="dynamicAddRemove" required>
-                            <thead>
-                                <tr>
-                                    <th>Alamat</th>
-                                    <th>Tujuan</th>
-                                    <th>#</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                                <tr>
-                                    <td>
-                                        <select class="form-control mt-1" name="tujuan[]" required>
-                                            <option value="">-- Tujuan --</option>
         
-                                            @foreach ($zone as $item)
-                                
-                                            <option value="{{ $item->zone }}">{{ $item->zone }}</option>
-                                            @endforeach
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="text" name="nama_penerima[]" class="form-control mt-1"
-                                            placeholder="Nama Penerima" required />
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><input type="text" name="alamat_tujuan[]" placeholder="Alamat Lengkap"
-                                            class="form-control mt-1" required />
-                                    </td>
-        
-                                    <td>
-                                        <input type="num" name="telp_tujuan[]" class="form-control mt-1" placeholder="628XXXXX">
-                                    </td>
-                                    <td>
-                                        <button type="button" name="add" id="dynamic-ar"
-                                            class="btn btn-outline-primary">Add</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
-                    <div class="mt-2">
-                        <button type="submit" class="btn btn-primary">Save</button>
-
-                    </div>
-                </div>
-            </div> --}}
-            <div class="mt-2">
-                <button type="submit" class="btn btn-primary">Next</button>
-
-            </div>
             @if (session()->has('message'))
                 <div class="alert alert-success">
                     {{ session('message') }}
                 </div>
             @endif
-        </div>
     </form>
 </div>

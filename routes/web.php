@@ -59,6 +59,7 @@ Route::post('/store-input-fields/driver/{id}', [FindDriverController::class, 'fi
 Route::post('/store-input-fields', [OrderController::class, 'tambah'])->name('user.order');
 Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('user.order2');
 
+Route::post('/store-input-fields/terima-orderan/{id}', [DriverController::class, 'terima'])->name('driver.terima');
 Route::post('/store-input-fields/jemput-barang/{id}', [DriverController::class, 'jemputBarang'])->name('driver.jemput');
 Route::post('/store-input-fields/antar-barang/{id}', [DriverController::class, 'antarBarang'])->name('driver.antar');
 Route::post('/store-input-fields/sampai-barang/{id}', [DriverController::class, 'sampaiBarang'])->name('driver.sampai');

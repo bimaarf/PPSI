@@ -38,36 +38,41 @@
                             @if ($item->status == 1)
                             <td class="mb-0 fw-normal"><button
                                 class="btn btn-success rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">
-                                Ada </button></td>
+                                Sedang mencari driver </button></td>
 
                             @endif
                             @if ($item->status == 2)
                             <td class="mb-0 fw-normal"><button
                                 class="btn btn-success rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">
-                                Dijemput </button></td>
+                                Driver ditemukan </button></td>
 
                             @endif
                             @if ($item->status == 3)
                             <td class="mb-0 fw-normal"><button
                                 class="btn btn-success rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">
-                                Proses antar </button></td>
+                                Barang akan dijemput </button></td>
 
                             @endif
                             @if ($item->status == 4)
-                            <td class="mb-0 fw-normal">
+                            <td class="mb-0 fw-normal"><button
+                                class="btn btn-success rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">
+                                Barang dalam proses antar </button></td>
+
+                            @endif
+                            @if ($item->status == 5)
+                            <td class="mb-0 fw-normal"><p>Barang sudah sampai</p>
                                 <form action="{{ route('shipper.konfirmasi', ['id'=>$item->id]) }}" method="post">
                                     @csrf
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                   
                                         <button type="submit" class=" btn btn-sm btn-secondary btn-sm m-0 py-1 px-2  text-capitalize"
                                             data-toggle="tooltip">
-                                            <div class="bi icon dripicons-trash"></div>Konfirmasi
+                                            <div class="bi icon dripicons-trash"></div>Konfirmasi pesanan
                                         </button>
                                     </div>
                                 </form>
                             </td>
                             @endif
-                            @if ($item->status == 5)
+                            @if ($item->status == 6)
                             <td class="mb-0 fw-normal"><button
                                 class="btn btn-success rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">
                                 Barang diterima </button></td>
