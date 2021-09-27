@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChattingController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\FindDriverController;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +53,13 @@ Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])
 Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('user.hapus');
 Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'deleteCheckout'])->name('driver.delete');
 Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'deleteCheckout'])->name('driver.delete');
+
+
+// chatting
+Route::get('/store-input-fields/chatting', [ChattingController::class, 'chatting'])->name('chat.index');
+
+
+
 // Route::post('/store-input-fields/checkout/orders{id}{key}', [DriverController::class, 'ordersUpdate'])->name('orders.update');
 Route::post('/store-input-fields/driver/{id}', [FindDriverController::class, 'find'])->name('driver.find');
 
@@ -64,3 +72,5 @@ Route::post('/store-input-fields/jemput-barang/{id}', [DriverController::class, 
 Route::post('/store-input-fields/antar-barang/{id}', [DriverController::class, 'antarBarang'])->name('driver.antar');
 Route::post('/store-input-fields/sampai-barang/{id}', [DriverController::class, 'sampaiBarang'])->name('driver.sampai');
 Route::post('/store-input-fields/konfirmasi-barang/{id}', [ShipperController::class, 'konfirmasiBarang'])->name('shipper.konfirmasi');
+
+

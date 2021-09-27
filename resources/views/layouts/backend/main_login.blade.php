@@ -18,6 +18,55 @@
   <link rel="stylesheet" href="{{asset('assets/css/admin.css')}}" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
     crossorigin="anonymous"></script>
+
+    <style>
+			.img-gallery-product img{
+				width: 280px;
+				height: 300px;
+				filter: brightness(1);
+			}
+			.img-gallery-product img:hover{
+				transition: all 0.2s ease-out 0s;
+				filter: brightness(0.9);
+			}
+			.tx-w-space {
+                    white-space: pre-wrap;       /* css-3 */
+                    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+                    white-space: -pre-wrap;      /* Opera 4-6 */
+                    white-space: -o-pre-wrap;    /* Opera 7 */
+                    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+			}
+			textarea::-webkit-scrollbar {
+					width: 3px;
+					background-color: #F5F5F5; }
+					textarea::-webkit-scrollbar-thumb {
+					border-radius: 10px;
+					-webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+					background-color: #1b84e7; 
+			}
+						/* Hide scrollbar for Chrome, Safari and Opera */
+			.komen::-webkit-scrollbar {
+			display: none;
+			}
+			/* Hide scrollbar for IE, Edge and Firefox */
+			.komen {
+			-ms-overflow-style: none;  /* IE and Edge */
+			scrollbar-width: none;  /* Firefox */
+			}
+			@media screen and (max-width:500px) {
+				
+				.img-gallery-product img{
+					max-width: 100px;
+					max-height: 110px;
+					justify-content: center;
+					filter: brightness(1);
+				}
+				.img-gallery-product ul{
+					grid-template-columns: 1fr 1fr
+				}
+				
+			}
+		</style>
 </head>
 
 <body>
