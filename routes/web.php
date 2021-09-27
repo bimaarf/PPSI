@@ -56,7 +56,8 @@ Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 
 
 
 // chatting
-Route::get('/store-input-fields/chatting', [ChattingController::class, 'chatting'])->name('chat.index');
+Route::get('/store-input-fields/chatting/{id}', [ChattingController::class, 'chatting'])->name('chat.index');
+Route::post('/store-input-fields/chatting/tambah/{id}', [ChattingController::class, 'tambah'])->name('chat.tambah');
 
 
 

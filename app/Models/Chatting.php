@@ -11,7 +11,11 @@ use App\Models\Checkout;
 class Chatting extends Model
 {
     use HasFactory;
-    protected $table = 'comment';
+    protected $fillable = [
+        'chat',
+        'user+id',
+        'checkout_id'
+    ];
     public function getCreatedAtAttribute()
     {
         return \Carbon\Carbon::parse($this->attributes['updated_at'])

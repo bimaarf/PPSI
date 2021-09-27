@@ -14,13 +14,16 @@
                         <th scope="col">#</th>
                         <th scope="col">Fleet</th>
                         <th scope="col">Schedule</th>
+
                         <th scope="col">Chatting</th>
+
                         <th scope="col">Driver Status</th>
                         <th scope="col">Created at</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach ($orders as $item)
                         @if ($item->user_id == Auth::user()->id)
                             <tr>
@@ -28,12 +31,16 @@
                                 <td class="mb-0 fw-normal">{{ $item->armada }}</td>
 
                                 <td class="mb-0 fw-normal">{{ $item->jadwal }}</td>
-                                <td class="mb-0 fw-normal"><a href="#" class="btn btn-outline-success">Chat</a>
-                                </td>
+                                @foreach ($checkout->where('orders_id', $item->id) as $check)
+
+                                    <td class="mb-0 fw-normal"><a
+                                            href="{{ route('chat.index', ['id' => $check->id]) }}"
+                                            class="btn btn-outline-success">Chat</a>
+                                    </td>
+                                @endforeach
 
                                 @if ($item->status == null)
-
-
+                                <td></td>
                                     <td class="mb-0 fw-normal"><button
                                             class="btn btn-danger rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">Belum
                                             ada </button></td>
@@ -113,6 +120,7 @@
 
                         @endif
                     @endforeach
+
 
                 </tbody>
             </table>

@@ -23,6 +23,6 @@ class Checkout extends Model
     }
     public function chatting()
     {
-        return $this->hasMany(Chatting::class);
+        return $this->belongsTo(Chatting::class);
     }
 }

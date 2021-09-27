@@ -14,6 +14,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Fleet</th>
                         <th scope="col">Schedule</th>
+                        <th scope="col">Chatting</th>
                         <th scope="col">Name of the sender</th>
                         <th scope="col">Created at</th>
                         <th scope="col">Action</th>
@@ -28,6 +29,13 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $item->orders->armada }}</td>
                                 <td>{{ $item->orders->jadwal }}</td>
+                                @foreach ($checkout->where('orders_id', $item->id) as $check)
+
+                                    <td class="mb-0 fw-normal"><a
+                                            href="{{ route('chat.index', ['id' => $check->id]) }}"
+                                            class="btn btn-outline-success">Chat</a>
+                                    </td>
+                                @endforeach
                                 <td>{{ $item->orders->nama_pengirim }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>

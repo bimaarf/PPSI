@@ -13,9 +13,9 @@ class CreateChattingTable extends Migration
      */
     public function up()
     {
-        Schema::create('chatting', function (Blueprint $table) {
+        Schema::create('chattings', function (Blueprint $table) {
             $table->id();
-            $table->string('comment', 255);
+            $table->string('chat', 255);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('checkout_id');
             $table->foreign('checkout_id')->references('id')->on('checkout');
