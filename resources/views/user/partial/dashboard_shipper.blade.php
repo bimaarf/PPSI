@@ -33,10 +33,14 @@
                                 <td class="mb-0 fw-normal">{{ $item->jadwal }}</td>
                                 @foreach ($checkout->where('orders_id', $item->id) as $check)
 
+                                    @if ($check->orders->status == 2)
                                     <td class="mb-0 fw-normal"><a
-                                            href="{{ route('chat.index', ['id' => $check->id]) }}"
-                                            class="btn btn-outline-success">Chat</a>
-                                    </td>
+                                        href="{{ route('chat.index', ['id' => $check->id]) }}"
+                                        class="btn btn-outline-success">Chat</a>
+                                </td>
+                                    @else
+                                        <td></td>
+                                    @endif
                                 @endforeach
 
                                 @if ($item->status == null)
