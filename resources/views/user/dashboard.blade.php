@@ -23,4 +23,9 @@
     )
         @include('user.partial.dashboard_driver')
     @endif
+    @if (
+        Auth::user()->hasRole('feed-manager')
+    )
+        @include('user.partial.dashboard_feed')
+    @endif
 @endsection

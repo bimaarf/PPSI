@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\ChattingController;
 use App\Http\Controllers\DriverController;
+use App\Http\Controllers\FeedManagerController;
+use App\Http\Controllers\FindChecker;
 use App\Http\Controllers\FindDriverController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
@@ -53,6 +55,7 @@ Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])
 Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('user.hapus');
 Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'deleteCheckout'])->name('driver.delete');
 Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'deleteCheckout'])->name('driver.delete');
+Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');
 
 
 // chatting
@@ -63,6 +66,7 @@ Route::post('/store-input-fields/chatting/tambah/{id}', [ChattingController::cla
 
 // Route::post('/store-input-fields/checkout/orders{id}{key}', [DriverController::class, 'ordersUpdate'])->name('orders.update');
 Route::post('/store-input-fields/driver/{id}', [FindDriverController::class, 'find'])->name('driver.find');
+Route::post('/store-input-fields/feed_manager/{id}', [FindChecker::class, 'find'])->name('feed_manager.find');
 
 // orders
 Route::post('/store-input-fields', [OrderController::class, 'tambah'])->name('user.order');

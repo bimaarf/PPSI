@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Checkout;
+use App\Models\FeedManager;
 class Order extends Model
 {
     use HasFactory;
@@ -37,5 +38,9 @@ class Order extends Model
     public function checkout()
     {
         return $this->hasMany(Checkout::class);
+    }
+    public function feedManager()
+    {
+        return $this->hasMany(FeedManager::class);
     }
 }

@@ -95,6 +95,13 @@
                                             Barang diterima </button></td>
 
                                 @endif
+                                @if ($item->status == 7)
+                                <td></td>
+                                    <td class="mb-0 fw-normal"><button
+                                            class="btn btn-success rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">
+                                            Sedang menentukan jumlah truk </button></td>
+
+                                @endif
                                 {{-- @if ($item->orders_id === null)
 
                                     <td class="mb-0 fw-normal">Not occupied <i class="fas fa-times red-text"></i></td>
