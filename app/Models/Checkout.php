@@ -11,7 +11,11 @@ use App\Models\Chatting;
 class Checkout extends Model
 {
     use HasFactory;
-    protected $table = 'checkout';
+    protected $fillable = [
+        'message',
+        'driver_id',
+        'orders_id'
+    ];
 
     public function user()
     {

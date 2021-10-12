@@ -18,7 +18,7 @@ class CreateChattingTable extends Migration
             $table->string('chat', 255);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('checkout_id');
-            $table->foreign('checkout_id')->references('id')->on('checkout');
+            $table->foreign('checkout_id')->references('id')->on('checkouts');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
@@ -31,6 +31,6 @@ class CreateChattingTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chatting');
+        Schema::dropIfExists('chattings');
     }
 }

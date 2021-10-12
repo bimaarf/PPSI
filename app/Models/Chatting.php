@@ -13,7 +13,7 @@ class Chatting extends Model
     use HasFactory;
     protected $fillable = [
         'chat',
-        'user+id',
+        'user_id',
         'checkout_id'
     ];
     public function getCreatedAtAttribute()

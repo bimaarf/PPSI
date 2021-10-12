@@ -80,41 +80,41 @@
                     </div>
                     @if ($orders->status == null)
                         @if ($orders->feed_m == 0)
-                        <form action="{{ route('feed_manager.find', ['id' => $orders->id]) }}" method="POST">
-                            @csrf
-                            @foreach ($feed_manager as $fm)
-
-                                <label for="">Feed Manager id</label> <tt>: {{ $fm->user->name }}</tt> <br>
-                                <input type="text" name="feed_id" class="form-control" value="{{ $fm->user_id }}">
-
-                            @endforeach
-                            <br>
-                            <input type="hidden" name="orders_id" value="{{ $orders->id }}">
-                            <input type="hidden" name="message" value="checker found">
-                            {{-- <input type="hidden" name="status" value="Accupied"> --}}
-                            <input type="submit" class="btn btn-success" value="Find Checker"> <br> <small
-                                class="text-danger"><i>*You haven't found the driver yet</i></small>
-                        </form>
-
-                        @else
-                        <div class="card-body">
-                            <form action="{{ route('driver.find', ['id' => $orders->id]) }}" method="POST">
+                            <form action="{{ route('feed_manager.find', ['id' => $orders->id]) }}" method="POST">
                                 @csrf
-                                @foreach ($driver as $drv)
+                                @foreach ($feed_manager as $fm)
 
-                                    <label for="">Driver id</label>
-                                    <input type="text" name="driver_id" value="{{ $drv->user_id }}">
+                                    <label for="">Feed Manager id</label> : {{ $fm->user->name }} <br>
+                                    <input type="text" name="feed_id" class="form-control" value="{{ $fm->user_id }}">
 
                                 @endforeach
                                 <br>
-                                <label for="">orders_id</label>
-                                <input type="text" name="orders_id" value="{{ $orders->id }}">
-                                <input type="hidden" name="message" value="drivers found">
+                                <input type="hidden" name="orders_id" value="{{ $orders->id }}">
+                                <input type="hidden" name="message" value="checker found">
                                 {{-- <input type="hidden" name="status" value="Accupied"> --}}
-                                <input type="submit" class="btn btn-success" value="Find Driver"> <br> <small
-                                    class="text-danger"><i>*You haven't found the driver yet</i></small>
+                                <input type="submit" class="btn btn-success" value="Find Checker"> <br> <small
+                                    class="text-danger"><em>*You haven't found the driver yet</em></small>
                             </form>
-                        </div>
+
+                        @else
+                            <div class="card-body">
+                                <form action="{{ route('driver.find', ['id' => $orders->id]) }}" method="POST">
+                                    @csrf
+                                    @foreach ($driver->slice(0, $orders->feed_m) as $drv)
+
+                                        <label for="">Driver id</label>
+                                        <input type="text" name="driver_id[]" value="{{ $drv->user_id }}">
+
+                                    @endforeach
+                                    <br>
+                                    {{-- <label for="">orders_id</label> --}}
+                                    <input type="hidden" name="orders_id" value="{{ $orders->id }}">
+                                    <input type="hidden" name="message" value="drivers found">
+                                    {{-- <input type="hidden" name="status" value="Accupied"> --}}
+                                    <input type="submit" class="btn btn-success" value="Find Driver"> <br> <small
+                                        class="text-danger"><em>*You haven't found the driver yet</em></small>
+                                </form>
+                            </div>
                         @endif
                     @endif
                 </div>
@@ -128,7 +128,8 @@
                     <div class="card-body">
                         <div class="form-group mt-2">
                             <label for="nama_barang">Nama Barang</label>
-                            <input type="text" class="form-control mt-1" id="nama_barang" name="nama_barang" value="{{ $orders->nama_barang }}" disabled>
+                            <input type="text" class="form-control mt-1" id="nama_barang" name="nama_barang"
+                                value="{{ $orders->nama_barang }}" disabled>
                         </div>
                         <div class="form-group mt2">
                             <label for="jenis_barang">Jenis Barang</label>

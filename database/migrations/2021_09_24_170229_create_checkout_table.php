@@ -13,11 +13,10 @@ class CreateCheckoutTable extends Migration
      */
     public function up()
     {
-        Schema::create('checkout', function (Blueprint $table) {
+        Schema::create('checkouts', function (Blueprint $table) {
             $table->id();
             $table->string('message',255);
-            $table->unsignedBigInteger('driver_id');
-            $table->foreign('driver_id')->references('id')->on('users');
+            $table->string('driver_id',255);
             $table->unsignedBigInteger('orders_id');
             $table->foreign('orders_id')->references('id')->on('orders');
             $table->timestamps();
@@ -31,6 +30,6 @@ class CreateCheckoutTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('checkout');
+        Schema::dropIfExists('checkouts');
     }
 }

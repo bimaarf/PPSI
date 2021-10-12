@@ -25,7 +25,8 @@ class OrderController extends Controller
         $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
         // feed manager
         $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(10);
-        return view("user.dashboard", compact('orders', 'checkout', 'feed_manager'));
+        $driver = explode(",", str_replace(array('[', '"', ']'), ' ', $checkout->driver_od));
+        return view("user.dashboard", compact('orders', 'driver', 'checkout', 'feed_manager'));
     }
 
     public function index(Request $request) 
@@ -67,7 +68,6 @@ class OrderController extends Controller
         $pesan['alamat_tujuan']       = json_encode($request->alamat_tujuan);
         $pesan['telp_tujuan']         = json_encode($request->telp_tujuan);
         $request->session()->put('pesan', $pesan);
-        // return dd($pesan);
         if (Auth::check()) {
             $pesan = $request->session()->get('pesan');
                 $orders = new Order();
@@ -90,12 +90,9 @@ class OrderController extends Controller
                 $orders->user_id = Auth::id();
                 $orders->save();
                 $request->session()->forget('pesan');
-            // return back()->with('success', 'Terima kasih orderan anda sedang diproses.');
-            // return redirect()->route('user.order');
             return redirect()->route('user.detail', ['key'=>$orders->key, 'id'=>$orders->id ])->with('success', 'Terima kasih orderan anda sedang diproses.');
 
         } else {
-            // return dd($pesan);
             return redirect()->route('login');
         }
     }
@@ -107,7 +104,7 @@ class OrderController extends Controller
         $nama_penerima = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->nama_penerima));
         $alamat_tujuan = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->alamat_tujuan));
         $telp_tujuan = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->telp_tujuan));
-        $driver = RoleUser::where('role_id', 2)->inRandomOrder()->limit(1)->get();
+        $driver = RoleUser::where('role_id', 3)->inRandomOrder()->get();
         $feed_manager = RoleUser::where('role_id', 4)->inRandomOrder()->limit(1)->get();
         $user   = User::all();
 
@@ -116,7 +113,7 @@ class OrderController extends Controller
     public function hapus($id)
     {
         $orders = Order::find($id);
-        $checkout = Checkout::where('orders_id', $orders->id)->get();
+        $orders->checkout = Checkout::where('orders_id', $orders->id)->get();
             DB::table('checkout')->delete();
 
         $orders->delete();
