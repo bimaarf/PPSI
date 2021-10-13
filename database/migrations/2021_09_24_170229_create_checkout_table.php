@@ -16,7 +16,7 @@ class CreateCheckoutTable extends Migration
         Schema::create('checkouts', function (Blueprint $table) {
             $table->id();
             $table->string('message',255);
-            $table->string('driver_id',255);
+            $table->string('driver_id', 150);
             $table->unsignedBigInteger('orders_id');
             $table->foreign('orders_id')->references('id')->on('orders');
             $table->timestamps();

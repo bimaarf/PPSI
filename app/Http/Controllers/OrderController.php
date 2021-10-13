@@ -17,17 +17,8 @@ use RajaOngkir;
 
 class OrderController extends Controller
 {
-    public function dashboard()
-    {
-        // shipper
-        $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
-        // driver
-        $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
-        // feed manager
-        $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(10);
-        $driver = explode(",", str_replace(array('[', '"', ']'), ' ', $checkout->driver_od));
-        return view("user.dashboard", compact('orders', 'driver', 'checkout', 'feed_manager'));
-    }
+   
+   
 
     public function index(Request $request) 
     {
@@ -100,11 +91,11 @@ class OrderController extends Controller
     public function detail($id) 
     {
         $orders = Order::find($id);
-        $tujuan = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->tujuan));
+        $tujuan        = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->tujuan));
         $nama_penerima = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->nama_penerima));
         $alamat_tujuan = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->alamat_tujuan));
-        $telp_tujuan = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->telp_tujuan));
-        $driver = RoleUser::where('role_id', 3)->inRandomOrder()->get();
+        $telp_tujuan   = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->telp_tujuan));
+        $driver = RoleUser::where('role_id', 2)->inRandomOrder()->get();
         $feed_manager = RoleUser::where('role_id', 4)->inRandomOrder()->limit(1)->get();
         $user   = User::all();
 

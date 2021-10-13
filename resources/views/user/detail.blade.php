@@ -102,7 +102,7 @@
                                     @csrf
                                     @foreach ($driver->slice(0, $orders->feed_m) as $drv)
 
-                                        <label for="">Driver id</label>
+                                        <label for="">Driver id</label> <br>
                                         <input type="text" name="driver_id[]" value="{{ $drv->user_id }}">
 
                                     @endforeach

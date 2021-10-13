@@ -31,7 +31,6 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         $shipper = RoleUser::where('role_id', 3)->get();
-        // $driver = RoleUser::where('role_id', 2)->get();
         $request->session()->regenerate();
         foreach($shipper as $shp)
         {
@@ -64,10 +63,9 @@ class AuthenticatedSessionController extends Controller
                 }   
                 return redirect()->route('user.index');
             }else{
-                return redirect()->route('user.dashboard');
+                return redirect()->route('driver.index');
             }
         }
-        // return redirect()->intended(RouteServiceProvider::HOME);
     }
 
     /**

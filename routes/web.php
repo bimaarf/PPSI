@@ -50,7 +50,8 @@ Route::get('/clear-cache', function() {
 Route::get('/user-form', [OrderController::class, 'index'])->name('user.index');
 Route::get('/user-form2', [OrderController::class, 'index2'])->name('user.index2');
 
-Route::get('/dashboard', [OrderController::class, 'dashboard'])->name('user.dashboard')->middleware('auth');
+Route::get('/dashboard', [ShipperController::class, 'dashboard'])->name('user.dashboard')->middleware('auth');
+Route::get('/dashboard/driver', [DriverController::class, 'dashboardDriver'])->name('driver.index')->middleware('auth');
 Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('user.detail');
 Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('user.hapus');
 Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'deleteCheckout'])->name('driver.delete');
@@ -66,6 +67,7 @@ Route::post('/store-input-fields/chatting/tambah/{id}', [ChattingController::cla
 
 // Route::post('/store-input-fields/checkout/orders{id}{key}', [DriverController::class, 'ordersUpdate'])->name('orders.update');
 Route::post('/store-input-fields/driver/{id}', [FindDriverController::class, 'find'])->name('driver.find');
+Route::post('/store-input-fields/driver/update/{id}', [FindDriverController::class, 'update'])->name('driver.update');
 Route::post('/store-input-fields/feed_manager/{id}', [FindChecker::class, 'find'])->name('feed_manager.find');
 
 // orders
