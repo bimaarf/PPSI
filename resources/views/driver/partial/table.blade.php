@@ -6,7 +6,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-hover text-nowrap">
+            <table class="table table-hover">
                 <!-- Search form -->
                 <thead>
 
@@ -16,17 +16,14 @@
                         <th scope="col">Schedule</th>
                         <th scope="col">Chatting</th>
                         <th scope="col">Name of the sender</th>
-                        <th scope="col">Created at</th>
                         <th scope="col">Action</th>
                         <th scope="col">Process</th>
                     </tr>
                 </thead>
                 <tbody>
-
                     @foreach ($checkout as $item)
                         @if ($item->driver_id != '')
                             @foreach (explode(",", str_replace(array('[', '"', ']'), ' ', $item->driver_id)) as $info)
-                            <br>
                             @if (Auth::user()->id == $info)
                                 {{-- content --}}
 
@@ -45,19 +42,21 @@
                                     @endif
 
                                     <td>{{ $item->orders->nama_pengirim }}</td>
-                                    <td>{{ $item->created_at }}</td>
-                                    <td>
-                                        <form
-                                            action="{{ route('driver.delete', ['id' => $item->orders->id, 'key' => $item->orders->key]) }}"
-                                            method="put">
-                                            <a href="{{ route('user.detail', ['id' => $item->orders->id, 'key' => $item->orders->key]) }}"
-                                                class="btn btn-sm btn-info btn-sm m-0 py-1 px-2">View</a>
-                                            @csrf
-                                            @if ($item->orders->status == 1)
-                                                <button class="btn btn-sm btn-danger btn-sm m-0 py-1 px-2">
-                                                    <i class="bi icon dripicons-view-list"></i>Delete
-                                                </button>
+                                    <td><form action="{{ route('driver.update', ['id'=>$item->id]) }}" method="POST">
+                                    @csrf
+                                    <a href="{{ route('user.detail', ['id' => $item->orders->id, 'key' => $item->orders->key]) }}" class="btn btn-outline-info">View</a>
+                                    <input type="submit" class="btn btn-outline-danger" value="Cancel Orderan">
+                                    <input type="hidden" name="orders_id" value="{{ $item->orders->id }}">
+                                            @foreach (explode(",", str_replace(array('[', '"', ']'), ' ', $item->driver_id)) as $info)
+                                            @if ($info != Auth::user()->id)
+                                                @foreach ($driver->slice(0,1) as $dr)
+                                                    @if ($dr->user_id != Auth::user()->id &&  $dr->user_id != $info)
+                                                    <input type="hidden" name="driver_id[]" value="{{ $dr->user_id }}">
+                                                    @endif
+                                                @endforeach
+                                                <input type="hidden" name="driver_id[]" value="{{ $info }}">
                                             @endif
+                                            @endforeach
                                         </form>
                                     </td>
                                     <td>
@@ -137,33 +136,7 @@
                                     </td>
                                 </tr>
 
-                                {{-- end content --}}
-                                <form action="{{ route('driver.update', ['id'=>$item->id]) }}" method="POST">
-                                    @csrf
-                                    <label for="orders_id">Orders Id</label>
-                                    <input type="text" name="orders_id" value="{{ $item->orders->id }}">
-                                            @foreach (explode(",", str_replace(array('[', '"', ']'), ' ', $item->driver_id)) as $info)
-                                            @if ($info != Auth::user()->id)
-                                                @foreach ($driver->slice(0,1) as $dr)
-                                                    @if ($dr->user_id != Auth::user()->id &&  $dr->user_id != $info)
-                                                    <br>
-                                                    <label for="driver_id">Driver</label>
-                                                    <input type="text" name="driver_id[]" value="{{ $dr->user_id }}">
-                                                    @else
-                                                    <span>Driver tidak ditemukan</span>
-                                                    @endif
-                                                
-                                                @endforeach
-                                                <br>
-                                                <label for="driver_id">Driver</label>
-                                                <input type="text" name="driver_id[]" value="{{ $info }}">
-                                            
-            
-                                            @endif
-                                            @endforeach
-                                            <br>
-                                            <input type="submit" class="btn btn-outline-primary mt-2" value="Cancel Orderan">
-                                        </form>
+                                
                             @endif
                             
                         @endforeach
