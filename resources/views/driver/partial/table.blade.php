@@ -44,8 +44,15 @@
                                     <td>{{ $item->orders->nama_pengirim }}</td>
                                     <td><form action="{{ route('driver.update', ['id'=>$item->id]) }}" method="POST">
                                     @csrf
-                                    <a href="{{ route('user.detail', ['id' => $item->orders->id, 'key' => $item->orders->key]) }}" class="btn btn-outline-info">View</a>
-                                    <input type="submit" class="btn btn-outline-danger" value="Cancel Orderan">
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+
+                                        <a href="{{ route('user.detail', ['id' => $item->orders->id, 'key' => $item->orders->key]) }}" class="btn btn-outline-info">View</a>
+                                       @if ($item->orders->status == 1)
+                                       <input type="submit" class="btn btn-outline-danger" value="Tolak">
+                                           
+                                       @endif
+
+                                    </div>
                                     <input type="hidden" name="orders_id" value="{{ $item->orders->id }}">
                                             @foreach (explode(",", str_replace(array('[', '"', ']'), ' ', $item->driver_id)) as $info)
                                             @if ($info != Auth::user()->id)
@@ -67,7 +74,7 @@
                                                 <div class="btn-group" role="group" aria-label="Basic example">
 
                                                     <button type="submit"
-                                                        class=" btn btn-sm btn-primary btn-sm m-0 py-1 px-2  text-capitalize"
+                                                        class=" btn btn-primary  text-capitalize"
                                                         data-toggle="tooltip">
                                                         <div class="bi icon dripicons-trash"></div>Terima
                                                         orderan
@@ -82,28 +89,25 @@
                                                 <div class="btn-group" role="group" aria-label="Basic example">
 
                                                     <button type="submit"
-                                                        class=" btn btn-sm btn-success btn-sm m-0 py-1 px-2  text-capitalize"
+                                                        class=" btn btn-success text-capitalize"
                                                         data-toggle="tooltip">
                                                         <div class="bi icon dripicons-trash"></div>Jemput barang
                                                     </button>
                                                 </div>
                                             </form>
-
                                         @endif
                                         @if ($item->orders->status == 3)
                                             <form action="{{ route('driver.antar', ['id' => $item->orders->id]) }}"
                                                 method="post">
                                                 @csrf
                                                 <div class="btn-group" role="group" aria-label="Basic example">
-
                                                     <button type="submit"
-                                                        class=" btn btn-sm btn-secondary btn-sm m-0 py-1 px-2  text-capitalize"
+                                                        class=" btn btn-secondary text-capitalize"
                                                         data-toggle="tooltip">
                                                         <div class="bi icon dripicons-trash"></div>Antar Barang
                                                     </button>
                                                 </div>
                                             </form>
-
                                         @endif
                                         @if ($item->orders->status == 4)
                                             <form action="{{ route('driver.sampai', ['id' => $item->orders->id]) }}"
@@ -112,40 +116,31 @@
                                                 <div class="btn-group" role="group" aria-label="Basic example">
 
                                                     <button type="submit"
-                                                        class=" btn btn-sm btn-secondary btn-sm m-0 py-1 px-2  text-capitalize"
+                                                        class=" btn btn-secondarytext-capitalize"
                                                         data-toggle="tooltip">
                                                         <div class="bi icon dripicons-trash"></div>Barang sudah
                                                         sampai
                                                     </button>
                                                 </div>
                                             </form>
-
                                         @endif
                                         @if ($item->orders->status == 5)
                                             <h6
-                                                class="btn btn-success rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">
+                                                class="btn btn-success rounded-pill text-capitalize">
                                                 Menunggu Konfirmasi</h6>
 
                                         @endif
                                         @if ($item->orders->status == 6)
                                             <h6
-                                                class="btn btn-success rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">
+                                                class="btn btn-success rounded-pill text-capitalize">
                                                 Barang diterima</h6>
-
                                         @endif
                                     </td>
                                 </tr>
-
-                                
                             @endif
-                            
                         @endforeach
-                        
                     @endif
-
                     @endforeach
-                                
-                        
                 </tbody>
             </table>
         </div>
