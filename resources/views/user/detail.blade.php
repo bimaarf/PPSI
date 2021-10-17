@@ -78,8 +78,9 @@
                             </div>
                         </div>
                     </div>
-                    @if ($orders->status == null)
-                        @if ($orders->feed_m == 0)
+                        {{-- Find checker --}}
+                    @if ($orders->status == null && Auth::user()->hasRole('shipper'))
+                        @if ($orders->feed_m == 0 )
                             <form action="{{ route('feed_manager.find', ['id' => $orders->id]) }}" method="POST">
                                 @csrf
                                 @foreach ($feed_manager as $fm)
@@ -95,27 +96,29 @@
                                 <input type="submit" class="btn btn-success" value="Find Checker"> <br> <small
                                     class="text-danger"><em>*You haven't found the driver yet</em></small>
                             </form>
-
-                        @else
+                            @else
+                            {{-- Find driver --}}
                             <div class="card-body">
                                 <form action="{{ route('driver.find', ['id' => $orders->id]) }}" method="POST">
                                     @csrf
+                                    <input type="hidden" name="message" value="Finded" >
                                     @foreach ($driver->slice(0, $orders->feed_m) as $drv)
-
                                         <label for="">Driver id</label> <br>
                                         <input type="text" name="driver_id[]" value="{{ $drv->user_id }}">
 
                                     @endforeach
                                     <br>
-                                    {{-- <label for="">orders_id</label> --}}
                                     <input type="hidden" name="orders_id" value="{{ $orders->id }}">
-                                    <input type="hidden" name="message" value="drivers found">
-                                    {{-- <input type="hidden" name="status" value="Accupied"> --}}
                                     <input type="submit" class="btn btn-success" value="Find Driver"> <br> <small
                                         class="text-danger"><em>*You haven't found the driver yet</em></small>
                                 </form>
                             </div>
                         @endif
+                        
+                            
+                    @endif
+                    @if ($orders->status == 1)
+                        ingin ganti driver ?
                     @endif
                 </div>
             </div>

@@ -12,14 +12,12 @@
 
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Fleet</th>
-                        <th scope="col">Schedule</th>
+                        <th scope="col">Armada</th>
+                        <th scope="col">Waktu</th>
 
-                        <th scope="col">Chatting</th>
+                        <th scope="col">Lacak</th>
 
-                        <th scope="col">Driver Status</th>
-                        <th scope="col">Created at</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,17 +31,21 @@
                                 <td class="mb-0 fw-normal">{{ $item->jadwal }}</td>
                                 @foreach ($checkout->where('orders_id', $item->id) as $check)
 
-                                    @if ($check->orders->status == 2)
-                                    <td class="mb-0 fw-normal"><a
+                                    @if ($check->orders->status != null && $check->orders->status != 1)
+                                    <td class="mb-0 fw-normal">
+                                        {{-- <a
                                         href="{{ route('chat.index', ['id' => $check->id]) }}"
-                                        class="btn btn-outline-success">Chat</a>
+                                        class="btn btn-outline-success">Chat</a> --}}
+                                        <a href="{{ route('user.tracking', ['id'=>$check->id]) }}" class="btn btn-outline-success" >Status</a>
                                 </td>
                                     @else
-                                        <td></td>
+                                        <td><button class="btn btn-outline-primary" type="button" disabled>
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                          </button></td>
                                     @endif
                                 @endforeach
 
-                                @if ($item->status == null)
+                                {{-- @if ($item->status == null)
                                 <td></td>
                                     <td class="mb-0 fw-normal"><button
                                             class="btn btn-danger rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">Belum
@@ -101,7 +103,7 @@
                                             class="btn btn-success rounded-pill btn-sm m-0 py-1 px-2 text-capitalize">
                                             Sedang menentukan jumlah truk </button></td>
 
-                                @endif
+                                @endif --}}
                                 {{-- @if ($item->orders_id === null)
 
                                     <td class="mb-0 fw-normal">Not occupied <i class="fas fa-times red-text"></i></td>
@@ -109,16 +111,15 @@
                                 @endif --}}
 
 
-                                <td class="mb-0 fw-normal">{{ $item->created_at }}</td>
                                 <td class="mb-0 fw-normal">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ route('user.detail', ['id' => $item->id, 'key' => $item->key]) }}"
-                                            class="btn btn-sm btn-info btn-sm m-0 py-1 px-2">
+                                            class="btn btn-outline-info">
                                             <div class="bi icon dripicons-view-list"></div>View
                                         </a>
                                         @if ($item->status == null)
                                             <a href="{{ route('user.hapus', ['id' => $item->id, 'key' => $item->key]) }}"
-                                                class=" btn btn-sm btn-danger btn-sm m-0 py-1 px-2"
+                                                class=" btn btn-outline-danger"
                                                 data-toggle="tooltip">
                                                 <div class="bi icon dripicons-trash"></div>Delete
                                             </a>

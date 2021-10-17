@@ -31,6 +31,7 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         $shipper = RoleUser::where('role_id', 3)->get();
+        $driver  = RoleUser::where('role_id', 2)->get();
         $request->session()->regenerate();
         foreach($shipper as $shp)
         {
@@ -60,9 +61,14 @@ class AuthenticatedSessionController extends Controller
                     $request->session()->forget('pesan');
                     return redirect()->route('user.detail', ['key'=>$orders->key,'id'=>$orders->id])->with('success', 'New subject has been added.');
                 
-                }   
-                return redirect()->route('user.index');
-            }else{
+                }else  
+                return redirect()->route('user.dashboard');
+            }
+        }
+        foreach($driver as $drv)
+        {
+            if(Auth::user()->id == $drv->user_id)
+            {
                 return redirect()->route('driver.index');
             }
         }

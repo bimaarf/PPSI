@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Checkout;
 use App\Models\Order;
+use App\Models\Tracking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 class FindDriverController extends Controller
 {
     public function find(Request $request, $id)
@@ -13,7 +15,7 @@ class FindDriverController extends Controller
         $orders->status = '1';
         $orders->update();
         $checkout = new Checkout();
-        $checkout->message = 'Occupied';
+        $checkout->message   = $request->message;
         $checkout->orders_id = $request->orders_id;
         $checkout->driver_id = json_encode($request->driver_id);
         $checkout->save();

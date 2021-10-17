@@ -4,18 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Checkout;
-use App\Models\Tracking;
+use App\Models\Chatting;
 
-class Chatting extends Model
+class Tracking extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'chat',
-        'user_id',
-        'tracking_id'
+        'status',
+        'checkout_id',
+        'driver_id'
     ];
     public function getCreatedAtAttribute()
     {
@@ -24,14 +23,14 @@ class Chatting extends Model
     }
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
     public function checkout()
     {
         return $this->belongsTo(Checkout::class);
     }
-    public function tracking()
+    public function chatting()
     {
-        return $this->belongsTo((Tracking::class));
+        return $this->belongsTo(Chatting::class);
     }
 }

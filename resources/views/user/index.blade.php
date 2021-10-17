@@ -37,16 +37,15 @@
                         <input class="form-control mt-1" type="text" name="nama_pengirim" id="nama_pengirim" placeholder="Nama Penerima" required>
                     </div>
                     <div class="row m-0 mt-2" style="border: 1px solid #f0f0f0; padding:10px">
-                        <div class="form-group mt-2 col-lg-6">
-                            <label for="jadwal">Tanggal Muat</label>
+                        <label for="" class="text-center" >Rentang Jemput</label>
+                        <div class="form-group mt-2 col-lg-5">
                             <input type="date" name="jadwal" id="jadwal" class="form-control mt-1" required>
                         </div>
                         <div class="form-group mt-2 col-lg-3">
-                            <label for="start_time">Start time</label>
-                            <input class="form-control mt-1" type="time" name="start_time" id="start_time" required>
+                                <input class="form-control mt-1" type="time" name="start_time" id="start_time" required> 
                         </div>
+                        <div class="col-1"> <tt> -</tt> </div>
                         <div class="form-group mt-2 col-lg-3">
-                            <label for="arrival_time">Arrival time</label>
                             <input class="form-control mt-1" type="time" name="arrival_time" id="arrival_time" required>
                         </div>
                     </div>
@@ -88,6 +87,7 @@
 
                         </div>
                     </div>
+                   
                     <div class="mt-2">
                         <button type="submit" class="btn btn-primary">Next</button>
             

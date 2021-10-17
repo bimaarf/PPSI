@@ -16,6 +16,7 @@ class ShipperController extends Controller
         $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
         // feed manager
         $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(10);
+        
         return view("user.dashboard", compact('orders', 'checkout', 'feed_manager'));
     }
 

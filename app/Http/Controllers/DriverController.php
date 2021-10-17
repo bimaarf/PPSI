@@ -8,6 +8,8 @@ use App\Models\Order;
 use App\Models\User;
 use App\Models\FeedManager;
 use App\Models\RoleUser;
+use App\Models\Tracking;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DriverController extends Controller
@@ -17,7 +19,8 @@ class DriverController extends Controller
         $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
         $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
         $driver = RoleUser::where('role_id', 2)->get();
-        return view("driver.index", compact('orders','checkout', 'driver'));
+        $trackings = Tracking::all();
+        return view("driver.index", compact('orders','checkout', 'driver', 'trackings'));
         
     }
 
@@ -36,30 +39,38 @@ class DriverController extends Controller
     
     public function terima($id)
     {
-        $orders = Order::find($id);
+        $checkout = Checkout::find($id);
+        $orders = $checkout->orders;
         $orders->status = '2';
         $orders->update();
+        $checkout->message = 'Verified';
+        $checkout->update();
+        $tracking = new Tracking();
+        $tracking->status = '1';
+        $tracking->checkout_id = $checkout->id;
+        $tracking->driver_id   = Auth::id();
+        $tracking->save();
         return redirect()->route('driver.index')->with('success', 'Orderan Diterima');
     }
     public function jemputBarang($id)
     {
-        $orders = Order::find($id);
-        $orders->status = '3';
-        $orders->update();
+        $tracking = Tracking::find($id);
+        $tracking->status = '2';
+        $tracking->update();
         return redirect()->route('driver.index')->with('success', 'Barang akan dijemput');
     }
     public function antarBarang($id)
     {
-        $orders = Order::find($id);
-        $orders->status = '4';
-        $orders->update();
+        $tracking = Tracking::find($id);
+        $tracking->status = '3';
+        $tracking->update();
         return redirect()->route('driver.index')->with('success', 'Barang sedang dalam proses antar');
     }
     public function sampaiBarang($id)
     {
-        $orders = Order::find($id);
-        $orders->status = '5';
-        $orders->update();
+        $tracking = Tracking::find($id);
+        $tracking->status = '4';
+        $tracking->update();
         return redirect()->route('driver.index')->with('success', 'Barang sudah sampai');
     }
     

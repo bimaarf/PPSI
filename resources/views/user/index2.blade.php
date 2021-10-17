@@ -75,8 +75,12 @@
                                         <input type="num" name="telp_tujuan[]" class="form-control mt-1" placeholder="628XXXXX">
                                     </td>
                                     <td>
-                                        <button type="button" name="add" id="dynamic-ar"
-                                            class="btn btn-outline-primary">Add</button>
+                                        
+                                       <button type="button" name="add" id="dynamic-ar"
+                                       class="btn btn-outline-primary">Add</button>
+
+
+                                        
                                     </td>
                                 </tr>
                             </tbody>

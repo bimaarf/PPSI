@@ -8,6 +8,7 @@ use App\Http\Controllers\FindDriverController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ShipperController;
+use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Artisan;
 use SebastianBergmann\CodeCoverage\Driver\Driver;
 
@@ -26,9 +27,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 Route::get('/bundamaria', function () {
@@ -65,7 +63,6 @@ Route::post('/store-input-fields/chatting/tambah/{id}', [ChattingController::cla
 
 
 
-// Route::post('/store-input-fields/checkout/orders{id}{key}', [DriverController::class, 'ordersUpdate'])->name('orders.update');
 Route::post('/store-input-fields/driver/{id}', [FindDriverController::class, 'find'])->name('driver.find');
 Route::post('/store-input-fields/driver/update/{id}', [FindDriverController::class, 'update'])->name('driver.update');
 Route::post('/store-input-fields/feed_manager/{id}', [FindChecker::class, 'find'])->name('feed_manager.find');
@@ -81,3 +78,5 @@ Route::post('/store-input-fields/sampai-barang/{id}', [DriverController::class, 
 Route::post('/store-input-fields/konfirmasi-barang/{id}', [ShipperController::class, 'konfirmasiBarang'])->name('shipper.konfirmasi');
 
 
+// tracking
+Route::get('/driver/status/tracking/{id}', [TrackingController::class, 'tracking'])->name('user.tracking');

@@ -4,18 +4,29 @@
      <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
          <div class="position-sticky">
              <div class="list-group list-group-flush mx-3 mt-4">
-                 <a href="{{ route('user.dashboard') }}" class="list-group-item list-group-item-action py-2 ripple  @yield('dashboard')"
-                     aria-current="true">
-                     <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
-                 </a>
-                 <a href="{{ route('user.index') }}" class="list-group-item list-group-item-action py-2 ripple @yield('struktur.dashboard')"><i
+                 @if (Auth::user()->hasRole('shipper'))
+                     <a href="{{ route('user.dashboard') }}"
+                         class="list-group-item list-group-item-action py-2 ripple  @yield('dashboard')"
+                         aria-current="true">
+                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
+                     </a>
+                 @endif
+                 @if (Auth::user()->hasRole('driver'))
+                     <a href="{{ route('driver.index') }}"
+                         class="list-group-item list-group-item-action py-2 ripple  @yield('dashboard')"
+                         aria-current="true">
+                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
+                     </a>
+                 @endif
+                 <a href="{{ route('user.index') }}"
+                     class="list-group-item list-group-item-action py-2 ripple @yield('struktur.dashboard')"><i
                          class="fas fa-user fa-fw me-3"></i><span>Form</span></a>
                  <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('detail')">
                      <i class="fas fa-chart-bar fa-fw me-3"></i>
                      <span>Detail</span></a>
-                     
+
                  {{-- @if (Auth::user()) --}}
-                     {{-- <span class="sidebar-title list-group-item list-group-item-action py-2 ripple">Form &amp; Berita</span>
+                 {{-- <span class="sidebar-title list-group-item list-group-item-action py-2 ripple">Form &amp; Berita</span>
 
                   <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('berita.dashboard')">
                   <i class="fas fa-globe fa-fw me-3"></i>

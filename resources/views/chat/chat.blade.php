@@ -10,7 +10,7 @@
         <h5 class="text-primary text-center ">To : Driver</h5>
             
         @endif
-        @foreach ($chatting->where('checkout_id', $checkout->id) as $item)
+        @foreach ($chatting->where('track_id', $tracking->id) as $item)
         
         @if ($item->user_id != Auth::id())
             {{-- him --}}
@@ -63,7 +63,7 @@
         @endforeach
 
     </div>
-    <form action="{{ route('chat.tambah', ['id' => $checkout->id]) }}" method="POST">
+    <form action="{{ route('chat.tambah', ['id' => $tracking->id]) }}" method="POST">
         @csrf
         <div class="card-body row">
             <div class=" rounded col-8">

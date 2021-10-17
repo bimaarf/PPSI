@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Order;
 use App\Models\Chatting;
+use App\Models\Tracking;
 
 class Checkout extends Model
 {
@@ -28,5 +29,9 @@ class Checkout extends Model
     public function chatting()
     {
         return $this->belongsTo(Chatting::class);
+    }
+    public function tracking()
+    {
+        return $this->hasMany(Tracking::class);
     }
 }
