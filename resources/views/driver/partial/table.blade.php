@@ -32,17 +32,17 @@
                                     <td>{{ $item->orders->armada }}</td>
                                     <td>{{ $item->orders->jadwal }}</td>
 
-                                    @if ($item->orders->status != null && $item->orders->status != 1)
                                         @foreach ($trackings->where('checkout_id', $item->id) as $track)
-                                            
+                                        
+                                        @if ($track->driver_id == Auth::user()->id)
                                         <td class="mb-0 fw-normal"><a
                                             href="{{ route('chat.index', ['id' => $track->id]) }}"
-                                            class="btn btn-outline-success">Chat</a>
+                                            class="btn btn-outline-success ">Chat</a>
                                         </td>
+                                        @endif
+                                       
                                         @endforeach
-                                    @else
                                         <td></td>
-                                    @endif
                                     {{-- ganti driver --}}
                                     <td>{{ $item->orders->nama_pengirim }}</td>
                                     <td>
