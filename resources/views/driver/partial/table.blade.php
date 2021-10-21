@@ -32,19 +32,23 @@
                                     <td>{{ $item->orders->armada }}</td>
                                     <td>{{ $item->orders->jadwal }}</td>
 
-                                        @foreach ($trackings->where('checkout_id', $item->id) as $track)
-                                        
-                                        @if ($track->driver_id == Auth::user()->id)
-                                        <td class="mb-0 fw-normal"><a
-                                            href="{{ route('chat.index', ['id' => $track->id]) }}"
-                                            class="btn btn-outline-success ">Chat</a>
-                                        </td>
+                                    @foreach ($trackings->where('checkout_id', $item->id) as $track)
+
+                                        @if ($track->driver_id == Auth::user()->id && $track->checkout_id == $item->id)
+                                            <td class="mb-0 fw-normal"><a
+                                                    href="{{ route('chat.index', ['id' => $track->id]) }}"
+                                                    class="btn btn-outline-success ">Chat</a>
+                                            </td>
+                                           
                                         @endif
-                                       
-                                        @endforeach
-                                        <td></td>
-                                    {{-- ganti driver --}}
+
+                                    @endforeach
+                                    @if ($item->message == 'Finded')
+                                    <td class="Findoff"></td>
+                                        
+                                    @endif
                                     <td>{{ $item->orders->nama_pengirim }}</td>
+                                    {{-- ganti driver --}}
                                     <td>
                                         <form action="{{ route('driver.update', ['id' => $item->id]) }}"
                                             method="POST">
@@ -75,14 +79,8 @@
                             </form>
                             </td>
                             <td>
-
-
-                                {{-- @if ($item->message == 'Finded')
-                                    
-
-                                @endif --}}
-                                <form action="{{ route('driver.terima', ['id' => $item->id]) }}" method="post"
-                                    class="Finded">
+                                @if ($item->message == 'Finded')
+                                <form action="{{ route('driver.terima', ['id' => $item->id]) }}" method="post">
                                     @csrf
                                     <div class="btn-group" role="group" aria-label="Basic example">
 
@@ -93,8 +91,11 @@
                                         </button>
                                     </div>
                                 </form>
+                                @endif
+                           
+                                
                                 @foreach ($trackings as $track)
-                                    @if ($track->status == 1 && $track->driver_id == Auth::user()->id)
+                                    @if ($track->status == 1 && $track->driver_id == Auth::user()->id && $track->checkout_id == $item->id)
                                         <style>
                                             .Finded {
                                                 display: none;
@@ -112,17 +113,17 @@
                                                 </button>
                                             </div>
                                         </form>
-                                  
-                                   
+
+
 
                                     @endif
-                                    @if ($track->status == 2 && $track->driver_id == Auth::user()->id)
-                                    <style>
-                                        .Finded {
-                                            display: none;
-                                        }
+                                    @if ($track->status == 2 && $track->driver_id == Auth::user()->id && $track->checkout_id == $item->id)
+                                        <style>
+                                            .Finded {
+                                                display: none;
+                                            }
 
-                                    </style>
+                                        </style>
                                         <form action="{{ route('driver.antar', ['id' => $track->id]) }}"
                                             method="post">
                                             @csrf
@@ -134,36 +135,88 @@
                                             </div>
                                         </form>
                                     @endif
-                                    @if ($track->status == 3 && $track->driver_id == Auth::user()->id)
-                                    <style>
-                                        .Finded {
-                                            display: none;
-                                        }
+                                    @if ($track->status == 3 && $track->driver_id == Auth::user()->id && $track->checkout_id == $item->id)
+                                        <style>
+                                            .Finded {
+                                                display: none;
+                                            }
 
-                                    </style>
+                                        </style>
+                                        
                                         <form action="{{ route('driver.sampai', ['id' => $track->id]) }}"
                                             method="post">
                                             @csrf
                                             <div class="btn-group" role="group" aria-label="Basic example">
-    
-                                                <button type="submit" class=" btn btn-secondary text-capitalize"
+                                                <?php
+                                                $alamat = $item->orders->alamat_tujuan;
+                                                $jumlah_alamat = json_decode($alamat, true);
+                                                if (count($jumlah_alamat) > 1) {
+                                                    for ($x = 0; $x < count($jumlah_alamat); $x++) {
+                                                        if ($x > 25) {
+                                                            $divided = indiv($x, 25);
+                                                            $bMax = '4' . chr(65 + $divided) . chr(65 + ($x - 25 * $divided));
+                                                            echo $bMax . '<br>';
+                                                        } else {
+                                                            $bMin = '4' . chr(65 + $x);
+                                                            if ($track->status == 3) {
+                                                                # code...
+                                                                $demo = "<button type='button' class='btn btn-primary' data-mdb-toggle='modal' data-mdb-target='#exampleModal$track->id'> Launch demo modal </button>";
+                                                                echo $demo;
+                                                            }
+                                                            $buton = "<button type='submit' class=' btn btn-secondary text-capitalize'>Barang sudah sampai di $bMin </button>";
+                                                        }
+                                                    }
+                                                } else {
+                                                    echo '4';
+                                                }
+                                                
+                                                ?>
+                                                {{-- <button type="submit" class=" btn btn-secondary text-capitalize"
                                                     data-toggle="tooltip">
+                                                  
                                                     <div class="bi icon dripicons-trash"></div>Barang sudah
                                                     sampai
-                                                </button>
+                                                </button> --}}
                                             </div>
                                         </form>
+                                        {{-- modal status == 3 --}}
+                                        <!-- Modal -->
+                                        <div class="modal top fade" id="exampleModal{{ $track->id }}" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true"
+                                            data-mdb-backdrop="static" data-mdb-keyboard="true">
+                                            <div class="modal-dialog modal-lg  modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Modal title
+                                                        </h5>
+                                                        <button type="button" class="btn-close"
+                                                            data-mdb-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">tracking id => {{ $track->id }}
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-mdb-dismiss="modal">
+                                                            Close
+                                                        </button>
+                                                        <button type="button" class="btn btn-primary">Save
+                                                            changes</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {{-- end modal status == 3 --}}
                                     @endif
-                                    @if ($track->status == 4 && $track->driver_id == Auth::user()->id)
-                                    <style>
-                                        .Finded {
-                                            display: none;
-                                        }
-    
-                                    </style>
+                                    @if ($track->status == 4 && $track->driver_id == Auth::user()->id && $track->checkout_id == $item->id)
+                                        <style>
+                                            .Finded {
+                                                display: none;
+                                            }
+
+                                        </style>
                                         <h6 class="btn btn-success rounded-pill text-capitalize">
                                             Menunggu Konfirmasi</h6>
-    
+
                                     @endif
                                 @endforeach
 

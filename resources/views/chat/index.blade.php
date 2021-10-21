@@ -1,4 +1,5 @@
 @extends('layouts.backend.main_login')
+@section('detail', 'active')
 @section('content')
 
     @if ($errors->any())
@@ -10,6 +11,7 @@
             </ul>
         </div>
     @endif
+    
     @if (Session::has('success'))
         <div class="alert alert-success text-center">
             <p>{{ Session::get('success') }}</p>

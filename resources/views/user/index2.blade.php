@@ -76,11 +76,12 @@
                                     </td>
                                     <td>
                                         
+                                        @if ($orders->feed_m == 1)
                                        <button type="button" name="add" id="dynamic-ar"
                                        class="btn btn-outline-primary">Add</button>
-
-
-                                        
+                                            
+                                        @endif
+                                           
                                     </td>
                                 </tr>
                             </tbody>

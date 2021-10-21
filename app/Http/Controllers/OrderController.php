@@ -13,8 +13,7 @@ use App\Models\RoleUser;
 use App\Models\Checkout;
 use App\Models\FeedManager;
 use Illuminate\Support\Facades\DB;
-use RajaOngkir;
-
+use Session;
 class OrderController extends Controller
 {
    
@@ -29,7 +28,11 @@ class OrderController extends Controller
     public function index2(Request $request) 
     {
         $zone = Zone::get();
-        $orders = $request->session()->get('orders');
+        $request->session()->get('pesan');
+        $pesan = $request->session()->get('pesan');
+        $orders = Order::all();
+        $orders->feed_m              = $pesan['feed_m'];
+        
         return view("user.index2", compact('zone', 'orders'));
     }
     public function tambah(Request $request)
