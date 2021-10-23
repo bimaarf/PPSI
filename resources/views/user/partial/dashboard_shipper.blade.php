@@ -41,6 +41,9 @@
                                           </button></td>
                                     @endif
                                 @endforeach
+                                @if ($item->status == null)
+                                    <td></td>
+                                @endif
                                 <td class="mb-0 fw-normal">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ route('user.detail', ['id' => $item->id, 'key' => $item->key]) }}"

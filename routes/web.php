@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ChattingController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\FeedManagerController;
@@ -45,10 +46,11 @@ Route::get('/clear-cache', function() {
     dd($output);
 });
 // form-orders
-Route::get('/user-form', [OrderController::class, 'index'])->name('user.index');
-Route::get('/user-form2', [OrderController::class, 'index2'])->name('user.index2');
+Route::get('/user-form-jemput', [OrderController::class, 'index'])->name('user.index');
+Route::get('/user-form-tujuan', [OrderController::class, 'index2'])->name('user.index2');
 
 Route::get('/dashboard', [ShipperController::class, 'dashboard'])->name('user.dashboard')->middleware('auth');
+Route::get('/dashboard/admin', [AdminController::class, 'dashboard'])->name('admin.index')->middleware('auth');
 Route::get('/dashboard/driver', [DriverController::class, 'dashboardDriver'])->name('driver.index')->middleware('auth');
 Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('user.detail');
 Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('user.hapus');

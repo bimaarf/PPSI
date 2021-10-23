@@ -20,7 +20,7 @@ class DriverController extends Controller
         $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
         $driver = RoleUser::where('role_id', 2)->get();
         $trackings = Tracking::all();
-
+        
         return view("driver.index", compact('orders','checkout', 'driver', 'trackings'));
         
     }

@@ -17,7 +17,7 @@
             <p>{{ Session::get('success') }}</p>
         </div>
     @endif
-    <div class="container d-flex justify-content-center"  id="show" onload = "JavaScript:AutoRefresh(1000);">
+    <div class="container d-flex justify-content-center"  id="show reload" onload = "JavaScript:AutoRefresh(1000);">
         @include('chat.chat')
     </div>
     </div>

@@ -79,8 +79,7 @@
                             </form>
                             </td>
                             <td>
-                                @if ($item->message == 'Finded')
-                                <form action="{{ route('driver.terima', ['id' => $item->id]) }}" method="post">
+                                <form action="{{ route('driver.terima', ['id' => $item->id]) }}" class="Finded{{ $item->id }}" method="post">
                                     @csrf
                                     <div class="btn-group" role="group" aria-label="Basic example">
 
@@ -91,13 +90,12 @@
                                         </button>
                                     </div>
                                 </form>
-                                @endif
                            
                                 
                                 @foreach ($trackings as $track)
                                     @if ($track->status == 1 && $track->driver_id == Auth::user()->id && $track->checkout_id == $item->id)
                                         <style>
-                                            .Finded {
+                                            .Finded{{ $item->id }} {
                                                 display: none;
                                             }
 
@@ -119,7 +117,7 @@
                                     @endif
                                     @if ($track->status == 2 && $track->driver_id == Auth::user()->id && $track->checkout_id == $item->id)
                                         <style>
-                                            .Finded {
+                                            .Finded{{ $item->id }} {
                                                 display: none;
                                             }
 
@@ -137,7 +135,7 @@
                                     @endif
                                     @if ($track->status == 3 && $track->driver_id == Auth::user()->id && $track->checkout_id == $item->id)
                                         <style>
-                                            .Finded {
+                                            .Finded{{ $item->id }} {
                                                 display: none;
                                             }
 
@@ -147,30 +145,7 @@
                                             method="post">
                                             @csrf
                                             <div class="btn-group" role="group" aria-label="Basic example">
-                                                <?php
-                                                $alamat = $item->orders->alamat_tujuan;
-                                                $jumlah_alamat = json_decode($alamat, true);
-                                                if (count($jumlah_alamat) > 1) {
-                                                    for ($x = 0; $x < count($jumlah_alamat); $x++) {
-                                                        if ($x > 25) {
-                                                            $divided = indiv($x, 25);
-                                                            $bMax = '4' . chr(65 + $divided) . chr(65 + ($x - 25 * $divided));
-                                                            echo $bMax . '<br>';
-                                                        } else {
-                                                            $bMin = '4' . chr(65 + $x);
-                                                            if ($track->status == 3) {
-                                                                # code...
-                                                                $demo = "<button type='button' class='btn btn-primary' data-mdb-toggle='modal' data-mdb-target='#exampleModal$track->id'> Launch demo modal </button>";
-                                                                echo $demo;
-                                                            }
-                                                            $buton = "<button type='submit' class=' btn btn-secondary text-capitalize'>Barang sudah sampai di $bMin </button>";
-                                                        }
-                                                    }
-                                                } else {
-                                                    echo '4';
-                                                }
-                                                
-                                                ?>
+                                                <button type='button' class='btn btn-primary' data-mdb-toggle='modal' data-mdb-target='#exampleModal{{ $track->id }}'> Launch demo modal </button>
                                                 {{-- <button type="submit" class=" btn btn-secondary text-capitalize"
                                                     data-toggle="tooltip">
                                                   
@@ -192,7 +167,31 @@
                                                         <button type="button" class="btn-close"
                                                             data-mdb-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                    <div class="modal-body">tracking id => {{ $track->id }}
+                                                    <div class="modal-body">
+                                                        <?php
+                                                $alamat = $item->orders->alamat_tujuan;
+                                                $jumlah_alamat = json_decode($alamat, true);
+                                                if (count($jumlah_alamat) > 1) {
+                                                    for ($x = 0; $x < count($jumlah_alamat); $x++) {
+                                                        if ($x > 25) {
+                                                            $divided = indiv($x, 25);
+                                                            $bMax = '4' . chr(65 + $divided) . chr(65 + ($x - 25 * $divided));
+                                                            echo $bMax . '<br>';
+                                                        } else {
+                                                            $bMin = '4' . chr(65 + $x);
+                                                            if ($track->status == 3) {
+                                                                # code...
+                                                                $buton = "<button type='submit' class=' btn btn-secondary text-capitalize'>Barang sudah sampai di $bMin </button>";
+                                                                echo  $track->id .$buton;
+                                                            }
+                                                        }
+                                                    }
+                                                } else {
+                                                    echo '4';
+                                                }
+                                                
+                                                ?>
+                                                        
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -209,7 +208,7 @@
                                     @endif
                                     @if ($track->status == 4 && $track->driver_id == Auth::user()->id && $track->checkout_id == $item->id)
                                         <style>
-                                            .Finded {
+                                            .Finded{{ $item->id }} {
                                                 display: none;
                                             }
 

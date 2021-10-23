@@ -2,17 +2,27 @@
  <header>
      <!-- Sidebar -->
      <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+         <!-- Search form -->
+        
          <div class="position-sticky">
              <div class="list-group list-group-flush mx-3 mt-4">
                  @if (Auth::user()->hasRole('shipper'))
                      <a href="{{ route('user.dashboard') }}"
-                         class="list-group-item list-group-item-action py-2 ripple  @yield('dashboard')"
+                         class="list-group-item list-group-item-action py-2 ripple shp @yield('dashboard')"
                          aria-current="true">
                          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
                      </a>
                  @endif
                  @if (Auth::user()->hasRole('driver'))
                      <a href="{{ route('driver.index') }}"
+                         class="list-group-item list-group-item-action py-2 ripple   @yield('dashboard')"
+                         aria-current="true">
+                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
+                     </a>
+                 @endif
+                 @if (Auth::user()->hasRole('admin'))
+                 <style>.shp{display: none;}</style>
+                     <a href="{{ route('admin.index') }}"
                          class="list-group-item list-group-item-action py-2 ripple  @yield('dashboard')"
                          aria-current="true">
                          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
