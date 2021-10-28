@@ -33,6 +33,11 @@ Route::get('/landing', function () {
 });
 
 
+Route::get('/laman-login', function () {
+    return view('akun.login');
+});
+
+
 require __DIR__ . '/auth.php';
 Route::get('/bundamaria', function () {
     Artisan::call('migrate');

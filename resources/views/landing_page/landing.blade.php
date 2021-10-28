@@ -30,7 +30,7 @@
                 <li><a href="#" class="nav-link">Mitra Driver</a></li>
                 <!-- Dropdown navbar -->
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link text-white" role="button" data-toggle="dropdown" aria-expanded="false">
+                    <a href="#" class="nav-link" role="button" data-toggle="dropdown" aria-expanded="false">
                     Perusahaan    
                     </a>
                     <div class="dropdown-menu">

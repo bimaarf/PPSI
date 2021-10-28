@@ -1,0 +1,50 @@
+/* * {
+    border: 1px solid red;
+} */
+
+.miring {
+    height: 450px;
+    width: 150%;
+    transform: rotate(-50deg) translate(-20%, -40%);
+    z-index: -1;
+}
+
+.card-akun {
+    width: 85%;
+    height: 80vh;
+    top: 10vh;
+}
+
+.image-akun {
+    height: 80vh;
+    background-color: blue;
+    background-image: url("../img/landing/mt_bg1.png");
+    background-size: cover;
+}
+
+.rounded-left {
+    border-top-left-radius: 0.25rem !important;
+    border-bottom-left-radius: 0.25rem !important;
+}
+
+span.line-center-text {
+    display: flex;
+    flex-direction: row;
+    padding: 0px 5px 0px;
+}
+
+span.line-center-text::before,
+span.line-center-text::after {
+    content: "";
+    flex: 1 1;
+    border-bottom: 1px solid;
+    margin: auto;
+}
+
+span.line-center-text::before {
+    margin-right: 10px;
+}
+
+span.line-center-text::after {
+    margin-left: 10px;
+}
