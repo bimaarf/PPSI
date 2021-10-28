@@ -30,10 +30,18 @@
                  @endif
                  <a href="{{ route('user.index') }}"
                      class="list-group-item list-group-item-action py-2 ripple @yield('struktur.dashboard')"><i
-                         class="fas fa-user fa-fw me-3"></i><span>Form</span></a>
+                         class="fas fa-bars fa-fw me-3"></i><span>Form</span></a>
                  <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('detail')">
                      <i class="fas fa-chart-bar fa-fw me-3"></i>
                      <span>Detail</span></a>
+
+                @if (Auth::user()->hasRole('admin'))
+                <a href="{{ route('admin.add_user') }}"
+                    class="list-group-item list-group-item-action py-2 ripple  @yield('add')"
+                    aria-current="true">
+                    <i class="fas fa-user fa-fw me-3"></i><span>Add User</span>
+                </a>
+                @endif
 
                  {{-- @if (Auth::user()) --}}
                  {{-- <span class="sidebar-title list-group-item list-group-item-action py-2 ripple">Form &amp; Berita</span>

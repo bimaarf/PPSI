@@ -8,6 +8,8 @@ use App\Http\Controllers\FindChecker;
 use App\Http\Controllers\FindDriverController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\RegisteredByAdmin;
+use App\Http\Controllers\RegisteredByAdminController;
 use App\Http\Controllers\ShipperController;
 use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Artisan;
@@ -48,15 +50,21 @@ Route::get('/clear-cache', function() {
 // form-orders
 Route::get('/user-form-jemput', [OrderController::class, 'index'])->name('user.index');
 Route::get('/user-form-tujuan', [OrderController::class, 'index2'])->name('user.index2');
+// admin
+Route::get('/dashboard/admin', [AdminController::class, 'dashboard'])->name('admin.index')->middleware('auth');
+Route::get('/dashboard/admin/add-user', [AdminController::class, 'addUser'])->name('admin.add_user')->middleware('auth');
+
+Route::post('/registered-by-admin', [RegisteredByAdminController::class, 'registerByAdmin'])->name('admin.register');
+
 
 Route::get('/dashboard', [ShipperController::class, 'dashboard'])->name('user.dashboard')->middleware('auth');
-Route::get('/dashboard/admin', [AdminController::class, 'dashboard'])->name('admin.index')->middleware('auth');
 Route::get('/dashboard/driver', [DriverController::class, 'dashboardDriver'])->name('driver.index')->middleware('auth');
 Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('user.detail');
 Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('user.hapus');
 Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'deleteCheckout'])->name('driver.delete');
 Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'deleteCheckout'])->name('driver.delete');
 Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');
+
 
 
 // chatting

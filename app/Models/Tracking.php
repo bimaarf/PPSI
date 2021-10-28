@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Checkout;
 use App\Models\Chatting;
-use App\Models\orderStatus;
+use App\Models\TrackingStatus;
 
 class Tracking extends Model
 {
@@ -34,8 +34,8 @@ class Tracking extends Model
     {
         return $this->belongsTo(Chatting::class);
     }
-    public function orderStatus()
-    {
-        return $this->hasMany(orderStatus::class);
-    }
+   public function trackStatus()
+   {
+       return $this->belongsTo(TrackingStatus::class);
+   }
 }

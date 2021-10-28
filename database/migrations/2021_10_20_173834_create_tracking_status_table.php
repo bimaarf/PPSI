@@ -17,6 +17,7 @@ class CreateTrackingStatusTable extends Migration
             $table->id();
             $table->bigInteger('status');
             $table->unsignedBigInteger('track_id');
+            $table->string('alamat', 255)->nullable();
             $table->foreign('track_id')->references('id')->on('trackings');
             $table->timestamps();
         });

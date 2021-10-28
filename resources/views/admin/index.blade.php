@@ -1,6 +1,20 @@
 @extends('layouts.backend.main_login')
 @section('dashboard', 'active')
 @section('content')
+@if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if (Session::has('success'))
+        <div class="alert alert-success text-center">
+            <p>{{ Session::get('success') }}</p>
+        </div>
+    @endif
     <div class="card">
         <div class="card-header">
             <h5 class="mb-0 text-center">
@@ -29,18 +43,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $rUser)
+                        @foreach ($role_user as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $rUser->name }}</td>
+                                <td>{{ $item->user->name }}</td>
                                 <td>
-                                    @if ($rUser->hasRole('admin'))
+                                    @if ($item->user->hasRole('admin'))
                                         Admin
                                     @endif
-                                    @if ($rUser->hasRole('driver'))
+                                    @if ($item->user->hasRole('driver'))
                                         Driver
                                     @endif
-                                    @if ($rUser->hasRole('shipper'))
+                                    @if ($item->user->hasRole('shipper'))
                                         Shipper
                                     @endif
 
@@ -48,14 +62,16 @@
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
-                                            data-mdb-target="#exampleModal{{ $rUser->id }}">Lihat</button>
+                                            data-mdb-target="#exampleModal{{ $item->user->id }}">Lihat</button>
                                     </div>
                                 </td>
+                                
                             </tr>
+
                             {{-- Popup detail --}}
 
                             <!-- Modal -->
-                            <div class="modal top fade" id="exampleModal{{ $rUser->id }}" tabindex="-1"
+                            <div class="modal top fade" id="exampleModal{{ $item->user->id }}" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static"
                                 data-mdb-keyboard="true">
                                 <div class="modal-dialog modal-lg  modal-dialog-centered">
@@ -71,12 +87,12 @@
                                                     <div class="form-group col-lg-6">
                                                         <label for="name">Username</label>
                                                         <input type="text" id="name" class="form-control"
-                                                            value="{{ $rUser->name }}" disabled>
+                                                            value="{{ $item->user->name }}" disabled>
                                                     </div>
                                                     <div class="form-group col-lg-6">
                                                         <label for="email">Email</label>
                                                         <input type="text" id="email" class="form-control"
-                                                            value="{{ $rUser->email }}" disabled>
+                                                            value="{{ $item->user->email }}" disabled>
                                                     </div>
 
                                                 </div>
@@ -85,9 +101,9 @@
                                                         <label for="role"></label>
                                                         <select id="role" class="form-control">
                                                             <option value="">-- Role --</option>
-                                                            <option value="">Admin</option>
-                                                            <option value="">Driver</option>
-                                                            <option value="">Shiper</option>
+                                                            @foreach ($role as $rol)
+                                                                <option value="">{{ $rol->name }}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
@@ -108,12 +124,13 @@
                             </div>
                             {{-- End Popup detail --}}
                         @endforeach
-
-            </div>
-        </div>
-        </tbody>
+                        
+                    </div>
+                </div>
+            </tbody>
         </table>
     </div>
+    {{ $role_user->links() }}
     </div>
     </div>
 @endsection

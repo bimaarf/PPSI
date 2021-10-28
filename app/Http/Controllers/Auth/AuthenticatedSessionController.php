@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\Order;
+use App\Models\Role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,12 +31,8 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request)
     {
         $request->authenticate();
-        $shipper = RoleUser::where('role_id', 3)->get();
-        $driver  = RoleUser::where('role_id', 2)->get();
         $request->session()->regenerate();
-        foreach($shipper as $shp)
-        {
-            if (Auth::user()->id == $shp->user_id) {
+            if (Auth::user()->hasRole('shipper')) {
                 if($request->session()->get('pesan'))
                 {
                     $pesan = $request->session()->get('pesan');
@@ -63,15 +60,20 @@ class AuthenticatedSessionController extends Controller
                 
                 }else  
                 return redirect()->route('user.dashboard');
-            }
         }
-        foreach($driver as $drv)
+        if(Auth::user()->hasRole('admin'))
         {
-            if(Auth::user()->id == $drv->user_id)
-            {
-                return redirect()->route('driver.index');
-            }
+            return redirect()->route('admin.index');
         }
+        if(Auth::user()->hasRole('driver'))
+        {
+            return redirect()->route('driver.index');
+        }
+        if(Auth::user()->hasRole('shipper'))
+        {
+            return redirect()->route('user.dashboard');
+        }
+
     }
 
     /**

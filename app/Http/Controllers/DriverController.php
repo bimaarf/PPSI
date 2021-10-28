@@ -9,19 +9,25 @@ use App\Models\User;
 use App\Models\FeedManager;
 use App\Models\RoleUser;
 use App\Models\Tracking;
+use App\Models\TrackingStatus;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DriverController extends Controller
 {
+
+
     public function dashboardDriver()
     {
+        $i = 1;
+
         $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
         $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
         $driver = RoleUser::where('role_id', 2)->get();
         $trackings = Tracking::all();
+        $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         
-        return view("driver.index", compact('orders','checkout', 'driver', 'trackings'));
+        return view("driver.index", compact('i' ,'orders','checkout', 'driver', 'trackings', 'track_status'));
         
     }
 
@@ -37,6 +43,7 @@ class DriverController extends Controller
 
         return redirect()->route('driver.index')->with('success', 'Terima kasih orderan sudah dihapus.');
     }
+   
     
     public function terima($id)
     {
@@ -46,37 +53,65 @@ class DriverController extends Controller
         $orders->update();
         $checkout->message = 'Verified';
         $checkout->update();
+
+
         $tracking = new Tracking();
         $tracking->status = '1';
         $tracking->checkout_id = $checkout->id;
         $tracking->driver_id   = Auth::id();
         $tracking->save();
+
+
+     
+
         return redirect()->route('driver.index')->with('success', 'Orderan Diterima');
     }
-    public function jemputBarang($id)
+    public function jemputBarang(Request $request)
     {
-        $tracking = Tracking::find($id);
+        $tracking = new Tracking();
         $tracking->status = '2';
-        $tracking->update();
+        $tracking->checkout_id = $request->checkout_id;
+        $tracking->driver_id   = Auth::id();
+        $tracking->save();
+
+
+       
         return redirect()->route('driver.index')->with('success', 'Barang akan dijemput');
     }
+
     public function antarBarang($id)
     {
-        $tracking = Tracking::find($id);
+        $checkout = Checkout::find($id);
+        $tracking = new Tracking();
         $tracking->status = '3';
-        $tracking->update();
+        $tracking->checkout_id = $checkout->id;
+        $tracking->driver_id   = Auth::id();
+        $tracking->save();
+        foreach(json_decode($checkout->orders->alamat_tujuan) as $almt)
+        {
+            $tracking = new Tracking();
+            $tracking->status = '4';
+            $tracking->checkout_id = $checkout->id;
+            $tracking->driver_id   = Auth::id();
+            $tracking->alamat      = $almt;
+            $tracking->save();
+        }
+       
         return redirect()->route('driver.index')->with('success', 'Barang sedang dalam proses antar');
     }
-    public function sampaiBarang($id)
+   
+    public function sampaiBarang(Request $request, $id)
     {
+
+  
         $tracking = Tracking::find($id);
-        $tracking->status = '4';
+
+        $tracking->status = '5';
+        $tracking->checkout_id = $tracking->checkout->id;
+        $tracking->driver_id   = Auth::id();
         $tracking->update();
 
 
-        
-        
-        
         return redirect()->route('driver.index')->with('success', 'Barang sudah sampai');
     }
     

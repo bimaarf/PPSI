@@ -18,6 +18,7 @@ class CreateTrackingTable extends Migration
             $table->string('status', 255)->nullable();
             $table->unsignedBigInteger('checkout_id');
             $table->unsignedBigInteger('driver_id');
+            $table->string('alamat', 255)->nullable();
             $table->foreign('checkout_id')->references('id')->on('checkouts');
             $table->foreign('driver_id')->references('id')->on('users');
             $table->timestamps();
