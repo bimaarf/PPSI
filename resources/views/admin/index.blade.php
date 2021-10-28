@@ -100,9 +100,8 @@
                                                     <div class="form-group col-lg-6">
                                                         <label for="role"></label>
                                                         <select id="role" class="form-control">
-                                                            <option value="">-- Role --</option>
                                                             @foreach ($role as $rol)
-                                                                <option value="">{{ $rol->name }}</option>
+                                                                <option value="{{ $rol->id }}" {{($rol->id==$item->role_id) ? 'selected' : ''}}>{{ $rol->name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
