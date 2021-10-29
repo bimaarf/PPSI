@@ -31,19 +31,18 @@
                                 <td class="mb-0 fw-normal">{{ $item->jadwal }}</td>
                                 @foreach ($checkout->where('orders_id', $item->id)->slice(0,1) as $check)
 
-                                    @if ($check->orders->status != null && $check->orders->status == 2)
-                                    <td class="mb-0 fw-normal">
+                                    @if ($check->orders->status == 2)
+                                    <td class="mb-0 fw-normal oke">
                                         <a href="{{ route('orders.tracking', ['id'=>$check->id]) }}" class="btn btn-outline-success" >Status</a>
                                     </td>
-                                    @else
-                                        <td><button class="btn btn-outline-primary" type="button" disabled>
-                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                          </button></td>
+                                       
+                                    @endif
+                                    @if ($check->message == 'Finded')
+                                    <td><button class="btn btn-outline-primary" type="button" disabled>
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                      </button></td>
                                     @endif
                                 @endforeach
-                                @if ($item->status == null)
-                                    <td></td>
-                                @endif
                                 <td class="mb-0 fw-normal">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ route('orders.detail', ['id' => $item->id, 'key' => $item->key]) }}"

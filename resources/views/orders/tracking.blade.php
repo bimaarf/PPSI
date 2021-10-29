@@ -30,7 +30,7 @@
                                     </a>
                                 </li>
                             @endif
-                            @if ($track->status == 2)
+                            {{-- @if ($track->status == 2)
                                 <li class="complete">
                                     <a href="#">Paket telah dikonfirmasi oleh driver<i
                                             class="ico fa fa-check ico-green"></i>
@@ -147,7 +147,7 @@
                                     </a>
                                 </li>
 
-                            @endif
+                            @endif --}}
                         </ul>
                     </div>
                 </div>
