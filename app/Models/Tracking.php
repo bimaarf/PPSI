@@ -36,6 +36,6 @@ class Tracking extends Model
     }
    public function trackStatus()
    {
-       return $this->belongsTo(TrackingStatus::class);
+       return $this->hasMany(TrackingStatus::class);
    }
 }

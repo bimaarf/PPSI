@@ -14,7 +14,7 @@
                         <th scope="col">#</th>
                         <th scope="col">Armada</th>
                         <th scope="col">Waktu</th>
-
+                            
                         <th scope="col">Lacak</th>
 
                         <th scope="col">Aksi</th>
@@ -60,6 +60,7 @@
                                     </div>
 
                                 </td>
+                              
                             </tr>
 
                         @endif

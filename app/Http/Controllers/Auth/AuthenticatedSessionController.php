@@ -56,10 +56,10 @@ class AuthenticatedSessionController extends Controller
                     $orders->user_id = Auth::id();
                     $orders->save();
                     $request->session()->forget('pesan');
-                    return redirect()->route('user.detail', ['key'=>$orders->key,'id'=>$orders->id])->with('success', 'New subject has been added.');
+                    return redirect()->route('orders.detail', ['key'=>$orders->key,'id'=>$orders->id])->with('success', 'New subject has been added.');
                 
                 }else  
-                return redirect()->route('user.dashboard');
+                return redirect()->route('user.index');
         }
         if(Auth::user()->hasRole('admin'))
         {
@@ -71,7 +71,7 @@ class AuthenticatedSessionController extends Controller
         }
         if(Auth::user()->hasRole('shipper'))
         {
-            return redirect()->route('user.dashboard');
+            return redirect()->route('user.index');
         }
 
     }

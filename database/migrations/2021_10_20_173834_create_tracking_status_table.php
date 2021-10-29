@@ -15,10 +15,10 @@ class CreateTrackingStatusTable extends Migration
     {
         Schema::create('tracking_status', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('status');
+            $table->string('status', 155)->nullable();
             $table->unsignedBigInteger('track_id');
-            $table->string('alamat', 255)->nullable();
             $table->foreign('track_id')->references('id')->on('trackings');
+            $table->string('alamat', 255)->nullable();
             $table->timestamps();
         });
     }

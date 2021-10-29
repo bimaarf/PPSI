@@ -15,7 +15,7 @@ class CreateTrackingTable extends Migration
     {
         Schema::create('trackings', function (Blueprint $table) {
             $table->id();
-            $table->string('status', 255)->nullable();
+            $table->string('status', 155)->nullable();
             $table->unsignedBigInteger('checkout_id');
             $table->unsignedBigInteger('driver_id');
             $table->string('alamat', 255)->nullable();

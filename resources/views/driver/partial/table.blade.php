@@ -34,7 +34,7 @@
 
                                     @foreach ($trackings->where('checkout_id', $item->id) as $track)
 
-                                        @if ($track->driver_id == Auth::user()->id && $track->checkout_id == $item->id && $track->status == 1)
+                                        @if ($track->driver_id == Auth::user()->id && $track->checkout_id == $item->id && $track->status != null)
                                             <td class="mb-0 fw-normal"><a
                                                     href="{{ route('chat.index', ['id' => $track->id]) }}"
                                                     class="btn btn-outline-success ">Chat</a>
@@ -98,7 +98,7 @@
                                                 <input type="hidden" value="{{ $item->id }}" name="checkout_id">
                                                 <button type="submit" class=" btn btn-success text-capitalize"
                                                     data-toggle="tooltip">
-                                                    <div class="bi icon dripicons-trash"></div>Jemput barang
+                                                    <div class="bi icon dripicons-trash"></div>Jemput barang{{ $track->id }}
                                                 </button>
                                             </div>
                                         </form>
@@ -116,17 +116,17 @@
                                             }
 
                                         </style>
-                                        <form action="{{ route('driver.antar', ['id' => $item->id]) }}"
-                                            method="post" class="antar{{ $item->id }}">
-                                            @csrf
-                                            <div class="btn-group" role="group" aria-label="Basic example">
-                                                <input type="hidden" value="{{ $item->id }}" name="checkout_id">
-                                                <button type="submit" class=" btn btn-secondary text-capitalize"
-                                                    data-toggle="tooltip">
-                                                    <div class="bi icon dripicons-trash"></div>Antar Barang
-                                                </button>
-                                            </div>
-                                        </form>
+                                            <form action="{{ route('driver.antar', ['id' => $track->id]) }}"
+                                                method="post" class="antar{{ $item->id }}">
+                                                @csrf
+                                                <div class="btn-group" role="group" aria-label="Basic example">
+                                                    <input type="hidden" value="{{ $item->id }}" name="checkout_id">
+                                                    <button type="submit" class=" btn btn-secondary text-capitalize"
+                                                        data-toggle="tooltip">
+                                                        <div class="bi icon dripicons-trash"></div>Antar Barang
+                                                    </button>
+                                                </div>
+                                            </form>
                                     @endif
                                     @if ($track->status == 3 && $track->driver_id == Auth::user()->id && $track->checkout_id == $item->id)
                                         <style>
@@ -171,8 +171,8 @@
                                                         {{-- ALGORITMA --}}
                                                         
                                                         {{--  --}}
-                                                        @foreach ($trackings->where('checkout_id', $item->id) as $valid)
-                                                            @if ($valid->status == 5)
+                                                        @foreach ($track_status->where('track_id', $track->id) as $valid)
+                                                            @if ($valid->status == 'Sampai')
                                                             <div class="bs-vertical-wizard row">
                                                                 <ul class="col-lg-10">
                                                                     <li class="complete">
@@ -187,8 +187,8 @@
                                                         @endforeach
                                                         
                                                             {{-- @if ($trc->alamat == null && $trc->status == 4) --}}
-                                                                @foreach ($trackings->where('checkout_id', $item->id) as $tr)
-                                                                @if ($tr->status == 4)
+                                                                @foreach ($track_status->where('track_id', $track->id) as $tr)
+                                                                @if ($tr->status == 'Belum sampai')
                                                                 
                                                                 <form action="{{ route('driver.sampai', ['id' => $tr->id]) }}" method="post" >
                                                                     @csrf
@@ -203,7 +203,7 @@
                                                                                 </li>
                                                                             </ul>
                                                                             <ul class="col-lg-2">
-                                                                                <input type="hidden" value="{{ $tr->alamat }}" name="alamat">
+                                                                                {{-- <input type="hidden" value="{{ $tr->alamat }}" name="alamat"> --}}
                                                                                 <button type="submit" class="btn btn-success mt-2 "> Konfirmasi</button>
                                                                             </ul>
                                                                         </div>

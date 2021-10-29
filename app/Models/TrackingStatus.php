@@ -10,7 +10,7 @@ class TrackingStatus extends Model
 {
     use HasFactory;
     protected $table = 'tracking_status';
-
+    
     public function tracking()
     {
         return $this->belongsTo(Tracking::class);

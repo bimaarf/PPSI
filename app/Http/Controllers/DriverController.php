@@ -62,55 +62,69 @@ class DriverController extends Controller
         $tracking->driver_id   = Auth::id();
         $tracking->save();
 
-
-     
+        $status = new TrackingStatus();
+        $status->status = 'Terima';
+        $status->track_id = $tracking->id;
+        $status->save();
 
         return redirect()->route('driver.index')->with('success', 'Orderan Diterima');
     }
-    public function jemputBarang(Request $request)
+    public function jemputBarang(Request $request, $id)
     {
-        $tracking = new Tracking();
+        // $tracking = Tracking::find($id);
+        // $tracking->status = '0';
+        // $tracking->update();
+        $tracking = Tracking::find($id);
         $tracking->status = '2';
         $tracking->checkout_id = $request->checkout_id;
         $tracking->driver_id   = Auth::id();
-        $tracking->save();
+        $tracking->update();
 
-
+        $status = new TrackingStatus();
+        $status->status = 'Jemput';
+        $status->track_id = $tracking->id;
+        $status->save();
        
         return redirect()->route('driver.index')->with('success', 'Barang akan dijemput');
     }
 
-    public function antarBarang($id)
+    public function antarBarang(Request $request, $id)
     {
-        $checkout = Checkout::find($id);
-        $tracking = new Tracking();
+        $tracking = Tracking::find($id);
         $tracking->status = '3';
-        $tracking->checkout_id = $checkout->id;
+        $tracking->checkout_id = $request->checkout_id;
         $tracking->driver_id   = Auth::id();
-        $tracking->save();
-        foreach(json_decode($checkout->orders->alamat_tujuan) as $almt)
+        $tracking->update();
+        $status = new TrackingStatus();
+            $status->status = 'Proses antar';
+            $status->track_id = $tracking->id;
+            $status->alamat      = null;
+            $status->save();
+
+        foreach(json_decode($tracking->checkout->orders->alamat_tujuan) as $almt)
         {
-            $tracking = new Tracking();
-            $tracking->status = '4';
-            $tracking->checkout_id = $checkout->id;
-            $tracking->driver_id   = Auth::id();
-            $tracking->alamat      = $almt;
-            $tracking->save();
+            $status = new TrackingStatus();
+            $status->status = 'Belum sampai';
+            $status->track_id = $tracking->id;
+            $status->alamat      = $almt;
+            $status->save();
         }
        
         return redirect()->route('driver.index')->with('success', 'Barang sedang dalam proses antar');
     }
    
-    public function sampaiBarang(Request $request, $id)
+    public function sampaiBarang($id)
     {
 
   
-        $tracking = Tracking::find($id);
-
-        $tracking->status = '5';
-        $tracking->checkout_id = $tracking->checkout->id;
-        $tracking->driver_id   = Auth::id();
-        $tracking->update();
+        $status = TrackingStatus::find($id);
+        $status->status = 'Sampai';
+        $status->update();
+        // $tracking = Tracking::find($id);
+        // $tracking->status = '4';
+        // $tracking->checkout_id = $tracking->checkout->id;
+        // $tracking->driver_id   = Auth::id();
+        // $tracking->update();
 
 
         return redirect()->route('driver.index')->with('success', 'Barang sudah sampai');
