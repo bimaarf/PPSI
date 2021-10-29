@@ -83,11 +83,12 @@ span.line-center-text::after {
     }
     .card-akun {
         height: fit-content;
+        width: 60%;
         margin-bottom: 100px;
     }
 
     .image-akun {
-        height: 45vh;
+        height: 70vh;
     }
 }
 
@@ -97,11 +98,25 @@ span.line-center-text::after {
         width: 300%;
         transform: rotate(-55deg) translate(-40%, -110%);
     }
+
+    .image-akun {
+        height: 50vh;
+    }
 }
 
 @media screen and (max-width: 575px) {
+    .miring {
+        height: 250px;
+        width: 300%;
+        transform: rotate(-60deg) translate(-40%, -120%);
+    }
+
     .login-button button {
         width: 94%;
+    }
+    
+    .card-akun {
+        width: 70%;
     }
 }
 
@@ -109,6 +124,11 @@ span.line-center-text::after {
     .miring {
         height: 200px;
         width: 350%;
-        transform: rotate(-55deg) translate(-30%, -110%);
+        transform: rotate(-55deg) translate(-30%, -130%);
+    }
+    .body-akun {padding:1.5rem!important}
+
+    .card-akun {
+        width: 80%;
     }
 }
