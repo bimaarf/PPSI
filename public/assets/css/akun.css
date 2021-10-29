@@ -22,6 +22,11 @@
     background-size: cover;
 }
 
+.image-akun img {
+    width: 65%;
+    transform: translate(15%, 100%);
+}
+
 .rounded-left {
     border-top-left-radius: 0.25rem !important;
     border-bottom-left-radius: 0.25rem !important;
@@ -47,4 +52,63 @@ span.line-center-text::before {
 
 span.line-center-text::after {
     margin-left: 10px;
+}
+
+@media screen and (max-width:1280px){
+    .miring {
+        transform: rotate(-50deg) translate(-20%, -30%);
+    }
+}
+
+@media screen and (max-width:885px){
+    .miring {
+        width: 200%;
+        transform: rotate(-50deg) translate(-20%, -25%);
+    }
+    .login-form div:not(.row) {
+        margin-right: .5rem !important;
+        margin-left: .5rem !important;
+    }
+
+    .image-akun, .card-akun {
+        height: 70vh;
+    }
+
+    .check{margin-right:0!important;margin-left:0!important}
+}
+
+@media screen and (max-width:767px){
+    .miring {
+        transform: rotate(-50deg) translate(-20%, -10%);
+    }
+    .card-akun {
+        height: fit-content;
+        margin-bottom: 100px;
+    }
+
+    .image-akun {
+        height: 45vh;
+    }
+}
+
+@media screen and (max-width:630px){
+    .miring {
+        height: 300px;
+        width: 300%;
+        transform: rotate(-55deg) translate(-40%, -110%);
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .login-button button {
+        width: 94%;
+    }
+}
+
+@media screen and (max-width:450px){
+    .miring {
+        height: 200px;
+        width: 350%;
+        transform: rotate(-55deg) translate(-30%, -110%);
+    }
 }
