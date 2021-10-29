@@ -57,7 +57,7 @@
                                             @csrf
                                             <div class="btn-group" role="group" aria-label="Basic example">
 
-                                                <a href="{{ route('user.detail', ['id' => $item->orders->id, 'key' => $item->orders->key]) }}"
+                                                <a href="{{ route('orders.detail', ['id' => $item->orders->id, 'key' => $item->orders->key]) }}"
                                                     class="btn btn-outline-info">View</a>
                                                 @if ($item->orders->status == 1)
                                                     <input type="submit" class="btn btn-outline-danger" value="Tolak">
@@ -65,20 +65,7 @@
                                                 @endif
                                             </div>
 
-                                            <input type="hidden" name="orders_id" value="{{ $item->orders->id }}">
-                                            @foreach (explode(",", str_replace(array('[', '"', ']'), ' ',
-                                            $item->driver_id)) as $info)
-                                            @if ($info != Auth::user()->id)
-                                                @foreach ($driver->slice(0, 1) as $dr)
-                                                    @if ($dr->user_id != Auth::user()->id && $dr->user_id != $info)
-                                                        <input type="hidden" name="driver_id[]"
-                                                            value="{{ $dr->user_id }}">
-                                                    @endif
-                                                @endforeach
-                                                <input type="hidden" name="driver_id[]" value="{{ $info }}">
-                                            @endif
-                            @endforeach
-                            </form>
+                                        </form>
 
                             </td>
                             <td>
@@ -157,7 +144,7 @@
                                                 
                                             @endif
                                             <button type='button' class='btn btn-primary' data-mdb-toggle='modal'
-                                                data-mdb-target='#exampleModal{{ $track->id }}'> Launch demo modal
+                                                data-mdb-target='#exampleModal{{ $track->id }}'> Konfirmasi
                                             </button>
                                             {{-- <button type="submit" class=" btn btn-secondary text-capitalize"
                                                     data-toggle="tooltip">
@@ -186,7 +173,15 @@
                                                         {{--  --}}
                                                         @foreach ($trackings->where('checkout_id', $item->id) as $valid)
                                                             @if ($valid->status == 5)
-                                                            a
+                                                            <div class="bs-vertical-wizard row">
+                                                                <ul class="col-lg-10">
+                                                                    <li class="complete">
+                                                                        <a href="#"><b class="text-capitalize">{{ $valid->alamat }}</b><i class="ico fa fa-check ico-green"></i>
+                                                                            <span class="desc">Paket telah sampai di {{ $valid->alamat }} <i class="text-success">Sedang menunggu konfirmasi dari shipper.</i></span>
+                                                                        </a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
                                                                 
                                                             @endif
                                                         @endforeach
@@ -194,18 +189,27 @@
                                                             {{-- @if ($trc->alamat == null && $trc->status == 4) --}}
                                                                 @foreach ($trackings->where('checkout_id', $item->id) as $tr)
                                                                 @if ($tr->status == 4)
+                                                                
                                                                 <form action="{{ route('driver.sampai', ['id' => $tr->id]) }}" method="post" >
                                                                     @csrf
                                                                     {{-- alamat --}}
-                                                                      
-                                                                    <input type="text" value="{{ $tr->alamat }}" name="alamat">
-                                                                    <div class="form-group mt-2">
-                                                                        <button type="submit"
-                                                                        class="btn btn-outline-primary mt-2 ">
-                                                                        Konfirmasi {{ $tr->id }}
-                                                                    </button>
 
-                                                                    </div>
+                                                                        <div class="bs-vertical-wizard row">
+                                                                            <ul class=" col-lg-10">
+                                                                                <li class="locked">
+                                                                                    <a href="#"><b class="text-capitalize">{{ $tr->alamat }}</b><i class="ico fa fa-lock ico-muted"></i>
+                                                                                        <span class="desc">Tekan konfirmasi jika paket sudah sampai di {{ $tr->alamat }}</span>
+                                                                                    </a>
+                                                                                </li>
+                                                                            </ul>
+                                                                            <ul class="col-lg-2">
+                                                                                <input type="hidden" value="{{ $tr->alamat }}" name="alamat">
+                                                                                <button type="submit" class="btn btn-success mt-2 "> Konfirmasi</button>
+                                                                            </ul>
+                                                                        </div>
+                                                                        
+                                                                    
+
                                                     
                                                         
                                                                     @endif

@@ -23,10 +23,10 @@
             {{-- <div class="row"> --}}
             <div class="fa-pull-right" style="width: 300px">
                 <form class="d-none d-md-flex input-group w-auto my-auto" action="{{ route('admin.index') }}">
-                    <input type="text" class="form-control" name="search" placeholder='Cari pengguna'
-                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cari pengguna'">
+                    <input type="text" value="{{ request('search') }}" class="form-control" name="search" placeholder='Cari username'
+                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cari username'">
                     <!-- <span class="input-group-text border-0"><i class="fas fa-search"></i></span> -->
-                    <button class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                    <button class="btn btn-primary" type="su bmit"><i class="fas fa-search"></i></button>
                 </form>
             </div>
             {{-- </div> --}}
@@ -43,18 +43,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($role_user as $item)
+                        @foreach ($users as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $item->user->name }}</td>
+                                <td>{{ $item->name }}</td>
                                 <td>
-                                    @if ($item->user->hasRole('admin'))
+                                    @if ($item->hasRole('admin'))
                                         Admin
                                     @endif
-                                    @if ($item->user->hasRole('driver'))
+                                    @if ($item->hasRole('driver'))
                                         Driver
                                     @endif
-                                    @if ($item->user->hasRole('shipper'))
+                                    @if ($item->hasRole('shipper'))
                                         Shipper
                                     @endif
 
@@ -62,7 +62,7 @@
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
-                                            data-mdb-target="#exampleModal{{ $item->user->id }}">Lihat</button>
+                                            data-mdb-target="#exampleModal{{ $item->id }}">Lihat</button>
                                     </div>
                                 </td>
                                 
@@ -71,7 +71,7 @@
                             {{-- Popup detail --}}
 
                             <!-- Modal -->
-                            <div class="modal top fade" id="exampleModal{{ $item->user->id }}" tabindex="-1"
+                            <div class="modal top fade" id="exampleModal{{ $item->id }}" tabindex="-1"
                                 aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static"
                                 data-mdb-keyboard="true">
                                 <div class="modal-dialog modal-lg  modal-dialog-centered">
@@ -87,12 +87,12 @@
                                                     <div class="form-group col-lg-6">
                                                         <label for="name">Username</label>
                                                         <input type="text" id="name" class="form-control"
-                                                            value="{{ $item->user->name }}" disabled>
+                                                            value="{{ $item->name }}" disabled>
                                                     </div>
                                                     <div class="form-group col-lg-6">
                                                         <label for="email">Email</label>
                                                         <input type="text" id="email" class="form-control"
-                                                            value="{{ $item->user->email }}" disabled>
+                                                            value="{{ $item->email }}" disabled>
                                                     </div>
 
                                                 </div>
@@ -100,8 +100,12 @@
                                                     <div class="form-group col-lg-6">
                                                         <label for="role"></label>
                                                         <select id="role" class="form-control">
-                                                            @foreach ($role as $rol)
-                                                                <option value="{{ $rol->id }}" {{($rol->id==$item->role_id) ? 'selected' : ''}}>{{ $rol->name }}</option>
+                                                            @foreach ($role_user->where('user_id', $item->id) as $rolUsr)
+                                                                @foreach ($role as $rol)
+                                                                <option value="{{ $rol->id }}" {{($rol->id==$rolUsr->role_id) ? 'selected' : ''}}>{{ $rol->name }}</option>
+                                                                    
+                                                                @endforeach
+                                                                {{-- <option value="{{ $rol->id }}" {{($rol->id==$item->role_id) ? 'selected' : ''}}>{{ $rol->name }}</option> --}}
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -129,7 +133,7 @@
             </tbody>
         </table>
     </div>
-    {{ $role_user->links() }}
+    {{ $users->links() }}
     </div>
     </div>
 @endsection

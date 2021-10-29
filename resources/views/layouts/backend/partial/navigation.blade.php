@@ -7,7 +7,7 @@
          <div class="position-sticky">
              <div class="list-group list-group-flush mx-3 mt-4">
                  @if (Auth::user()->hasRole('shipper'))
-                     <a href="{{ route('user.dashboard') }}"
+                     <a href="{{ route('user.index') }}"
                          class="list-group-item list-group-item-action py-2 ripple shp @yield('dashboard')"
                          aria-current="true">
                          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
@@ -28,7 +28,7 @@
                          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
                      </a>
                  @endif
-                 <a href="{{ route('user.index') }}"
+                 <a href="{{ route('orders.form_1') }}"
                      class="list-group-item list-group-item-action py-2 ripple @yield('struktur.dashboard')"><i
                          class="fas fa-bars fa-fw me-3"></i><span>Form</span></a>
                  <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('detail')">

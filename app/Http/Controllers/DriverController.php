@@ -23,18 +23,19 @@ class DriverController extends Controller
 
         $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
         $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
-        $driver = RoleUser::where('role_id', 2)->get();
+        $driver = RoleUser::where('role_id', 2)->orderBy('role_id', 'ASC')->get();
+        $user = User::all();
         $trackings = Tracking::all();
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         
-        return view("driver.index", compact('i' ,'orders','checkout', 'driver', 'trackings', 'track_status'));
+        return view("driver.index", compact('i' ,'orders','checkout', 'driver', 'trackings', 'track_status', 'user'));
         
     }
 
-    public function deleteCheckout($id)
+    public function tolak($id)
     {
         $orders = Order::find($id);
-        $orders->status = null;
+        // $orders->status = null;
         $checkout = Checkout::where('orders_id', $orders->id)->get();
         foreach ($checkout as $checkouts) {
             $checkouts->delete();

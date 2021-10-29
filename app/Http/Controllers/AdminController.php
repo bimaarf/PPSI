@@ -14,11 +14,11 @@ class AdminController extends Controller
     public function dashboard(Request $request)
     {
         if($request->has('search')){
-            $users = User::where('name', 'LIKE', '%'.$request->search. '%')->simplePaginate(10);
+            $users = User::where('name', 'LIKE', '%'.$request->search. '%')->simplePaginate(5);
         }else{
-            $users = User::orderBy('id', 'ASC')->simplePaginate(10);
+            $users = User::orderBy('id', 'ASC')->simplePaginate(5);
         }
-        $role_user = RoleUser::simplePaginate(5);
+        $role_user = RoleUser::get();
         $role = Role::all();
         return view('admin.index', compact('role_user' ,'users', 'role'));
     }

@@ -19,13 +19,13 @@ class OrderController extends Controller
    
    
 
-    public function index(Request $request) 
+    public function form1(Request $request) 
     {
         $zone = Zone::get();
         $orders = $request->session()->get('orders');
-        return view("user.index", compact('zone', 'orders'));
+        return view("orders.form_1", compact('zone', 'orders'));
     }
-    public function index2(Request $request) 
+    public function form2(Request $request) 
     {
         $zone = Zone::get();
         $request->session()->get('pesan');
@@ -33,7 +33,7 @@ class OrderController extends Controller
         $orders = Order::all();
         $orders->feed_m              = $pesan['feed_m'];
         
-        return view("user.index2", compact('zone', 'orders'));
+        return view("orders.form_2", compact('zone', 'orders'));
     }
     public function tambah(Request $request)
     {
@@ -49,7 +49,7 @@ class OrderController extends Controller
         $pesan['feed_m']              = $request->feed_m;
 
         $request->session()->put('pesan', $pesan);
-            return redirect()->route('user.index2');
+            return redirect()->route('orders.form_2');
            
     }
     public function tambah2(Request $request)
@@ -84,7 +84,7 @@ class OrderController extends Controller
                 $orders->user_id = Auth::id();
                 $orders->save();
                 $request->session()->forget('pesan');
-            return redirect()->route('user.detail', ['key'=>$orders->key, 'id'=>$orders->id ])->with('success', 'Terima kasih orderan anda sedang diproses.');
+            return redirect()->route('orders.detail', ['key'=>$orders->key, 'id'=>$orders->id ])->with('success', 'Terima kasih orderan anda sedang diproses.');
 
         } else {
             return redirect()->route('login');
@@ -102,17 +102,18 @@ class OrderController extends Controller
         $feed_manager = RoleUser::where('role_id', 4)->inRandomOrder()->limit(1)->get();
         $user   = User::all();
 
-        return view("user.detail", compact('orders', 'tujuan', 'nama_penerima', 'alamat_tujuan', 'telp_tujuan', 'driver', 'feed_manager', 'user' ));
+        return view("orders.detail", compact('orders', 'tujuan', 'nama_penerima', 'alamat_tujuan', 'telp_tujuan', 'driver', 'feed_manager', 'user' ));
     }
+    // driver
     public function hapus($id)
     {
         $orders = Order::find($id);
-        $orders->checkout = Checkout::where('orders_id', $orders->id)->get();
-            DB::table('checkout')->delete();
+        // $orders->checkout = Checkout::where('orders_id', $orders->id)->get();
+        //     DB::table('checkouts')->delete();
 
         $orders->delete();
 
-        return redirect()->route('user.dashboard')->with('success', 'Terima kasih orderan sudah dihapus.');
+        return redirect()->route('user.index')->with('success', 'Terima kasih orderan sudah dihapus.');
     }
 
     

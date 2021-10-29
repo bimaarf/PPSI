@@ -14,6 +14,6 @@ class TrackingController extends Controller
         $checkout = Checkout::find($id);
         $tracking = Tracking::where('checkout_id', $checkout->id)->get();
         $users   = User::all();
-        return view('user.tracking', compact('checkout', 'tracking', 'users'));
+        return view('orders.tracking', compact('checkout', 'tracking', 'users'));
     }
 }

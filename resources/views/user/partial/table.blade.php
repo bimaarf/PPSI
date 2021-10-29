@@ -29,11 +29,11 @@
                                 <td class="mb-0 fw-normal">{{ $item->armada }}</td>
 
                                 <td class="mb-0 fw-normal">{{ $item->jadwal }}</td>
-                                @foreach ($checkout->where('orders_id', $item->id) as $check)
+                                @foreach ($checkout->where('orders_id', $item->id)->slice(0,1) as $check)
 
-                                    @if ($check->orders->status != null && $check->orders->status != 1)
+                                    @if ($check->orders->status != null && $check->orders->status == 2)
                                     <td class="mb-0 fw-normal">
-                                        <a href="{{ route('user.tracking', ['id'=>$check->id]) }}" class="btn btn-outline-success" >Status</a>
+                                        <a href="{{ route('orders.tracking', ['id'=>$check->id]) }}" class="btn btn-outline-success" >Status</a>
                                     </td>
                                     @else
                                         <td><button class="btn btn-outline-primary" type="button" disabled>
@@ -46,12 +46,12 @@
                                 @endif
                                 <td class="mb-0 fw-normal">
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="{{ route('user.detail', ['id' => $item->id, 'key' => $item->key]) }}"
+                                        <a href="{{ route('orders.detail', ['id' => $item->id, 'key' => $item->key]) }}"
                                             class="btn btn-outline-info">
                                             <div class="bi icon dripicons-view-list"></div>View
                                         </a>
                                         @if ($item->status == null)
-                                            <a href="{{ route('user.hapus', ['id' => $item->id, 'key' => $item->key]) }}"
+                                            <a href="{{ route('orders.hapus', ['id' => $item->id, 'key' => $item->key]) }}"
                                                 class=" btn btn-outline-danger"
                                                 data-toggle="tooltip">
                                                 <div class="bi icon dripicons-trash"></div>Delete

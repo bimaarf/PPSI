@@ -48,8 +48,8 @@ Route::get('/clear-cache', function() {
     dd($output);
 });
 // form-orders
-Route::get('/user-form-jemput', [OrderController::class, 'index'])->name('user.index');
-Route::get('/user-form-tujuan', [OrderController::class, 'index2'])->name('user.index2');
+Route::get('/user-form-jemput', [OrderController::class, 'form1'])->name('orders.form_1');
+Route::get('/user-form-tujuan', [OrderController::class, 'form2'])->name('orders.form_2');
 // admin
 Route::get('/dashboard/admin', [AdminController::class, 'dashboard'])->name('admin.index')->middleware('auth');
 Route::get('/dashboard/admin/add-user', [AdminController::class, 'addUser'])->name('admin.add_user')->middleware('auth');
@@ -57,12 +57,12 @@ Route::get('/dashboard/admin/add-user', [AdminController::class, 'addUser'])->na
 Route::post('/registered-by-admin', [RegisteredByAdminController::class, 'registerByAdmin'])->name('admin.register');
 
 
-Route::get('/dashboard', [ShipperController::class, 'dashboard'])->name('user.dashboard')->middleware('auth');
+Route::get('/dashboard', [ShipperController::class, 'dashboard'])->name('user.index')->middleware('auth');
 Route::get('/dashboard/driver', [DriverController::class, 'dashboardDriver'])->name('driver.index')->middleware('auth');
-Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('user.detail');
-Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('user.hapus');
-Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'deleteCheckout'])->name('driver.delete');
-Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'deleteCheckout'])->name('driver.delete');
+Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('orders.detail');
+Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('orders.hapus');
+Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
+Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
 Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');
 
 
@@ -89,4 +89,4 @@ Route::post('/store-input-fields/konfirmasi-barang/{id}', [ShipperController::cl
 
 
 // tracking
-Route::get('/driver/status/tracking/{id}', [TrackingController::class, 'tracking'])->name('user.tracking');
+Route::get('/driver/status/tracking/{id}', [TrackingController::class, 'tracking'])->name('orders.tracking');

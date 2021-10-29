@@ -17,7 +17,7 @@ class ShipperController extends Controller
         // feed manager
         $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(10);
         
-        return view("user.dashboard", compact('orders', 'checkout', 'feed_manager'));
+        return view("user.index", compact('orders', 'checkout', 'feed_manager'));
     }
 
     public function konfirmasiBarang($id)
@@ -25,6 +25,6 @@ class ShipperController extends Controller
         $orders = Order::find($id);
         $orders->status = '6';
         $orders->update();
-        return redirect()->route('user.dashboard')->with('success', 'Barang diterima');
+        return redirect()->route('user.index')->with('success', 'Barang diterima');
     }
 }
