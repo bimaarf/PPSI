@@ -8,7 +8,7 @@
 
   <meta content="" name="description">
   <meta content="" name="keywords">
-  <title>mitruck</title>
+  <title>Masuk</title>
 
   <!-- Favicons -->
   <!-- <link href="" rel="icon"> -->
@@ -30,10 +30,10 @@
             <h2 class="card-title mt-5 text-center">Masuk</h2>
             <form action="#" class="login-form mx-lg-3 mx-lg-4">
               <div class="form-group m-4">
-                <input type="text" class="form-control login-form" placeholder="No.Hp" required>
+                <input type="text" class="form-control input-form" placeholder="No.Hp" required>
               </div>
               <div class="form-group m-4">
-                <input type="password" class="form-control login-form" placeholder="Password" required>
+                <input type="password" class="form-control input-form" placeholder="Password" required>
               </div>
               <div class="form-group mx-sm-0 mx-md-4 mx-lg-4 row align-items-center check">
                 <div class="form-check col-sm-6 col-md-7 col-lg-7 pr-0 remember">

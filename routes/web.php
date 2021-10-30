@@ -32,9 +32,12 @@ Route::get('/landing', function () {
     return view('landing_page.landing');
 });
 
-
 Route::get('/laman-login', function () {
     return view('akun.login');
+});
+
+Route::get('/laman-regis', function () {
+    return view('akun.register');
 });
 
 
