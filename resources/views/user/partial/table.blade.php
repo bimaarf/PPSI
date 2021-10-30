@@ -33,7 +33,7 @@
 
                                     @if ($check->orders->status == 2)
                                     <td class="mb-0 fw-normal oke">
-                                        <a href="{{ route('orders.tracking', ['id'=>$check->id]) }}" class="btn btn-outline-success" >Status</a>
+                                        <a href="{{ route('orders.tracking', ['id'=>$item->id]) }}" class="btn btn-outline-success" >Status</a>
                                     </td>
                                        
                                     @endif

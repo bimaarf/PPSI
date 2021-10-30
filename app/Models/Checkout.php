@@ -32,6 +32,6 @@ class Checkout extends Model
     }
     public function tracking()
     {
-        return $this->hasMany(Tracking::class);
+        return $this->belongsTo(Tracking::class);
     }
 }
