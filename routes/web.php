@@ -40,6 +40,10 @@ Route::get('/laman-regis', function () {
     return view('akun.register');
 });
 
+Route::get('/laman-dashboard', function () {
+    return view('dashboard.index');
+});
+
 
 require __DIR__ . '/auth.php';
 Route::get('/bundamaria', function () {

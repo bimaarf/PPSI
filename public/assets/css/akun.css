@@ -2,12 +2,17 @@
     border: 1px solid red;
 } */
 
-.miring {
-    height: 450px;
+.miring-top, .miring-bottom {
+    height: 300px;
     width: 150%;
-    transform: rotate(-50deg) translate(-20%, -40%);
     z-index: -1;
 }
+
+.miring-top {
+    transform: rotate(130deg);
+    right: 300px;
+}
+.miring-bottom {transform: rotate(-50deg) translate(-30%, 150%);}
 
 .card-akun {
     width: 85%;
@@ -26,6 +31,8 @@
     width: 65%;
     transform: translate(15%, 100%);
 }
+
+.logo-black {display: none;}
 
 .rounded-left {
     border-top-left-radius: 0.25rem !important;
@@ -54,17 +61,12 @@ span.line-center-text::after {
     margin-left: 10px;
 }
 
-@media screen and (max-width:1280px){
-    .miring {
-        transform: rotate(-50deg) translate(-20%, -30%);
-    }
-}
-
 @media screen and (max-width:885px){
-    .miring {
-        width: 200%;
-        transform: rotate(-50deg) translate(-20%, -25%);
+
+    .card-title {
+        font-size: calc(1.3rem + .6vw);
     }
+
     .login-form div:not(.row) {
         margin-right: .5rem !important;
         margin-left: .5rem !important;
@@ -78,9 +80,6 @@ span.line-center-text::after {
 }
 
 @media screen and (max-width:767px){
-    .miring {
-        transform: rotate(-50deg) translate(-20%, -10%);
-    }
     .card-akun {
         height: fit-content;
         width: 60%;
@@ -88,28 +87,25 @@ span.line-center-text::after {
     }
 
     .image-akun {
-        height: 70vh;
+        height: 5vh;
+        background-color: white;
+        background-image: none;
     }
+
+    .logo-black {display: block;}
+    .logo-white {display: none;}
+    .card-title {margin-top: 20px; font-size: calc(1.275rem + .3vw)}
+
+    .miring-top {
+        right: 200px;
+    }
+    .miring-bottom {transform: rotate(-50deg) translate(-30%, 130%);}
 }
 
 @media screen and (max-width:630px){
-    .miring {
-        height: 300px;
-        width: 300%;
-        transform: rotate(-55deg) translate(-40%, -110%);
-    }
-
-    .image-akun {
-        height: 50vh;
-    }
 }
 
 @media screen and (max-width: 575px) {
-    .miring {
-        height: 250px;
-        width: 300%;
-        transform: rotate(-60deg) translate(-40%, -120%);
-    }
 
     .login-button button {
         width: 94%;
@@ -118,17 +114,21 @@ span.line-center-text::after {
     .card-akun {
         width: 70%;
     }
+
+    .card-title {margin-top: 10px;     font-size: 1rem}
 }
 
 @media screen and (max-width:450px){
-    .miring {
-        height: 200px;
-        width: 350%;
-        transform: rotate(-55deg) translate(-30%, -130%);
-    }
     .body-akun {padding:1.5rem!important}
 
     .card-akun {
         width: 80%;
     }
+
+    .miring-top {
+        top: -50px;
+        right: 180px;
+    }
+
+        .miring-bottom {transform: rotate(-50deg) translate(-60%, 130%);}
 }

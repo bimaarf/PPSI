@@ -20,14 +20,16 @@
 </head>
 
 <body>
-    <div class="miring position-fixed bg-danger"></div>
+    <div class="miring-top position-fixed bg-danger"></div>
+    <div class="miring-bottom position-fixed bg-danger"></div>
 
     <div class="card rounded shadow mx-auto row card-akun">
         <div class="col-lg-6 col-md-6 rounded-left image-akun">
-          <img src="{{ asset('assets/img/landing/Logo2.png') }}" alt="" class="logo-mitruck">
+          <img src="{{ asset('assets/img/landing/Logo2.png') }}" alt="" class="logo-mitruck logo-white">
+          <img src="{{ asset('assets/img/landing/Logo3.png') }}" alt="" class="logo-mitruck logo-black">
         </div>
         <div class="col-lg-6 col-md-6 card-body p-5 body-akun">
-            <h2 class="card-title mt-5 text-center">Masuk</h2>
+            <h2 class="card-title text-center mx-4">Meet your truck, and load!</h2>
             <form action="#" class="login-form mx-lg-3 mx-lg-4">
               <div class="form-group m-4">
                 <input type="text" class="form-control input-form" placeholder="No.Hp" required>
@@ -44,7 +46,7 @@
                   <button class="btn btn-primary float-end" type="submit">Masuk</button>
                 </div>
               </div>
-              <div class="form-group mx-4"><a href="#">Lupa Password?</a></div>
+              <div class="form-group mx-4 mt-4"><h6><a href="#">Lupa Password?</a></h6></div>
               <div class="m-3">
                 <span class="line-center-text">atau </span>
               </div>
