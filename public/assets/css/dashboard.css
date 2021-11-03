@@ -1,0 +1,86 @@
+body {
+    background-color: #eee;
+}
+
+header {
+    border-bottom: 1px solid rgb(133, 133, 133);
+    background-color: #fff;
+}
+
+/* Navigation Bar */
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+}
+
+.logo-img {
+    position: absolute;
+    top: 19.5625px;
+    left: 49.109375px;
+    width: 200px;
+    visibility: visible;
+}
+
+.navbar {
+    display: flex;
+    justify-content: start;
+    box-shadow: none !important;
+}
+
+.navbar li {
+    list-style: none;
+}
+
+.navbar a {
+    transition: color 0.3s ease;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.nav li a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.nav li a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: red;
+    transition: width .3s;
+}
+
+.nav li a:hover::after {
+    width: 100%;
+}
+
+.dropdown-item {color: black !important;}
+.show {z-index: 1;}
+
+
+.login {
+    margin-left: 50px;
+}
+
+.login a {
+    border-radius: 10px;
+    width: 100px;
+}
+
+.nav-toggler{
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    right: 50px;
+}
+
+.nav-toggler div {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    margin: 5px;
+    transition: all 0.3s ease;
+}

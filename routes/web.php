@@ -30,8 +30,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/landing', function () {
+    return view('landing_page.landing');
+});
 
-require __DIR__.'/auth.php';
+Route::get('/laman-login', function () {
+    return view('akun.login');
+});
+
+Route::get('/laman-regis', function () {
+    return view('akun.register');
+});
+
+Route::get('/laman-dashboard', function () {
+    return view('dashboard.index');
+});
+
+
+require __DIR__ . '/auth.php';
 Route::get('/bundamaria', function () {
     Artisan::call('migrate');
 });
@@ -42,7 +58,7 @@ Route::get('/foo', function () {
     Artisan::call('vendor:publish --tag=laratrust-assets --force');
 });
 
-Route::get('/clear-cache', function() {
+Route::get('/clear-cache', function () {
     $output = [];
     Artisan::call('cache:clear', $output);
     dd($output);
