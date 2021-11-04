@@ -237,6 +237,19 @@
             /* Firefox */
         }
 
+        .inp {
+            border: none;
+            border-bottom: 1px solid #1890ff;
+            padding: 15px 30px;
+            outline: none;
+        }
+
+        [placeholder]:focus::-webkit-input-placeholder {
+            transition: text-indent 0.4s 0.4s ease;
+            text-indent: -100%;
+            opacity: 1;
+        }
+
         @media screen and (max-width:500px) {
 
             .img-gallery-product img {
@@ -253,15 +266,30 @@
         }
 
     </style>
+    {{-- scroll bar --}}
+    <style>
+        .example::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .example {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+    </style>
+    <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
+    <!--load all styles -->
 </head>
 
 <body>
     @include('layouts.backend.partial.navigation')
 
-    <main style="margin-top: 58px">
-        <div class="container pt-4">
-            @yield('content')
-        </div>
+    <main>
+        @yield('content')
     </main>
 
     <script type="text/javascript" src="{{ asset('assets/js/mdb.min.js') }}"></script>
@@ -303,10 +331,10 @@
     </script> --}}
     <script type="text/JavaScript">
         <!--
-            		   function AutoRefresh( t ) {
-            			  setTimeout("location.reload(true);", t);
-            		   }
-            		//-->
+                        		   function AutoRefresh( t ) {
+                        			  setTimeout("location.reload(true);", t);
+                        		   }
+                        		//-->
     </script>
 </body>
 

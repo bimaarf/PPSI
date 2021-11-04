@@ -20,6 +20,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->bigInteger('telp')->nullable();
+            $table->string('alamat',255)->nullable();
+            $table->unsignedBigInteger('status_id');
+            $table->foreign('status_id')->references('id')->on('users_status');
+            $table->string('avatar',255);
             $table->rememberToken();
             $table->timestamps();
         });
@@ -27,28 +32,48 @@ class CreateUsersTable extends Migration
             [
                 'name'  => 'admin',
                 'email' => 'admin@gmail.com',
-                'password' => Hash::make('admin')
+                'password' => Hash::make('admin'),
+                'telp'     => '62895704855745',
+                'alamat'   => 'Pontianak - Kota baru',
+                'status_id'   => '1',
+                'avatar'   => 'Driver.svg'
             ],
             [
                 'name'  => 'shipper',
                 'email' => 'shipper@gmail.com',
-                'password' => Hash::make('admin')
+                'password' => Hash::make('admin'),
+                'telp'     => '62895704855745',
+                'alamat'   => 'Pontianak - Kota baru',
+                'status_id'   => '1',
+                'avatar'   => 'Shipper.svg'
 
             ],
             [
                 'name'  => 'driver1',
                 'email' => 'driver1@gmail.com',
-                'password' => Hash::make('admin')
+                'password' => Hash::make('admin'),
+                'telp'     => '62895704855745',
+                'alamat'   => 'Pontianak - Kota baru',
+                'status_id'   => '1',
+                'avatar'   => 'Driver.svg'
             ],
             [
                 'name'  => 'driver2',
                 'email' => 'driver2@gmail.com',
-                'password' => Hash::make('admin')
+                'password' => Hash::make('admin'),
+                'telp'     => '62895704855745',
+                'alamat'   => 'Pontianak - Kota baru',
+                'status_id'   => '1',
+                'avatar'   => 'Driver.svg'
             ],
             [
                 'name'  => 'driver3',
                 'email' => 'driver3@gmail.com',
-                'password' => Hash::make('admin')
+                'password' => Hash::make('admin'),
+                'telp'     => '62895704855745',
+                'alamat'   => 'Pontianak - Kota baru',
+                'status_id'   => '1',
+                'avatar'   => 'Driver.svg'
             ]
         ]);
     }

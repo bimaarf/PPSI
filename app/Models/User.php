@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
 use App\Models\RoleUser;
+use App\Models\UserStatus;
 use App\Models\Role;
 
 class User extends Authenticatable
@@ -48,5 +49,9 @@ class User extends Authenticatable
     public function roleUser()
     {
       return $this->hasMany(RoleUser::class);
+    }
+    public function userStatus()
+    {
+      return $this->belongsTo(UserStatus::class);
     }
 }

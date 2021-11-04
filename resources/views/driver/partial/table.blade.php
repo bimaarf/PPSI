@@ -171,52 +171,47 @@
                                                         {{-- ALGORITMA --}}
                                                         
                                                         {{--  --}}
-                                                        @foreach ($track_status->where('track_id', $track->id) as $valid)
-                                                            @if ($valid->status == 'Sampai')
-                                                            <div class="bs-vertical-wizard row">
-                                                                <ul class="col-lg-10">
-                                                                    <li class="complete">
-                                                                        <a href="#"><b class="text-capitalize">{{ $valid->alamat }}</b><i class="ico fa fa-check ico-green"></i>
-                                                                            <span class="desc">Paket telah sampai di {{ $valid->alamat }} <i class="text-success">Sedang menunggu konfirmasi dari shipper.</i></span>
-                                                                        </a>
-                                                                    </li>
+                                                        <div class="bs-vertical-wizard row">
+                                                            <ul class="col-lg-10">
+                                                                    @foreach ($track_status->where('track_id', $track->id) as $valid)
+                                                                        @if ($valid->status == 'Sampai')
+                                                                        <li class="complete">
+                                                                            <a href="#"><b class="text-capitalize">{{ $valid->alamat }}</b><i class="ico fa fa-check ico-green"></i>
+                                                                                <span class="desc">Paket telah sampai di {{ $valid->alamat }} <i class="text-success">Sedang menunggu konfirmasi dari {{ $track->checkout->orders->nama_pengirim }}.</i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        @endif
+                                                                        @if ($valid->status == 'Konfirmasi')
+                                                                        <li class="complete">
+                                                                            <a href="#"><b class="text-capitalize">{{ $valid->alamat }}</b><i class="ico fa fa-check ico-green"></i>
+                                                                                <span class="desc">Paket telah sampai di {{ $valid->alamat }} <i class="text-success">Sudah diterima oleh </i></span>
+                                                                            </a>
+                                                                        </li>
+                                                                        @endif
+                                                                    @endforeach
                                                                 </ul>
                                                             </div>
-                                                                
-                                                            @endif
-                                                        @endforeach
-                                                        
-                                                            {{-- @if ($trc->alamat == null && $trc->status == 4) --}}
-                                                                @foreach ($track_status->where('track_id', $track->id) as $tr)
-                                                                @if ($tr->status == 'Belum sampai')
-                                                                
-                                                                <form action="{{ route('driver.sampai', ['id' => $tr->id]) }}" method="post" >
-                                                                    @csrf
-                                                                    {{-- alamat --}}
-
-                                                                        <div class="bs-vertical-wizard row">
-                                                                            <ul class=" col-lg-10">
-                                                                                <li class="locked">
+                                                                <div class="bs-vertical-wizard row">
+                                                                    @foreach ($track_status->where('track_id', $track->id) as $tr)
+                                                                        @if ($tr->status == 'Belum sampai')
+                                                                            <ul class="row">
+                                                                                <li class="locked col-lg-10">
                                                                                     <a href="#"><b class="text-capitalize">{{ $tr->alamat }}</b><i class="ico fa fa-lock ico-muted"></i>
                                                                                         <span class="desc">Tekan konfirmasi jika paket sudah sampai di {{ $tr->alamat }}</span>
                                                                                     </a>
                                                                                 </li>
+                                                                                <li class="col-lg-2">
+                                                                                    <form action="{{ route('driver.sampai', ['id' => $tr->id]) }}" method="post">
+                                                                                        @csrf
+                                                                                        <button type="submit" class="btn btn-success mt-4"> Konfirmasi</button>
+                                                                                    </form>
+                                                                                </li>
                                                                             </ul>
-                                                                            <ul class="col-lg-2">
-                                                                                {{-- <input type="hidden" value="{{ $tr->alamat }}" name="alamat"> --}}
-                                                                                <button type="submit" class="btn btn-success mt-2 "> Konfirmasi</button>
-                                                                            </ul>
-                                                                        </div>
+                                                                        @endif
+                                                                    @endforeach
+                                                                </div>
                                                                         
-                                                                    
-
-                                                    
-                                                        
-                                                                    @endif
-                                                                    
-                                                                </form>
-                                                                @endforeach
-                                                            {{-- @endif --}}
+                                                                        {{-- </form> --}}
                                                         
                                                                
                                                         {{-- end ALGORITMA --}}

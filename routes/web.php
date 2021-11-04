@@ -52,9 +52,12 @@ Route::get('/user-form-jemput', [OrderController::class, 'form1'])->name('orders
 Route::get('/user-form-tujuan', [OrderController::class, 'form2'])->name('orders.form_2');
 // admin
 Route::get('/dashboard/admin', [AdminController::class, 'dashboard'])->name('admin.index')->middleware('auth');
+Route::get('/dashboard/admin/daftar-driver', [AdminController::class, 'daftarDriver'])->name('admin.table_driver')->middleware('auth');
+Route::get('/dashboard/admin/daftar-shipper', [AdminController::class, 'daftarShipper'])->name('admin.table_shipper')->middleware('auth');
 Route::get('/dashboard/admin/add-user', [AdminController::class, 'addUser'])->name('admin.add_user')->middleware('auth');
 
 Route::post('/registered-by-admin', [RegisteredByAdminController::class, 'registerByAdmin'])->name('admin.register');
+Route::post('/admin-edit-user/{id}', [AdminController::class, 'editUser'])->name('admin.edit_user');
 
 
 Route::get('/dashboard', [ShipperController::class, 'dashboard'])->name('user.index')->middleware('auth');

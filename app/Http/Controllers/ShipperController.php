@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\FeedManager;
 use App\Models\Checkout;
+use App\Models\TrackingStatus;
 use Illuminate\Http\Request;
 class ShipperController extends Controller
 {
@@ -22,9 +23,10 @@ class ShipperController extends Controller
 
     public function konfirmasiBarang($id)
     {
-        $orders = Order::find($id);
-        $orders->status = '6';
-        $orders->update();
-        return redirect()->route('user.index')->with('success', 'Barang diterima');
+        $status = TrackingStatus::find($id);
+        $status->status = 'Konfirmasi';
+        $status->update();
+
+        return back()->with('success', 'Barang diterima');
     }
 }

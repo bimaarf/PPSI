@@ -115,18 +115,10 @@ class DriverController extends Controller
    
     public function sampaiBarang($id)
     {
-
-  
         $status = TrackingStatus::find($id);
         $status->status = 'Sampai';
         $status->update();
-        // $tracking = Tracking::find($id);
-        // $tracking->status = '4';
-        // $tracking->checkout_id = $tracking->checkout->id;
-        // $tracking->driver_id   = Auth::id();
-        // $tracking->update();
-
-
+        
         return redirect()->route('driver.index')->with('success', 'Barang sudah sampai');
     }
     
