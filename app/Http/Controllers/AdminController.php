@@ -18,10 +18,10 @@ class AdminController extends Controller
     public function dashboard()
     {
         $permission_user = PermissionUser::all();
-        $tAdmin = DB::table('role_user')->where('role_id', 1)->count();
-        $tDriver = DB::table('role_user')->where('role_id', 2)->count();
-        $tShipper = DB::table('role_user')->where('role_id', 3)->count();
-        $activity = AdminActivity::orderBy('id', 'DESC')->get();
+        $tAdmin = DB::table('role_user')->where('role_id', 2)->count();
+        $tDriver = DB::table('role_user')->where('role_id', 3)->count();
+        $tShipper = DB::table('role_user')->where('role_id', 4)->count();
+        $activity = AdminActivity::orderBy('id', 'DESC')->limit(6)->get();
         return view('admin.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'activity'));
     }
 

@@ -23,11 +23,11 @@
                                         <label for="role"></label>
                                         <select id="role" name="role" class="form-control">
                                             @foreach ($roles as $rol)
-                                                    @if ($rol->id == 1)
+                                                    @if ($rol->id == 2)
                                                     
                                                     <option value="{{ $rol->name }}"> {{ $rol->display_name }}</option>
                                                     @endif
-                                                    @if ($rol->id == 2)
+                                                    @if ($rol->id == 5)
                                                     
                                                     <option value="{{ $rol->name }}"> {{ $rol->display_name }}</option>
                                                     @endif
@@ -35,11 +35,6 @@
                                            
                                         </select>
                                     </div>
-                                    <div class="form-check form-switch mt-4 fa-pull-left">
-                                        <input class="form-check-input" checked type="checkbox" id="status_id" name="status_id" value="1" :value="old('status_id')">
-                                        <label class="form-check-label" for="status_id" :value="__('Status_id')">Aktif</label>
-                                    </div>
-                                
                                 </div>
                                 <div class="col-lg-7">
                                     <div class="form-group">

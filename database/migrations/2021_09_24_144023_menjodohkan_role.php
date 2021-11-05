@@ -16,8 +16,8 @@ class MenjodohkanRole extends Migration
     public function up()
     {
         $user = User::find(1);
-        $admin = Role::where('name', 'admin')->first();
-        $user->attachRole($admin);
+        $super_admin = Role::where('name', 'super-admin')->first();
+        $user->attachRole($super_admin);
     }
 
     /**

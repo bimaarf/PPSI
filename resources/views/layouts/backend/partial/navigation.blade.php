@@ -20,7 +20,7 @@
                          <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
                      </a>
                  @endif
-                 @if (Auth::user()->hasRole('admin'))
+                 @if (Auth::user()->hasRole('admin|super-admin'))
                      <style>
                          .shp {
                              display: none;
@@ -40,14 +40,14 @@
                  <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('detail')">
                      <i class="fas fa-chart-bar fa-fw me-3"></i>
                      <span>Detail</span></a>
-                 @if (Auth::user()->hasRole('admin'))
+                 @if (Auth::user()->hasRole('admin|super-admin'))
                      <a href="{{ route('admin.add_user') }}"
                          class="list-group-item list-group-item-action py-2 ripple  @yield('add')" aria-current="true">
                          <i class="fas fa-user fa-fw me-3"></i><span>Tambah Pengguna</span>
                      </a>
                  @endif
 
-                 @if (Auth::user()->hasRole('admin'))
+                 @if (Auth::user()->hasRole('admin|super-admin'))
                      <span class="sidebar-title list-group-item list-group-item-action py-2 ripple">Daftar &amp;
                          Pengguna</span>
                      <a href="{{ route('admin.table_driver') }}"

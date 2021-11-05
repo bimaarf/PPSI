@@ -156,7 +156,7 @@
                     overflow-y: scroll;">
 
                     @foreach ($activity as $activ)
-                    <div>
+                    <div class="mt-1">
                         <img class="rounded-circle img-thumbnail" width="40" src="{{ asset('assets/icon/Driver.svg') }}" alt="">
                         <span class="text-dark text-capitalize"><b>{{ $activ->title }}</b></span>
                         

@@ -61,7 +61,7 @@ class AuthenticatedSessionController extends Controller
                 }else  
                 return redirect()->route('user.index');
         }
-        if(Auth::user()->hasRole('admin'))
+        if(Auth::user()->hasRole('admin|super-admin'))
         {
             return redirect()->route('admin.index');
         }

@@ -22,7 +22,6 @@ class RegisteredByAdminController extends Controller
             'password'  => ['required', 'confirmed', Rules\Password::defaults()],
             'telp'      => ['required',  'integer'],
             'alamat'    => ['required', 'string', 'max:255'],
-            'status_id' => ['required'],
         ]);
 
         $user = User::create([
@@ -31,7 +30,7 @@ class RegisteredByAdminController extends Controller
             'password'  => Hash::make($request->password),
             'telp'      => $request->telp,
             'alamat'    => $request->alamat,
-            'status_id' => $request->status_id,
+            'status_id' => 1,
             'avatar'    => 'Driver.svg',
             
         ]);
