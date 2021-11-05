@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminActivity;
 use App\Models\Permission;
 use App\Models\PermissionUser;
 use App\Models\Role;
@@ -20,7 +21,8 @@ class AdminController extends Controller
         $tAdmin = DB::table('role_user')->where('role_id', 1)->count();
         $tDriver = DB::table('role_user')->where('role_id', 2)->count();
         $tShipper = DB::table('role_user')->where('role_id', 3)->count();
-        return view('admin.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper'));
+        $activity = AdminActivity::orderBy('id', 'DESC')->get();
+        return view('admin.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'activity'));
     }
 
     public function daftarDriver(Request $request)

@@ -1,7 +1,10 @@
 @extends('layouts.backend.main_login')
 @section('dashboard', 'active')
 @section('content')
-    @if ($errors->any())
+    
+
+    <div class="container pt-4 t-window">
+        @if ($errors->any())
         <div class="alert alert-danger" role="alert">
             <ul>
                 @foreach ($errors->all() as $error)
@@ -15,8 +18,6 @@
             <p>{{ Session::get('success') }}</p>
         </div>
     @endif
-
-    <div class="container pt-4 t-window">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
@@ -128,7 +129,7 @@
                         <h4 class="text-dark"><b>Hak Akses</b></h4>
                     </div>
                     <div class="card-body">
-                        @foreach ($permission_user as $pUser)
+                        @foreach ($permission_user->where('user_id', Auth::user()->id) as $pUser)
                             <div class="form-check form-switch mt-3">
                                 <input class="form-check-input" checked type="checkbox" id="{{ $pUser->permission->id }}" name="" value="{{ $pUser->permission->display_name }}" disabled>
                                 <label class="form-check-label" for="{{ $pUser->permission->id }}"> {{ $pUser->permission->display_name }}</label>
@@ -153,60 +154,19 @@
                     </div>
                     <div class="card-body example" style="height:300px;
                     overflow-y: scroll;">
-                        <div>
-                            <img class="rounded-circle img-thumbnail" width="40" src="{{ asset('assets/icon/Driver.svg') }}" alt="">
-                            <span class="text-dark "><b>Admin 1</b></span>
-                            
-                            {{-- <img src="{{ asset('assets/verified/verified.svg') }}" class="float-start mt-2 px-1" width="19" alt=""> --}}
-                            
-                            <span class="px-1">Menambahkan Saiful Jamil sebagai admin</span>
-                            <small style="font-size: 10px" class="position-relative">24-09-2001 12:09</small>
-                        </div>
-                        <div>
-                            <img class="rounded-circle img-thumbnail" width="40" src="{{ asset('assets/icon/Driver.svg') }}" alt="">
-                            <span class="text-dark "><b>Admin 2</b></span>
-                            
-                            {{-- <img src="{{ asset('assets/verified/verified.svg') }}" class="float-start mt-2 px-1" width="19" alt=""> --}}
-                            
-                            <span class="px-1">Menonaktifkan Farhat Abbas sebagai admin</span>
-                            <small style="font-size: 10px" class="position-relative">24-09-2001 12:09</small>
-                        </div>
-                        <div>
-                            <img class="rounded-circle img-thumbnail" width="40" src="{{ asset('assets/icon/Driver.svg') }}" alt="">
-                            <span class="text-dark "><b>Admin 3</b></span>
-                            
-                            {{-- <img src="{{ asset('assets/verified/verified.svg') }}" class="float-start mt-2 px-1" width="19" alt=""> --}}
-                            
-                            <span class="px-1">Merubah hak akses Saiful jamil sebagai admin</span>
-                            <small style="font-size: 10px" class="position-relative">24-09-2001 12:09</small>
-                        </div>
-                        <div>
-                            <img class="rounded-circle img-thumbnail" width="40" src="{{ asset('assets/icon/Driver.svg') }}" alt="">
-                            <span class="text-dark "><b>Admin 1</b></span>
-                            
-                            {{-- <img src="{{ asset('assets/verified/verified.svg') }}" class="float-start mt-2 px-1" width="19" alt=""> --}}
-                            
-                            <span class="px-1">Menambahkan Saiful Jamil sebagai admin</span>
-                            <small style="font-size: 10px" class="position-relative">24-09-2001 12:09</small>
-                        </div>
-                        <div>
-                            <img class="rounded-circle img-thumbnail" width="40" src="{{ asset('assets/icon/Driver.svg') }}" alt="">
-                            <span class="text-dark "><b>Admin 2</b></span>
-                            
-                            {{-- <img src="{{ asset('assets/verified/verified.svg') }}" class="float-start mt-2 px-1" width="19" alt=""> --}}
-                            
-                            <span class="px-1">Menonaktifkan Farhat Abbas sebagai admin</span>
-                            <small style="font-size: 10px" class="position-relative">24-09-2001 12:09</small>
-                        </div>
-                        <div>
-                            <img class="rounded-circle img-thumbnail" width="40" src="{{ asset('assets/icon/Driver.svg') }}" alt="">
-                            <span class="text-dark "><b>Admin 3</b></span>
-                            
-                            {{-- <img src="{{ asset('assets/verified/verified.svg') }}" class="float-start mt-2 px-1" width="19" alt=""> --}}
-                            
-                            <span class="px-1">Merubah hak akses Saiful jamil sebagai admin</span>
-                            <small style="font-size: 10px" class="position-relative">24-09-2001 12:09</small>
-                        </div>
+
+                    @foreach ($activity as $activ)
+                    <div>
+                        <img class="rounded-circle img-thumbnail" width="40" src="{{ asset('assets/icon/Driver.svg') }}" alt="">
+                        <span class="text-dark text-capitalize"><b>{{ $activ->title }}</b></span>
+                        
+                        {{-- <img src="{{ asset('assets/verified/verified.svg') }}" class="float-start mt-2 px-1" width="19" alt=""> --}}
+                        
+                        <span class="px-1">{{ $activ->message }}</span>
+                        <small style="font-size: 10px" class="position-relative">{{ $activ->created_at }}</small>
+                    </div>
+                    @endforeach
+                        
                     </div>
                 </div>
             </div>

@@ -16,6 +16,12 @@
             <p>{{ Session::get('success') }}</p>
         </div>
     @endif
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Daftar Shipper</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Admin</li>
+        </ol>
+    </nav>
     <div class="card mt-4">
         <div class="card-header">
             <h5 class="mb-0 text-center">

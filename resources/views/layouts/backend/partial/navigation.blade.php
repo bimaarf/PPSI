@@ -36,14 +36,14 @@
                  @endif
                  <a href="{{ route('orders.form_1') }}"
                      class="list-group-item list-group-item-action py-2 ripple @yield('struktur.dashboard')"><i
-                         class="fas fa-bars fa-fw me-3"></i><span>Form</span></a>
+                         class="fas fa-bars fa-fw me-3"></i><span>Pesan Armada</span></a>
                  <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('detail')">
                      <i class="fas fa-chart-bar fa-fw me-3"></i>
                      <span>Detail</span></a>
                  @if (Auth::user()->hasRole('admin'))
                      <a href="{{ route('admin.add_user') }}"
                          class="list-group-item list-group-item-action py-2 ripple  @yield('add')" aria-current="true">
-                         <i class="fas fa-user fa-fw me-3"></i><span>Add User</span>
+                         <i class="fas fa-user fa-fw me-3"></i><span>Tambah Pengguna</span>
                      </a>
                  @endif
 
