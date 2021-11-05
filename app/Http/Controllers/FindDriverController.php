@@ -31,11 +31,11 @@ class FindDriverController extends Controller
         return redirect()->route('user.index')->with('success', 'Sedang mencari driver');
     }
 
+    // driver tolak
     public function update(Request $request, $id)
     {
         $checkout = Checkout::find($id);
-        $checkout->message = 'Canceled';
-        // $checkout->driver_id = json_encode($request->driver_id);
+        $checkout->driver_id = $request->driver_id;
         $checkout->update();
         return redirect()->route('driver.index')->with('success', 'Sedang mencari driver');
     }

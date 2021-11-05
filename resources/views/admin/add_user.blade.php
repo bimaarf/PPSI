@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-lg-7">
                 <div class="card">
-                    <div class="card-header"><h4 class="text-dark"><strong>Form Admin</strong></h4></div>
+                    <div class="card-header"><h4 class="text-dark"><strong>Registrasi Admin  | Driver</strong></h4></div>
                     <div class="card-body">
                         <!-- Validation Errors -->
                         <x-auth-validation-errors class="mb-4" :errors="$errors" />

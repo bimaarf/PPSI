@@ -98,7 +98,7 @@ class OrderController extends Controller
         $nama_penerima = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->nama_penerima));
         $alamat_tujuan = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->alamat_tujuan));
         $telp_tujuan   = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->telp_tujuan));
-        $driver = RoleUser::where('role_id', 2)->inRandomOrder()->get();
+        $driver = User::where('status_id', 1)->inRandomOrder()->get();
         $feed_manager = RoleUser::where('role_id', 4)->inRandomOrder()->limit(1)->get();
         $user   = User::all();
 

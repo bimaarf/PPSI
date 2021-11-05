@@ -117,7 +117,7 @@
                             </div>
                             <div class="col-7">
                                 <h5 class="text-black-50">{{ Auth::user()->telp }}</h5>
-                                <h5 class="text-black-50">{{ Auth::user()->alamat }}iuasdhsadiasdusda</h5>
+                                <h5 class="text-black-50">{{ Auth::user()->alamat }}</h5>
                             </div>
                         </div>
                     </div>

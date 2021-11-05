@@ -49,7 +49,8 @@ class AdminController extends Controller
         $role_user = RoleUser::get();
         $role = Role::all();
         $permission_user = PermissionUser::all();
-        return view('admin.table_shipper', compact('i','role_user' ,'users', 'role', 'permission_user'));
+        $users_status = UserStatus::all();
+        return view('admin.table_shipper', compact('i','role_user' ,'users', 'role', 'permission_user', 'users_status'));
     }
 
     public function addUser()

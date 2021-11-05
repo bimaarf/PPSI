@@ -125,8 +125,8 @@
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-success text-capitalize"><i
-                                                    class="fab fa-whatsapp text-white"></i>&nbsp;Whatsapp</button>
+                                                <a href="https://wa.me/{{ $item->telp }}?text=Hallo {{ $item->name }}," target="__blank" class="btn btn-success text-capitalize"><i
+                                                    class="fab fa-whatsapp text-white"></i>&nbsp;Whatsapp</a>
                                                     <button type="button" class="btn btn-secondary text-capitalize"
                                                     data-mdb-dismiss="modal">
                                                     Close

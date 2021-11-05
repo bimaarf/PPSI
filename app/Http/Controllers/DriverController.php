@@ -24,7 +24,7 @@ class DriverController extends Controller
         $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
         $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
         $driver = RoleUser::where('role_id', 2)->orderBy('role_id', 'ASC')->get();
-        $user = User::all();
+        $user = User::get();
         $trackings = Tracking::all();
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         
@@ -34,15 +34,11 @@ class DriverController extends Controller
 
     public function tolak($id)
     {
-        $orders = Order::find($id);
-        // $orders->status = null;
-        $checkout = Checkout::where('orders_id', $orders->id)->get();
-        foreach ($checkout as $checkouts) {
-            $checkouts->delete();
-        }
-        $orders->update();
-
-        return redirect()->route('driver.index')->with('success', 'Terima kasih orderan sudah dihapus.');
+        $checkout = Checkout::find($id);
+        $checkout->message = 'Canceled';
+        // $checkout->driver_id = json_encode($request->driver_id);
+        $checkout->update();
+        return redirect()->route('driver.index')->with('success', 'Sedang mencari driver');
     }
    
     
@@ -51,29 +47,33 @@ class DriverController extends Controller
         $checkout = Checkout::find($id);
         $orders = $checkout->orders;
         $orders->status = '2';
-        $orders->update();
+        
         $checkout->message = 'Verified';
-        $checkout->update();
 
+        $users = Auth::user();
+        $users->status_id = 3;
 
         $tracking = new Tracking();
         $tracking->status = '1';
         $tracking->checkout_id = $checkout->id;
         $tracking->driver_id   = Auth::id();
-        $tracking->save();
 
         $status = new TrackingStatus();
         $status->status = 'Terima';
         $status->track_id = $tracking->id;
-        $status->save();
+        if($orders->update())
+        {
+            $checkout->update();
+            $users->update();
+            $tracking->save();
+            $status->save();
+
+        }
 
         return redirect()->route('driver.index')->with('success', 'Orderan Diterima');
     }
     public function jemputBarang(Request $request, $id)
     {
-        // $tracking = Tracking::find($id);
-        // $tracking->status = '0';
-        // $tracking->update();
         $tracking = Tracking::find($id);
         $tracking->status = '2';
         $tracking->checkout_id = $request->checkout_id;
@@ -118,6 +118,9 @@ class DriverController extends Controller
         $status = TrackingStatus::find($id);
         $status->status = 'Sampai';
         $status->update();
+        $users = Auth::user();
+        $users->status_id = 1;
+        $users->update();
         
         return redirect()->route('driver.index')->with('success', 'Barang sudah sampai');
     }

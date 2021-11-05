@@ -50,6 +50,8 @@ Route::get('/clear-cache', function() {
 // form-orders
 Route::get('/user-form-jemput', [OrderController::class, 'form1'])->name('orders.form_1');
 Route::get('/user-form-tujuan', [OrderController::class, 'form2'])->name('orders.form_2');
+Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('orders.detail');
+Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('orders.hapus');
 // admin
 Route::get('/dashboard/admin', [AdminController::class, 'dashboard'])->name('admin.index')->middleware('auth');
 Route::get('/dashboard/admin/daftar-driver', [AdminController::class, 'daftarDriver'])->name('admin.table_driver')->middleware('auth');
@@ -62,8 +64,7 @@ Route::post('/admin-edit-user/{id}', [AdminController::class, 'editUser'])->name
 
 Route::get('/dashboard', [ShipperController::class, 'dashboard'])->name('user.index')->middleware('auth');
 Route::get('/dashboard/driver', [DriverController::class, 'dashboardDriver'])->name('driver.index')->middleware('auth');
-Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('orders.detail');
-Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('orders.hapus');
+
 Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
 Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
 Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');

@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
                     @foreach ($checkout as $item)
-                        @if ($item->driver_id != '')
+                        @if ($item->driver_id != '' && $item->message != 'Canceled')
                             @foreach (explode(",", str_replace(array('[', '"', ']'), ' ', $item->driver_id)) as $info)
                             @if (Auth::user()->id == $info)
                                 {{-- content --}}
@@ -60,7 +60,12 @@
                                                 <a href="{{ route('orders.detail', ['id' => $item->orders->id, 'key' => $item->orders->key]) }}"
                                                     class="btn btn-outline-info">View</a>
                                                 @if ($item->orders->status == 1)
-                                                    <input type="submit" class="btn btn-outline-danger" value="Tolak">
+                                                @foreach ($user->where('status_id', '=', 1)->slice(1,2) as $usr)
+                                                    @if ($usr->hasRole('driver') && $usr->id != Auth::user()->id)
+                                                        <input type="hidden" name="driver_id" value="{{ $usr->id }}">
+                                                    @endif
+                                                @endforeach
+                                                    <input type="submit" class="btn btn-outline-danger" value="Tolak{{ $item->id }}">
 
                                                 @endif
                                             </div>
