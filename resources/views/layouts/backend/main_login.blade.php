@@ -16,6 +16,11 @@
         | Dashboard
     </title>
     <link rel="icon" href="" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     {{-- stepper --}}
     <style>
         html,
@@ -180,14 +185,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
         integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
         crossorigin="anonymous"></script>
-    {{-- refresh --}}
-    {{-- <script language="javascript">
-	setInterval(function(){
-	   window.location.reload(1);
-	}, 1000);
-	</script> --}}
-
-    {{-- end --}}
     <style>
         .img-gallery-product img {
             width: 280px;
@@ -263,26 +260,36 @@
                 grid-template-columns: 1fr 1fr
             }
 
-        }
+            /* custom scroll-bar */
+            .example::-webkit-scrollbar {
+                display: none;
+            }
 
-    </style>
-    {{-- scroll bar --}}
-    <style>
-        .example::-webkit-scrollbar {
-            display: none;
-        }
+            /* Hide scrollbar for IE, Edge and Firefox */
+            .example {
+                -ms-overflow-style: none;
+                /* IE and Edge */
+                scrollbar-width: none;
+                /* Firefox */
+            }
 
-        /* Hide scrollbar for IE, Edge and Firefox */
-        .example {
-            -ms-overflow-style: none;
-            /* IE and Edge */
-            scrollbar-width: none;
-            /* Firefox */
+            /* my custome scroll-bar */
+            .my-custom-scrollbar {
+                position: relative;
+                height: 500px;
+                overflow: auto;
+            }
+
+            .table-wrapper-scroll-y {
+                display: block;
+            }
+
         }
 
     </style>
     <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
     <!--load all styles -->
+
 </head>
 
 <body>
@@ -291,7 +298,9 @@
     <main>
         @yield('content')
     </main>
-
+    <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/mdb.min.js') }}"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="{{ asset('assets/js/admin.js') }}"></script>
@@ -312,30 +321,7 @@
             $(this).parents('tr').remove();
         });
     </script>
-    {{-- refresh --}}
-    <script src="http://code.jquery.com/jquery-3.1.1.js"></script>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    {{-- <script>
 
-    (function () {
-        setInterval(function () {
-            axios.get('streams',)
-                .then(function(response){
-                        document.querySelector('#show')
-                                .innerHtml(response.data);
-                }); // do nothing for error - leaving old content.
-            }); 
-        }, 1000); // milliseconds
-    })();
-
-    </script> --}}
-    <script type="text/JavaScript">
-        <!--
-                        		   function AutoRefresh( t ) {
-                        			  setTimeout("location.reload(true);", t);
-                        		   }
-                        		//-->
-    </script>
 </body>
 
 </html>

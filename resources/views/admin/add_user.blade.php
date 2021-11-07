@@ -2,10 +2,24 @@
 @section('add', 'active')
 @section('content')
 <div class="container pt-4">
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if (Session::has('success'))
+        <div class="alert alert-success text-center">
+            <p>{{ Session::get('success') }}</p>
+        </div>
+    @endif
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Tambah Pengguna</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Admin</li>
+        <ol class="breadcrumb pink lighten-4">
+          <li class="breadcrumb-item"><a class="black-text" href="#">Dashboard</a></li>
+          <li class="breadcrumb-item active">Registrasi Admin</li>
         </ol>
     </nav>
     <form action="{{ route('admin.register') }}" method="POST">

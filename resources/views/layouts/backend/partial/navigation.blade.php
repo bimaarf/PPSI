@@ -6,6 +6,7 @@
 
          <div class="position-sticky">
              <div class="list-group list-group-flush mx-3 mt-4">
+                
                  @if (Auth::user()->hasRole('shipper'))
                      <a href="{{ route('user.index') }}"
                          class="list-group-item list-group-item-action py-2 ripple shp @yield('dashboard')"
@@ -40,6 +41,7 @@
                  <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('detail')">
                      <i class="fas fa-chart-bar fa-fw me-3"></i>
                      <span>Detail</span></a>
+                     
                  @if (Auth::user()->hasRole('admin|super-admin'))
                      <a href="{{ route('admin.add_user') }}"
                          class="list-group-item list-group-item-action py-2 ripple  @yield('add')" aria-current="true">
@@ -50,6 +52,11 @@
                  @if (Auth::user()->hasRole('admin|super-admin'))
                      <span class="sidebar-title list-group-item list-group-item-action py-2 ripple">Daftar &amp;
                          Pengguna</span>
+                     <a href="{{ route('admin.table_admin') }}"
+                         class="list-group-item list-group-item-action py-2 ripple  @yield('daftar-admin')"
+                         aria-current="true">
+                         <i class="fas fa-users fa-fw me-3"></i><span>Daftar Admin</span>
+                     </a>
                      <a href="{{ route('admin.table_driver') }}"
                          class="list-group-item list-group-item-action py-2 ripple  @yield('daftar-driver')"
                          aria-current="true">
@@ -68,35 +75,11 @@
 
                  @endif
 
-                 {{-- @if (Auth::user()) --}}
-                 {{-- <span class="sidebar-title list-group-item list-group-item-action py-2 ripple">Form &amp; Berita</span>
-
-                  <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('berita.dashboard')">
-                  <i class="fas fa-globe fa-fw me-3"></i>
-
-                  <span>Daftar Berita</span></a>
-
-                  
-
-                  <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('berita.formTambah')">
-                  <i class="fas fa-chart-line fa-fw me-3"></i>
-                      <span>Tambah Berita</span></a>
-                      
-
-              <span class="sidebar-title list-group-item list-group-item-action py-2 ripple">Form &amp; Kategori</span>
-          
-                  <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('kategori.dashboard')">
-                  <i class="fas fa-chart-bar fa-fw me-3"></i>
-                      <span>Daftar Kategori</span></a>
-
-                  <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('kategori.formTambah')">
-                  <i class="fas fa-chart-line fa-fw me-3"></i>
-                      <span>Tambah Kategori</span></a> --}}
-
-                 {{-- @endif --}}
-             </div>
+                
+                </div>
          </div>
      </nav>
+     
      <!-- Sidebar -->
 
      <!-- Navbar -->

@@ -17,9 +17,9 @@
         </div>
     @endif
     <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Daftar Shipper</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Admin</li>
+        <ol class="breadcrumb pink lighten-4">
+          <li class="breadcrumb-item"><a class="black-text" href="#">Dashboard</a></li>
+          <li class="breadcrumb-item active">Daftar Shipper</li>
         </ol>
     </nav>
     <div class="card mt-4">
@@ -51,7 +51,6 @@
                     </thead>
                     <tbody>
                         @foreach ($users as $item)
-                            @if ($item->hasRole('shipper'))
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $item->name }}</td>
@@ -145,7 +144,6 @@
                                 </div>
                             </div>
                             {{-- End Popup detail --}}
-                            @endif
                         @endforeach
                         
                     </div>

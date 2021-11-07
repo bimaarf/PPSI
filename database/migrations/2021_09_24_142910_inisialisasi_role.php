@@ -106,9 +106,8 @@ class InisialisasiRole extends Migration
         ]);
 
             $super_admin->attachPermissions([$dashboard, $lihat_admin, $kelola_admin, $lihat_driver, $kelola_driver, $lihat_shipper, $kelola_shipper, $lihat_manager, $kelola_manager, $register_user]);
-            $admin->attachPermissions([$dashboard, $lihat_driver, $kelola_driver, $lihat_shipper, $kelola_shipper, $lihat_manager, $kelola_manager]);
             $driver->attachPermissions([$dashboard]);
-            $shipper->attachPermissions([$dashboard, $pesan_armada]);
+            $shipper->attachPermissions([$pesan_armada]);
     }
 
     /**

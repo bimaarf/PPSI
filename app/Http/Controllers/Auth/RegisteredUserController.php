@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use App\Models\Permission;
+use App\Models\RoleModel;
+use App\Models\Zone;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +23,9 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        $zone = Zone::get();
+        $roles = RoleModel::all();
+        return view('auth.register', compact('roles', 'zone'));
     }
 
     /**
@@ -49,11 +54,22 @@ class RegisteredUserController extends Controller
             'status_id' => 1,
             'avatar'    => 'Shipper.svg',
         ]);
-        $user->attachRole('shipper');
+        $role = $request->role;
+        $user->attachRole($role);
         event(new Registered($user));
 
         Auth::login($user);
-
-        return redirect(RouteServiceProvider::HOME);
+        if(Auth::user()->hasRole('admin|super-admin'))
+        {
+            return redirect()->route('admin.index');
+        }
+        if(Auth::user()->hasRole('driver'))
+        {
+            return redirect()->route('driver.index');
+        }
+        if(Auth::user()->hasRole('shipper'))
+        {
+            return redirect()->route('user.index');
+        }
     }
 }

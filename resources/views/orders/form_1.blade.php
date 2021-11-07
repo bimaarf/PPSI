@@ -16,6 +16,23 @@
                 <p>{{ Session::get('success') }}</p>
             </div>
         @endif
+        <div class="row">
+            <div class="col-md-6">
+              <div class="md-form md-outline input-with-post-icon timepicker" twelvehour="true">
+                <input type="text" id="light-version-examples" class="form-control" placeholder="Select time">
+                <label for="light-version-examples">Light version, 12hours</label>
+                <i class="fas fa-envelope input-prefix"></i>
+              </div>
+            </div>
+          
+            <div class="col-md-6">
+              <div class="md-form md-outline input-with-post-icon timepicker" darktheme="true">
+                <input type="text" id="dark-version-example" class="form-control" placeholder="Select time">
+                <label for="dark-version-example">Dark version, 24 hours</label>
+                <i class="fas fa-envelope  input-prefix"></i>
+              </div>
+            </div>
+          </div>
         <div class="col-lg-5">
             <div class="card my-3">
                 <div class="card-header">
@@ -44,7 +61,7 @@
                         <div class="form-group mt-2 col-lg-3">
                                 <input class="form-control mt-1" type="time" name="start_time" id="start_time" required> 
                         </div>
-                        <div class="col-1"> <tt> -</tt> </div>
+                        <div class="col-1"> </div>
                         <div class="form-group mt-2 col-lg-3">
                             <input class="form-control mt-1" type="time" name="arrival_time" id="arrival_time" required>
                         </div>

@@ -52,6 +52,6 @@ class RegisteredByAdminController extends Controller
         $activity->member_id    = $user->id;
         $activity->save(); 
         
-        return redirect()->route('admin.index')->with('success', 'Anda berhasil menambahkan pengguna baru!');
+        return redirect()->route('admin.add_user')->with('success', 'Anda berhasil menambahkan pengguna baru!');
     }
 }

@@ -10,7 +10,6 @@ use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
 use App\Models\RoleUser;
 use App\Models\UserStatus;
-use App\Models\Role;
 
 class User extends Authenticatable
 {
@@ -50,7 +49,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function roleUser()
+    public function jenis()
     {
       return $this->hasMany(RoleUser::class);
     }

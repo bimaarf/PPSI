@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserStatus;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Pagination\Paginator;
 
 class AdminController extends Controller
 {
@@ -21,19 +22,38 @@ class AdminController extends Controller
         $tAdmin = DB::table('role_user')->where('role_id', 2)->count();
         $tDriver = DB::table('role_user')->where('role_id', 3)->count();
         $tShipper = DB::table('role_user')->where('role_id', 4)->count();
-        $activity = AdminActivity::orderBy('id', 'DESC')->limit(6)->get();
+        $activity = AdminActivity::orderBy('id', 'DESC')->get();
+      
         return view('admin.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'activity'));
+    }
+
+    public function daftarAdmin(Request $request)
+    {
+        if($request->has('search')){
+            $users = User::where('name', 'LIKE', '%'.$request->search. '%')->whereRoleIs(['admin'])->simplePaginate(10);
+        }else{
+            $users = User::whereRoleIs(['admin'])->simplePaginate();
+        }
+        $i = 1;
+        $role_user = RoleUser::get();
+        $role = Role::all();
+        $permission_user = PermissionUser::all();
+        $users_status = UserStatus::all();
+        $permissions = Permission::all();
+        $roles = Role::all();
+        return view('admin.table_admin', compact('i','role_user' ,'users', 'role', 'permission_user', 'users_status', 'permissions', 'roles'));
     }
 
     public function daftarDriver(Request $request)
     {
+        
         if($request->has('search')){
-            $users = User::where('name', 'LIKE', '%'.$request->search. '%')->simplePaginate(5);
+            $users = User::where('name', 'LIKE', '%'.$request->search. '%')->whereRoleIs(['driver'])->simplePaginate(10);
         }else{
-            $users = User::orderBy('id', 'ASC')->simplePaginate(5);
+            $users = User::orderBy('id', 'ASC')->whereRoleIs(['driver'])->simplePaginate();
         }
+        $role_user = RoleUser::where('role_id', 3)->get();
         $i = 1;
-        $role_user = RoleUser::get();
         $role = Role::all();
         $permission_user = PermissionUser::all();
         $users_status = UserStatus::all();
@@ -43,9 +63,9 @@ class AdminController extends Controller
     public function daftarShipper(Request $request)
     {
         if($request->has('search')){
-            $users = User::where('name', 'LIKE', '%'.$request->search. '%')->simplePaginate(5);
+            $users = User::where('name', 'LIKE', '%'.$request->search. '%')->whereRoleIs(['shipper'])->simplePaginate(10);
         }else{
-            $users = User::orderBy('id', 'ASC')->simplePaginate(5);
+            $users = User::orderBy('id', 'ASC')->whereRoleIs(['shipper'])->simplePaginate();
         }
         $i = 1;
         $role_user = RoleUser::get();

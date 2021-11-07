@@ -1,59 +1,86 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('layouts.backend.main')
+<div class="container pt-4">
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    @if (Session::has('success'))
+        <div class="alert alert-success text-center">
+            <p>{{ Session::get('success') }}</p>
+        </div>
+    @endif
+    <form action="{{ route('register') }}" method="POST">
+        @csrf
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="text-dark"><strong>Registrasi Admin | Driver</strong></h4>
+                    </div>
+                    <div class="card-body">
+                        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                        <div class="row">
+                            <div class="col-md-5 text-center">
+                                <img src="{{ asset('assets/icon/Driver.svg') }}" class="img-fluid rounded mt-4"
+                                    width="200vh" alt="">
+                                <div class="form-group mt-2">
+                                    <label for="role"></label>
+                                    <select id="role" name="role" class="form-control">
+                                        @foreach ($roles as $rol)
+                                            @if ($rol->id == 4)
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                                                <option value="{{ $rol->name }}"> {{ $rol->display_name }}</option>
+                                            @endif
+                                            @if ($rol->id == 3)
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+                                                <option value="{{ $rol->name }}"> {{ $rol->display_name }}</option>
+                                            @endif
+                                        @endforeach
 
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-7">
+                                <div class="form-group">
+                                    <label for="name" :value="__('Name')">Username</label>
+                                    <input class="form-control" type="text" name="name" id="name" :value="old('name')"
+                                        placeholder="Username" required autofocus>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <label for="email" :value="__('Email')">Email</label>
+                                    <input class="form-control" type="email" name="email" id="email"
+                                        :value="old('email')" placeholder="example@gmail.com" required>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <label for="password" :value="__('Password')">Password</label>
+                                    <input class="form-control" type="password" name="password" id="password" required
+                                        autocomplete="new-password" placeholder="Password">
+                                </div>
+                                <div class="form-group mt-4">
+                                    <label for="password_confirmation" :value="__('Confirm Password')">Konfirmasi
+                                        Password</label>
+                                    <input type="password" class="form-control" name="password_confirmation"
+                                        id="password_confirmation" required placeholder="Konfirmasi Password">
+                                </div>
+                                <div class="form-group mt-4">
+                                    <label for="telp" :value="__('Telp')"><i
+                                            class="fab fa-whatsapp text-success"></i>&nbsp;Whatsapp</label>
+                                    <input class="form-control" type="num" name="telp" id="telp" :value="old('telp')"
+                                        placeholder="628XXXX" required autofocus>
+                                </div>
+                                <div class="form-group mt-4">
+                                    <label for="alamat" :value="__('Alamat')">Alamat lengkap</label>
+                                    <textarea class="form-control" :value="old('alamat')" name="alamat" id="alamat"
+                                        cols="30" rows="5" placeholder="Masukkan alamat lengkap."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        <button type="submit" class="btn btn-primary mt-4 fa-pull-right">Register</button>
 
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-            </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
-            </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class="block mt-1 w-full"
-                                type="password"
-                                name="password_confirmation" required />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+    </form>
+</div>
