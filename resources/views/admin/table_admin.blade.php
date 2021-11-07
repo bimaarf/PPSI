@@ -55,13 +55,13 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $item->name }}</td>
                                 @if ($item->status_id == 1)
-                                <td><a href="" class="btn btn-success rounded-9 text-capitalize">Aktif</a></td>
+                                <td><a href="" class="btn btn-success btn-sm rounded-6 text-capitalize">Aktif</a></td>
                                 @endif
                                 @if ($item->status_id == 2)
-                                <td><a href="" class="btn btn-danger rounded-9 text-capitalize">Tidak Aktif</a></td>
+                                <td><a href="" class="btn btn-danger btn-sm rounded-6 text-capitalize">Tidak Aktif</a></td>
                                 @endif
                                 @if ($item->status_id == 3)
-                                <td><a href="" class="btn btn-warning rounded-9 text-capitalize">Sibuk</a></td>
+                                <td><a href="" class="btn btn-warning btn-sm rounded-6 text-capitalize">Sibuk</a></td>
                                 @endif
 
                                 <td>
@@ -127,14 +127,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-4">
-                                                        <form action="" method="POST">
-                                                            @foreach($permissions as $permission)
-                                                                <div class="form-check form-switch mt-2">
-                                                                    <input type="checkbox" class="form-check-input" id="{{ $permission->name }}" name="permission[]" @if ($item->permissions->contains($permission->id)) checked='checked' @endif value="{{ $permission->name }}">
-                                                                    <label class="form-check-label" for="{{ $permission->name }}"> {{ $permission->display_name }} </label>
-                                                                </div>
-                                                            @endforeach
-                                                        </form>
+                                                        @foreach($permissions as $permission)
+                                                            <div class="form-check form-switch mt-2">
+                                                                <input type="checkbox" class="form-check-input" id="{{ $permission->name }}" @if ($item->permissions->contains($permission->id)) checked='checked' @endif value="{{ $permission->name }}">
+                                                                <label class="form-check-label" for="{{ $permission->name }}"> {{ $permission->display_name }} </label>
+                                                            </div>
+                                                        @endforeach
                                                     </div>
                                                 </div>
                                             </div>

@@ -55,13 +55,13 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $item->name }}</td>
                                 @if ($item->status_id == 1)
-                                <td><a href="" class="btn btn-success rounded-9 text-capitalize">Aktif</a></td>
+                                <td><a href="" class="btn btn-success btn-sm rounded-6 text-capitalize">Aktif</a></td>
                                 @endif
                                 @if ($item->status_id == 2)
-                                <td><a href="" class="btn btn-danger rounded-9 text-capitalize">Tidak Aktif</a></td>
+                                <td><a href="" class="btn btn-danger btn-sm rounded-6 text-capitalize">Tidak Aktif</a></td>
                                 @endif
                                 @if ($item->status_id == 3)
-                                <td><a href="" class="btn btn-warning rounded-9 text-capitalize">Sibuk</a></td>
+                                <td><a href="" class="btn btn-warning btn-sm rounded-6 text-capitalize">Sibuk</a></td>
                                 @endif
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
