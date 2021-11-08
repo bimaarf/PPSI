@@ -86,6 +86,20 @@ class AdminController extends Controller
         $users = User::find($id);
         $users->status_id = $request->status_id;
         $users->update();
+        $permission = PermissionUser::all();
+
+        foreach($permission->where('user_id', $users->id) as $permis)
+        {
+            $users->detachPermissions([$permis]);
+        }
+
+        $permissions = json_encode($request->permissions);
+        foreach(json_decode($permissions) as $permission)
+        {
+            $users->attachPermissions([$permission]);
+        }
+        
+        
         return back()->with('success', 'Data berhasil diubah!');
     }
 }

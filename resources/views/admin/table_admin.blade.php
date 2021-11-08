@@ -129,7 +129,7 @@
                                                     <div class="col-lg-4">
                                                         @foreach($permissions as $permission)
                                                             <div class="form-check form-switch mt-2">
-                                                                <input type="checkbox" class="form-check-input" id="{{ $permission->name }}" @if ($item->permissions->contains($permission->id)) checked='checked' @endif value="{{ $permission->name }}">
+                                                                <input type="checkbox" class="form-check-input" name="permissions[]" id="{{ $permission->name }}" @if ($item->permissions->contains($permission->id)) checked='checked' @endif value="{{ $permission->id }}">
                                                                 <label class="form-check-label" for="{{ $permission->name }}"> {{ $permission->display_name }} </label>
                                                             </div>
                                                         @endforeach
