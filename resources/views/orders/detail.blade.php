@@ -102,11 +102,9 @@
                                 <form action="{{ route('driver.find', ['id' => $orders->id]) }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="message" value="Finded" >
-                                    @foreach ($driver->slice(0, $orders->feed_m) as $drv)
-                                        @if ($drv->hasRole('driver'))
+                                    @foreach ($driver->where('status_id', 1)->slice(0, $orders->feed_m) as $drv)
                                         <label for="">Driver id</label> <br>
                                         <input type="text" name="driver_id[]" value="{{ $drv->id }}">
-                                        @endif
 
                                     @endforeach
                                     <br>

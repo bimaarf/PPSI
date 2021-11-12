@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="card">
-                    <div class="card-header"><h4 class="text-dark"><strong>Registrasi Admin  | Driver</strong></h4></div>
+                    <div class="card-header"><h4 class="text-dark"><strong>Registrasi Admin  | Field Manager</strong></h4></div>
                     <div class="card-body">
                         <x-auth-validation-errors class="mb-4" :errors="$errors" />
                             <div class="row">
@@ -101,12 +101,11 @@
                        
                         @endforeach
     
+                        <button type="submit" class="btn btn-primary mt-4 fa-pull-right">Register</button>
                     </div>
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn btn-primary mt-4 fa-pull-right">Register</button>
-
     </form>
 </div>
 @endsection

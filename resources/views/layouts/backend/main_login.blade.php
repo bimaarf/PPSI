@@ -13,10 +13,14 @@
         @if (Auth::user()->hasRole('driver'))
             Driver
         @endif
+        @if (Auth::user()->hasRole('admin|super-admin'))
+            Admin
+        @endif
         | Dashboard
     </title>
     <link rel="icon" href="" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+    <link rel="stylesheet" href="https://fontawesome.com/v5.15/icons/circle?style=solid">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
@@ -295,8 +299,14 @@
 <body>
     @include('layouts.backend.partial.navigation')
 
-    <main>
-        @yield('content')
+    <main class="mt-4 d-lg-block container">
+        <div class="row">
+            @include('layouts.backend.partial.sidebar')
+            
+            <div class="col-lg-9">
+                @yield('content')
+            </div>
+        </div>
     </main>
     <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }}"></script>

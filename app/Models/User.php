@@ -53,7 +53,7 @@ class User extends Authenticatable
     {
       return $this->hasMany(RoleUser::class);
     }
-    public function userStatus()
+    public function status()
     {
       return $this->belongsTo(UserStatus::class);
     }

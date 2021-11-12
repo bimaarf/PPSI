@@ -7,9 +7,22 @@ use App\Models\FeedManager;
 use App\Models\Checkout;
 use App\Models\TrackingStatus;
 use Illuminate\Http\Request;
+use App\Models\AdminActivity;
+use App\Models\PermissionUser;
+use Illuminate\Support\Facades\DB;
 class ShipperController extends Controller
 {
     public function dashboard()
+    {
+        $permission_user = PermissionUser::all();
+        $tAdmin = DB::table('role_user')->where('role_id', 2)->count();
+        $tDriver = DB::table('role_user')->where('role_id', 3)->count();
+        $tShipper = DB::table('role_user')->where('role_id', 4)->count();
+        $activity = AdminActivity::orderBy('id', 'DESC')->get();
+      
+        return view('user.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'activity'));
+    }
+    public function pesananAnda()
     {
         // shipper
         $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
@@ -17,8 +30,8 @@ class ShipperController extends Controller
         $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
         // feed manager
         $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(10);
-        
-        return view("user.index", compact('orders', 'checkout', 'feed_manager'));
+
+        return view("user.pesanan_anda", compact('orders', 'checkout', 'feed_manager'));
     }
 
     public function konfirmasiBarang($id)

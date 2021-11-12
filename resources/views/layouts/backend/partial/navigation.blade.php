@@ -1,87 +1,8 @@
  <!--Main Navigation-->
  <header>
-     <!-- Sidebar -->
-     <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
-         <!-- Search form -->
-
-         <div class="position-sticky">
-             <div class="list-group list-group-flush mx-3 mt-4">
-                
-                 @if (Auth::user()->hasRole('shipper'))
-                     <a href="{{ route('user.index') }}"
-                         class="list-group-item list-group-item-action py-2 ripple shp @yield('dashboard')"
-                         aria-current="true">
-                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
-                     </a>
-                 @endif
-                 @if (Auth::user()->hasRole('driver'))
-                     <a href="{{ route('driver.index') }}"
-                         class="list-group-item list-group-item-action py-2 ripple   @yield('dashboard')"
-                         aria-current="true">
-                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
-                     </a>
-                 @endif
-                 @if (Auth::user()->hasRole('admin|super-admin'))
-                     <style>
-                         .shp {
-                             display: none;
-                         }
-
-                     </style>
-                     <a href="{{ route('admin.index') }}"
-                         class="list-group-item list-group-item-action py-2 ripple  @yield('dashboard')"
-                         aria-current="true">
-                         <i class="fas fa-tachometer-alt fa-fw me-3"></i><span>Dashboard</span>
-                     </a>
-
-                 @endif
-                 <a href="{{ route('orders.form_1') }}"
-                     class="list-group-item list-group-item-action py-2 ripple @yield('struktur.dashboard')"><i
-                         class="fas fa-bars fa-fw me-3"></i><span>Pesan Armada</span></a>
-                 <a href="" class="list-group-item list-group-item-action py-2 ripple @yield('detail')">
-                     <i class="fas fa-chart-bar fa-fw me-3"></i>
-                     <span>Detail</span></a>
-                     
-                 @if (Auth::user()->hasRole('admin|super-admin'))
-                     <a href="{{ route('admin.add_user') }}"
-                         class="list-group-item list-group-item-action py-2 ripple  @yield('add')" aria-current="true">
-                         <i class="fas fa-user fa-fw me-3"></i><span>Tambah Pengguna</span>
-                     </a>
-                 @endif
-
-                 @if (Auth::user()->hasRole('admin|super-admin'))
-                     <span class="sidebar-title list-group-item list-group-item-action py-2 ripple">Daftar &amp;
-                         Pengguna</span>
-                     <a href="{{ route('admin.table_admin') }}"
-                         class="list-group-item list-group-item-action py-2 ripple  @yield('daftar-admin')"
-                         aria-current="true">
-                         <i class="fas fa-users fa-fw me-3"></i><span>Daftar Admin</span>
-                     </a>
-                     <a href="{{ route('admin.table_driver') }}"
-                         class="list-group-item list-group-item-action py-2 ripple  @yield('daftar-driver')"
-                         aria-current="true">
-                         <i class="fas fa-users fa-fw me-3"></i><span>Daftar Driver</span>
-                     </a>
-                     <a href="{{ route('admin.table_shipper') }}"
-                         class="list-group-item list-group-item-action py-2 ripple  @yield('daftar-shipper')"
-                         aria-current="true">
-                         <i class="fas fa-users fa-fw me-3"></i><span>Daftar Shipper</span>
-                     </a>
-                     <a href="" class="list-group-item list-group-item-action py-2 ripple  @yield('daftar-field-manager')"
-                         aria-current="true">
-                         <i class="fas fa-users fa-fw me-3"></i><span>Daftar Field Manager</span>
-                     </a>
-
-
-                 @endif
-
-                
-                </div>
-         </div>
-     </nav>
+     
      
      <!-- Sidebar -->
-
      <!-- Navbar -->
      <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
          <!-- Container wrapper -->
@@ -94,7 +15,7 @@
 
              <!-- Brand -->
              <a class="navbar-brand" href="">
-                 {{-- <img src="{{ asset('assets/icon/mitruck.png') }}" height="25" alt="" loading="lazy" /> --}}
+                 <img src="{{ asset('assets/icon/mitruck.png') }}" height="25" alt="" loading="lazy" />
              </a>
              <!-- Right links -->
              <ul class="navbar-nav ms-auto d-flex flex-row">

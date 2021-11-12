@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header text-center py-3">
         <h5 class="mb-0 text-center">
-            <strong>Your Order</strong>
+            <strong>Pesanan Saya</strong>
         </h5>
     </div>
     <div class="card-body">
@@ -29,13 +29,17 @@
                                 <td class="mb-0 fw-normal">{{ $item->armada }}</td>
 
                                 <td class="mb-0 fw-normal">{{ $item->jadwal }}</td>
+                                @if ($item->status == null)
+                                    <td><button class="btn btn-outline-primary" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                      </button></td>
+                                @endif
                                 @foreach ($checkout->where('orders_id', $item->id)->slice(0,1) as $check)
-
                                     @if ($check->orders->status == 2)
                                     <td class="mb-0 fw-normal oke">
                                         <a href="{{ route('orders.tracking', ['id'=>$item->id]) }}" class="btn btn-outline-success" >Status</a>
                                     </td>
-                                       
+                                    
+                                   
                                     @endif
                                     @if ($check->message == 'Finded')
                                     <td><button class="btn btn-outline-primary" type="button" disabled>
