@@ -84,7 +84,7 @@ class OrderController extends Controller
                 $orders->user_id = Auth::id();
                 $orders->save();
                 $request->session()->forget('pesan');
-            return redirect()->route('orders.detail', ['key'=>$orders->key, 'id'=>$orders->id ])->with('success', 'Terima kasih orderan anda sedang diproses.');
+            return redirect()->route('orders.detail', ['key'=>$orders->key, 'id'=>$orders->id ])->with('success', 'Terima kasih sudah membuat pesanan');
 
         } else {
             return redirect()->route('login');
@@ -108,12 +108,10 @@ class OrderController extends Controller
     public function hapus($id)
     {
         $orders = Order::find($id);
-        // $orders->checkout = Checkout::where('orders_id', $orders->id)->get();
-        //     DB::table('checkouts')->delete();
+        $orders->status = 'Canceled';
+        $orders->update();
 
-        $orders->delete();
-
-        return redirect()->route('user.index')->with('success', 'Terima kasih orderan sudah dihapus.');
+        return redirect()->route('user.pesanan_anda')->with('success', 'Pesanan sudah dibatalkan');
     }
 
     

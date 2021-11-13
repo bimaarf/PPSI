@@ -85,17 +85,20 @@ Route::post('/dashboard/admin/edit-shipper/{id}', [AdminController::class, 'edit
 
 // shipper
 Route::get('/dashboard/shipper', [ShipperController::class, 'dashboard'])->name('user.index')->middleware(['auth', 'role:shipper']);
-Route::get('/dashboard/shipper/pesanan-diproses', [ShipperController::class, 'pesananDiproses'])->name('user.pesanan_diproses')->middleware(['auth', 'role:shipper|admin|super-admin']);
 Route::get('/dashboard/shipper/pesanan', [ShipperController::class, 'pesananAnda'])->name('user.pesanan_anda')->middleware(['auth', 'role:shipper|admin|super-admin']);
+Route::get('/dashboard/shipper/pesanan-diproses', [ShipperController::class, 'pesananDiproses'])->name('user.pesanan_diproses')->middleware(['auth', 'role:shipper|admin|super-admin']);
+Route::get('/dashboard/shipper/pesanan-dibatalkan', [ShipperController::class, 'pesananDibatalkan'])->name('user.pesanan_dibatalkan')->middleware(['auth', 'role:shipper|admin|super-admin']);
 // shipper akses
 Route::post('/store-input-fields/konfirmasi-barang/{id}', [ShipperController::class, 'konfirmasiBarang'])->name('shipper.konfirmasi')->middleware(['auth', 'role:shipper|admin|super-admin']);
 Route::post('/store-input-fields/driver/{id}', [FindDriverController::class, 'find'])->name('driver.find')->middleware(['auth', 'role:shipper|admin|super-admin']);
 
 
 // driver
-Route::get('/dashboard/driver', [DriverController::class, 'dashboard'])->name('driver.index')->middleware(['auth', 'role:driver']);
+Route::get('/dashboard/driver', [DriverController::class, 'akunSaya'])->name('driver.index')->middleware(['auth', 'role:driver']);
 Route::get('/dashboard/driver/pesanan', [DriverController::class, 'pesananMasuk'])->name('driver.pesanan_masuk')->middleware(['auth', 'role:driver']);
-Route::post('/dashboard/driver/cancel/{id}', [FindDriverController::class, 'update'])->name('driver.update')->middleware('auth');
+Route::get('/dashboard/driver/pesanan-diproses', [DriverController::class, 'pesananDiproses'])->name('driver.pesanan_diproses')->middleware(['auth', 'role:driver']);
+Route::get('/dashboard/driver/pesanan-dibatalkan', [DriverController::class, 'pesananDibatalkan'])->name('driver.pesanan_dibatalkan')->middleware(['auth', 'role:driver']);
+Route::post('/dashboard/driver/cancel/{id}', [DriverController::class, 'tolak'])->name('driver.tolak')->middleware('auth');
 
 // Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
 Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');

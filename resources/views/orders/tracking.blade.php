@@ -1,14 +1,20 @@
 @extends('layouts.backend.main_login')
 @section('pesanan-diproses', 'active')
 @section('content')
-
+<div class="card rounded">
+    <div class="card-body">
+        <div class="fs-5">
+            <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda&emsp;/&emsp;Lacak</b>
+        </div>
+    </div>
+</div> 
     <div class="row">
         @foreach ($checkout->where('orders_id', $orders->id) as $item)
             @if ($item->message == 'Verified')
             <div class="col-lg-6 mt-2">
                 <div class="card">
-                    <div class="card-header text-center">{{ $orders->alamat_jemput }}
-                        @foreach (json_decode($item->orders->alamat_tujuan) as $info)
+                    <div class="card-header text-center">{{ $orders->jemput }}
+                        @foreach (json_decode($item->orders->tujuan) as $info)
                             -{{ $info }}
                         @endforeach
                     </div>
@@ -17,10 +23,6 @@
                         <div class="bs-vertical-wizard">
                             <ul>
                                 @foreach ($tracking->where('checkout_id', $item->id) as $track)
-                                    {{ $track->id }}
-                                    @foreach ($tracking->where('status', 1) as $track)
-                                        =1
-                                    @endforeach
                                     @if ($track->status == 1)
                                         <li class="complete">
                                             <a href="#">Driver menerima pesanan anda<i class="ico fa fa-check ico-green"></i>

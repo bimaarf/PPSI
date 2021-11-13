@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($orders->where('status', 1) as $item)
+                    @foreach ($orders->where('status', 'Canceled') as $item)
                         @if ($item->user_id == Auth::user()->id)
                             <tr>
                                 <td>{{ $i++ }}</td>
@@ -33,7 +33,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            @include('user.modal.modal_proses')
+                            @include('user.modal.modal_tolak')
                         @endif
                     @endforeach
 

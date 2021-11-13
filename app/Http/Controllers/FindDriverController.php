@@ -28,15 +28,8 @@ class FindDriverController extends Controller
             $checkouts->save();
         }
         
-        return redirect()->route('user.pesanan_diproses')->with('success', 'Sedang mencari driver');
+        return redirect()->route('user.pesanan_diproses')->with('success', 'Terima kasih, kami akan carikan anda driver.');
     }
 
-    // driver tolak
-    public function update(Request $request, $id)
-    {
-        $checkout = Checkout::find($id);
-        $checkout->driver_id = $request->driver_id;
-        $checkout->update();
-        return redirect()->route('driver.index')->with('success', 'Sedang mencari driver');
-    }
+   
 }

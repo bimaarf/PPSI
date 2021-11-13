@@ -6,7 +6,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-striped text-nowrap">
+            <table class="table table-hover text-nowrap">
                 <!-- Search form -->
                 <thead>
 
@@ -19,22 +19,22 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($orders->where('status', 1) as $item)
+                    @foreach ($orders->where('status', null) as $item)
                         @if ($item->user_id == Auth::user()->id)
                             <tr>
-                                <td>{{ $i++ }}</td>
-                                <td>{{ $item->armada }}</td>
-                                <td>{{ $item->jadwal }}</td>
-                                <td>
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="" class="btn btn-success" data-mdb-toggle="modal" data-mdb-target="#exampleModal{{ $item->id }}">
+                                <td class="mb-0 fw-normal">{{ $i++ }}</td>
+                                <td class="mb-0 fw-normal">{{ $item->armada }}</td>
+
+                                <td class="mb-0 fw-normal">{{ $item->jadwal }}</td>
+                                <td class="mb-0 fw-normal">
+                                        {{-- {{ route('orders.detail', ['id' => $item->id, 'key' => $item->key]) }} --}}
+                                        <a href="" class="btn btn-success" data-mdb-toggle="modal" data-mdb-target="#order{{ $item->id }}">
                                             <div class="bi icon dripicons-view-list"></div>Lihat
                                         </a>
-                                    </div>
                                 </td>
                             </tr>
-                            @include('user.modal.modal_proses')
                         @endif
+                        @include('user.modal.modal_masuk')
                     @endforeach
 
 

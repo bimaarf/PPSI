@@ -17,15 +17,9 @@ use App\Models\PermissionUser;
 class DriverController extends Controller
 {
 
-    public function dashboard()
+    public function akunSaya()
     {
-        $permission_user = PermissionUser::all();
-        $tAdmin = DB::table('role_user')->where('role_id', 2)->count();
-        $tDriver = DB::table('role_user')->where('role_id', 3)->count();
-        $tShipper = DB::table('role_user')->where('role_id', 4)->count();
-        $activity = AdminActivity::orderBy('id', 'DESC')->get();
-      
-        return view('driver.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'activity'));
+        return view('driver.index');
     }
     public function pesananMasuk()
     {
@@ -34,21 +28,56 @@ class DriverController extends Controller
         $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
         $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
         $driver = RoleUser::where('role_id', 2)->orderBy('role_id', 'ASC')->get();
-        $user = User::get();
+        $user = User::whereRoleIs(['driver'])->inRandomOrder()->get();
         $trackings = Tracking::all();
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         
         return view('driver.pesanan_masuk', compact('i' ,'orders','checkout', 'driver', 'trackings', 'track_status', 'user'));
         
     }
+    public function pesananDiproses()
+    {
+        $i = 1;
 
-    public function tolak($id)
+        $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
+        $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
+        $driver = RoleUser::where('role_id', 2)->orderBy('role_id', 'ASC')->get();
+        $user = User::whereRoleIs(['driver'])->inRandomOrder()->get();
+        $trackings = Tracking::all();
+        $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
+        
+        return view('driver.pesanan_diproses', compact('i' ,'orders','checkout', 'driver', 'trackings', 'track_status', 'user'));
+        
+    }
+    public function pesananDibatalkan()
+    {
+        $i = 1;
+
+        $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
+        $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
+        $driver = RoleUser::where('role_id', 2)->orderBy('role_id', 'ASC')->get();
+        $user = User::whereRoleIs(['driver'])->inRandomOrder()->get();
+        $trackings = Tracking::all();
+        $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
+        
+        return view('driver.pesanan_dibatalkan', compact('i' ,'orders','checkout', 'driver', 'trackings', 'track_status', 'user'));
+        
+    }
+
+    public function tolak(Request $request, $id)
     {
         $checkout = Checkout::find($id);
         $checkout->message = 'Canceled';
-        // $checkout->driver_id = json_encode($request->driver_id);
-        $checkout->update();
-        return redirect()->route('driver.pesanan_masuk')->with('success', 'Sedang mencari driver');
+        if($checkout->update())
+        {
+            $checkouts = new Checkout();
+            $checkouts->message = 'Finded';
+            $checkouts->orders_id = $checkout->orders_id;
+            $checkouts->driver_id = $request->driver_id;
+            $checkouts->save();
+            return redirect()->route('driver.pesanan_tolak')->with('success', 'Anda menolak pesanan!');
+        }
+       
     }
    
     
@@ -60,7 +89,7 @@ class DriverController extends Controller
         $checkout->update();
 
         $orders = $checkout->orders;
-        $orders->status = '2';
+        $orders->status = 'Process';
         $orders->update();
         
         $users = Auth::user();
@@ -78,7 +107,7 @@ class DriverController extends Controller
         $status->track_id = $tracking->id;
         $status->save();
         
-        return redirect()->route('driver.pesanan_masuk')->with('success', 'Orderan Diterima');
+        return redirect()->route('driver.pesanan_diproses')->with('success', 'Terima kasih, anda sudah menerima pesanan.');
     }
     public function jemputBarang(Request $request, $id)
     {
@@ -93,7 +122,7 @@ class DriverController extends Controller
         $status->track_id = $tracking->id;
         $status->save();
        
-        return redirect()->route('driver.pesanan_masuk')->with('success', 'Barang akan dijemput');
+        return redirect()->route('driver.pesanan_diproses')->with('success', 'Kami akan memberi tahu shipper bahwa anda akan segera menjemput pesanan.');
     }
 
     public function antarBarang(Request $request, $id)
@@ -118,7 +147,7 @@ class DriverController extends Controller
             $status->save();
         }
        
-        return redirect()->route('driver.pesanan_masuk')->with('success', 'Barang sedang dalam proses antar');
+        return redirect()->route('driver.pesanan_diproses')->with('success', 'Kami akan memberi tahu shipper bahwa anda akan segera mengantar pesanan.');
     }
    
     public function sampaiBarang($id)
@@ -130,7 +159,7 @@ class DriverController extends Controller
         $users->status_id = 1;
         $users->update();
         
-        return redirect()->route('driver.pesanan_masuk')->with('success', 'Barang sudah sampai');
+        return redirect()->route('driver.pesanan_diproses')->with('success', 'Kami akan memberi tahu shipper bahwa anda pesanan sudah sampai.');
     }
     
 }

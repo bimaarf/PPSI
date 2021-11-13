@@ -16,7 +16,7 @@ class TrackingController extends Controller
         $orders = Order::find($id);
         $checkout = Checkout::all();
         $tracking = Tracking::orderBy('id', 'ASC')->get();
-        $track_status = TrackingStatus::orderBy('id', 'DESC')->get();
+        $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         $users   = User::all();
         return view('orders.tracking', compact('checkout', 'orders', 'tracking', 'users', 'track_status'));
     }
