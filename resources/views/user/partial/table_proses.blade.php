@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($orders->where('status', 1) as $item)
+                    @foreach ($orders->where('status', 'Process') as $item)
                         @if ($item->user_id == Auth::user()->id)
                             <tr>
                                 <td>{{ $i++ }}</td>

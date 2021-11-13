@@ -30,7 +30,7 @@ class Checkout extends Model
     {
         return $this->belongsTo(Chatting::class);
     }
-    public function tracking()
+    public function trackings()
     {
         return $this->belongsTo(Tracking::class);
     }

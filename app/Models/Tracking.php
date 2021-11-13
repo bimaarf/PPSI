@@ -34,8 +34,8 @@ class Tracking extends Model
     {
         return $this->belongsTo(Chatting::class);
     }
-   public function trackStatus()
+   public function tstatus()
    {
-       return $this->hasMany(TrackingStatus::class);
+       return $this->belongsTo(TrackingStatus::class);
    }
 }

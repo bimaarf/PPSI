@@ -82,22 +82,23 @@
                                     @endif
 
                                     @foreach ($track_status->where('track_id', $track->id) as $status)
-
+                                        @if ($status->status == 'Konfirmasi')
+                                            <style>.konfirmasi{display:none;}</style>
+                                        @endif
                                         @if ($status->status == 'Sampai')
-                                            <ul class="row">
-
-                                                <li class="locked col-lg-9">
+                                            <ul>
+                                                <li class="locked ">
                                                     <a href="#">Paket sampai di {{ $status->alamat }}<i
                                                             class="ico fa fa-lock ico-muted"></i>
                                                         <span class="desc">Pastikan paket sudah anda terima
                                                             sebelum menekan tombol konfirmasi!</span>
                                                     </a>
                                                 </li>
-                                                <li class="col-lg-3 mt-3">
+                                                <li class="text-center">
                                                     <form action="{{ route('shipper.konfirmasi', ['id' => $status->id]) }}"
                                                         method="post">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-success ">Konfirmasi</button>
+                                                        <button type="submit" class="btn btn-primary ">Konfirmasi</button>
                                                     </form>
                                                 </li>
                                             </ul>
@@ -122,9 +123,9 @@
                                     @endforeach
                                     @endforeach
                                 </ul>
-                                <div class="text-center">
+                                <div class="text-center mt-4 konfirmasi">
                                     <a href="{{ route('chat.index', ['id' => $track->id]) }}"
-                                        class="btn btn-success">Hubungi Driver</a>
+                                        class="btn btn-success text-capitalize"><i class="fa fa-comment text-white"></i> Hubungi Driver</a>
                                 </div>
                         </div>
                     </div>

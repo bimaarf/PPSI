@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\AdminActivity;
 use App\Models\PermissionUser;
+use App\Models\Tracking;
 use Illuminate\Support\Facades\DB;
 class ShipperController extends Controller
 {
@@ -65,7 +66,7 @@ class ShipperController extends Controller
         $status = TrackingStatus::find($id);
         $status->status = 'Konfirmasi';
         $status->update();
+        return back()->with('success', 'Terima kasih, anda sudah mengonfirmasi dan paket sudah anda terima.');
 
-        return back()->with('success', 'Barang diterima');
     }
 }
