@@ -296,18 +296,22 @@
 
 </head>
 
-<body>
+<body class="mdb-skin-custom " data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="250">
     @include('layouts.backend.partial.navigation')
 
-    <main class="mt-4 d-lg-block container">
+    <main class="mt-4 d-lg-block container-lg">
         <div class="row">
-            @include('layouts.backend.partial.sidebar')
-            
-            <div class="col-lg-9">
+            <div class="col-lg-4">
+                @include('layouts.backend.partial.sidebar')
+
+            </div>
+            <div class="col-lg-8">
+                @include('layouts.backend.partial.alert')
                 @yield('content')
             </div>
         </div>
     </main>
+    @include('layouts.backend.partial.footer')
     <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

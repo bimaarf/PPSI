@@ -65,14 +65,15 @@ Route::get('/clear-cache', function () {
 // form-orders
 Route::get('/user-form-jemput', [OrderController::class, 'form1'])->name('orders.form_1');
 Route::get('/user-form-tujuan', [OrderController::class, 'form2'])->name('orders.form_2');
-Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('orders.detail')->middleware(['auth', 'role:shipper|admin|super-admin']);
+Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('orders.detail')->middleware('auth');
 Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('orders.hapus')->middleware(['auth', 'role:shipper|admin|super-admin']);
-Route::post('/store-input-fields', [OrderController::class, 'tambah'])->name('user.order')->middleware(['auth', 'permission:craete-orders']);
-Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('user.order2')->middleware(['auth', 'permission:craete-orders']);
+Route::post('/store-input-fields', [OrderController::class, 'tambah'])->name('user.order');
+Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('user.order2');
 
-
+    
 // admin
 Route::get('/dashboard/admin', [AdminController::class, 'dashboard'])->name('admin.index')->middleware(['auth', 'permission:dashboard-admin']);
+Route::get('/dashboard/admin/akun-saya', [AdminController::class, 'akunSaya'])->name('admin.akun_saya')->middleware(['auth', 'permission:dashboard-admin']);
 Route::get('/dashboard/admin/daftar-admin', [AdminController::class, 'daftarAdmin'])->name('admin.table_admin')->middleware('auth');
 Route::get('/dashboard/admin/daftar-driver', [AdminController::class, 'daftarDriver'])->name('admin.table_driver')->middleware('auth');
 Route::get('/dashboard/admin/daftar-shipper', [AdminController::class, 'daftarShipper'])->name('admin.table_shipper')->middleware('auth');
@@ -86,13 +87,14 @@ Route::get('/dashboard/shipper/pesanan', [ShipperController::class, 'pesananAnda
 // shipper akses
 Route::post('/store-input-fields/konfirmasi-barang/{id}', [ShipperController::class, 'konfirmasiBarang'])->name('shipper.konfirmasi')->middleware(['auth', 'role:shipper|admin|super-admin']);
 Route::post('/store-input-fields/driver/{id}', [FindDriverController::class, 'find'])->name('driver.find')->middleware(['auth', 'role:shipper|admin|super-admin']);
-Route::post('/store-input-fields/driver/update/{id}', [FindDriverController::class, 'update'])->name('driver.update')->middleware(['auth', 'role:shipper|admin|super-admin']);
+
 
 // driver
 Route::get('/dashboard/driver', [DriverController::class, 'dashboard'])->name('driver.index')->middleware(['auth', 'role:driver']);
 Route::get('/dashboard/driver/pesanan', [DriverController::class, 'pesananMasuk'])->name('driver.pesanan_masuk')->middleware(['auth', 'role:driver']);
+Route::post('/dashboard/driver/cancel/{id}', [FindDriverController::class, 'update'])->name('driver.update')->middleware('auth');
 
-Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
+// Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
 Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
 Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');
 // driver akses

@@ -1,7 +1,6 @@
  <!--Main Navigation-->
  <header>
      
-     
      <!-- Sidebar -->
      <!-- Navbar -->
      <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">

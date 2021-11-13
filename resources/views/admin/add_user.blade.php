@@ -25,7 +25,7 @@
     <form action="{{ route('admin.register') }}" method="POST">
         @csrf
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-lg-7">
                 <div class="card">
                     <div class="card-header"><h4 class="text-dark"><strong>Registrasi Admin  | Field Manager</strong></h4></div>
                     <div class="card-body">
@@ -86,7 +86,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-5">
                 <div class="card">
                     <div class="card-header">
                         <h4 class="text-dark"><strong>Hak Akses</strong></h4>

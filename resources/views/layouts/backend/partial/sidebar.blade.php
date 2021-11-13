@@ -1,4 +1,4 @@
-<nav id="sidebarMenu" class=" d-lg-block col-lg-3 collapse ">
+<nav id="sidebarMenu" class="d-lg-block collapse" style="z-index: 9">
     <!-- Search form -->
    <div class="card" style="border-top-left-radius: 50px; border-bottom-left-radius: 50px; height:100%;">
     <div class="position-sticky">
@@ -13,7 +13,18 @@
             </div>
             <hr>
             @if (Auth::user()->hasRole('admin|super-admin'))
-            <a href="{{ route('admin.index') }}" class="list-group-item list-group-item-action rounded-6 @yield('akun-saya') mt-3">
+            <a href="{{ route('admin.index') }}" class="list-group-item list-group-item-action rounded-6 @yield('dashboard') mt-3">
+                <div class="row">
+                    <div class="col-2">
+                        <i class="far fa-circle fs-1" ></i>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-8 align-self-center">
+                        <span class="fs-6 ">Dashboard</span>
+                    </div>
+                </div>
+            </a>
+            <a href="{{ route('admin.akun_saya') }}" class="list-group-item list-group-item-action rounded-6 @yield('akun-saya') mt-3">
                 <div class="row">
                     <div class="col-2">
                         <i class="far fa-circle fs-1" ></i>
@@ -117,17 +128,6 @@
                 </div>
             </a>
             @endif
-            <a href="#" class="list-group-item list-group-item-action rounded-6 @yield('detail') mt-3 mb-10">
-                <div class="row">
-                    <div class="col-2">
-                        <i class="far fa-circle fs-1" ></i>
-                    </div>
-                    <div class="col-1"></div>
-                    <div class="col-8 align-self-center">
-                        <span class="fs-6 ">Detail</span>
-                    </div>
-                </div>
-            </a>
            
             @if (Auth::check())
             <form method="POST" action="{{ route('logout') }}" class="mb-4 position-relative">

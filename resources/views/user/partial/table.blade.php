@@ -41,12 +41,12 @@
                                     
                                    
                                     @endif
-                                    @if ($check->message == 'Finded')
+                                    @endforeach
+                                    @if ($item->status == 1)
                                     <td><button class="btn btn-outline-primary" type="button" disabled>
                                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                       </button></td>
                                     @endif
-                                @endforeach
                                 <td class="mb-0 fw-normal">
                                     <div class="btn-group" role="group" aria-label="Basic example">
                                         <a href="{{ route('orders.detail', ['id' => $item->id, 'key' => $item->key]) }}"

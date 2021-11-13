@@ -26,6 +26,16 @@ class AdminController extends Controller
       
         return view('admin.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'activity'));
     }
+    public function akunSaya()
+    {
+        $permission_user = PermissionUser::all();
+        $tAdmin = DB::table('role_user')->where('role_id', 2)->count();
+        $tDriver = DB::table('role_user')->where('role_id', 3)->count();
+        $tShipper = DB::table('role_user')->where('role_id', 4)->count();
+        $activity = AdminActivity::orderBy('id', 'DESC')->get();
+      
+        return view('admin.akun_saya', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'activity'));
+    }
 
     public function daftarAdmin(Request $request)
     {

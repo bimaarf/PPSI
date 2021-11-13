@@ -48,39 +48,37 @@ class DriverController extends Controller
         $checkout->message = 'Canceled';
         // $checkout->driver_id = json_encode($request->driver_id);
         $checkout->update();
-        return redirect()->route('driver.pesan_masuk')->with('success', 'Sedang mencari driver');
+        return redirect()->route('driver.pesanan_masuk')->with('success', 'Sedang mencari driver');
     }
    
     
     public function terima($id)
     {
         $checkout = Checkout::find($id);
-        $orders = $checkout->orders;
-        $orders->status = '2';
         
         $checkout->message = 'Verified';
+        $checkout->update();
 
+        $orders = $checkout->orders;
+        $orders->status = '2';
+        $orders->update();
+        
         $users = Auth::user();
         $users->status_id = 3;
+        $users->update();
 
         $tracking = new Tracking();
         $tracking->status = '1';
         $tracking->checkout_id = $checkout->id;
         $tracking->driver_id   = Auth::id();
+        $tracking->save();
 
         $status = new TrackingStatus();
         $status->status = 'Terima';
         $status->track_id = $tracking->id;
-        if($orders->update())
-        {
-            $checkout->update();
-            $users->update();
-            $tracking->save();
-            $status->save();
-
-        }
-
-        return redirect()->route('driver.pesan_masuk')->with('success', 'Orderan Diterima');
+        $status->save();
+        
+        return redirect()->route('driver.pesanan_masuk')->with('success', 'Orderan Diterima');
     }
     public function jemputBarang(Request $request, $id)
     {
@@ -95,7 +93,7 @@ class DriverController extends Controller
         $status->track_id = $tracking->id;
         $status->save();
        
-        return redirect()->route('driver.pesan_masuk')->with('success', 'Barang akan dijemput');
+        return redirect()->route('driver.pesanan_masuk')->with('success', 'Barang akan dijemput');
     }
 
     public function antarBarang(Request $request, $id)
@@ -120,7 +118,7 @@ class DriverController extends Controller
             $status->save();
         }
        
-        return redirect()->route('driver.pesan_masuk')->with('success', 'Barang sedang dalam proses antar');
+        return redirect()->route('driver.pesanan_masuk')->with('success', 'Barang sedang dalam proses antar');
     }
    
     public function sampaiBarang($id)
@@ -132,7 +130,7 @@ class DriverController extends Controller
         $users->status_id = 1;
         $users->update();
         
-        return redirect()->route('driver.pesan_masuk')->with('success', 'Barang sudah sampai');
+        return redirect()->route('driver.pesanan_masuk')->with('success', 'Barang sudah sampai');
     }
     
 }
