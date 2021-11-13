@@ -1,8 +1,15 @@
 @extends('layouts.backend.main_login')
 @section('akun-saya', 'active')
 @section('content')
+<div class="card rounded">
+    <div class="card-body">
+        <div class="fs-5">
+            <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda&emsp;/&emsp;Akun Saya</b>
+        </div>
+    </div>
+</div>
     <div class="row">
-        <div class="col-lg-5 mt-4">
+        <div class="col-lg-5 mt-2">
             <div class="card rounded-9">
                 <div class="text-center">
                     <img src="{{ asset('assets/icon/Driver.svg') }}" class="img-fluid rounded mt-4" width="200vh" alt="">
@@ -24,7 +31,7 @@
             </div>
 
         </div>
-        <div class="col-lg-7 mt-4">
+        <div class="col-lg-7 mt-2">
             <div class="card rounded-9">
                 <div class="card-header">
                     <h4 class="text-dark"><b>Profil Kamu</b></h4>
@@ -60,7 +67,7 @@
                 </div>
             </div>
 
-            <div class="card rounded-9 mt-4">
+            <div class="card rounded-9 mt-2">
                 <div class="card-header">
                     <h4 class="text-dark"><b>Aktivitas Admin</b></h4>
                 </div>

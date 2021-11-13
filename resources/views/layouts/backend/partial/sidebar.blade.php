@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-1"></div>
                     <div class="col-8 align-self-center">
-                        <span class="fs-6 ">Dashboard</span>
+                        <span class="fs-6 ">Beranda</span>
                     </div>
                 </div>
             </a>

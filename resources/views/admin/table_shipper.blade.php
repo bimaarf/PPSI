@@ -1,42 +1,25 @@
 @extends('layouts.backend.main_login')
 @section('daftar-shipper', 'active')
 @section('content')
-<div class="container pt-4">
-    @if ($errors->any())
-        <div class="alert alert-danger" role="alert">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+<div class="card rounded">
+    <div class="card-body">
+        <div class="fs-5">
+            <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda&emsp;/&emsp;Daftar Driver</b>
+            <form class="d-none d-md-flex input-group w-auto my-auto fa-pull-right" action="{{ route('admin.table_shipper') }}">
+                <input type="text" value="{{ request('search') }}" class="form-control" name="search" placeholder='Cari username'
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cari username'">
+                <!-- <span class="input-group-text border-0"><i class="fas fa-search"></i></span> -->
+                <button class="btn btn-primary" type="su bmit"><i class="fas fa-search"></i></button>
+            </form>
         </div>
-    @endif
-    @if (Session::has('success'))
-        <div class="alert alert-success text-center">
-            <p>{{ Session::get('success') }}</p>
-        </div>
-    @endif
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb pink lighten-4">
-          <li class="breadcrumb-item"><a class="black-text" href="#">Dashboard</a></li>
-          <li class="breadcrumb-item active">Daftar Shipper</li>
-        </ol>
-    </nav>
-    <div class="card mt-4">
+    </div>
+</div>
+<div class="mt-2">
+    <div class="card rounded">
         <div class="card-header">
             <h5 class="mb-0 text-center">
                 <strong>Daftar Pengguna</strong>
             </h5>
-            {{-- <div class="row"> --}}
-            <div class="fa-pull-right" style="width: 300px">
-                <form class="d-none d-md-flex input-group w-auto my-auto" action="{{ route('admin.table_driver') }}">
-                    <input type="text" value="{{ request('search') }}" class="form-control" name="search" placeholder='Cari username'
-                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cari username'">
-                    <!-- <span class="input-group-text border-0"><i class="fas fa-search"></i></span> -->
-                    <button class="btn btn-primary" type="su bmit"><i class="fas fa-search"></i></button>
-                </form>
-            </div>
-            {{-- </div> --}}
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -86,7 +69,7 @@
                                                 aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="{{ route('admin.edit_user', ['id'=>$item->id]) }}" method="POST">
+                                            <form action="{{ route('admin.edit_shipper', ['id'=>$item->id]) }}" method="POST">
                                                 @csrf
                                                 <div class="row mt-2">
                                                     <div class="col-lg-6">

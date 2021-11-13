@@ -74,12 +74,14 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
 // admin
 Route::get('/dashboard/admin', [AdminController::class, 'dashboard'])->name('admin.index')->middleware(['auth', 'permission:dashboard-admin']);
 Route::get('/dashboard/admin/akun-saya', [AdminController::class, 'akunSaya'])->name('admin.akun_saya')->middleware(['auth', 'permission:dashboard-admin']);
-Route::get('/dashboard/admin/daftar-admin', [AdminController::class, 'daftarAdmin'])->name('admin.table_admin')->middleware('auth');
-Route::get('/dashboard/admin/daftar-driver', [AdminController::class, 'daftarDriver'])->name('admin.table_driver')->middleware('auth');
-Route::get('/dashboard/admin/daftar-shipper', [AdminController::class, 'daftarShipper'])->name('admin.table_shipper')->middleware('auth');
-Route::get('/dashboard/admin/add-user', [AdminController::class, 'addUser'])->name('admin.add_user')->middleware('auth');
-Route::post('/registered-by-admin', [RegisteredByAdminController::class, 'registerByAdmin'])->name('admin.register');
-Route::post('/admin-edit-user/{id}', [AdminController::class, 'editUser'])->name('admin.edit_user');
+Route::get('/dashboard/admin/daftar-admin', [AdminController::class, 'daftarAdmin'])->name('admin.table_admin')->middleware(['auth', 'permission:melihat-data-admin']);
+Route::get('/dashboard/admin/daftar-driver', [AdminController::class, 'daftarDriver'])->name('admin.table_driver')->middleware(['auth', 'permission:melihat-data-driver']);
+Route::get('/dashboard/admin/daftar-shipper', [AdminController::class, 'daftarShipper'])->name('admin.table_shipper')->middleware(['auth', 'permission:melihat-data-shipper']);
+Route::get('/dashboard/admin/add-user', [AdminController::class, 'addUser'])->name('admin.add_user')->middleware(['auth', 'permission:register-user']);
+Route::post('/dashboard/admin/registrasi', [RegisteredByAdminController::class, 'registerByAdmin'])->name('admin.register')->middleware(['auth', 'permission:register-user']);
+Route::post('/dashboard/admin/edit-admin/{id}', [AdminController::class, 'editAdmin'])->name('admin.edit_admin')->middleware(['auth', 'permission:mengelola-data-admin']);
+Route::post('/dashboard/admin/edit-driver/{id}', [AdminController::class, 'editDriver'])->name('admin.edit_driver')->middleware(['auth', 'permission:mengelola-data-driver']);
+Route::post('/dashboard/admin/edit-shipper/{id}', [AdminController::class, 'editShipper'])->name('admin.edit_shipper')->middleware(['auth', 'permission:mengelola-data-shipper']);
 
 // shipper
 Route::get('/dashboard/shipper', [ShipperController::class, 'dashboard'])->name('user.index')->middleware(['auth', 'role:shipper']);

@@ -91,25 +91,44 @@ class AdminController extends Controller
         $roles = RoleModel::all();
         return view('admin.add_user', compact('permission', 'roles'));
     }
-    public function editUser(Request $request, $id)
+    public function editAdmin(Request $request, $id)
+    {
+        $users = User::find($id);
+        $users->status_id = $request->status_id;
+        
+        if($users->isAbleToCreateUsers())
+        {
+            $users->update();
+            $permission = PermissionUser::all();
+    
+            foreach($permission->where('user_id', $users->id) as $permis)
+            {
+                $users->detachPermissions([$permis]);
+            }
+    
+            $permissions = json_encode($request->permissions);
+            foreach(json_decode($permissions) as $permission)
+            {
+                $users->attachPermissions([$permission]);
+            }
+        }else{
+            $users->update();
+        }
+        
+        return back()->with('success', 'Data berhasil diubah!');
+    }
+    public function editDriver(Request $request, $id)
     {
         $users = User::find($id);
         $users->status_id = $request->status_id;
         $users->update();
-        $permission = PermissionUser::all();
-
-        foreach($permission->where('user_id', $users->id) as $permis)
-        {
-            $users->detachPermissions([$permis]);
-        }
-
-        $permissions = json_encode($request->permissions);
-        foreach(json_decode($permissions) as $permission)
-        {
-            $users->attachPermissions([$permission]);
-        }
-        
-        
+        return back()->with('success', 'Data berhasil diubah!');
+    }
+    public function editShipper(Request $request, $id)
+    {
+        $users = User::find($id);
+        $users->status_id = $request->status_id;
+        $users->update();
         return back()->with('success', 'Data berhasil diubah!');
     }
 }

@@ -1,27 +1,14 @@
 @extends('layouts.backend.main_login')
 @section('add', 'active')
 @section('content')
-<div class="container pt-4">
-    @if ($errors->any())
-        <div class="alert alert-danger" role="alert">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
+<div class="card rounded">
+    <div class="card-body">
+        <div class="fs-5">
+            <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda&emsp;/&emsp;Akun Saya</b>
         </div>
-    @endif
-    @if (Session::has('success'))
-        <div class="alert alert-success text-center">
-            <p>{{ Session::get('success') }}</p>
-        </div>
-    @endif
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb pink lighten-4">
-          <li class="breadcrumb-item"><a class="black-text" href="#">Dashboard</a></li>
-          <li class="breadcrumb-item active">Registrasi Admin</li>
-        </ol>
-    </nav>
+    </div>
+</div>
+<div class="mt-2">
     <form action="{{ route('admin.register') }}" method="POST">
         @csrf
         <div class="row">
