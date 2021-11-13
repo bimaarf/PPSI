@@ -22,6 +22,18 @@ class ShipperController extends Controller
       
         return view('user.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'activity'));
     }
+    public function pesananDiproses()
+    {
+        // shipper
+        $i = 1;
+        $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
+        // driver
+        $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
+        // feed manager
+        $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(10);
+
+        return view("user.pesanan_diproses", compact('i','orders', 'checkout', 'feed_manager'));
+    }
     public function pesananAnda()
     {
         // shipper

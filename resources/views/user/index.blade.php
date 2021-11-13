@@ -2,79 +2,14 @@
 @section('akun-saya', 'active')
 @section('content')
 
-@if ($errors->any())
-    <div class="alert alert-danger" role="alert">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-@if (Session::has('success'))
-    <div class="alert alert-success text-center">
-        <p>{{ Session::get('success') }}</p>
-    </div>
-@endif
-<div class="row">
-    <div class="col-lg-3 mt-2">
-        <div class="card bg-primary">
-            <div class="card-header">
-                <img class="fa-pull-right" src="{{ asset('assets/icon/Driver.svg') }}" width="50" alt="">
-                <div class="float-start">
-                    <h2 class="text-white"><i class="fa fa-users"></i>&emsp;{{ $tDriver }}</h2>
-                    <h6 class="text-white-50">Driver terdaftar</h6>
-                </div>
-            </div>
-            <div class="card-body"><i class="text-white-50 fa fa-clock"></i>
-                <span class="text-white-50">Updated</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 mt-2">
-        <div class="card bg-success">
-            <div class="card-header">
-                <img class="fa-pull-right" src="{{ asset('assets/icon/Shipper.svg') }}" width="50" alt="">
-                <div class="float-start">
-                    <h2 class="text-white"><i class="fa fa-users"></i>&emsp;{{ $tShipper }}</h2>
-                    <h6 class="text-white-50">Shipper terdaftar</h6>
-                </div>
-            </div>
-            <div class="card-body"><i class="text-white-50 fa fa-clock"></i>
-                <span class="text-white-50">Updated</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 mt-2">
-        <div class="card bg-secondary">
-            <div class="card-header">
-                <img class="fa-pull-right" src="{{ asset('assets/icon/Driver.svg') }}" width="50" alt="">
-                <div class="float-start">
-                    <h2 class="text-white">$750</h2>
-                    <h6 class="text-white-50">Manajer lapangan</h6>
-                </div>
-            </div>
-            <div class="card-body"><i class="text-white-50 fa fa-clock"></i>
-                <span class="text-white-50">Updated</span>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-3 mt-2">
-        <div class="card bg-gradient-to-b bg-dark">
-            <div class="card-header">
-                <img class="fa-pull-right" src="{{ asset('assets/icon/Driver.svg') }}" width="50" alt="">
-                <div class="float-start">
-                    <h2 class="text-white"><i class="fa fa-users"></i>&emsp;{{ $tAdmin }}</h2>
-                    <h6 class="text-white-50">Admin</h6>
-                </div>
-            </div>
-            <div class="card-body"><i class="text-white-50 fa fa-clock"></i>
-                <span class="text-white-50">Updated</span>
-            </div>
+<div class="card rounded">
+    <div class="card-body">
+        <div class="fs-5">
+            <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda</b>
         </div>
     </div>
 </div>
-<div class="row mt-4">
+<div class="row mt-2">
     <div class="col-lg-5">
         <div class="card rounded-9">
             <div class="text-center">

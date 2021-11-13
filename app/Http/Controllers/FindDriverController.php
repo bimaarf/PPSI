@@ -28,7 +28,7 @@ class FindDriverController extends Controller
             $checkouts->save();
         }
         
-        return redirect()->route('user.index')->with('success', 'Sedang mencari driver');
+        return redirect()->route('user.pesanan_diproses')->with('success', 'Sedang mencari driver');
     }
 
     // driver tolak

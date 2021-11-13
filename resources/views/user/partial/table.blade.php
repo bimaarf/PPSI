@@ -22,7 +22,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($orders as $item)
+                    @foreach ($orders->where('status', null) as $item)
                         @if ($item->user_id == Auth::user()->id)
                             <tr>
                                 <td class="mb-0 fw-normal">{{ $loop->iteration }}</td>

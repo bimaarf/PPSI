@@ -1,5 +1,5 @@
 @extends('layouts.backend.main_login')
-@section('detail', 'active')
+@section('pesanan-diproses', 'active')
 @section('content')
 
     <div class="row">

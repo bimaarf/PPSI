@@ -85,6 +85,7 @@ Route::post('/dashboard/admin/edit-shipper/{id}', [AdminController::class, 'edit
 
 // shipper
 Route::get('/dashboard/shipper', [ShipperController::class, 'dashboard'])->name('user.index')->middleware(['auth', 'role:shipper']);
+Route::get('/dashboard/shipper/pesanan-diproses', [ShipperController::class, 'pesananDiproses'])->name('user.pesanan_diproses')->middleware(['auth', 'role:shipper|admin|super-admin']);
 Route::get('/dashboard/shipper/pesanan', [ShipperController::class, 'pesananAnda'])->name('user.pesanan_anda')->middleware(['auth', 'role:shipper|admin|super-admin']);
 // shipper akses
 Route::post('/store-input-fields/konfirmasi-barang/{id}', [ShipperController::class, 'konfirmasiBarang'])->name('shipper.konfirmasi')->middleware(['auth', 'role:shipper|admin|super-admin']);
