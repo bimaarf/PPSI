@@ -66,6 +66,15 @@ class ShipperController extends Controller
         $status = TrackingStatus::find($id);
         $status->status = 'Konfirmasi';
         $status->update();
+        $trackings = Tracking::where('id', $status->track->id)->first();
+        $trackings->status = 'Finished';
+        $trackings->update();
+        $checkouts = Checkout::where('id', $status->track->checkout->id)->first();
+        $checkouts->message = 'Finished';
+        $checkouts->update();   
+        $orders = Order::where('id', $status->track->checkout->orders->id)->first();
+        $orders->status = 'Finished';
+        $orders->update();
         return back()->with('success', 'Terima kasih, anda sudah mengonfirmasi dan paket sudah anda terima.');
 
     }

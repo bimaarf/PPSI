@@ -11,8 +11,8 @@ class TrackingStatus extends Model
     use HasFactory;
     protected $table = 'tracking_status';
     
-    public function tracking()
+    public function track()
     {
-        return $this->hasMany(Tracking::class);
+        return $this->belongsTo(Tracking::class);
     }
 }

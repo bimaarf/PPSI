@@ -103,19 +103,22 @@
                     </div>
                 </div>
                 <div class="col-lg-3 border-start">
+                    @if ($item->status == null)
+                        
                     <form action="{{ route('driver.find', ['id' => $item->id]) }}" method="POST">
                         @csrf
                         <input type="hidden" name="message" value="Finded" >
-                            @foreach ($driver->where('status_id', 1)->slice(0, $item->feed_m) as $drv)
-                                <label for="">Driver id</label> <br>
-                                <input type="text" name="driver_id[]" value="{{ $drv->id }}">
-
-                            @endforeach
-                            <br>
+                        @foreach ($driver->where('status_id', 1)->slice(0, $item->feed_m) as $drv)
+                        <label for="">Driver id</label> <br>
+                        <input type="text" name="driver_id[]" value="{{ $drv->id }}">
+                        
+                        @endforeach
+                        <br>
                         <input type="hidden" name="orders_id" value="{{ $item->id }}">
                         <input type="submit" class="btn btn-success rounded-5 btn-lg text-capitalize" style="width:100%" value="Temukan Driver">
                     </form>
                     <a href="{{ route('orders.hapus', ['id' => $item->id, 'key' => $item->key]) }}" class="btn btn-danger rounded-5 btn-lg mt-2 text-capitalize" style="width:100%">Batalkan Pesanan</a>
+                    @endif
                     <a href="" class="btn btn-outline-white-50 rounded-5 btn-lg mt-2 text-capitalize" style="width:100%">Bantuan</a>
                 </div>
             </div>

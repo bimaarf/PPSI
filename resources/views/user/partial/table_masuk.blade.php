@@ -14,18 +14,27 @@
                         <th scope="col">#</th>
                         <th scope="col">Armada</th>
                         <th scope="col">Waktu</th>
+                        <th scope="col">Status</th>
                         <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach ($orders->where('status', null) as $item)
+                    @foreach ($orders as $item)
                         @if ($item->user_id == Auth::user()->id)
                             <tr>
                                 <td class="mb-0 fw-normal">{{ $i++ }}</td>
                                 <td class="mb-0 fw-normal">{{ $item->armada }}</td>
 
                                 <td class="mb-0 fw-normal">{{ $item->jadwal }}</td>
+                                <td class="mb-0 fw-normal">
+                                    @if ($item->status == null)
+                                        Belum diproses
+                                    @endif
+                                    @if ($item->status == 'Process')
+                                        Sedang diproses
+                                    @endif
+                                </td>
                                 <td class="mb-0 fw-normal">
                                         {{-- {{ route('orders.detail', ['id' => $item->id, 'key' => $item->key]) }} --}}
                                         <a href="" class="btn btn-success" data-mdb-toggle="modal" data-mdb-target="#order{{ $item->id }}">

@@ -12,6 +12,7 @@ use App\Models\TrackingStatus;
 class Tracking extends Model
 {
     use HasFactory;
+    protected $table = 'trackings';
     protected $fillable = [
         'status',
         'checkout_id',
