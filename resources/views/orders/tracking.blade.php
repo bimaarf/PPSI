@@ -27,7 +27,7 @@
                                 @endforeach
                                 </ul>
                                 <div class="text-center mt-4 konfirmasi">
-                                    <button type="button" id="hulk" class="btn btn-success text-capitalize" onclick="create() open()" data-mdb-toggle="modal" data-mdb-target="#exampleModal{{ $track->id }}"><i class="fa fa-comment text-white"></i> Hubungi Driver</button>
+                                    <button type="button" id="hulk" class="btn btn-success text-capitalize" data-mdb-toggle="modal" data-mdb-target="#exampleModal{{ $track->id }}"><i class="fa fa-comment text-white"></i> Hubungi Driver</button>
                                 </div>
                         </div>
                     </div>

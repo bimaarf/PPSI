@@ -20,14 +20,6 @@
     </div>
 </div>
 <script>
-   
-    function create(){
-        // $.get("{{ url('chatting/store/3')}}", {}, function(data, status){
-            $("#exampleModal{{ $track->id }}").modal(show);
-            // $('#exampleModalLabel').html('Chat box');
-            // $("#page").html(data);
-        // });
-    }
     // proses create data
     function store(){
         var name  = $("#chat").val();
@@ -38,17 +30,12 @@
             data : "chat="+name,
             success:function(data){
                 $("btn-close").click();
-                // $("#page").html('');
                 tracking();
-
-
-                // scroll down
-            
+                // scroll down   
                 $('#read').stop().animate({
                 scrollTop: $("#read")[0].scrollHeight
                 }, 1000);
                 $("#read").attr({ scrollTop: $("#read").attr("scrollHeight") });
-
                 // end scroll
             }
         });
