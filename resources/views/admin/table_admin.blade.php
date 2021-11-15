@@ -7,7 +7,7 @@
             <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda&emsp;/&emsp;Daftar Admin</b>
             <form class="d-none d-md-flex input-group w-auto my-auto fa-pull-right" action="{{ route('admin.table_admin') }}">
                 <input type="text" value="{{ request('search') }}" class="form-control" name="search" placeholder='Cari username'
-                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cari username'">
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cari username'" >
                 <!-- <span class="input-group-text border-0"><i class="fas fa-search"></i></span> -->
                 <button class="btn btn-primary" type="su bmit"><i class="fas fa-search"></i></button>
             </form>
@@ -23,18 +23,18 @@
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table id="selectedColumn" class="table table-striped table-hover" cellspacing="0" width="100%">
+                <table id="selectedColumn results" class="table table-striped table-hover" cellspacing="0" width="100%">
                     <thead>
                         <tr>
                             <th class="th-sm">#</th>
-                            <th class="th-sm">Username</th>
+                            <th class="th-sm" onclick="sortTable(0)">Username</th>
                             <th class="th-sm">Status</th>
                             <th class="th-sm">xyz</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="myTable2">
                         @foreach ($users as $item)
-                            <tr>
+                            <tr id="rowUpdate">
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $item->name }}</td>
                                 @if ($item->status_id == 1)

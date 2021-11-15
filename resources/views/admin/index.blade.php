@@ -73,7 +73,7 @@
     <div class="card-header">
         <h4 class="text-dark"><b>Aktivitas Admin</b></h4>
     </div>
-    <div class="card-body example" style="height:300px;
+    <div class="card-body example komen" style="height:300px;
     overflow-y: scroll;">
 
         @foreach ($activity as $activ)

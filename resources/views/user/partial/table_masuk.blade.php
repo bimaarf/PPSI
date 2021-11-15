@@ -29,10 +29,13 @@
                                 <td class="mb-0 fw-normal">{{ $item->jadwal }}</td>
                                 <td class="mb-0 fw-normal">
                                     @if ($item->status == null)
-                                        Belum diproses
+                                        <span class="btn btn-danger rounded-9 text-capitalize py-1 px-1">Selesai</span>
                                     @endif
                                     @if ($item->status == 'Process')
-                                        Sedang diproses
+                                        <span class="btn btn-warning rounded-9 text-capitalize py-1 px-1">Sedang diproses</span>
+                                    @endif
+                                    @if ($item->status == 'Finished')
+                                        <span class="btn btn-success rounded-9 text-capitalize py-0 px-1">Selesai</span>
                                     @endif
                                 </td>
                                 <td class="mb-0 fw-normal">

@@ -12,11 +12,14 @@ use App\Models\Tracking;
 class Chatting extends Model
 {
     use HasFactory;
+    protected $table = 'chattings';
     protected $fillable = [
         'chat',
         'user_id',
         'tracking_id'
     ];
+    protected $hidden;
+    
     public function getCreatedAtAttribute()
     {
         return \Carbon\Carbon::parse($this->attributes['updated_at'])

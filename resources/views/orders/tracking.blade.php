@@ -27,13 +27,13 @@
                                 @endforeach
                                 </ul>
                                 <div class="text-center mt-4 konfirmasi">
-                                    <a href="{{ route('chat.index', ['id' => $track->id]) }}"
-                                        class="btn btn-success text-capitalize"><i class="fa fa-comment text-white"></i> Hubungi Driver</a>
+                                    <button type="button" id="hulk" class="btn btn-success text-capitalize" onclick="create() open()" data-mdb-toggle="modal" data-mdb-target="#exampleModal{{ $track->id }}"><i class="fa fa-comment text-white"></i> Hubungi Driver</button>
                                 </div>
                         </div>
                     </div>
                 </div>
             </div>
+            @include('orders.modal.chattings')
             @endif
             @if ($item->message == 'Finded')
             <div class="col-lg-6 mt-2">

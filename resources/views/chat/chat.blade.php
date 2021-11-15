@@ -37,29 +37,29 @@
             {{-- end him --}}
                
            @endif
-       @if ($item->user_id == Auth::id())
-        {{-- youu --}}
-        <div class="row">
+            @if ($item->user_id == Auth::id())
+                {{-- youu --}}
+                <div class="row">
 
-            <div class="col-9">
-                <span class="text-dark "><b class=" float-end">{{ $item->user->name }}</b></span>
-                @foreach ($role_driver as $driver)
-                    @if ($item->user->id == $driver->user_id)
-                        
-                    <img src="{{ asset('assets/verified/verified.svg') }}" class="float-end mt-2 px-1" width="19" alt="">
-                    @endif
-                @endforeach
-                <p class="float-end px-1">{{ $item->chat }}</p>
-                <br><br><br>
-                <small style="font-size: 10px">{{ $item->created_at }}</small>
-            </div>
-            <div class="col-2">
-                <img class="rounded-circle " width="40" src="{{ asset('assets/avatar/default.jpg') }}" alt="">
-            </div>
-        </div>
-        {{-- end you --}}
-        <hr class=" mb-1">
-       @endif
+                    <div class="col-9">
+                        <span class="text-dark "><b class=" float-end">{{ $item->user->name }}</b></span>
+                        @foreach ($role_driver as $driver)
+                            @if ($item->user->id == $driver->user_id)
+                                
+                            <img src="{{ asset('assets/verified/verified.svg') }}" class="float-end mt-2 px-1" width="19" alt="">
+                            @endif
+                        @endforeach
+                        <p class="float-end px-1">{{ $item->chat }}</p>
+                        <br><br><br>
+                        <small style="font-size: 10px">{{ $item->created_at }}</small>
+                    </div>
+                    <div class="col-2">
+                        <img class="rounded-circle " width="40" src="{{ asset('assets/avatar/default.jpg') }}" alt="">
+                    </div>
+                </div>
+                {{-- end you --}}
+                <hr class=" mb-1">
+            @endif
         @endforeach
 
     </div>

@@ -293,6 +293,7 @@
     </style>
     <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
     <!--load all styles -->
+    {{-- search --}}
 
 </head>
 
@@ -336,6 +337,20 @@
         });
     </script>
 
+    {{-- jquery ajax --}}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        setInterval(function() {
+            tracking();
+        }, 1000);
+        
+    </script>
+    <style>
+        #messages {
+  height: 200px;
+  overflow-y: auto;
+}
+    </style>
 </body>
 
 </html>
