@@ -56,24 +56,6 @@
     function tracking(){
         $.get("{{ url('driver/status/tracking/chatting/read/')}}/{{ $item->orders->id }}", {}, function(chatting, status){
             $("#read").html(chatting);
-
-            
-           
-        });
-      
-    }
-    function open(){
-        $.get("{{ url('driver/status/tracking/chatting/read/')}}/{{ $item->orders->id }}", {}, function(chatting, status){
-            $("#read").html(chatting);
-
-                // scroll down
-            
-                $('#read').stop().animate({
-                scrollTop: $("#read")[0].scrollHeight
-                }, 1000);
-                $("#read").attr({ scrollTop: $("#read").attr("scrollHeight") });
-
-                // end scroll
            
         });
       
