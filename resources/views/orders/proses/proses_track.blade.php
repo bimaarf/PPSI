@@ -1,10 +1,9 @@
 
 @foreach ($checkout->where('orders_id', $orders->id) as $item)
-
     @if ($item->message != 'Finded')
         <div class="col-lg-6 mt-2">
             <div class="card">
-                @include('orders.proses.timeline')
+                @include('orders.proses.proses')
             </div>
         </div>
     @endif

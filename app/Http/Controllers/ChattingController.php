@@ -16,11 +16,26 @@ class ChattingController extends Controller
 {
     public function chatting($id)
     {
+        $users    = User::all();
         $tracking = Tracking::find($id);
         $chatting = Chatting::where('track_id', $tracking->id)->get();
         $driver   = Auth::user();
         $role_driver = RoleUser::where('role_id', '2')->get();
-        return view('chat.index', compact('tracking', 'chatting', 'driver', 'role_driver'));
+        return view('chat.index', compact('users','tracking', 'chatting', 'driver', 'role_driver'));
+    }
+    public function readPage(Request $request, $id)
+    {
+        $checkout = Checkout::all();
+        $track = Tracking::find($id);
+        $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
+        $users   = User::all();
+        // chatting
+        $chatting = Chatting::all();
+
+        $driver   = Auth::user();
+        $role_driver = RoleUser::where('role_id', '2')->get();
+
+        return view('chat.elements.read', compact('checkout','track', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
     }
     public function read(Request $request, $id)
     {
