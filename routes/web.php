@@ -101,7 +101,7 @@ Route::get('/dashboard/driver/pesanan-dibatalkan', [DriverController::class, 'pe
 Route::post('/dashboard/driver/cancel/{id}', [DriverController::class, 'tolak'])->name('driver.tolak')->middleware('auth');
 
 // Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
-Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
+// Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
 Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');
 // driver akses
 Route::post('/store-input-fields/terima-orderan/{id}', [DriverController::class, 'terima'])->name('driver.terima');

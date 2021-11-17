@@ -19,7 +19,7 @@
                 </thead>
                 <tbody>
                     @foreach ($checkout as $item)
-                        @if ($item->driver_id == Auth::user()->id)
+                        @if ($item->driver_id == Auth::user()->id && $item->message != 'Canceled')
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $item->orders->nama_pengirim }}</td>

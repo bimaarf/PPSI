@@ -75,7 +75,7 @@ class DriverController extends Controller
             $checkouts->orders_id = $checkout->orders_id;
             $checkouts->driver_id = $request->driver_id;
             $checkouts->save();
-            return redirect()->route('driver.pesanan_tolak')->with('success', 'Anda menolak pesanan!');
+            return redirect()->route('driver.pesanan_dibatalkan')->with('success', 'Anda menolak pesanan!');
         }
        
     }
