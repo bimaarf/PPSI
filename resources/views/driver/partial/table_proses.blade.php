@@ -18,17 +18,34 @@
                 </thead>
                 <tbody>
                     @foreach ($checkout->where('driver_id', Auth::user()->id) as $item)
+                    @foreach ($trackings->where('checkout_id', $item->id) as $track)
+                        @include('orders.modal.chattings')
                         @if ($item->message == 'Verified')
                             <tr>
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $item->orders->nama_pengirim }}</td>
                                 <td>{{ $item->orders->jadwal }}</td>
-                                <td><a href="" class="btn btn-success" data-mdb-toggle="modal" data-mdb-target="#detail{{ $item->id }}">
-                                    <div class="bi icon dripicons-view-list"></div>Lihat
-                                </a></td>
+                                <td>
+                                    <div class="btn-group">
+                                        <button id="btnGroupDrop1" type="button" class="btn btn-success text-capitalize dropdown-toggle" data-mdb-toggle="dropdown" aria-expanded="false">Detail Pengiriman</button>
+                                    
+                                    
+                                    <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                        <li>
+                                            <a class="dropdown-item" data-mdb-toggle="modal" data-mdb-target="#detail{{ $item->id }}">
+                                            <div class="bi icon dripicons-view-list"></div>Lihat
+                                            </a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="#" data-mdb-toggle="modal" data-mdb-target="#exampleModal{{ $track->id }}">Chatting</a></li>
+                                    </ul>
+                                    </div>
+                            </td>
                                 @include('driver.modal.modal_proses')
                             </tr>
                         @endif
+
+                    @endforeach
+
                     @endforeach
                 </tbody>
             </table>

@@ -1,6 +1,6 @@
 <div class="modal top fade" id="detail{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-    <div class="modal-dialog modal-xl  modal-dialog-centered">
+    <div class="modal-dialog modal-lg  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Info Pengiriman</h5>
@@ -94,20 +94,6 @@
                     </div>
                     <div class="col-lg-4 border-start">
                         @foreach ($trackings->where('checkout_id', $item->id) as $track)
-                        @include('driver.modal.modal_chat')
-                        <script>
-                            function chatt()
-                            {
-                                $("#chat{{ $track->id }}").on('btn-close', function (e) {
-                                $("#detail{{ $item->id }}").modal("hide");
-                            });
-                            }
-                        </script>
-                        <nav>
-                            <div class="nav nav-tabs" id="nav-tabs" role="tablist">
-                                <a href="{{ route('chat.index', ['id'=>$track->id]) }}" class="btn btn-success" style="width: 100%">Chatting</a>
-                            </div>
-                        </nav>
                             @if ($track->status == 1)
                                 <form action="{{ route('driver.jemput', ['id' => $track->id]) }}" method="post">
                                     @csrf

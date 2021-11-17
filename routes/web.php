@@ -112,8 +112,8 @@ Route::post('/store-input-fields/sampai-barang/{id}', [DriverController::class, 
 // chatting
 
 // Route::get('/driver/status/tracking/chatting/tambah/{id}', [ChattingController::class, 'tambah'])->name('chat.tambah');
-// Route::get('/driver/status/tracking/chatting/store/{id}', [ChattingController::class, 'store'])->name('chat.store');
-// Route::get('/driver/status/tracking/chatting/read/{id}', [ChattingController::class, 'read'])->name('orders.modal.elements.read');
+Route::get('/driver/status/tracking/chatting/store/{id}', [ChattingController::class, 'store'])->name('chat.store');
+Route::get('/driver/status/tracking/chatting/read/{id}', [ChattingController::class, 'read'])->name('orders.modal.elements.read');
 
 Route::post('/store-input-fields/feed_manager/{id}', [FindChecker::class, 'find'])->name('feed_manager.find');
 
