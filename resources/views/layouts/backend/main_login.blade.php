@@ -342,6 +342,7 @@
     <script>
         setInterval(function() {
             tracking();
+            timeline();
         }, 1000);
         
     </script>

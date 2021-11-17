@@ -118,4 +118,8 @@ Route::get('/driver/status/tracking/chatting/read/{id}', [ChattingController::cl
 Route::post('/store-input-fields/feed_manager/{id}', [FindChecker::class, 'find'])->name('feed_manager.find');
 
 // tracking
-Route::get('/driver/status/tracking/{id}', [TrackingController::class, 'tracking'])->name('orders.tracking');
+Route::get('/orders/status/tracking/{id}', [TrackingController::class, 'tracking'])->name('orders.tracking');
+
+// Route::get('/orders/proses/{id}', [TrackingController::class, 'timeline'])->name('orders.proses.timeline');
+
+Route::get('/orders/proses-track/{id}', [TrackingController::class, 'prosesTrack'])->name('orders.proses.proses_track');

@@ -28,5 +28,34 @@ class TrackingController extends Controller
 
         return view('orders.tracking', compact('checkout', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
     }
+    public function timeline(Request $request, $id)
+    {
+        $orders = Order::find($id);
+        $checkout = Checkout::all();
+        $tracking = Tracking::orderBy('id', 'ASC')->get();
+        $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
+        $users   = User::all();
+        // chatting
+        $chatting = Chatting::all();
+        $driver   = Auth::user();
+        $role_driver = RoleUser::where('role_id', '2')->get();
+
+        return view('orders.proses.timeline', compact('checkout', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
+    }
+
+    public function prosesTrack(Request $request, $id)
+    {
+        $orders = Order::find($id);
+        $checkout = Checkout::all();
+        $tracking = Tracking::orderBy('id', 'ASC')->get();
+        $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
+        $users   = User::all();
+        // chatting
+        $chatting = Chatting::all();
+        $driver   = Auth::user();
+        $role_driver = RoleUser::where('role_id', '2')->get();
+
+        return view('orders.proses.proses_track', compact('checkout', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
+    }
     
 }
