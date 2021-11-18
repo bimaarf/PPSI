@@ -11,7 +11,6 @@
     <div class="my-custom-scrollbar" id="message">
         <div class="card-body p-3">
             <div id="read" class="chat-message komen" id="chatbot" style="height:400px;overflow-y: scroll;">
-               {{-- @include('orders.modal.elements.read') --}}
 
             </div>
         </div>
@@ -52,6 +51,7 @@
             $("#read").html(chatting);
            
         });
+        
     }
     setInterval(function() {
             chatByShipper();

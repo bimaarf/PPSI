@@ -342,7 +342,6 @@
     <script>
         setInterval(function() {
             timeline();
-            chatByShipper();
         }, 1000);
         
         function scrollBot(){
