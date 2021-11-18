@@ -12,7 +12,7 @@ class FindDriverController extends Controller
     public function find(Request $request, $id)
     {
         $orders = Order::find($id);
-        $orders->status = '1';
+        $orders->status = 'Process';
         $orders->update();
         $checkout = new Checkout();
         $checkout->message   = $request->message;

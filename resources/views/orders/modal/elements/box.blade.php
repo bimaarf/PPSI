@@ -11,7 +11,7 @@
     <div class="card-footer text-muted white pt-1 pb-2 px-3">
         <div class="row">
             <div class="col-9">
-                <input type="text" id="chat" name="chat" id="exampleForm2" class="form-control" maxlength="30" placeholder="{{ Auth::user()->name }}&ensp;:">
+                <input type="text" id="chat" name="chat" id="exampleForm2" class="form-control" maxlength="100" placeholder="{{ Auth::user()->name }}&ensp;:">
             </div>
             <div class="col-3">
                 <button type="submit" class="btn btn-outline-primary text-capitalize" style="width: 100%" onclick="store()"><i class="fa fa-paper-plane"></i>&nbsp;Kirim</button>
@@ -29,8 +29,8 @@
             url  : "{{ url('driver/status/tracking/chatting/store/')}}/{{ $track->id }}",
             data : "chat="+name,
             success:function(data){
-                $("btn-close").click();
-                tracking();
+                $("#chat").val('');
+                readChat();
                 // scroll down   
                 $('#read').stop().animate({
                 scrollTop: $("#read")[0].scrollHeight
@@ -40,12 +40,14 @@
             }
         });
     }
-    function tracking(){
-        $.get("{{ url('driver/status/tracking/chatting/read/')}}/{{ $item->orders->id }}", {}, function(chatting, status){
-            $("#read").html(chatting);
-           
-        });
-      
+    function readChat(){
+        $.get("{{ url('driver/status/tracking/chatting/read/')}}/{{ $track->id }}", {}, function(chatting, status){
+                $("#read").html(chatting);
+          
+            });
+        
     }
+
+   
 </script>
 

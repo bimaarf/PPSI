@@ -29,7 +29,7 @@
                                 <td class="mb-0 fw-normal">{{ $item->jadwal }}</td>
                                 <td class="mb-0 fw-normal">
                                     @if ($item->status == null)
-                                        <span class="btn btn-danger rounded-9 text-capitalize py-1 px-1">Selesai</span>
+                                        <span class="btn btn-danger rounded-9 text-capitalize py-1 px-1">Draft</span>
                                     @endif
                                     @if ($item->status == 'Process')
                                         <span class="btn btn-warning rounded-9 text-capitalize py-1 px-1">Sedang diproses</span>

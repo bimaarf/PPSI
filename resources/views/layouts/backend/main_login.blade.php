@@ -341,10 +341,15 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         setInterval(function() {
-            tracking();
             timeline();
+            chatByShipper();
         }, 1000);
         
+        function scrollBot(){
+            setInterval(function() {
+                readChat();
+        }, 1000);
+        }
     </script>
     <style>
         #messages {

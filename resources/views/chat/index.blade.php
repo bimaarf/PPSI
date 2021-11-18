@@ -18,7 +18,7 @@
     </div>
     <div class="card-footer text-muted white pt-1 pb-2 px-3">
         <div class="input-group">
-            <input type="text" id="chat" name="chat" id="exampleForm2" class="form-control" maxlength="30" placeholder="{{ Auth::user()->name }}&ensp;:">
+            <input type="text" id="chat" name="chat" id="exampleForm2" class="form-control" maxlength="100" placeholder="{{ Auth::user()->name }}&ensp;:">
             <div class="input-group-append">
                 <button type="submit" class="btn btn-outline-primary text-capitalize" style="width: 100%" onclick="store()"><i class="fa fa-paper-plane"></i></button>
             </div>
@@ -35,8 +35,8 @@
             url  : "{{ url('chatting/store/')}}/{{ $tracking->id }}",
             data : "chat="+name,
             success:function(data){
-                // $("btn-close").click();
-                tracking();
+                $("#chat").val('');
+                chatByShipper();
                 // scroll down   
                 $('#read').stop().animate({
                 scrollTop: $("#read")[0].scrollHeight
@@ -47,12 +47,15 @@
         });
     }
     // 
-    function tracking(){
+    function chatByShipper(){
         $.get("{{ url('chatting/read/')}}/{{ $tracking->id }}", {}, function(chatting, status){
             $("#read").html(chatting);
            
         });
     }
+    setInterval(function() {
+            chatByShipper();
+        }, 1000);
 </script>
 
 

@@ -36,7 +36,7 @@
                                             <div class="bi icon dripicons-view-list"></div>Lihat
                                             </a>
                                         </li>
-                                        <li><a class="dropdown-item" href="#" data-mdb-toggle="modal" data-mdb-target="#exampleModal{{ $track->id }}">Chatting</a></li>
+                                        <li><a class="dropdown-item" href="#" onclick="scrollBot()" data-mdb-toggle="modal" data-mdb-target="#exampleModal{{ $track->id }}">Hubungi Pengirim</a></li>
                                     </ul>
                                     </div>
                             </td>

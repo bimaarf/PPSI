@@ -72,7 +72,6 @@
                             <ol>
                                 @foreach (json_decode($item->orders->alamat_tujuan) as $aTujuan)
                                    <li> {{ $aTujuan }}</li>
-                                   <li> {{ $aTujuan }}</li>
                                 @endforeach
 
                             </ol>
