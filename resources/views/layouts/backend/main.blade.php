@@ -23,14 +23,13 @@
 
 </head>
 
-<body>
-
-    <main style="margin-top: 58px">
+<body class="mdb-skin-custom " data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="250">
+        
+         @include('layouts.backend.partial.navigation')
         <div class="container pt-4">
             @yield('content')
         </div>
-    </main>
-
+        @include('layouts.backend.partial.footer')
     <script type="text/javascript" src="{{ asset('assets/js/mdb.min.js') }}"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="{{ asset('assets/js/admin.js') }}"></script>

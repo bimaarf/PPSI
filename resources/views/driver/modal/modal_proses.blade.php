@@ -113,15 +113,15 @@
                                 <div class="bs-vertical-wizard row">
                                     @foreach ($track_status->where('track_id', $track->id) as $tr)
                                         @if ($tr->status == 'Belum sampai')
-                                            <ul class="row">
-                                                <li class="locked col-8">
+                                            <ul class="">
+                                                <li class="locked ">
                                                     <a href="#"><b class="text-capitalize">{{ $tr->alamat }}</b><i
                                                             class="ico fa fa-lock ico-muted"></i>
                                                         <span class="desc">Tekan konfirmasi jika paket sudah
                                                             sampai!</span>
                                                     </a>
                                                 </li>
-                                                <li class="col-4">
+                                                <li class=" text-center">
                                                     <form action="{{ route('driver.sampai', ['id' => $tr->id]) }}"
                                                         method="post">
                                                         @csrf

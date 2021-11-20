@@ -7,8 +7,9 @@
             </div>
         </div>
     @endif
-@endforeach
-
+    @endforeach
+    
+    
     {{-- @if ($item->message == 'Finded')
         <div class="col-lg-6 mt-2">
             <div class="card">

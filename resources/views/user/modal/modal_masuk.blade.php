@@ -109,8 +109,8 @@
                         @csrf
                         <input type="hidden" name="message" value="Finded" >
                         @foreach ($driver->where('status_id', 1)->slice(0, $item->feed_m) as $drv)
-                        <label for="">Driver id</label> <br>
-                        <input type="text" name="driver_id[]" value="{{ $drv->id }}">
+                        {{-- <label for="">Driver id</label> <br> --}}
+                        <input type="hidden" name="driver_id[]" value="{{ $drv->id }}">
                         
                         @endforeach
                         <br>

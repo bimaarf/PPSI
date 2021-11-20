@@ -298,8 +298,9 @@
 </head>
 
 <body class="mdb-skin-custom " data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="250">
+        
     @include('layouts.backend.partial.navigation')
-
+    
     <main class="mt-4 d-lg-block container-lg">
         <div class="row">
             <div class="col-lg-4">
@@ -340,6 +341,7 @@
     {{-- jquery ajax --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
+        // 
         setInterval(function() {
             timeline();
         }, 1000);

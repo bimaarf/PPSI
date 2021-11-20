@@ -1,4 +1,4 @@
-<nav class="d-lg-block collapse" style="z-index: 9">
+<nav id="sidebarMenu"  class="d-xs-block collapse" style="z-index: 9">
     <!-- Search form -->
    <div class="card" style="border-top-left-radius: 50px; border-bottom-left-radius: 50px; height:100%;">
     <div class="position-sticky">
@@ -126,8 +126,6 @@
                 </div>
             </a>
             @endif
-
-            
             @if (Auth::user()->hasRole('shipper'))
             <a href="{{ route('user.index') }}" class="list-group-item list-group-item-action rounded-6 @yield('akun-saya') mt-3">
                 <div class="row">
