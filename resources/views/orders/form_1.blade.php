@@ -1,12 +1,10 @@
 @extends('layouts.backend.main')
-<<<<<<< HEAD
 @section('pesan-armada', 'active')
 @section('content')
 
     <div style="margin-top: 100px">
         <form class="justify-content-center" method="POST" action="{{ route('user.order') }}">
             @csrf
-=======
 <div class="container mt-4">
     <form class="row g-3 justify-content-center" method="POST" action="{{ route('user.order') }}">
         @csrf
@@ -42,13 +40,11 @@
             </div>
           </div>
         <div class="col-lg-5">
->>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
             <div class="card my-3">
                 <div class="card-header">
                     <h1 class="fs-5 text-center">Form Lokasi Tujuan Pengiriman</h1>
                 </div>
                 <div class="card-body">
-<<<<<<< HEAD
                     <div class="row">
                         <div class="form-group col-lg-6 mt-2">
                             <label for="jemput">Titik jemput</label>
@@ -59,7 +55,6 @@
                                     <option value="{{ $item->zone }}">{{ $item->zone }}</option>
                                 @endforeach
                             </select>
-=======
                     <div class="form-group mt-2">
                         <label for="jemput">Titik jemput</label>
                         <select class="form-control mt-1" name="jemput" id="jemput">
@@ -81,10 +76,7 @@
                         </div>
                         <div class="form-group mt-2 col-lg-3">
                                 <input class="form-control mt-1" type="time" name="start_time" id="start_time" required>
-<<<<<<< HEAD
->>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
-=======
->>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
+
                         </div>
                         <div class="form-group col-lg-6 mt-2">
                             <label for="nama_pengirim">Nama Pengirim</label>
@@ -120,7 +112,6 @@
                             <textarea class="form-control mt-1" name="alamat_jemput" id="alamat_jemput" rows="5"
                                 required></textarea>
                         </div>
-<<<<<<< HEAD
                         <div class="row col-lg-6 mt-2">
                             <div class="form-group mt-2 col-lg-6">
                                 <label for="armada">Jenis Armada</label>
@@ -130,8 +121,6 @@
                                     <option value="Pickup">Pickup</option>
                                     <option value="Blindvan">Blindvan</option>
                                 </select>
-=======
-
                         <div class="form-group mt-2 col-lg-6">
                             <label for="feed_m">Jumlah Truk</label> <br>
                             <div class="form-control">
@@ -145,10 +134,7 @@
                                     for="feed_m4">4</label> <br>
                                 <input type="radio" name="feed_m" class="m-2" value="0" id="feed_m0">
                                 <label for="feed_m0">Field Manager</label>
-<<<<<<< HEAD
->>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
-=======
->>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
+
                             </div>
     
                             <div class="form-group mt-2 col-lg-6">
@@ -172,29 +158,16 @@
                     </div>
                     </div>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
                     <div class="mt-2 fa-pull-right">
-=======
-=======
->>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
                     <div class="mt-2">
->>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
                         <button type="submit" class="btn btn-primary">Next</button>
 
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             {{-- ------------------------------------------------------------------------------------------- --}}
-=======
         </div>
         {{-- ------------------------------------------------------------------------------------------- --}}
-<<<<<<< HEAD
->>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
-=======
->>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
-
             @if (session()->has('message'))
                 <div class="alert alert-success">
                     {{ session('message') }}
