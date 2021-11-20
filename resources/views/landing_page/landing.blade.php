@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/landing.css') }}">
 </head>
 <body>
-    
+
     <!-- Header dan navigation bar -->
     {{-- <header class="fixed-top px-3 py-1"> --}}
     <header class="fixed-top px-3 py-1">
@@ -31,7 +31,7 @@
                 <!-- Dropdown navbar -->
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link" role="button" data-toggle="dropdown" aria-expanded="false">
-                    Perusahaan    
+                    Perusahaan
                     </a>
                     <div class="dropdown-menu">
                         <a href="#" class="dropdown-item">About</a>
@@ -62,7 +62,7 @@
                     <h1>Just meet your truck, <br> and load! </h1>
                 </div>
             </div>
-        </div>  
+        </div>
     </section>
 
     <!-- shipper and driver card -->
@@ -115,7 +115,7 @@
         </div>
     </section>
     <!-- Akhir Features Section -->
-    
+
 
     <!-- Jangkauan Section -->
     <section class="position-relative w-100 jangkauan text-white my-5">

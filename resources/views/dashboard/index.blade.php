@@ -20,12 +20,12 @@
 
             <!-- Navigation Bar -->
             <ul class="navbar nav">
-                <li><a href="#" class="nav-link">Solusi Bisnis</a></li>
-                <li><a href="#" class="nav-link">Pesan Armada</a></li>
-                <li><a href="#" class="nav-link">Mitra Driver</a></li>
+                <li><a href="#" class="nav-link text-black">Solusi Bisnis</a></li>
+                <li><a href="#" class="nav-link text-black">Pesan Armada</a></li>
+                <li><a href="#" class="nav-link text-black">Mitra Driver</a></li>
                 <!-- Dropdown navbar -->
                 <li class="nav-item dropdown">
-                    <a href="#" class="nav-link" role="button" data-toggle="dropdown" aria-expanded="false">
+                    <a href="#" class="nav-link text-black" role="button" data-toggle="dropdown" aria-expanded="false">
                     Perusahaan    
                     </a>
                     <div class="dropdown-menu">
@@ -37,14 +37,14 @@
                 </li>
                 <!-- Login Button -->
                 <div class="login">
-                    <a href="#" class="btn btn-danger">Masuk</a>
+                    <a href="#" class="btn btn-danger text-white">Masuk</a>
                 </div>
             </ul>
             <!-- Burger button pada mobile navigation bar -->
             <div class="nav-toggler">
-                <div class="line1"></div>
-                <div class="line2"></div>
-                <div class="line3"></div>
+                <div class="line1 bg-black"></div>
+                <div class="line2 bg-black"></div>
+                <div class="line3 bg-black"></div>
             </div>
         </nav>
     </header>
@@ -62,5 +62,7 @@
 
     <script src="{{ asset('assets/js/jquery-3.6.0.js') }}"></script>
     <script src="{{ asset('assets/js/mdb.min.js') }}"></script>
+    <script src="{{ asset('assets/js/dashboard.js') }}"></script>
+    
 </body>
 </html>

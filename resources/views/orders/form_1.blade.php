@@ -24,7 +24,7 @@
                 <i class="fas fa-envelope input-prefix"></i>
               </div>
             </div>
-          
+
             <div class="col-md-6">
               <div class="md-form md-outline input-with-post-icon timepicker" darktheme="true">
                 <input type="text" id="dark-version-example" class="form-control" placeholder="Select time">
@@ -59,7 +59,7 @@
                             <input type="date" name="jadwal" id="jadwal" class="form-control mt-1" required>
                         </div>
                         <div class="form-group mt-2 col-lg-3">
-                                <input class="form-control mt-1" type="time" name="start_time" id="start_time" required> 
+                                <input class="form-control mt-1" type="time" name="start_time" id="start_time" required>
                         </div>
                         <div class="col-1"> </div>
                         <div class="form-group mt-2 col-lg-3">
@@ -99,21 +99,21 @@
                                 <input type="radio" name="feed_m" class="m-2" value="4" id="feed_m4"> <label
                                     for="feed_m4">4</label> <br>
                                 <input type="radio" name="feed_m" class="m-2" value="0" id="feed_m0">
-                                <label for="feed_m0">Feed Manager</label>
+                                <label for="feed_m0">Field Manager</label>
                             </div>
 
                         </div>
                     </div>
-                   
+
                     <div class="mt-2">
                         <button type="submit" class="btn btn-primary">Next</button>
-            
+
                     </div>
                 </div>
             </div>
         </div>
         {{-- ------------------------------------------------------------------------------------------- --}}
-        
+
             @if (session()->has('message'))
                 <div class="alert alert-success">
                     {{ session('message') }}
