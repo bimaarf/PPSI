@@ -81,6 +81,9 @@
                         </div>
                         <div class="form-group mt-2 col-lg-3">
                                 <input class="form-control mt-1" type="time" name="start_time" id="start_time" required>
+<<<<<<< HEAD
+>>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
+=======
 >>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
                         </div>
                         <div class="form-group col-lg-6 mt-2">
@@ -142,6 +145,9 @@
                                     for="feed_m4">4</label> <br>
                                 <input type="radio" name="feed_m" class="m-2" value="0" id="feed_m0">
                                 <label for="feed_m0">Field Manager</label>
+<<<<<<< HEAD
+>>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
+=======
 >>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
                             </div>
     
@@ -167,8 +173,11 @@
                     </div>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
                     <div class="mt-2 fa-pull-right">
 =======
+=======
+>>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
                     <div class="mt-2">
 >>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
                         <button type="submit" class="btn btn-primary">Next</button>
@@ -181,6 +190,9 @@
 =======
         </div>
         {{-- ------------------------------------------------------------------------------------------- --}}
+<<<<<<< HEAD
+>>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
+=======
 >>>>>>> d1387e6a45a20d1e3078b65ca1746f39eb18ccd9
 
             @if (session()->has('message'))
