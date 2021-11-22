@@ -17,12 +17,12 @@ class ShipperController extends Controller
     public function dashboard()
     {
         $permission_user = PermissionUser::all();
-        $tAdmin = DB::table('role_user')->where('role_id', 2)->count();
-        $tDriver = DB::table('role_user')->where('role_id', 3)->count();
-        $tShipper = DB::table('role_user')->where('role_id', 4)->count();
-        $activity = AdminActivity::orderBy('id', 'DESC')->get();
+        $pesananSaya = DB::table('orders')->count();
+        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
+        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
+        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
       
-        return view('user.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'activity'));
+        return view('user.index', compact('permission_user', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
     public function pesananDiproses()
     {
@@ -33,20 +33,28 @@ class ShipperController extends Controller
         $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
         // feed manager
         $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(10);
-
-        return view("user.pesanan_diproses", compact('i','orders', 'checkout', 'feed_manager'));
+        
+        $pesananSaya = DB::table('orders')->count();
+        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
+        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
+        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
+        return view("user.pesanan_diproses", compact('i','orders', 'checkout', 'feed_manager', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
     public function pesananAnda()
     {
         // shipper
         $i = 1;
-        $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
+        $orders = Order::orderBy('id', 'DESC')->simplePaginate(10);
         // driver
         $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
         $driver = User::whereRoleIs(['driver'])->inRandomOrder()->get();
         $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(10);
+        $pesananSaya = DB::table('orders')->count();
+        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
+        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
+        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
 
-        return view("user.pesanan_anda", compact('i' ,'driver','orders', 'checkout', 'feed_manager'));
+        return view("user.pesanan_anda", compact('i' ,'driver','orders', 'checkout', 'feed_manager', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
     public function pesananDibatalkan()
     {
@@ -58,7 +66,11 @@ class ShipperController extends Controller
         $driver = User::whereRoleIs(['driver'])->inRandomOrder()->get();
         $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(10);
 
-        return view("user.pesanan_dibatalkan", compact('i' ,'driver','orders', 'checkout', 'feed_manager'));
+        $pesananSaya = DB::table('orders')->count();
+        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
+        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
+        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
+        return view("user.pesanan_dibatalkan", compact('i' ,'driver','orders', 'checkout', 'feed_manager', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
 
     public function konfirmasiBarang($id)

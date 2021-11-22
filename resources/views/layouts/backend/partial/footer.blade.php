@@ -55,8 +55,8 @@
   <!-- Footer Links -->
 
   <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">© 2021 Copyright:
-    <a href="https://lapakku.id/" target="_blank">mitruct.mada.co.id</a>
+  <div class="footer-copyright text-center text-white-50 py-3">© 2021 Copyright
+    {{-- <a href="https://lapakku.id/" target="_blank">Smart Truck</a> --}}
   </div>
   <!-- Copyright -->
 
