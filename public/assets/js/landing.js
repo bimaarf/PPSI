@@ -48,12 +48,15 @@ $(function () {
             $('.nav-link').addClass('text-dark')
             $('.logo-img:first-child()').addClass('hidden')
             $('.logo-img:last-child()').removeClass('hidden')
+            $('.login a').addClass('btn-outline-dark text-dark')
+
         } else {
             $('header').removeClass('bg-white shadow')
             $('.nav-toggler div').removeClass('bg-dark')
             $('.nav-link').removeClass('text-dark')
             $('.logo-img:last-child()').addClass('hidden')
             $('.logo-img:first-child()').removeClass('hidden')
+            $('.login a').removeClass('btn-outline-dark text-dark')
         }
 
         // fade in out content

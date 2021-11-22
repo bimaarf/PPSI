@@ -10,6 +10,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\RoleUser;
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -19,7 +20,8 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
-        return view('auth.login');
+        return view('akun.login');
+        // return view('auth.login');
     }
 
     /**
@@ -32,48 +34,42 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         $request->session()->regenerate();
-            if (Auth::user()->hasRole('shipper')) {
-                if($request->session()->get('pesan'))
-                {
-                    $pesan = $request->session()->get('pesan');
-                    $orders = new Order();
-                    $orders->key                 = $pesan['key'];
-                    $orders->jemput              = $pesan['jemput'];
-                    $orders->nama_pengirim       = $pesan['nama_pengirim'];
-                    $orders->start_time          = $pesan['start_time'];
-                    $orders->arrival_time        = $pesan['arrival_time'];
-                    $orders->telp_jemput         = $pesan['telp_jemput'];
-                    $orders->alamat_jemput       = $pesan['alamat_jemput'];
-                    $orders->armada              = $pesan['armada'];
-                    $orders->jadwal              = $pesan['jadwal'];
-                    $orders->feed_m              = $pesan['feed_m'];
-                    $orders->nama_barang         = $pesan['nama_barang'];
-                    $orders->jenis_barang        = $pesan['jenis_barang'];
-                    $orders->tujuan              = $pesan['tujuan'];
-                    $orders->nama_penerima       = $pesan['nama_penerima'];
-                    $orders->alamat_tujuan       = $pesan['alamat_tujuan'];
-                    $orders->telp_tujuan         = $pesan['telp_tujuan'];
-                    $orders->user_id = Auth::id();
-                    $orders->save();
-                    $request->session()->forget('pesan');
-                    return redirect()->route('orders.detail', ['key'=>$orders->key,'id'=>$orders->id])->with('success', 'New subject has been added.');
-                
-                }else  
+        if (Auth::user()->hasRole('shipper')) {
+            if ($request->session()->get('pesan')) {
+                $pesan = $request->session()->get('pesan');
+                $orders = new Order();
+                $orders->key                 = $pesan['key'];
+                $orders->jemput              = $pesan['jemput'];
+                $orders->nama_pengirim       = $pesan['nama_pengirim'];
+                $orders->start_time          = $pesan['start_time'];
+                $orders->arrival_time        = $pesan['arrival_time'];
+                $orders->telp_jemput         = $pesan['telp_jemput'];
+                $orders->alamat_jemput       = $pesan['alamat_jemput'];
+                $orders->armada              = $pesan['armada'];
+                $orders->jadwal              = $pesan['jadwal'];
+                $orders->feed_m              = $pesan['feed_m'];
+                $orders->nama_barang         = $pesan['nama_barang'];
+                $orders->jenis_barang        = $pesan['jenis_barang'];
+                $orders->tujuan              = $pesan['tujuan'];
+                $orders->nama_penerima       = $pesan['nama_penerima'];
+                $orders->alamat_tujuan       = $pesan['alamat_tujuan'];
+                $orders->telp_tujuan         = $pesan['telp_tujuan'];
+                $orders->user_id = Auth::id();
+                $orders->save();
+                $request->session()->forget('pesan');
+                return redirect()->route('orders.detail', ['key' => $orders->key, 'id' => $orders->id])->with('success', 'New subject has been added.');
+            } else
                 return redirect()->route('user.index');
         }
-        if(Auth::user()->hasRole('admin|super-admin'))
-        {
+        if (Auth::user()->hasRole('admin|super-admin')) {
             return redirect()->route('admin.index');
         }
-        if(Auth::user()->hasRole('driver'))
-        {
+        if (Auth::user()->hasRole('driver')) {
             return redirect()->route('driver.index');
         }
-        if(Auth::user()->hasRole('shipper'))
-        {
+        if (Auth::user()->hasRole('shipper')) {
             return redirect()->route('user.index');
         }
-
     }
 
     /**
