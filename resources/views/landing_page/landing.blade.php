@@ -42,7 +42,7 @@
                 </li>
                 <!-- Login Button -->
                 <div class="login">
-                    <a href="#" class="btn btn-outline-light">Masuk</a>
+                    <a href="{{ route('login') }}" class="btn btn-outline-light">Masuk</a>
                 </div>
             </ul>
             <!-- Burger button pada mobile navigation bar -->

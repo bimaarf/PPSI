@@ -65,7 +65,11 @@ nav {
     width: 100%;
 }
 
-.dropdown-item {
+.nav li a:hover {
+    color: white;
+}
+
+.navbar li a.dropdown-item {
     color: black !important;
 }
 
@@ -112,8 +116,12 @@ nav {
         right: 0px;
         height: 100vh;
         top: 0;
+<<<<<<< HEAD
         background-color: #000000b9;
         /* opacity: 0.8; */
+=======
+        background-color: #000000c0;
+>>>>>>> 3d95380f9ae7f5ee1698a48b177d1d2e4ec17e61
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -127,7 +135,11 @@ nav {
     .login {
         opacity: 0;
         margin: 20px 0;
+    }
 
+    .login a {
+        border-color: white !important;
+        color: white !important;
     }
 
     .navbar li a {
@@ -159,6 +171,7 @@ nav {
 
 .toggler .line1 {
     transform: rotate(-45deg) translate(-5px, 6px);
+    background-color: white !important;
 }
 
 .toggler .line2 {
@@ -167,6 +180,7 @@ nav {
 
 .toggler .line3 {
     transform: rotate(45deg) translate(-5px, -6px);
+    background-color: white !important;
 }
 
 

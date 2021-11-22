@@ -26,12 +26,12 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/landing', function () {
     return view('landing_page.landing');
 });
+
+// Route::get('/landing', function () {
+//     return view('landing_page.landing');
+// });
 
 Route::get('/laman-login', function () {
     return view('akun.login');
@@ -70,7 +70,7 @@ Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'ha
 Route::post('/store-input-fields', [OrderController::class, 'tambah'])->name('user.order');
 Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('user.order2');
 
-    
+
 // admin
 Route::get('/dashboard/admin', [AdminController::class, 'dashboard'])->name('admin.index')->middleware(['auth', 'permission:dashboard-admin']);
 Route::get('/dashboard/admin/akun-saya', [AdminController::class, 'akunSaya'])->name('admin.akun_saya')->middleware(['auth', 'permission:dashboard-admin']);

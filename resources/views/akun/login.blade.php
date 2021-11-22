@@ -30,30 +30,50 @@
         </div>
         <div class="col-lg-6 col-md-6 card-body p-5 body-akun">
             <h2 class="card-title text-center mx-4">Meet your truck, and load!</h2>
-            <form action="#" class="login-form mx-lg-3 mx-lg-4">
+            <form method="POST" action="{{ route('login') }}" class="login-form mx-lg-3 mx-lg-4">
+              @csrf
+
+              <!-- Email Address -->
               <div class="form-group m-4">
-                <input type="text" class="form-control input-form" placeholder="No.Hp" required>
+                <input id="email" type="email" name="email" class="form-control input-form" placeholder="Email" required autofocus>
               </div>
+
+              <!-- Password -->
               <div class="form-group m-4">
-                <input type="password" class="form-control input-form" placeholder="Password" required>
+                <input id="password" name="password" type="password" class="form-control input-form" placeholder="Password" required autocomplete="current-password">
               </div>
+
               <div class="form-group mx-sm-0 mx-md-4 mx-lg-4 row align-items-center check">
+
+                <!-- Remember Me -->
                 <div class="form-check col-sm-6 col-md-7 col-lg-7 pr-0 remember">
                   <input type="checkbox" value="remember-me" id="remember-me" class="form-check-input">
                   <label for="remember-me">Ingat saya</label>
                 </div>
+
+                <!-- Login Button -->
                 <div class="col-5 px-0 login-button">
-                  <button class="btn btn-primary float-end" type="submit">Masuk</button>
+                  <x-button class="btn btn-primary float-end">
+                    {{ __('Masuk') }}
+                  </x-button>
                 </div>
               </div>
-              <div class="form-group mx-4 mt-4"><h6><a href="#">Lupa Password?</a></h6></div>
+
+              <div class="form-group mx-4 mt-4">
+                  @if (Route::has('password.request'))
+                      <a href="{{ route('password.request') }}">
+                          {{ __('Lupa Password?') }}
+                      </a>
+                  @endif
+              </div>
               <div class="m-3">
                 <span class="line-center-text">atau </span>
               </div>
               <div class="form-group mx-4">
                 <button type="submit" class="btn btn-warning w-100">Daftar</button>
               </div>
-            </form>
+          </form>
+
         </div>
     </div>
   <script src="{{ asset('assets/js/jquery-3.6.0.js') }}"></script>
