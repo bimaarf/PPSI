@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Models\Chatting;
 use Illuminate\Support\Facades\Auth;
 use App\Models\RoleUser;
+use Illuminate\Support\Facades\DB;
 
 class TrackingController extends Controller
 {
@@ -26,7 +27,12 @@ class TrackingController extends Controller
         $driver   = Auth::user();
         $role_driver = RoleUser::where('role_id', '2')->get();
 
-        return view('orders.tracking', compact('checkout', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
+        $pesananSaya = DB::table('orders')->count();
+        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
+        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
+        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
+
+        return view('orders.tracking', compact('checkout', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
     public function timeline(Request $request, $id)
     {

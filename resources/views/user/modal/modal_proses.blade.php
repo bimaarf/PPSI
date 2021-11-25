@@ -45,6 +45,18 @@
                         {{-- breack --}}
 
                         <div class="col-4">
+                            Alamat Jemput
+                        </div>
+                        <div class="col-1">
+                            :
+                        </div>
+                        <div class="col-7">
+                            {{ $item->alamat_jemput }}
+                        </div>
+
+                        {{-- breack --}}
+
+                        <div class="col-4">
                             Tujuan
                         </div>
                         <div class="col-1">
@@ -61,7 +73,7 @@
                         {{-- break --}}
 
                         <div class="col-4">
-                            Alamat
+                            Alamat Tujuan
                         </div>
                         <div class="col-1">
                             :
@@ -80,7 +92,19 @@
                         {{-- break --}}
 
                         <div class="col-4">
-                            <b>Total Bayar</b>
+                            Rentang Waktu
+                        </div>
+                        <div class="col-1">
+                            :
+                        </div>
+                        <div class="col-7">
+                            {{ $item->jadwal }}&emsp;{{ $item->start_time }}&nbsp;s/d&nbsp;{{ $item->arrival_time }}&nbsp;WIB
+                        </div>
+
+                        {{-- break --}}
+
+                        <div class="col-4">
+                            <b>Total Harga</b>
                         </div>
                         <div class="col-1">
                             :

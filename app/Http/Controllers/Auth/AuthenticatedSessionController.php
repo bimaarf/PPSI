@@ -57,8 +57,10 @@ class AuthenticatedSessionController extends Controller
                 $orders->user_id = Auth::id();
                 $orders->save();
                 $request->session()->forget('pesan');
-                return redirect()->route('orders.detail', ['key' => $orders->key, 'id' => $orders->id])->with('success', 'New subject has been added.');
+                return redirect()->route('user.pesanan_anda')->with('success', 'Terima kasih, silahkan cek kembali pesanan anda.');
+                // return redirect()->route('orders.detail', ['key' => $orders->key, 'id' => $orders->id])->with('success', 'New subject has been added.');
             } else
+                $request->session()->forget('pesan');
                 return redirect()->route('user.index');
         }
         if (Auth::user()->hasRole('admin|super-admin')) {

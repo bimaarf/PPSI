@@ -19,7 +19,7 @@
                             <div class="col-7">
                                 <b class="text-capitalize">{{ $item->orders->nama_pengirim }}</b>
                             </div>
-
+    
                             {{-- breack --}}
                             <div class="col-4">
                                 No. Resi
@@ -30,9 +30,9 @@
                             <div class="col-7">
                                 10002692844212
                             </div>
-
+    
                             {{-- breack --}}
-
+    
                             <div class="col-4">
                                 Dari
                             </div>
@@ -42,9 +42,21 @@
                             <div class="col-7">
                                 {{ $item->orders->jemput }}
                             </div>
-
+    
                             {{-- breack --}}
-
+    
+                            <div class="col-4">
+                                Alamat Jemput
+                            </div>
+                            <div class="col-1">
+                                :
+                            </div>
+                            <div class="col-7">
+                                {{ $item->orders->alamat_jemput }}
+                            </div>
+    
+                            {{-- breack --}}
+    
                             <div class="col-4">
                                 Tujuan
                             </div>
@@ -58,30 +70,42 @@
                                     @endforeach
                                 </ol>
                             </div>
-
+                            
                             {{-- break --}}
-
+    
                             <div class="col-4">
-                                Alamat
+                                Alamat Tujuan
                             </div>
                             <div class="col-1">
                                 :
                             </div>
-
+    
                             {{-- break --}}
                             <div class="col-7">
                                 <ol>
                                     @foreach (json_decode($item->orders->alamat_tujuan) as $aTujuan)
                                         <li> {{ $aTujuan }}</li>
                                     @endforeach
-
+    
                                 </ol>
                             </div>
-
+    
                             {{-- break --}}
-
+    
                             <div class="col-4">
-                                <b>Total Bayar</b>
+                                Rentang Waktu
+                            </div>
+                            <div class="col-1">
+                                :
+                            </div>
+                            <div class="col-7">
+                                {{ $item->orders->jadwal }}&emsp;{{ $item->orders->start_time }}&nbsp;s/d&nbsp;{{ $item->orders->arrival_time }}&nbsp;WIB
+                            </div>
+    
+                            {{-- break --}}
+    
+                            <div class="col-4">
+                                <b>Total Harga</b>
                             </div>
                             <div class="col-1">
                                 :

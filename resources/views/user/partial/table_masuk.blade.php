@@ -31,6 +31,9 @@
                                     @if ($item->status == null)
                                         <span class="btn btn-danger rounded-9 text-capitalize py-1 px-1">Draft</span>
                                     @endif
+                                    @if ($item->status == 'Canceled')
+                                        <span class="btn btn-danger rounded-9 text-capitalize py-1 px-1">Dibatalkan</span>
+                                    @endif
                                     @if ($item->status == 'Process')
                                         <span class="btn btn-warning rounded-9 text-capitalize py-1 px-1">Sedang diproses</span>
                                     @endif

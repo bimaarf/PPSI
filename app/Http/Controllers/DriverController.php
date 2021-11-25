@@ -19,21 +19,25 @@ class DriverController extends Controller
 
     public function akunSaya()
     {
-        return view('driver.index');
+        $pesananSaya = DB::table('checkouts')->where('driver_id', Auth::id())->count();
+        $pesananDiproses = DB::table('checkouts')->where('Message', 'Verified')->where('driver_id', Auth::id())->count();
+        $pesananDibatalkan = DB::table('checkouts')->where('Message', 'Canceled')->where('driver_id', Auth::id())->count();
+        $pesananSelesai = DB::table('checkouts')->where('Message', 'Finished')->where('driver_id', Auth::id())->count();
+        return view('driver.index', compact('pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
     public function pesananMasuk()
     {
         $i = 1;
 
-        $orders = Order::orderBy('id', 'ASC')->simplePaginate(10);
-        $checkout = Checkout::orderBy('id', 'ASC')->simplePaginate(10);
+        $orders = Order::orderBy('id', 'DESC')->simplePaginate(10);
+        $checkout = Checkout::orderBy('id', 'DESC')->simplePaginate(10);
         $driver = RoleUser::where('role_id', 2)->orderBy('role_id', 'ASC')->get();
         $user = User::whereRoleIs(['driver'])->inRandomOrder()->get();
         $trackings = Tracking::all();
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
 
         $pesananSaya = DB::table('checkouts')->where('driver_id', Auth::user()->id)->count();
-        $pesananDiproses = DB::table('checkouts')->where('message', 'Process')->where('driver_id', Auth::user()->id)->count();
+        $pesananDiproses = DB::table('checkouts')->where('message', 'Verified')->where('driver_id', Auth::user()->id)->count();
         $pesananDibatalkan = DB::table('checkouts')->where('message', 'Canceled')->where('driver_id', Auth::user()->id)->count();
         $pesananSelesai = DB::table('checkouts')->where('message', 'Finished')->where('driver_id', Auth::user()->id)->count();
         
@@ -52,7 +56,7 @@ class DriverController extends Controller
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         
         $pesananSaya = DB::table('checkouts')->where('driver_id', Auth::user()->id)->count();
-        $pesananDiproses = DB::table('checkouts')->where('message', 'Process')->where('driver_id', Auth::user()->id)->count();
+        $pesananDiproses = DB::table('checkouts')->where('message', 'Verified')->where('driver_id', Auth::user()->id)->count();
         $pesananDibatalkan = DB::table('checkouts')->where('message', 'Canceled')->where('driver_id', Auth::user()->id)->count();
         $pesananSelesai = DB::table('checkouts')->where('message', 'Finished')->where('driver_id', Auth::user()->id)->count();
 
@@ -71,7 +75,7 @@ class DriverController extends Controller
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         
         $pesananSaya = DB::table('checkouts')->where('driver_id', Auth::user()->id)->count();
-        $pesananDiproses = DB::table('checkouts')->where('message', 'Process')->where('driver_id', Auth::user()->id)->count();
+        $pesananDiproses = DB::table('checkouts')->where('message', 'Verified')->where('driver_id', Auth::user()->id)->count();
         $pesananDibatalkan = DB::table('checkouts')->where('message', 'Canceled')->where('driver_id', Auth::user()->id)->count();
         $pesananSelesai = DB::table('checkouts')->where('message', 'Finished')->where('driver_id', Auth::user()->id)->count();
         return view('driver.pesanan_dibatalkan', compact('i' ,'orders','checkout', 'driver', 'trackings', 'track_status', 'user', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));

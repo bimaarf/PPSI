@@ -91,19 +91,22 @@
                     </div>
                 </div>
                 <div class="col-lg-3 border-start">
-                    <form action="{{ route('driver.terima', ['id' => $item->id]) }}" method="post">
-                        @csrf
-                        <button type="submit" class="btn btn-success rounded-5 btn-lg text-capitalize" style="width:100%">Terima Pesanan</button>
-                    </form>
-                    <form action="{{ route('driver.tolak', ['id' => $item->id]) }}" method="POST">
-                        @csrf
-                        @foreach ($user->where('status_id', '=', 1)->slice(0,1) as $usr)
-                            @if ($usr->id != Auth::user()->id)
-                                <input type="hidden" name="driver_id" value="{{ $usr->id }}">
-                            @endif
-                        @endforeach
-                        <input type="submit" class="btn btn-danger rounded-5 btn-lg text-capitalize mt-2" style="width:100%" value="Tolak Pesanan">
-                    </form>
+                    @if ($item->message == 'Finded')
+                        <form action="{{ route('driver.terima', ['id' => $item->id]) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-success rounded-5 btn-lg text-capitalize" style="width:100%">Terima Pesanan</button>
+                        </form>
+                        
+                        <form action="{{ route('driver.tolak', ['id' => $item->id]) }}" method="POST">
+                            @csrf
+                            @foreach ($user->where('status_id', '=', 1)->slice(0,1) as $usr)
+                                @if ($usr->id != Auth::user()->id)
+                                    <input type="hidden" name="driver_id" value="{{ $usr->id }}">
+                                @endif
+                            @endforeach
+                            <input type="submit" class="btn btn-danger rounded-5 btn-lg text-capitalize mt-2" style="width:100%" value="Tolak Pesanan">
+                        </form>
+                    @endif
                     <a href="" class="btn btn-outline-white-50 rounded-5 btn-lg mt-2 text-capitalize" style="width:100%">Bantuan</a>
                 </div>
             </div>

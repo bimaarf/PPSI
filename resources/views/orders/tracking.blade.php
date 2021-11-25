@@ -24,5 +24,7 @@
         setInterval(function() {
             timeline();
         }, 1000);
+
+        
     </script>
 @endsection

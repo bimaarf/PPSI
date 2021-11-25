@@ -14,9 +14,9 @@
 
              <!-- Brand -->
              <a class="navbar-brand py-2" href="" style="font-family:Verdana, Geneva, Tahoma, sans-serif">
-                 <img src="{{ asset('assets/icon/mitruck.png') }}" height="25" alt="" loading="lazy" />
-                 {{-- <strong class="fs-3" style="color: rgb(98, 224, 255);">Smart</strong><span><strong
-                         class="fs-3" style="color: #229BD8">Truck</strong></span> --}}
+                 {{-- <img src="{{ asset('assets/icon/mitruck.png') }}" height="25" alt="" loading="lazy" /> --}}
+                 <strong class="fs-3" style="color: rgb(98, 224, 255);">Smart</strong><span><strong
+                         class="fs-3" style="color: #229BD8">Truck</strong></span>
              </a>
 
              @include('layouts.backend.elements.nav_mobile

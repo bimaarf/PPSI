@@ -12,18 +12,23 @@
 
                 <div class="card-body">
                     <div class="row">
-                        <div class="form-group col-lg-6 mt-2">
-                            <label for="nama_barang">Nama Barang</label>
-                            <input type="text" class="form-control mt-1" id="nama_barang" name="nama_barang"
-                                placeholder="Nama Barang" required>
+                        <div class="col-lg-6">
+                            <div class="form-outline">
+                                <input type="text" class="form-control form-control-lg" id="nama_barang" name="nama_barang"
+                                    required>
+                                <label class="form-label" for="nama_barang">Nama Barang</label>
+                            </div>
                         </div>
-                        <div class="form-group col-lg-6 mt-2">
-                            <label for="jenis_barang">Jenis Barang</label>
-                            <select class="form-control mt-1" name="jenis_barang" id="jenis_barang">
-                                <option value="">-- Pilih --</option>
-                                <option value="Plastik">Plastik</option>
-                                <option value="Sampah">Sampah</option>
-                                <option value="Apa aja">Apa aja</option>
+                        <div class="col-lg-6">
+                            <select class="form-select form-select-lg" name="jenis_barang" id="jenis_barang">
+                                <option value="">Jenis Barang</option>
+                                <option value="Kotak">Kotak</option>
+                                <option value="Peti">Peti</option>
+                                <option value="Palet">Palet</option>
+                                <option value="Barel">Barel</option>
+                                <option value="Karung">Karung</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Lainnya">Lainnya</option>
                             </select>
                         </div>
                     </div>
@@ -34,7 +39,7 @@
                                     <th>Alamat</th>
                                     <th>Tujuan</th>
                                     @if ($orders->feed_m == 1)
-                                    <th>#</th>
+                                        <th>#</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -42,38 +47,38 @@
 
                                 <tr>
                                     <td>
-                                        <select class="form-control mt-1" name="tujuan[]" required>
-                                            <option value="">-- Tujuan --</option>
+                                        <select class="form-select form-select-lg" name="tujuan[]" required>
+                                            {{-- <option value="">-- Tujuan --</option> --}}
 
-                                            @foreach ($zone as $item)
+                                            @foreach ($zone->where('id', 1) as $item)
 
                                                 <option value="{{ $item->zone }}">{{ $item->zone }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="text" name="nama_penerima[]" class="form-control mt-1"
+                                        <input type="text" name="nama_penerima[]" class="form-control form-control-lg"
                                             placeholder="Nama Penerima" required />
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><input type="text" name="alamat_tujuan[]" placeholder="Alamat Lengkap"
-                                            class="form-control mt-1" required />
+                                            class="form-control form-control-lg" required />
                                     </td>
 
                                     <td>
-                                        <input type="num" name="telp_tujuan[]" class="form-control mt-1"
+                                        <input type="num" name="telp_tujuan[]" class="form-control form-control-lg"
                                             placeholder="628XXXXX">
                                     </td>
                                     @if ($orders->feed_m == 1)
-                                    <td>
+                                        <td>
 
                                             <button type="button" name="add" id="dynamic-ar"
                                                 class="btn btn-outline-primary">Add</button>
 
-                                                
-                                            </td>
-                                            @endif
+
+                                        </td>
+                                    @endif
                                 </tr>
                             </tbody>
                         </table>

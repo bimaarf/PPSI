@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Alamat;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -23,7 +22,11 @@ class OrderController extends Controller
     {
         $zone = Zone::get();
         $orders = $request->session()->get('orders');
-        return view("orders.form_1", compact('zone', 'orders'));
+        $pesananSaya = DB::table('orders')->count();
+        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
+        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
+        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
+        return view("orders.form_1", compact('zone', 'orders', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
     public function form2(Request $request) 
     {
@@ -33,7 +36,11 @@ class OrderController extends Controller
         $orders = Order::all();
         $orders->feed_m              = $pesan['feed_m'];
         
-        return view("orders.form_2", compact('zone', 'orders'));
+        $pesananSaya = DB::table('orders')->count();
+        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
+        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
+        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
+        return view("orders.form_2", compact('zone', 'orders', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
     public function tambah(Request $request)
     {
@@ -84,7 +91,8 @@ class OrderController extends Controller
                 $orders->user_id = Auth::id();
                 $orders->save();
                 $request->session()->forget('pesan');
-            return redirect()->route('orders.detail', ['key'=>$orders->key, 'id'=>$orders->id ])->with('success', 'Terima kasih sudah membuat pesanan');
+            // return redirect()->route('orders.detail', ['key'=>$orders->key, 'id'=>$orders->id ])->with('success', 'Terima kasih sudah membuat pesanan');
+            return redirect()->route('user.pesanan_anda')->with('success', 'Terima kasih, silahkan cek kembali pesanan anda.');
 
         } else {
             return redirect()->route('login');
@@ -111,7 +119,7 @@ class OrderController extends Controller
         $orders->status = 'Canceled';
         $orders->update();
 
-        return redirect()->route('user.pesanan_anda')->with('success', 'Pesanan sudah dibatalkan');
+        return redirect()->route('user.pesanan_dibatalkan')->with('success', 'Pesanan sudah dibatalkan');
     }
 
     

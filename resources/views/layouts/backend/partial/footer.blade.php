@@ -13,7 +13,7 @@
         </div>
         <div class="col-lg-4 mt-2 text-center">
           <div class="text-center">
-            <h5 class="text-white">Smart Truck Jejaring Tenggara. 2021. All Rights Reserved</h5>
+            <h5 class="text-white">Smart Truck 2021 All Rights Reserved</h5>
             <div class="mt-4">
               <a href="#" class="btn btn-light rounded-9 m-1 fs-1"><i class="fab fa-instagram text-black"></i></a>
               <a href="#" class="btn btn-light rounded-9 m-1 fs-1"><i class="fab fa-whatsapp text-success"></i></a>

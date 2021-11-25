@@ -100,6 +100,18 @@
                         <div class="col-7">
                             {{ $item->jadwal }}&emsp;{{ $item->start_time }}&nbsp;s/d&nbsp;{{ $item->arrival_time }}&nbsp;WIB
                         </div>
+
+                        {{-- break --}}
+
+                        <div class="col-4">
+                            <b>Total Harga</b>
+                        </div>
+                        <div class="col-1">
+                            :
+                        </div>
+                        <div class="col-7">
+                            <b class="text-capitalize">Rp 750.000 </b>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 border-start">
@@ -117,7 +129,11 @@
                         <input type="hidden" name="orders_id" value="{{ $item->id }}">
                         <input type="submit" class="btn btn-success rounded-5 btn-lg text-capitalize" style="width:100%" value="Temukan Driver">
                     </form>
-                    <a href="{{ route('orders.hapus', ['id' => $item->id, 'key' => $item->key]) }}" class="btn btn-danger rounded-5 btn-lg mt-2 text-capitalize" style="width:100%">Batalkan Pesanan</a>
+                    <form action="{{ route('orders.hapus', ['id' => $item->id]) }}" method="get">
+                        @csrf
+                        <button  class="btn btn-danger rounded-5 btn-lg mt-2 text-capitalize" style="width:100%">Batalkan Pesanan</button>
+
+                    </form>
                     @endif
                     <a href="" class="btn btn-outline-white-50 rounded-5 btn-lg mt-2 text-capitalize" style="width:100%">Bantuan</a>
                 </div>

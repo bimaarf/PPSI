@@ -66,7 +66,7 @@ Route::get('/clear-cache', function () {
 Route::get('/user-form-jemput', [OrderController::class, 'form1'])->name('orders.form_1');
 Route::get('/user-form-tujuan', [OrderController::class, 'form2'])->name('orders.form_2');
 Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('orders.detail')->middleware('auth');
-Route::get('/dashboard/user-form/delete/{id}{key}', [OrderController::class, 'hapus'])->name('orders.hapus')->middleware(['auth', 'role:shipper|admin|super-admin']);
+Route::get('/dashboard/user-form/delete/{id}', [OrderController::class, 'hapus'])->name('orders.hapus')->middleware(['auth', 'role:shipper|admin|super-admin']);
 Route::post('/store-input-fields', [OrderController::class, 'tambah'])->name('user.order');
 Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('user.order2');
 
@@ -111,7 +111,7 @@ Route::post('/store-input-fields/sampai-barang/{id}', [DriverController::class, 
 
 // chatting
 
-// Route::get('/driver/status/tracking/chatting/tambah/{id}', [ChattingController::class, 'tambah'])->name('chat.tambah');
+Route::get('/driver/status/tracking/chatting/tambah/{id}', [ChattingController::class, 'tambah'])->name('chat.tambah');
 Route::get('/driver/status/tracking/chatting/store/{id}', [ChattingController::class, 'store'])->name('chat.store');
 Route::get('/driver/status/tracking/chatting/read/{id}', [ChattingController::class, 'read'])->name('orders.modal.elements.read');
 

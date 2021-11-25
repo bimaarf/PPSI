@@ -7,14 +7,11 @@
             </div>
         </div>
     @endif
-    @endforeach
-    
-    
-    {{-- @if ($item->message == 'Finded')
+    @if ($item->message == 'Finded')
         <div class="col-lg-6 mt-2">
             <div class="card">
-                <div class="card-header text-center">{{ $orders->alamat_jemput }}
-                    @foreach (json_decode($item->orders->alamat_tujuan) as $info)
+                <div class="card-header text-center">{{ $orders->jemput }}
+                    @foreach (json_decode($item->orders->tujuan) as $info)
                         -{{ $info }}
                     @endforeach
                 </div>
@@ -32,4 +29,7 @@
                 </div>
             </div>
         </div>
-    @endif --}}
+    @endif
+    @endforeach
+    
+    

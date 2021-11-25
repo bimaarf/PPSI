@@ -11,17 +11,24 @@ use App\Models\TrackingStatus;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ChattingController extends Controller
 {
     public function chatting($id)
     {
+
         $users    = User::all();
         $tracking = Tracking::find($id);
         $chatting = Chatting::where('track_id', $tracking->id)->get();
         $driver   = Auth::user();
         $role_driver = RoleUser::where('role_id', '2')->get();
-        return view('chat.index', compact('users','tracking', 'chatting', 'driver', 'role_driver'));
+
+        $pesananSaya = DB::table('orders')->count();
+        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
+        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
+        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
+        return view('chat.index', compact('users','tracking', 'chatting', 'driver', 'role_driver', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
     public function readPage(Request $request, $id)
     {
@@ -30,7 +37,7 @@ class ChattingController extends Controller
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         $users   = User::all();
         // chatting
-        $chatting = Chatting::all();
+        $chatting = Chatting::where('track_id', $track->id)->get();
 
         $driver   = Auth::user();
         $role_driver = RoleUser::where('role_id', '2')->get();
@@ -44,7 +51,7 @@ class ChattingController extends Controller
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         $users   = User::all();
         // chatting
-        $chatting = Chatting::all();
+        $chatting = Chatting::where('track_id', $track->id)->get();
 
         $driver   = Auth::user();
         $role_driver = RoleUser::where('role_id', '2')->get();
