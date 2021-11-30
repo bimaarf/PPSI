@@ -22,12 +22,11 @@
 <script>
     // proses create data
     function store(){
-        var name  = $("#chat").val();
-        var track = "{{ $track->id }}" ;
+        var chatting  = $("#chat").val();
         $.ajax({
             type : "get",
-            url  : "{{ url('driver/status/tracking/chatting/store/')}}/{{ $track->id }}",
-            data : "chat="+name,
+            url  : "{{ route('chat.store', ['id'=>$track->id]) }}",
+            data : "chat="+ chatting,
             success:function(data){
                 $("#chat").val('');
                 readChat();
@@ -42,7 +41,7 @@
     }
     //
     function readChat(){
-        $.get("{{ url('driver/status/tracking/chatting/read/')}}/{{ $track->id }}", {}, function(chatting, status){
+        $.get("{{ route('orders.modal.elements.read', ['id'=>$track->id]) }}", {}, function(chatting, status){
                 $("#read").html(chatting);
           
             });

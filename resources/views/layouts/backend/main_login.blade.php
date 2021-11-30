@@ -297,7 +297,7 @@
 
 </head>
 
-<body class="mdb-skin-custom " data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="250">
+<body class="mdb-skin-custom " data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="250" style="background-color: #f3f2ef;">
         
     @include('layouts.backend.partial.navigation')
     
@@ -343,9 +343,7 @@
     <script>
         
         setInterval(function() {
-            readChat();
-            tracking();
-            timeline();
+           
         }, 1000);
         
         function scrollBot(){

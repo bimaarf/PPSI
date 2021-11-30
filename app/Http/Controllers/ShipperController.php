@@ -31,15 +31,16 @@ class ShipperController extends Controller
         $i = 1;
         $orders = Order::orderBy('id', 'DESC')->simplePaginate(5);
         // driver
-        $checkout = Checkout::orderBy('id', 'DESC')->simplePaginate(5);
+        $checkouts = Checkout::orderBy('id', 'DESC')->get();
+        $track_status = TrackingStatus::all();
         // feed manager
         $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(5);
-        
+        $tracking   = Tracking::all();
         $pesananSaya = DB::table('orders')->count();
         $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
         $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
         $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
-        return view("user.pesanan_diproses", compact('i','orders', 'checkout', 'feed_manager', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
+        return view("user.pesanan_diproses", compact('i','orders', 'checkouts', 'track_status', 'feed_manager', 'tracking', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
     public function pesananAnda()
     {
@@ -66,7 +67,6 @@ class ShipperController extends Controller
         $checkout = Checkout::orderBy('id', 'DESC')->simplePaginate(10);
         $driver = User::whereRoleIs(['driver'])->inRandomOrder()->get();
         $feed_manager = FeedManager::orderBy('id', 'DESC')->simplePaginate(10);
-
         $pesananSaya = DB::table('orders')->count();
         $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
         $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();

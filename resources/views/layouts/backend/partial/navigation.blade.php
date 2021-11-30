@@ -5,7 +5,7 @@
      <!-- Navbar -->
      <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
          <!-- Container wrapper -->
-         <div class="container-fluid">
+         <div class="container">
              <!-- Toggle button -->
              <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
                  aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -14,13 +14,12 @@
 
              <!-- Brand -->
              <a class="navbar-brand py-2" href="" style="font-family:Verdana, Geneva, Tahoma, sans-serif">
-                 {{-- <img src="{{ asset('assets/icon/mitruck.png') }}" height="25" alt="" loading="lazy" /> --}}
-                 <strong class="fs-3" style="color: rgb(98, 224, 255);">Smart</strong><span><strong
-                         class="fs-3" style="color: #229BD8">Truck</strong></span>
+                 <img src="{{ asset('assets/icon/mitruck.png') }}" height="25" alt="" loading="lazy" />
+                 {{-- <strong class="fs-3" style="color: rgb(98, 224, 255);">Smart</strong><span><strong
+                         class="fs-3" style="color: #229BD8">Truck</strong></span> --}}
              </a>
 
-             @include('layouts.backend.elements.nav_mobile
-             ')
+             @include('layouts.backend.elements.nav_mobile')
              <nav class="collapse navbar-collapse text-right">
                 <div id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">

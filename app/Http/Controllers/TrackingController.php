@@ -63,5 +63,33 @@ class TrackingController extends Controller
 
         return view('orders.proses.proses_track', compact('checkout', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
     }
+    public function modalTrack(Request $request, $id)
+    {
+        $orders = Order::find($id);
+        $checkouts = Checkout::where('orders_id', $orders->id)->get();
+        $tracking = Tracking::orderBy('id', 'ASC')->get();
+        $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
+        $users   = User::all();
+        // chatting
+        $chatting = Chatting::all();
+        $driver   = Auth::user();
+        $role_driver = RoleUser::where('role_id', '2')->get();
+
+        return view('orders.proses.modal_track', compact('checkouts', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
+    }
+    public function timelineModal(Request $request, $id)
+    {
+        $orders = Order::find($id);
+        $checkout = Checkout::all();
+        $tracking = Tracking::orderBy('id', 'ASC')->get();
+        $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
+        $users   = User::all();
+        // chatting
+        $chatting = Chatting::all();
+        $driver   = Auth::user();
+        $role_driver = RoleUser::where('role_id', '2')->get();
+
+        return view('orders.proses.timeline_modal', compact('checkout', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
+    }
     
 }
