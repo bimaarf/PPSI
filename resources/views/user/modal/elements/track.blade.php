@@ -5,7 +5,7 @@
 
 <script>
     function timeline() {
-        $.get("{{ route('orders.proses.modal_track', ['id'=>$item->id]) }}", {}, function(checkout, status) {
+        $.get("{{ route('user.modal.elements.modal_track', ['id'=>$item->id]) }}", {}, function(checkout, status) {
             $("#timeline").html(checkout);
 
         });

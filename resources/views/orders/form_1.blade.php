@@ -2,7 +2,7 @@
 @section('pesan-armada', 'active')
 @section('content')
 
-    <div class="py-lg-5" style="margin-top: 60px">
+    <div class="py-lg-5" style="margin-top: 60px;">
         <form class="justify-content-center" method="POST" action="{{ route('user.order') }}">
             @csrf
             <div class="card my-3">
@@ -14,7 +14,7 @@
                         <div class="col-lg-6 mt-4">
                             <select class="form-select form-select-lg" name="jemput" id="jemput">
                                 {{-- <option value="">Titik Jemput</option> --}}
-                                @foreach ($zone->where('id', 1) as $item)
+                                @foreach ($zone as $item)
 
                                     <option value="{{ $item->zone }}">{{ $item->zone }}</option>
                                 @endforeach

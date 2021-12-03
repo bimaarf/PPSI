@@ -34,13 +34,14 @@ class ShipperController extends Controller
         $checkouts = Checkout::orderBy('id', 'DESC')->get();
         $track_status = TrackingStatus::all();
         // feed manager
+        $users  = User::all();
         $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(5);
         $tracking   = Tracking::all();
         $pesananSaya = DB::table('orders')->count();
         $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
         $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
         $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
-        return view("user.pesanan_diproses", compact('i','orders', 'checkouts', 'track_status', 'feed_manager', 'tracking', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
+        return view("user.pesanan_diproses", compact('i','orders', 'checkouts', 'users', 'track_status', 'feed_manager', 'tracking', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
     public function pesananAnda()
     {

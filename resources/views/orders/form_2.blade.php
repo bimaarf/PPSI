@@ -50,7 +50,7 @@
                                         <select class="form-select form-select-lg" name="tujuan[]" required>
                                             {{-- <option value="">-- Tujuan --</option> --}}
 
-                                            @foreach ($zone->where('id', 1) as $item)
+                                            @foreach ($zone as $item)
 
                                                 <option value="{{ $item->zone }}">{{ $item->zone }}</option>
                                             @endforeach

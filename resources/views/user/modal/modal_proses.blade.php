@@ -1,4 +1,4 @@
-  <div class="modal top fade" id="exampleModal{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+  <div class="modal top fade" id="proses{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
     <div class="modal-dialog modal-xl  modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">

@@ -128,8 +128,10 @@
             @endif
         @endforeach
             <div class="text-center mt-4 konfirmasi{{ $track->id }}">
-                <a href="{{ route('chat.index', ['id' => $track->id]) }}" id="hulk"
-                    class="btn btn-success text-capitalize"><i class="fa fa-comment text-white"></i> Hubungi Driver</a>
+                <button type="button" class="btn btn-success text-center" data-mdb-dismiss="modal" data-mdb-toggle="modal" onclick="scrollBot()" data-mdb-target="#exampleModal{{ $track->id }}">
+                    <i class="fa fa-comment"></i> Hubungi Driver
+                  </button>
             </div>
+          
     @endforeach
 </ul>

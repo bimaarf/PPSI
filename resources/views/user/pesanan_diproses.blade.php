@@ -11,5 +11,5 @@
     <div class="mt-2">
         @include('user.partial.table_proses')
     </div>
-    
+
 @endsection

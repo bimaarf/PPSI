@@ -123,8 +123,8 @@ Route::get('/orders/status/tracking/{id}', [TrackingController::class, 'tracking
 // Route::get('/orders/proses/{id}', [TrackingController::class, 'timeline'])->name('orders.proses.timeline');
 
 Route::get('/orders/proses-track/{id}', [TrackingController::class, 'prosesTrack'])->name('orders.proses.proses_track');
-Route::get('/orders/modal-track/{id}', [TrackingController::class, 'modalTrack'])->name('orders.proses.modal_track');
-Route::get('/orders/proses-modal/{id}', [TrackingController::class, 'timelineModal'])->name('orders.proses.timeline_modal');
+Route::get('/orders/modal-track/{id}', [TrackingController::class, 'modalTrack'])->name('user.modal.elements.modal_track');
+Route::get('/orders/proses-modal/{id}', [TrackingController::class, 'timelineModal'])->name('user.modal.elements.timeline_modal');
 // chatting page
 Route::get('/chatting/{id}', [ChattingController::class, 'chatting'])->name('chat.index');
 Route::get('/chatting/read/{id}', [ChattingController::class, 'readPage'])->name('chat.elements.read');

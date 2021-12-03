@@ -75,7 +75,7 @@ class TrackingController extends Controller
         $driver   = Auth::user();
         $role_driver = RoleUser::where('role_id', '2')->get();
 
-        return view('orders.proses.modal_track', compact('checkouts', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
+        return view('user.modal.elements.modal_track', compact('checkouts', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
     }
     public function timelineModal(Request $request, $id)
     {
@@ -89,7 +89,7 @@ class TrackingController extends Controller
         $driver   = Auth::user();
         $role_driver = RoleUser::where('role_id', '2')->get();
 
-        return view('orders.proses.timeline_modal', compact('checkout', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
+        return view('user.modal.elements.timeline_modal', compact('checkout', 'orders', 'tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
     }
     
 }

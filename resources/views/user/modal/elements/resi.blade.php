@@ -1,6 +1,6 @@
-<div class="row">
-    <div class="col-4 py-lg-2">
-        <b>H1</b> -&ensp;Nama Pengirim
+<div class="row fs-5">
+    <div class="col-lg-4 py-lg-2">
+        <b>IP-H1</b> -&ensp;Nama Pengirim
     </div>
     <div class="col-1 py-lg-2">
         :
@@ -10,8 +10,8 @@
     </div>
 
     {{-- breack --}}
-    <div class="col-4 py-lg-2">
-        <b>H2</b> -&ensp;No. Resi
+    <div class="col-lg-4 py-lg-2">
+        <b>IP-H2</b> -&ensp;No. Resi
     </div>
     <div class="col-1 py-lg-2">
         :
@@ -21,9 +21,31 @@
     </div>
 
     {{-- breack --}}
+    <div class="col-lg-4 py-lg-2">
+        <b>IP-H3</b> -&ensp;Nama Barang
+    </div>
+    <div class="col-1 py-lg-2">
+        :
+    </div>
+    <div class="col-7 py-lg-2">
+        &emsp;&emsp;&emsp;{{ $item->nama_barang }}
+    </div>
 
-    <div class="col-4 py-lg-2">
-        <b>H3</b> -&ensp;Dari
+    {{-- breack --}}
+    <div class="col-lg-4 py-lg-2">
+        <b>IP-H4</b> -&ensp;Jenis Barang
+    </div>
+    <div class="col-1 py-lg-2">
+        :
+    </div>
+    <div class="col-7 py-lg-2">
+        &emsp;&emsp;&emsp;{{ $item->jenis_barang }}
+    </div>
+
+    {{-- breack --}}
+
+    <div class="col-lg-4 py-lg-2">
+        <b>IP-H5</b> -&ensp;Dari
     </div>
     <div class="col-1 py-lg-2">
         :
@@ -34,8 +56,8 @@
 
     {{-- breack --}}
 
-    <div class="col-4 py-lg-2">
-        <b>H4</b> -&ensp;Alamat Jemput
+    <div class="col-lg-4 py-lg-2">
+        <b>IP-H6</b> -&ensp;Alamat Jemput
     </div>
     <div class="col-1 py-lg-2">
         :
@@ -46,36 +68,36 @@
 
     {{-- breack --}}
 
-    <div class="col-4 py-lg-2">
-        <b>H5</b> -&ensp;Nama Penerima
+    <div class="col-lg-4 py-lg-2">
+        <b>IP-H7</b> -&ensp;Nama Penerima
     </div>
     <div class="col-1 py-lg-2">
         :
     </div>
     <div class="col-7 py-lg-2">
         @foreach (json_decode($item->nama_penerima) as $penerima)
-            <b>H5{{ $loop->iteration }}</b> -&ensp;{{ $penerima }} <br>
+            <b>IP-H7.{{ $loop->iteration }}</b> -&ensp;{{ $penerima }} <br>
         @endforeach
     </div>
 
     {{-- breack --}}
 
-    <div class="col-4 py-lg-2">
-        <b>H6</b> -&ensp;Tujuan
+    <div class="col-lg-4 py-lg-2">
+        <b>IP-H8</b> -&ensp;Tujuan
     </div>
     <div class="col-1 py-lg-2">
         :
     </div>
     <div class="col-7 py-lg-2">
         @foreach (json_decode($item->tujuan) as $tujuan)
-        <b>H6{{ $loop->iteration }}</b> -&ensp;{{ $tujuan }} <br>
+        <b>IP-H8.{{ $loop->iteration }}</b> -&ensp;{{ $tujuan }} <br>
         @endforeach
     </div>
     
     {{-- break --}}
 
-    <div class="col-4 py-lg-2">
-        <b>H7</b> -&ensp;Alamat Tujuan
+    <div class="col-lg-4 py-lg-2">
+        <b>IP-H9</b> -&ensp;Alamat Tujuan
     </div>
     <div class="col-1 py-lg-2">
         :
@@ -84,14 +106,14 @@
     {{-- break --}}
     <div class="col-7 py-lg-2">
         @foreach (json_decode($item->alamat_tujuan) as $aTujuan)
-            <b>H7{{ $loop->iteration }}</b> -&ensp;{{ $aTujuan }} <br>
+            <b>IP-H9.{{ $loop->iteration }}</b> -&ensp;{{ $aTujuan }} <br>
         @endforeach
     </div>
 
     {{-- break --}}
 
-    <div class="col-4 py-lg-2">
-        <b>H8</b> -&ensp;Rentang Waktu
+    <div class="col-lg-4 py-lg-2">
+        <b>IP-H10</b> -&ensp;Rentang Waktu
     </div>
     <div class="col-1 py-lg-2">
         :
@@ -102,8 +124,8 @@
 
     {{-- break --}}
 
-    <div class="col-4 py-lg-2">
-        <b>H9</b> -&ensp;<b>Total Harga</b>
+    <div class="col-lg-4 py-lg-2">
+        <b>IP-H11</b> -&ensp;<b>Total Harga</b>
     </div>
     <div class="col-1 py-lg-2">
         :

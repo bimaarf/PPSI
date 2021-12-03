@@ -20,7 +20,7 @@
 
 </head>
 
-<body class="mdb-skin-custom " data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="250">
+<body class="mdb-skin-custom " data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="250" style="background-color: #f3f2ef;">
 
          @include('layouts.backend.partial.navigation')
         <div class="container pt-4">
@@ -43,7 +43,7 @@
         $("#dynamic-ar").click(function() {
             ++i;
             $("#dynamicAddRemove").append(
-                '<tr><td><select class="form-select form-select-lg" name="tujuan[]" id="tujuan">@foreach ($zone->where("id", 1) as $item)<option value="{{ $item->zone }}">{{ $item->zone }}</option>@endforeach</select></td><td><input type="text" name="nama_penerima[]" class="form-control mt-1" placeholder="Nama Penerima" /></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Del</button></td></tr><tr><td><input type="text" name="alamat_tujuan[]" placeholder="Alamat Lengkap" class="form-control mt-1" /></td><td><input type="num" name="telp_tujuan[]" class="form-control mt-1" placeholder="628XXXXX"></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Del</button></td></tr>'
+                '<tr><td><select class="form-select form-select-lg" name="tujuan[]" id="tujuan">@foreach ($zone as $item)<option value="{{ $item->zone }}">{{ $item->zone }}</option>@endforeach</select></td><td><input type="text" name="nama_penerima[]" class="form-control mt-1" placeholder="Nama Penerima" /></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Del</button></td></tr><tr><td><input type="text" name="alamat_tujuan[]" placeholder="Alamat Lengkap" class="form-control mt-1" /></td><td><input type="num" name="telp_tujuan[]" class="form-control mt-1" placeholder="628XXXXX"></td><td><button type="button" class="btn btn-outline-danger remove-input-field">Del</button></td></tr>'
             );
         });
         $(document).on('click', '.remove-input-field', function() {
