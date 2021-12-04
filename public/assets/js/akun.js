@@ -2,6 +2,7 @@ $(function () {
     let width = $(window).width()
 
     if (width <= 575) {
+        $('.login-button').removeClass('col-5');
         $('.login-button').removeClass('col-4');
         $('.login-button').removeClass('col-3');
         $('.login-button button').removeClass('float-end');
@@ -25,6 +26,7 @@ $(function () {
         width = $(window).width()
 
         if (width <= 575) {
+            $('.login-button').removeClass('col-5');
             $('.login-button').removeClass('col-4');
             $('.login-button').removeClass('col-3');
             $('.login-button button').removeClass('float-end');
@@ -42,6 +44,4 @@ $(function () {
             $('.login-button button').addClass('float-end');
         }
     })
-
 })
-

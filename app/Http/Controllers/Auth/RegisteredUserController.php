@@ -25,7 +25,8 @@ class RegisteredUserController extends Controller
     {
         $zone = Zone::get();
         $roles = RoleModel::all();
-        return view('auth.register', compact('roles', 'zone'));
+        return view('akun.register', compact('roles', 'zone'));
+        // return view('auth.register', compact('roles', 'zone'));
     }
 
     /**
@@ -59,16 +60,13 @@ class RegisteredUserController extends Controller
         event(new Registered($user));
 
         Auth::login($user);
-        if(Auth::user()->hasRole('admin|super-admin'))
-        {
+        if (Auth::user()->hasRole('admin|super-admin')) {
             return redirect()->route('admin.index');
         }
-        if(Auth::user()->hasRole('driver'))
-        {
+        if (Auth::user()->hasRole('driver')) {
             return redirect()->route('driver.index');
         }
-        if(Auth::user()->hasRole('shipper'))
-        {
+        if (Auth::user()->hasRole('shipper')) {
             return redirect()->route('user.index');
         }
     }

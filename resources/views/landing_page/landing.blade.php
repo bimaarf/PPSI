@@ -18,8 +18,8 @@
             <div class="logo">
                 <a href="index.html">
                     <!-- <div class="img-fluid img logo-img"></div> -->
-                    {{-- <img src="{{ asset('assets/img/landing/logo2.png') }}" alt="logo mitruck" class="logo-img">
-                    <img src="{{ asset('assets/img/landing/logo3.png') }}" alt="logo mitruck" class="logo-img hidden"> --}}
+                    <img src="{{ asset('assets/img/landing/logo2.png') }}" alt="logo mitruck" class="logo-img">
+                    <img src="{{ asset('assets/img/landing/logo3.png') }}" alt="logo mitruck" class="logo-img hidden">
                 </a>
             </div>
 
@@ -41,9 +41,23 @@
                     </div>
                 </li>
                 <!-- Login Button -->
-                <div class="login">
-                    <a href="{{ route('login') }}" class="btn btn-outline-light">Masuk</a>
-                </div>
+                @auth
+                <form method="POST" action="{{ route('logout') }}" class="login">
+                    @csrf
+
+                    <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();" class="btn btn-outline-light lgout-btn">
+                        {{ __('Logout') }}
+                    </x-dropdown-link>
+                </form>
+                @endauth
+                @guest
+                    <div class="login">
+                        <a href="{{ route('login') }}" class="btn btn-outline-light">Masuk</a>
+                    </div>
+                @endguest
+                
             </ul>
             <!-- Burger button pada mobile navigation bar -->
             <div class="nav-toggler">
@@ -145,27 +159,27 @@
             <div class="row mt-5">
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        <img src="assets/img/landing/f5.jpg" class="" alt="Foto1">
+                        <img src="assets/img/landing/blindvan.jpg" class="" alt="Foto1">
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        <img src="assets/img/landing/f2.jpg" class="" alt="Foto2">
+                        <img src="assets/img/landing/cdd_bak.jpg" class="" alt="Foto2">
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        <img src="assets/img/landing/f3.jpg" class="" alt="Foto3">
+                        <img src="assets/img/landing/cdd_box.jpg" class="" alt="Foto3">
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        <img src="assets/img/landing/f4.jpg" class="" alt="Foto4">
+                        <img src="assets/img/landing/cdd_reefer.jpg" class="" alt="Foto4">
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">
                     <div class="card">
-                        <img src="assets/img/landing/f5.jpg" class="" alt="Foto5">
+                        <img src="assets/img/landing/pickup.jpg" class="" alt="Foto5">
                     </div>
                 </div>
                 <div class="col-md-4 mb-3">

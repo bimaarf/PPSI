@@ -39,6 +39,19 @@
     border-bottom-left-radius: 0.25rem !important;
 }
 
+.go-regis {
+    background-color: #000000b9;
+}
+
+.tutup {
+    right: -40px;
+    cursor: pointer;
+}
+
+.tutup:hover{
+    color: black;
+}
+
 span.line-center-text {
     display: flex;
     flex-direction: row;
@@ -100,9 +113,6 @@ span.line-center-text::after {
         right: 200px;
     }
     .miring-bottom {transform: rotate(-50deg) translate(-30%, 130%);}
-}
-
-@media screen and (max-width:630px){
 }
 
 @media screen and (max-width: 575px) {
