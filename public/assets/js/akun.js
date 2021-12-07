@@ -45,3 +45,20 @@ $(function () {
         }
     })
 })
+
+const messages = document.getElementsByClassName('message-error')
+for (let index = 0; index < messages.length; index++) {
+    const message = messages[index];
+
+    if (index != 0) {
+        const tinggi = messages[index - 1].clientHeight
+        const tinggi2 = message.clientHeight
+        message.style.bottom = 20 + (tinggi * index) + "px";
+    }
+}
+
+$(document).ready(function () {
+    setTimeout(function () {
+        $('.message-error').addClass('message-hidden')
+    }, 4000)
+})

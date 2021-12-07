@@ -64,6 +64,15 @@
         </div>
     </div>
 
+    <!-- Validation Errors -->
+    @if ($errors->any())
+      @foreach ($errors->all() as $error)
+        <div class="alert alert-danger float-end position-fixed message-error" role="alert">
+          {{ $error }}
+        </div>
+      @endforeach
+    @endif
+
     <script src="{{ asset('assets/js/jquery-3.6.0.js') }}"></script>
     <script src="{{ asset('assets/js/mdb.min.js') }}"></script>
     <script src="{{ asset('assets/js/akun.js') }}"></script>
@@ -72,7 +81,6 @@
         const nilai = nilainya.get('role')
         role = document.getElementById('role')
         role.value = nilai
-        console.log(nilai)
     </script>
 </body>
 

@@ -2,6 +2,7 @@
     border: 1px solid red !important;
 } */
 
+@import url(brand.css);
 
 /* scroll navbar */
 header {
@@ -57,7 +58,7 @@ nav {
     display: block;
     width: 0;
     height: 2px;
-    background: red;
+    background-color: var(--danger);
     transition: width .3s;
 }
 
@@ -70,7 +71,7 @@ nav {
 }
 
 .navbar li a.dropdown-item {
-    color: black !important;
+    color: var(--dark) !important;
 }
 
 .show {
@@ -252,7 +253,7 @@ span.purecounter {
     font-size: 48px;
     display: block;
     font-weight: 700;
-    color: #db203f;
+    color: var(--danger);
 }
 
 .sup-title,

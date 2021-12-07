@@ -24,12 +24,13 @@
     <div class="miring-bottom position-fixed bg-danger"></div>
 
     <div class="card rounded shadow mx-auto row card-akun">
+      
         <div class="col-lg-6 col-md-6 rounded-left image-akun">
           <img src="{{ asset('assets/img/landing/Logo2.png') }}" alt="" class="logo-mitruck logo-white">
           <img src="{{ asset('assets/img/landing/Logo3.png') }}" alt="" class="logo-mitruck logo-black">
         </div>
         <div class="col-lg-6 col-md-6 card-body p-5 body-akun">
-            <h2 class="card-title text-center mx-4">Temui truk Anda, dan muat!</h2>
+            <h2 class="card-title text-center mx-4 mx-md-0 mx-lg-4 mt-2 mt-lg-4">Temui truk Anda, dan muat!</h2>
             <form method="POST" action="{{ route('login') }}" class="login-form mx-lg-3 mx-lg-4">
               @csrf
 
@@ -69,15 +70,24 @@
               <div class="m-3">
                 <span class="line-center-text">atau </span>
               </div>
-              <div class="form-group mx-4">
-                <div class="btn btn-warning w-100 daftar">Daftar</div>
+              <div class="form-group text-center btn-daftar">
+                <div class="btn btn-warning daftar">Daftar</div>
               </div>
             </form>
         </div>
     </div>
 
+    <!-- Validation Errors -->
+    @if ($errors->any())
+      @foreach ($errors->all() as $error)
+        <div class="alert alert-danger float-end position-absolute message-error" role="alert">
+          {{ $error }}
+        </div>
+      @endforeach
+    @endif
+
     <div class="position-absolute w-100 h-100 top-0 left-0 row align-items-center m-0 go-regis d-none">
-      <div class="choice card rounded mx-auto w-50 p-5 pt-0">
+      <div class="choice card rounded mx-auto w-75 p-5 pt-0">
         <div class="tutup position-relative mb-2 mt-1">
           <h4 class="float-end">X</h4>
         </div>

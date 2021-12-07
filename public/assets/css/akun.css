@@ -2,6 +2,12 @@
     border: 1px solid red;
 } */
 
+@import url(brand.css);
+
+body {
+    background-color: var(--light);
+}
+
 .miring-top, .miring-bottom {
     height: 300px;
     width: 150%;
@@ -22,7 +28,7 @@
 
 .image-akun {
     height: 80vh;
-    background-color: blue;
+    background-color: var(--primary);
     background-image: url("../img/landing/mt_bg1.png");
     background-size: cover;
 }
@@ -49,7 +55,38 @@
 }
 
 .tutup:hover{
-    color: black;
+    color: var(--dark);
+}
+
+
+.daftar {
+    width: 90% !important;
+}
+
+.message-error {
+    bottom: 5px;
+    right: 5px;
+    margin: 10px;
+    transition: all .3s linear;
+    display: block;
+    opacity: 0;
+    animation: hilang 4s linear;
+}
+
+.message-hidden {
+    display: none;
+}
+
+@keyframes hilang {
+    0% {opacity: 1;}
+    70% {
+        opacity: 1;
+        visibility: visible;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 span.line-center-text {
@@ -80,7 +117,7 @@ span.line-center-text::after {
         font-size: calc(1.3rem + .6vw);
     }
 
-    .login-form div:not(.row) {
+    .login-form div:not(.row, .btn-daftar) {
         margin-right: .5rem !important;
         margin-left: .5rem !important;
     }
