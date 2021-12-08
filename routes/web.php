@@ -29,9 +29,9 @@ Route::get('/', function () {
     return view('landing_page.landing');
 });
 
-// Route::get('/landing', function () {
-//     return view('landing_page.landing');
-// });
+Route::get('/landing', function () {
+    return view('landing_page.landing');
+});
 
 Route::get('/laman-login', function () {
     return view('akun.login');
@@ -66,7 +66,7 @@ Route::get('/clear-cache', function () {
 Route::get('/user-form-jemput', [OrderController::class, 'form1'])->name('orders.form_1');
 Route::get('/user-form-tujuan', [OrderController::class, 'form2'])->name('orders.form_2');
 Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('orders.detail')->middleware('auth');
-Route::get('/dashboard/user-form/delete/{id}', [OrderController::class, 'hapus'])->name('orders.hapus')->middleware(['auth', 'role:shipper|admin|super-admin']);
+Route::get('/dashboard/user-form/delete/{id}', [OrderController::class, 'hapus'])->name('orders.hapus')->middleware('auth');
 Route::post('/store-input-fields', [OrderController::class, 'tambah'])->name('user.order');
 Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('user.order2');
 
@@ -100,8 +100,7 @@ Route::get('/dashboard/driver/pesanan-diproses', [DriverController::class, 'pesa
 Route::get('/dashboard/driver/pesanan-dibatalkan', [DriverController::class, 'pesananDibatalkan'])->name('driver.pesanan_dibatalkan')->middleware(['auth', 'role:driver']);
 Route::post('/dashboard/driver/cancel/{id}', [DriverController::class, 'tolak'])->name('driver.tolak')->middleware('auth');
 
-// Route::get('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
-// Route::post('/store-input-fields/checkout/{id}{key}', [DriverController::class, 'tolak'])->name('driver.delete');
+
 Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');
 // driver akses
 Route::post('/store-input-fields/terima-orderan/{id}', [DriverController::class, 'terima'])->name('driver.terima');
@@ -112,20 +111,19 @@ Route::post('/store-input-fields/sampai-barang/{id}', [DriverController::class, 
 // chatting
 
 Route::get('/driver/status/tracking/chatting/tambah/{id}', [ChattingController::class, 'tambah'])->name('chat.tambah');
-Route::get('/dashboard/driver/pesanan-diproses/store/{id}', [ChattingController::class, 'store'])->name('chat.store');
-Route::get('/driver/status/tracking/chatting/read/{id}', [ChattingController::class, 'read'])->name('orders.modal.elements.read');
+Route::get('/dashboard/driver/pesanan-diproses/store', [ChattingController::class, 'store'])->name('chat.store');
+Route::get('/chatting/read/{id}', [ChattingController::class, 'read'])->name('orders.modal.elements.read');
 
 Route::post('/store-input-fields/feed_manager/{id}', [FindChecker::class, 'find'])->name('feed_manager.find');
 
 // tracking
 Route::get('/orders/status/tracking/{id}', [TrackingController::class, 'tracking'])->name('orders.tracking');
 
-// Route::get('/orders/proses/{id}', [TrackingController::class, 'timeline'])->name('orders.proses.timeline');
 
 Route::get('/orders/proses-track/{id}', [TrackingController::class, 'prosesTrack'])->name('orders.proses.proses_track');
 Route::get('/orders/modal-track/{id}', [TrackingController::class, 'modalTrack'])->name('user.modal.elements.modal_track');
 Route::get('/orders/proses-modal/{id}', [TrackingController::class, 'timelineModal'])->name('user.modal.elements.timeline_modal');
 // chatting page
-Route::get('/chatting/{id}', [ChattingController::class, 'chatting'])->name('chat.index');
-Route::get('/chatting/read/{id}', [ChattingController::class, 'readPage'])->name('chat.elements.read');
-Route::get('/chatting/store/{id}', [ChattingController::class, 'store'])->name('chat.elements.store');
+// Route::get('/chatting/{id}', [ChattingController::class, 'chatting'])->name('chat.index');
+// Route::get('/chatting/read/{id}', [ChattingController::class, 'readPage'])->name('chat.elements.read');
+// Route::get('/chatting/store/{id}', [ChattingController::class, 'store'])->name('chat.elements.store');

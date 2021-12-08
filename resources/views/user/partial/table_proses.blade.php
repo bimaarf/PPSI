@@ -18,7 +18,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @foreach ($orders->where('status', 'Process') as $item)
                         @if ($item->user_id == Auth::user()->id)
                             <tr>
@@ -36,9 +35,16 @@
                             @include('user.modal.modal_proses')
                         @endif
                         @foreach ($checkouts->where('orders_id', $item->id) as $check)
+                        
                             @foreach ($tracking->where('checkout_id', $check->id) as $track)
+                            <button type="button" class="btn btn-success text-center" data-mdb-dismiss="modal" data-mdb-toggle="modal" onclick="scrollBot()" data-mdb-target="#exampleModal{{ $track->id }}">
+                                <i class="fa fa-comment"></i> Hubungi Driver{{ $track->id }}
+                            </button>
                                 @include('orders.modal.chattings')
+                                
                             @endforeach
+
+                         
                         @endforeach
                     @endforeach
 
@@ -46,7 +52,6 @@
                 </tbody>
             </table>
         </div>
-        {{ $orders->links() }} <small class="text-danger"><i>*You can change this order if the driver status is not
-                accoupied.</i></small>
+        {{ $orders->links() }}
     </div>
 </div>

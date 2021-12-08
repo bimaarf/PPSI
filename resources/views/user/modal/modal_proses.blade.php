@@ -24,7 +24,24 @@
                         @include('user.modal.elements.track')
                         </div>
                         <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-                          Tab 3 content
+                          {{-- chat box --}}
+                            <div class="card">
+                              <div class="card-body">
+                                  <div>
+                                    <img src="{{ asset('assets/icon/Driver.svg') }}" width="30" alt="">
+                                    <h6>Driver 1</h6>
+                                  </div>
+                                  <div>
+                                    <img src="{{ asset('assets/icon/Driver.svg') }}" width="30" alt="">
+                                    <h6>Driver 1</h6>
+                                  </div>
+                                  <div>
+                                    <img src="{{ asset('assets/icon/Driver.svg') }}" width="30" alt="">
+                                    <h6>Driver 1</h6>
+                                  </div>
+                              </div>
+                            </div>
+                          {{-- chat box --}}
                         </div>
                       </div>
                 </div>
@@ -39,7 +56,7 @@
                             >Lacak Pesanan</a
                           >
                         </li>
-                        {{-- <li class="nav-item" role="presentation">
+                        <li class="nav-item" role="presentation">
                           <a
                             class="nav-link"
                             id="ex1-tab-3"
@@ -50,7 +67,7 @@
                             aria-selected="false"
                             >Tab 3</a
                           >
-                        </li> --}}
+                        </li>
                       </ul>
                       <!-- Tabs navs -->
                     {{-- <a href="{{ route('orders.tracking', ['id'=>$item->id]) }}" class="btn btn-success rounded-5 btn-lg text-capitalize" style="width:100%">Lacak</a> --}}
@@ -61,3 +78,4 @@
       </div>
     </div>
   </div>
+

@@ -18,11 +18,11 @@
                         <input type="hidden" name="message" value="Finded" >
                         @foreach ($driver->where('status_id', 1)->slice(0, $item->feed_m) as $drv)
                         {{-- <label for="">Driver id</label> <br> --}}
-                        <input type="hidden" name="driver_id[]" value="{{ $drv->id }}">
+                        <input type="text" name="driver_id[]" value="{{ $drv->id }}">
                         
                         @endforeach
                         <br>
-                        <input type="hidden" name="orders_id" value="{{ $item->id }}">
+                        <input type="text" name="orders_id" value="{{ $item->id }}">
                         <input type="submit" class="btn btn-success rounded-5 btn-lg text-capitalize" style="width:100%" value="Temukan Driver">
                     </form>
                     <form action="{{ route('orders.hapus', ['id' => $item->id]) }}" method="get">

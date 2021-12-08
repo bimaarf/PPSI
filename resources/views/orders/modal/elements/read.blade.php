@@ -1,5 +1,6 @@
-@foreach ($chatting as $item)
-    @if ($item->user_id != Auth::id())
+<hr>
+@foreach ($chatting as $chats)
+    @if ($chats->user_id != Auth::id())
         {{-- other people --}}
         <div class="d-flex justify-content-start">
             <div class="profile-photo message-photo">
@@ -9,17 +10,18 @@
             </div>
             <div class="card bg-light rounded w-75 z-depth-0 mb-2">
                 <div class="card-body p-2">
-                    <p class="card-text black-text">{{ $item->chat }}</p>
+                    <p class="card-text black-text">{{ $chats->chat }}</p>
                 </div>
             </div>
         </div>
     @endif
-    @if ($item->user_id == Auth::id())
+    @if ($chats->user_id == Auth::id())
         {{-- you --}}
         <div class="card bg-primary rounded w-75 float-right z-depth-0 mb-4 mt-4 last">
             <div class="card-body p-2">
-                <p class="card-text text-white">{{ $item->chat }}</p>
+                <p class="card-text text-white">{{ $chats->chat }}</p>
             </div>
         </div>
     @endif
+    
 @endforeach
