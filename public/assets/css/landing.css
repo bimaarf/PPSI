@@ -2,6 +2,7 @@
     border: 1px solid red !important;
 } */
 
+@import url(brand.css);
 
 /* scroll navbar */
 header {
@@ -57,7 +58,7 @@ nav {
     display: block;
     width: 0;
     height: 2px;
-    background: red;
+    background-color: var(--danger);
     transition: width .3s;
 }
 
@@ -70,7 +71,7 @@ nav {
 }
 
 .navbar li a.dropdown-item {
-    color: black !important;
+    color: var(--dark) !important;
 }
 
 .show {
@@ -116,12 +117,8 @@ nav {
         right: 0px;
         height: 100vh;
         top: 0;
-<<<<<<< HEAD
         background-color: #000000b9;
         /* opacity: 0.8; */
-=======
-        background-color: #000000c0;
->>>>>>> 3d95380f9ae7f5ee1698a48b177d1d2e4ec17e61
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -256,7 +253,7 @@ span.purecounter {
     font-size: 48px;
     display: block;
     font-weight: 700;
-    color: #db203f;
+    color: var(--danger);
 }
 
 .sup-title,
