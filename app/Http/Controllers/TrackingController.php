@@ -18,7 +18,7 @@ class TrackingController extends Controller
     public function tracking(Request $request, $id)
     {
         $orders = Order::find($id);
-        $checkout = Checkout::all();
+        $checkout = Checkout::orderBy('id', 'ASC')->get();
         $tracking = Tracking::orderBy('id', 'ASC')->get();
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         $users   = User::all();
@@ -66,7 +66,7 @@ class TrackingController extends Controller
     public function modalTrack(Request $request, $id)
     {
         $orders = Order::find($id);
-        $checkouts = Checkout::where('orders_id', $orders->id)->get();
+        $checkouts = Checkout::all();
         $tracking = Tracking::orderBy('id', 'ASC')->get();
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         $users   = User::all();

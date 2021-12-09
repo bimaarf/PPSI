@@ -33,13 +33,13 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-bordered mt-4" id="dynamicAddRemove" required>
+                        <table class="table table-bordered mt-4" id="dynamicAddRemove">
                             <thead>
                                 <tr>
-                                    <th>Alamat</th>
-                                    <th>Tujuan</th>
+                                    <th scope="col">Alamat</th>
+                                    <th scope="col">Tujuan</th>
                                     @if ($orders->feed_m == 1)
-                                        <th>#</th>
+                                        <th scope="col">#</th>
                                     @endif
                                 </tr>
                             </thead>

@@ -15,48 +15,20 @@ use Illuminate\Support\Facades\DB;
 
 class ChattingController extends Controller
 {
-    public function chatting($id)
-    {
-
-        $users    = User::all();
-        $tracking = Tracking::find($id);
-        $chatting = Chatting::where('track_id', $tracking->id)->get();
-        $driver   = Auth::user();
-        $role_driver = RoleUser::where('role_id', '2')->get();
-
-        $pesananSaya = DB::table('orders')->count();
-        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
-        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
-        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
-        return view('chat.index', compact('users','tracking', 'chatting', 'driver', 'role_driver', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
-    }
-    public function readPage(Request $request, $id)
-    {
-        $checkout = Checkout::all();
-        $track = Tracking::find($id);
-        $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
-        $users   = User::all();
-        // chatting
-        $chatting = Chatting::where('track_id', $track->id)->get();
-
-        $driver   = Auth::user();
-        $role_driver = RoleUser::where('role_id', '2')->get();
-
-        return view('chat.elements.read', compact('checkout','track', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
-    }
+    
     public function read(Request $request, $id)
     {
-        $checkout = Checkout::all();
-        $track = Tracking::find($id);
+        $checkout = Checkout::orderBy('id', 'ASC')->get();
+        $tracking = Tracking::find($id);
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
         $users   = User::all();
         // chatting
-        $chatting = Chatting::where('track_id', $track->id)->get();
+        $chatting = Chatting::where('track_id', $tracking->id)->get();
 
         $driver   = Auth::user();
         $role_driver = RoleUser::where('role_id', '2')->get();
 
-        return view('orders.modal.elements.read', compact('checkout','track', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
+        return view('orders.modal.elements.read', compact('checkout','tracking', 'users', 'track_status', 'chatting', 'driver', 'role_driver'));
     }
     public function tambah(Request $request, $id)
     {
@@ -69,12 +41,11 @@ class ChattingController extends Controller
         return back();
 
     }
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        $tracking           = Tracking::find($id);
         $data['chat']       = $request->chat;
         $data['user_id']    = Auth::id();
-        $data['track_id']   = $tracking->id;
+        $data['track_id']   = $request->track_id;
         Chatting::insert($data);
     }
 }

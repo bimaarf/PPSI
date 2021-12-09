@@ -36,7 +36,7 @@ class ShipperController extends Controller
         // feed manager
         $users  = User::all();
         $feed_manager = FeedManager::orderBy('id', 'ASC')->simplePaginate(5);
-        $tracking   = Tracking::all();
+        $tracking   = Tracking::orderBy('id', 'ASC')->get();
         $pesananSaya = DB::table('orders')->count();
         $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
         $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();

@@ -36,14 +36,14 @@
         @endif
         @if ($track->status == 3)
             <li class="complete">
-                <a href="#">Driver menerima pesanan anda<i class="ico fa fa-check ico-green"></i>
-                    <span class="desc">Paket anda diantar oleh <b>username</b>
+                <a href="#">Driver menerima pesanan anda<em class="ico fa fa-check ico-green"></em>
+                    <span class="desc">Paket anda diantar oleh <strong>username</strong>
                     </span>
                 </a>
             </li>
             <li class="complete prev-step">
-                <a href="#">Driver menuju ke lokasi {{ $check->orders->alamat_jemput }}<i
-                        class="ico fa fa-check ico-green"></i>
+                <a href="#">Driver menuju ke lokasi {{ $check->orders->alamat_jemput }}<em
+                        class="ico fa fa-check ico-green"></em>
                     <span class="desc">Paket akan segera dijemput</span>
                 </a>
             </li>
@@ -129,8 +129,10 @@
         @endforeach
             <div class="text-center mt-4 konfirmasi{{ $track->id }}">
                 <button type="button" class="btn btn-success text-center" data-mdb-dismiss="modal" data-mdb-toggle="modal" onclick="scrollBot()" data-mdb-target="#exampleModal{{ $track->id }}">
-                    <i class="fa fa-comment"></i> Hubungi Driver
+                    <i class="fa fa-comment"></i> Hubungi Driver{{ $track->id }}
                   </button>
+
+                  
             </div>
           
     @endforeach

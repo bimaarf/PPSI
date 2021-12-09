@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     {{-- stepper --}}
+    
     <style>
         html,
         body {
