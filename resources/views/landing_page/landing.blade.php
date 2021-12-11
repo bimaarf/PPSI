@@ -16,7 +16,7 @@
         <nav>
             <!-- Logo Icon -->
             <div class="logo">
-                <a href="index.html">
+                <a href="{{ route('dashboard') }}">
                     <!-- <div class="img-fluid img logo-img"></div> -->
                     <img src="{{ asset('assets/img/landing/logo2.png') }}" alt="logo mitruck" class="logo-img">
                     <img src="{{ asset('assets/img/landing/logo3.png') }}" alt="logo mitruck" class="logo-img hidden">

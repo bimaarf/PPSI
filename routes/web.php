@@ -28,18 +28,10 @@ use Illuminate\Support\Facades\Artisan;
 
 Route::get('/', function () {
     return view('landing_page.landing');
-});
+})->name('dashboard');
 
-Route::get('/landing', function () {
-    return view('landing_page.landing');
-});
-
-Route::get('/laman-regis', function () {
-    return view('akun.register');
-});
-
-Route::get('/laman-dashboard', function () {
-    return view('dashboard.index');
+Route::get('/laman-profil', function () {
+    return view('test.index');
 });
 
 
