@@ -5,16 +5,16 @@
     <div class="card rounded">
         <div class="card-body">
             <div class="fs-5">
-                <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda</b>
+                <em class="fas fa-home text-primary"></em>&emsp;<strong>Beranda</strong>
             </div>
         </div>
     </div>
     <div class="row mt-2">
         <div class="col-lg-5">
-            <div class="card rounded-9">
+            <div class="card rounded">
                 <div class="text-center">
                     <img src="{{ asset('assets/icon/Shipper.svg') }}" class="img-fluid rounded mt-4" width="200vh" alt="">
-                    <h4 class="text-capitalize text-dark mt-4"><b>{{ Auth::user()->name }}</b></h4>
+                    <h4 class="text-capitalize text-dark mt-4"><strong>{{ Auth::user()->name }}</strong></h4>
                     <h5 class="text-lowercase text-dark">{{ Auth::user()->email }}</h5>
                     <form action="">
                         <h6>Ubah Password</h6>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="col-lg-7">
-            <div class="card rounded-9">
+            <div class="card rounded">
                 <div class="card-header">
                     <h4 class="text-capitalize text-center text-dark mt-4">Profil Kamu</h4>
                 </div>
@@ -62,15 +62,15 @@
                     </div>
                 </div>
             </div>
-            <div class="card rounded-9 mt-2">
+            <div class="card rounded mt-2">
                 <div class="card-header">
                     <div class="row">
                         <a href="{{ route('orders.form_1') }}"
-                            class="btn btn-primary text-capitalize col-lg-12 rounded-9">Pesan Armada</a>
+                            class="btn btn-primary text-capitalize col-lg-12 rounded">Pesan Armada</a>
                     </div>
                 </div>
             </div>
-            <div class="card rounded-9 mt-2">
+            <div class="card rounded mt-2">
                 <div class="card-header">
                     <h4 class="text-dark text-capitalize text-center">Jenis Akun</h4>
                 </div>

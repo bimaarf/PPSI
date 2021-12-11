@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header text-center py-3">
         <h5 class="mb-0 text-center">
-            <strong>Pesanan Saya</strong>
+            <strong>Pesanan Sedang Diproses</strong>
         </h5>
     </div>
     <div class="card-body">
@@ -37,7 +37,7 @@
                         @foreach ($checkouts->where('orders_id', $item->id) as $check)
                         
                             @foreach ($tracking->where('checkout_id', $check->id) as $track)
-                            <button type="button" class="btn btn-success text-center" data-mdb-dismiss="modal" data-mdb-toggle="modal" onclick="scrollBot()" data-mdb-target="#exampleModal{{ $track->id }}">
+                            <button type="button" class="btn btn-success text-center" data-mdb-dismiss="modal" data-mdb-toggle="modal" onclick="scrollBot()" data-mdb-target="#chatting{{ $track->id }}">
                                 <i class="fa fa-comment"></i> Hubungi Driver{{ $track->id }}
                             </button>
                                 @include('orders.modal.chattings')

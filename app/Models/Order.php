@@ -8,9 +8,12 @@ use Illuminate\Support\Carbon;
 use App\Models\User;
 use App\Models\Checkout;
 use App\Models\FeedManager;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Order extends Model
 {
     use HasFactory;
+    use SoftDeletes;
     protected $table = 'orders';
     protected $fillable = [
         'armada',

@@ -18,7 +18,7 @@ div<div class="card chat-room small-chat wide" id="myForm">
                         placeholder="{{ Auth::user()->name }}&ensp;: track -> {{ $track->id }}">
                 </div>
                 <div class="col-3">
-                    <button type="submit" id="submit" class="btn btn-outline-primary text-capitalize"
+                    <button type="submit" id="submit" class="btn btn-outline-primary text-capitalize submit"
                         style="width: 100%" onclick="store{{ $track->id }}()"><i class="fa fa-paper-plane"></i>&nbsp;Kirim</button>
                 </div>
             </div>
@@ -50,7 +50,7 @@ div<div class="card chat-room small-chat wide" id="myForm">
                                 function readChat() {
                                     $.get("{{ route('orders.modal.elements.read', ['id' => $track->id-1]) }}", {}, function(chatting, status) {
                                         $("#read").html(chatting);
-                            
+                                        console.log({{ $track->id }})
                                     });
                             
                                 }
@@ -70,7 +70,8 @@ div<div class="card chat-room small-chat wide" id="myForm">
                                         type: "GET",
                                         data: $('#contactUsForm').serialize(),
                                         success: function(response) {
-                                            $('#submit').html('Submit');
+                                            $('.submit').html('Submit');
+
                                             readChat();
                                             // scroll down   
                                             $('#read').stop().animate({
