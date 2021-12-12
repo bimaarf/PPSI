@@ -110,7 +110,7 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
 // chatting
 
 Route::get('/driver/status/tracking/chatting/tambah/{id}', [ChattingController::class, 'tambah'])->name('chat.tambah');
-Route::get('/dashboard/driver/pesanan-diproses/store{id}', [ChattingController::class, 'store'])->name('chat.store');
+Route::get('/dashboard/driver/pesanan-diproses/store/{id}', [ChattingController::class, 'store'])->name('chat.store');
 Route::get('/chatting/read/{id}', [ChattingController::class, 'read'])->name('orders.modal.elements.read');
 
 // tracking

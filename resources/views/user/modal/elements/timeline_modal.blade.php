@@ -128,7 +128,7 @@
             @endif
         @endforeach
             <div class="text-center mt-4 konfirmasi{{ $track->id }}">
-                <button type="button" class="btn btn-success text-center" data-mdb-dismiss="modal" data-mdb-toggle="modal" onclick="scrollBot()" data-mdb-target="#chatting{{ $track->id }}">
+                <button type="button" class="btn btn-success text-center" data-mdb-dismiss="modal" data-mdb-toggle="modal" onclick="scrollBot({{ $track->id }})" data-mdb-target="#chatting{{ $track->id }}">
                     <i class="fa fa-comment"></i> Hubungi Driver{{ $track->id }}
                   </button>
 
