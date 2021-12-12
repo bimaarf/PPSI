@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}" />
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}" />
-    <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet"> <!--load all styles -->
+    {{-- <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet"> <!--load all styles --> --}}
 
 </head>
 

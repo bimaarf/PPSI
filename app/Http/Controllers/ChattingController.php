@@ -41,11 +41,11 @@ class ChattingController extends Controller
         return back();
 
     }
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
         $data['chat']       = $request->chat;
         $data['user_id']    = Auth::id();
-        $data['track_id']   = $request->track_id;
+        $data['track_id']   = $id;
         Chatting::insert($data);
     }
 }

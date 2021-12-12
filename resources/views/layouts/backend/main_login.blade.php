@@ -21,9 +21,9 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="stylesheet" href="https://fontawesome.com/v5.15/icons/circle?style=solid">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> --}}
     {{-- stepper --}}
     
     <style>
@@ -178,12 +178,6 @@
 
     </style>
     {{-- stepper --}}
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
-    <!-- Google Fonts Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" />
-    <!-- MDB -->
-    <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}" />
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
@@ -291,7 +285,7 @@
         }
 
     </style>
-    <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet">
+    {{-- <link href="/your-path-to-fontawesome/css/all.css" rel="stylesheet"> --}}
     <!--load all styles -->
     {{-- search --}}
 
@@ -314,16 +308,15 @@
         </div>
     </main>
     @include('layouts.backend.partial.footer')
-    <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/jquery-3.6.0.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/popper.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script> --}}
     <script type="text/javascript" src="{{ asset('assets/js/mdb.min.js') }}"></script>
     <!-- Custom scripts -->
     <script type="text/javascript" src="{{ asset('assets/js/admin.js') }}"></script>
     {{-- Dynamic input --}}
 
     <!-- JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
         var i = 0;
@@ -346,9 +339,9 @@
            
         }, 1000);
         
-        function scrollBot(){
+        function scrollBot(id){
             setInterval(function() {
-                readChat();
+                readChat(id);
         }, 1000);
         }
     </script>
