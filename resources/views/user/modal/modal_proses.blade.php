@@ -15,15 +15,15 @@
             <div class="row">
                 <div class="col-lg-9">
                     <div class="tab-content" id="ex1-content">
-                        <div class="tab-pane fade show active rounded-5 p-4"id="ex1-tabs-1" role="tabpanel"
+                        <div class="tab-pane fade show active rounded-5 p-4"id="ex1-resi-1" role="tabpanel"
                           aria-labelledby="ex1-tab-1" style="background-color: #ffffffd7;">
                         @include('user.modal.elements.resi')
 
                         </div>
-                        <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
+                        <div class="tab-pane fade" id="ex1-resi-2" role="tabpanel" aria-labelledby="ex1-tab-2">
                         @include('user.modal.elements.track')
                         </div>
-                        <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
+                        <div class="tab-pane fade" id="ex1-resi-3" role="tabpanel" aria-labelledby="ex1-tab-3">
                           {{-- chat box --}}
                             <div class="card">
                               <div class="card-body">
@@ -48,11 +48,11 @@
                 <div class="col-lg-3 border-start">
                     <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="tab" href="#ex1-tabs-1"role="tab"aria-controls="ex1-tabs-1" aria-selected="true"
+                            <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="tab" href="#ex1-resi-1"role="tab"aria-controls="ex1-tabs-1" aria-selected="true"
                               >Detail Pesanan</a>
                         </li>
                         <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="tab" href="#ex1-tabs-2" role="tab" aria-controls="ex1-tabs-2" aria-selected="false"
+                          <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="tab" href="#ex1-resi-2" role="tab" aria-controls="ex1-tabs-2" aria-selected="false"
                             >Lacak Pesanan</a
                           >
                         </li>
@@ -61,9 +61,9 @@
                             class="nav-link"
                             id="ex1-tab-3"
                             data-mdb-toggle="tab"
-                            href="#ex1-tabs-3"
+                            href="#ex1-resi-3"
                             role="tab"
-                            aria-controls="ex1-tabs-3"
+                            aria-controls="ex1-resi-3"
                             aria-selected="false"
                             >Tab 3</a
                           >

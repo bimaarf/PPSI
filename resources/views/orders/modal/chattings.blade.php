@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal top fade" id="exampleModal{{ $track->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="true">
+<div class="modal top fade" id="chatting{{ $track->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-mdb-backdrop="static" data-mdb-keyboard="true">
     <div class="modal-dialog   modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">

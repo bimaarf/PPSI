@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header text-center py-3">
         <h5 class="mb-0 text-center">
-            <strong>Pesanan Saya</strong>
+            <strong>Pesanan Sedang Diproses</strong>
         </h5>
     </div>
     <div class="card-body">

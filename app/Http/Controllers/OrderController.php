@@ -91,8 +91,7 @@ class OrderController extends Controller
                 $orders->user_id = Auth::id();
                 $orders->save();
                 $request->session()->forget('pesan');
-            // return redirect()->route('orders.detail', ['key'=>$orders->key, 'id'=>$orders->id ])->with('success', 'Terima kasih sudah membuat pesanan');
-            return redirect()->route('user.pesanan_anda')->with('success', 'Terima kasih, silahkan cek kembali pesanan anda.');
+            return redirect()->route('user.pesanan')->with('success', 'Terima kasih, silahkan cek kembali pesanan anda.');
 
         } else {
             return redirect()->route('login');
@@ -112,15 +111,5 @@ class OrderController extends Controller
 
         return view("orders.detail", compact('orders', 'tujuan', 'nama_penerima', 'alamat_tujuan', 'telp_tujuan', 'driver', 'feed_manager', 'user' ));
     }
-    // driver
-    public function hapus($id)
-    {
-        $orders = Order::find($id);
-        $orders->status = 'Canceled';
-        $orders->update();
-
-        return redirect()->route('user.pesanan_dibatalkan')->with('success', 'Pesanan sudah dibatalkan');
-    }
-
     
 }

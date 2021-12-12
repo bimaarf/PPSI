@@ -104,7 +104,6 @@
                         <div class="col-8 align-self-center">
                             <span class="fs-6 ">Pesanan Masuk</span>
                             @if(Auth::check())
-                            <b class="fs-6 text-warning fa-pull-right">{{ $pesananSaya }}</b>
                             @endif
                         </div>
                     </div>
@@ -118,7 +117,6 @@
                         <div class="col-8 align-self-center">
                             <span class="fs-6 ">Pesanan Diproses</span>
                             @if(Auth::check())
-                            <b class="fs-6 text-warning fa-pull-right">{{ $pesananDiproses }}</b>
                             @endif
                         </div>
                     </div>
@@ -132,7 +130,6 @@
                         <div class="col-8 align-self-center">
                             <span class="fs-6 ">Pesanan Dibatalkan</span>
                             @if(Auth::check())
-                            <b class="fs-6 text-warning fa-pull-right">{{ $pesananDibatalkan }}</b>
                             @endif
                         </div>
                     </div>
@@ -161,7 +158,6 @@
                         <div class="col-8 align-self-center">
                             <span class="fs-6 ">Pesanan Saya</span>
                             @if(Auth::check())
-                            <b class="fs-6 text-warning fa-pull-right">{{ $pesananSaya }}</b>
                             @endif
                         </div>
                     </div>
@@ -175,7 +171,6 @@
                         <div class="col-8 align-self-center">
                             <span class="fs-6 ">Pesanan Diproses</span>
                             @if(Auth::check())
-                            <b class="fs-6 text-warning fa-pull-right">{{ $pesananDiproses }}</b>
                             @endif
                         </div>
                     </div>
@@ -189,7 +184,6 @@
                         <div class="col-8 align-self-center">
                             <span class="fs-6 ">Pesanan Dibatalkan</span>
                             @if(Auth::check())
-                            <b class="fs-6 text-warning fa-pull-right">{{ $pesananDibatalkan }}</b>
                             @endif
                         </div>
                     </div>

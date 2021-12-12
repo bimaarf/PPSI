@@ -4,7 +4,7 @@
 <div class="card rounded">
     <div class="card-body">
         <div class="fs-5">
-            <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda&emsp;/&emsp;Pesanan Diproses</b>
+            <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda&emsp;/&emsp;Pesanan Anda</b>
         </div>
     </div>
 </div> 
