@@ -1,5 +1,5 @@
 @extends('layouts.backend.main_login')
-@section('pesanan_anda', 'active')
+@section('pesanan', 'active')
 @section('content')
     <div class="card rounded">
         <div class="card-body">
@@ -101,4 +101,3 @@
      }
      
 </script>
-

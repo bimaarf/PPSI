@@ -19,8 +19,8 @@
                          class="fs-3" style="color: #229BD8">Truck</strong></span> --}}
              </a>
 
-             @include('layouts.backend.elements.nav_mobile')
-             <nav class="collapse navbar-collapse text-right">
+             @include('layouts.backend.partial.sidebar_m')
+             <div class="collapse navbar-collapse text-right">
                 <div id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -45,7 +45,7 @@
                         </li>
                     </ul>
                 </div>
-             </nav>
+             </div>
 
 
 
@@ -93,12 +93,12 @@
                  <li class="nav-item dropdown">
      
                      @if (Auth::check())
-                         <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+                         <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center btn btn-danger rounded-pill text-white text-capitalize" href="#"
                              id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
      
                              <img src="{{ asset('assets/icon/' . Auth::user()->avatar) }}"
                                  class="rounded-circle img-thumbnail img-fluid" width="32" alt="" loading="lazy" />
-                             &nbsp;{{ Auth::user()->name }}&nbsp;
+                             &nbsp;<span class="fs-5 font-normal">{{ Auth::user()->name }}</span>&nbsp;
      
      
                          </a>

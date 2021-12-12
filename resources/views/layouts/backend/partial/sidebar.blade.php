@@ -12,140 +12,15 @@
                     </div>
                 </div>
                 <hr>
-                @if (Auth::user()->hasRole('admin|super-admin'))
-                <a href="{{ route('admin.index') }}" class="list-group-item list-group-item-action rounded-6 @yield('dashboard') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Beranda</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('admin.akun_saya') }}" class="list-group-item list-group-item-action rounded-6 @yield('akun-saya') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Akun Saya</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('admin.add_user') }}" class="list-group-item list-group-item-action rounded-6 @yield('add') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Registrasi Admin</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('admin.table_admin') }}" class="list-group-item list-group-item-action rounded-6 @yield('daftar-admin') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Daftar Admin</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('admin.table_driver') }}" class="list-group-item list-group-item-action rounded-6 @yield('daftar-driver') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Daftar Driver</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('admin.table_shipper') }}" class="list-group-item list-group-item-action rounded-6 @yield('daftar-shipper') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Daftar Shipper</span>
-                        </div>
-                    </div>
-                </a>
-                @endif
-                @if (Auth::user()->hasRole('driver'))
-                <a href="{{ route('driver.index') }}" class="list-group-item list-group-item-action rounded-6 @yield('akun-saya') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Akun Saya</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('driver.pesanan_masuk') }}" class="list-group-item list-group-item-action rounded-6 @yield('pesanan_anda') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Pesanan Masuk</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('driver.pesanan_diproses') }}" class="list-group-item list-group-item-action rounded-6 @yield('pesanan-diproses') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Pesanan Diproses</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('driver.pesanan_dibatalkan') }}" class="list-group-item list-group-item-action rounded-6 @yield('pesanan-dibatalkan') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Pesanan Dibatalkan</span>
-                        </div>
-                    </div>
-                </a>
-                @endif
+                {{-- admin --}}
+                @include('layouts.backend.partial.elements.side_admin')
 
+                {{-- driver --}}
+                @include('layouts.backend.partial.elements.side_driver')
                 
-                @if (Auth::user()->hasRole('shipper'))
-                <a href="{{ route('user.index') }}" class="list-group-item list-group-item-action rounded-6 @yield('akun-saya') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Akun Saya</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('user.pesanan') }}" onclick="tableMasuk()" class="list-group-item list-group-item-action rounded-6 @yield('pesanan_anda') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Pesanan Anda</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('user.pesanan_diproses') }}" class="list-group-item list-group-item-action rounded-6 @yield('pesanan-diproses') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Pesanan Diproses</span>
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('user.pesanan_dibatalkan') }}" class="list-group-item list-group-item-action rounded-6 @yield('pesanan-dibatalkan') mt-3">
-                    <div class="row">
-                        <div class="col-2 far fa-circle fs-1"></div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Pesanan Dibatalkan</span>
-                        </div>
-                    </div>
-                </a>
-                @endif
+                {{-- shipper --}}
+                @include('layouts.backend.partial.elements.side_shipper')
+                
             
                 @if (Auth::check())
                 <form method="POST" action="{{ route('logout') }}" class="mb-4 position-relative" style="margin-top: 80px">

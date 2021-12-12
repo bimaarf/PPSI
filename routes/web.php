@@ -81,9 +81,6 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
         Route::get('/table-proses', [ShipperController::class, 'tableProses'])->name('user.partial.table_proses');
         Route::get('/table-selesai', [ShipperController::class, 'tableSelesai'])->name('user.partial.table_selesai');
         Route::get('/table-batal', [ShipperController::class, 'tableBatal'])->name('user.partial.table_batal');
-        Route::get('/pesanan-anda', [ShipperController::class, 'pesananAnda'])->name('user.pesanan_anda');
-        Route::get('/pesanan-diproses', [ShipperController::class, 'pesananDiproses'])->name('user.pesanan_diproses');
-        Route::get('/pesanan-dibatalkan', [ShipperController::class, 'pesananDibatalkan'])->name('user.pesanan_dibatalkan');
         // shipper akses
         Route::get('/hapus-pesanan/{id}', [ShipperController::class, 'hapusPesanan'])->name('user.hapus_pesanan');
         Route::post('/konfirmasi-pesanan/{id}', [ShipperController::class, 'konfirmasiBarang'])->name('shipper.konfirmasi');

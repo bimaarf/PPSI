@@ -149,7 +149,7 @@
                         </div>
                     </div>
                 </a>
-                <a href="{{ route('user.pesanan_anda') }}" class="list-group-item list-group-item-action rounded-6 @yield('pesanan_anda') mt-3">
+                <a href="{{ route('user.pesanan') }}" class="list-group-item list-group-item-action rounded-6 @yield('pesanan') mt-3">
                     <div class="row">
                         <div class="col-2">
                             <i class="far fa-circle fs-1" ></i>
@@ -157,32 +157,6 @@
                         <div class="col-1"></div>
                         <div class="col-8 align-self-center">
                             <span class="fs-6 ">Pesanan Saya</span>
-                            @if(Auth::check())
-                            @endif
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('user.pesanan_diproses') }}" class="list-group-item list-group-item-action rounded-6 @yield('pesanan-diproses') mt-3">
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="far fa-circle fs-1" ></i>
-                        </div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Pesanan Diproses</span>
-                            @if(Auth::check())
-                            @endif
-                        </div>
-                    </div>
-                </a>
-                <a href="{{ route('user.pesanan_dibatalkan') }}" class="list-group-item list-group-item-action rounded-6 @yield('pesanan-dibatalkan') mt-3">
-                    <div class="row">
-                        <div class="col-2">
-                            <i class="far fa-circle fs-1" ></i>
-                        </div>
-                        <div class="col-1"></div>
-                        <div class="col-8 align-self-center">
-                            <span class="fs-6 ">Pesanan Dibatalkan</span>
                             @if(Auth::check())
                             @endif
                         </div>
