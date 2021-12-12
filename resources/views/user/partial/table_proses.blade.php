@@ -37,7 +37,7 @@
                         @foreach ($checkouts->where('orders_id', $item->id) as $check)
                         
                             @foreach ($tracking->where('checkout_id', $check->id) as $track)
-                            <button type="button" class="btn btn-success text-center" data-mdb-dismiss="modal" data-mdb-toggle="modal" onclick="scrollBot()" data-mdb-target="#exampleModal{{ $track->id }}">
+                            <button type="button" class="btn btn-success text-center" data-mdb-dismiss="modal" data-mdb-toggle="modal" onclick="scrollBot({{ $track->id }})" data-mdb-target="#exampleModal{{ $track->id }}">
                                 <i class="fa fa-comment"></i> Hubungi Driver{{ $track->id }}
                             </button>
                                 @include('orders.modal.chattings')

@@ -40,7 +40,7 @@
                                             data-mdb-target="#detail{{ $item->id }}">
                                             <div class="bi icon dripicons-view-list"></div>Lihat
                                         </a>
-                                        <a class="btn btn-success" href="#" onclick="scrollBot()" data-mdb-toggle="modal"
+                                        <a class="btn btn-success" href="#" onclick="scrollBot({{ $track->id }})" data-mdb-toggle="modal"
                                             data-mdb-target="#exampleModal{{ $track->id }}">Hubungi Pengirim</a>
                                         </div>
                                     </td>

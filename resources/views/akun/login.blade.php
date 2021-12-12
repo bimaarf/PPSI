@@ -10,13 +10,11 @@
   <meta content="" name="keywords">
   <title>Masuk</title>
 
-  <!-- Favicons -->
-  <!-- <link href="" rel="icon"> -->
 
   <!-- Vendor CSS Files -->
   <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/akun.css') }}">
-
+  
 </head>
 
 <body>
