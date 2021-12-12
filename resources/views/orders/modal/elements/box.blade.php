@@ -8,23 +8,21 @@
         </div>
     </div>
     <div class="card-footer text-muted white pt-1 pb-2 px-3">
-        <form action="{{ route('chat.store', ['id'=>$track->id]) }}" method="get">
-            @csrf
+        <form name="contactUsForm" id="contactUsForm{{ $track->id }}" method="GET" action="javascript:void(0)">
             <div class="row">
                 <div class="col-9">
-                    {{-- <input type="text" id="track_id" name="track_id" class="form-control" maxlength="100"
+                    <input type="text" id="track_id" name="track_id" class="form-control" maxlength="100"
                         placeholder="{{ Auth::user()->name }}&ensp;: track -> {{ $track->id }}"
-                        value="{{ $track->id }}"> <br> --}}
+                        value="{{ $track->id }}"> <br>
                     <input type="text" id="chat" name="chat" class="form-control" maxlength="100"
                         placeholder="{{ Auth::user()->name }}&ensp;: track -> {{ $track->id }}">
                 </div>
                 <div class="col-3">
                     <button type="submit" id="submit{{ $track->id }}" class="btn btn-outline-primary text-capitalize kirim-pesan"
-                        style="width: 100%"><i class="fa fa-paper-plane"></i>&nbsp;Kirim&nbsp;&nbsp;{{ $track->id }}</button>
+                        style="width: 100%" onclick="store({{ $track->id }})"><i class="fa fa-paper-plane"></i>&nbsp;Kirim</button>
                 </div>
             </div>
         </form>
-       
     </div>
 </div>
 
@@ -47,6 +45,8 @@
         const contactUsForm = "#contactUsForm" + id
         const submit = "#submit" + id
         const read = "#read" + id
+
+        console.log($(contactUsForm).serialize());
 
         $.ajax({
             url: url,

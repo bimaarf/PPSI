@@ -35,7 +35,10 @@ class ShipperController extends Controller
         $i = 1;
         $orders = Order::orderBy('id', 'DESC')->simplePaginate(5);
         // driver
+        $checkouts = Checkout::orderBy('id', 'DESC')->get();
         $checkout = Checkout::orderBy('id', 'DESC')->simplePaginate(5);
+        $tracking   = Tracking::orderBy('id', 'ASC')->get();
+        $users  = User::all();
         $driver = User::whereRoleIs(['driver'])->inRandomOrder()->get();
         return view('user.pesanan', compact(
             'pesananSaya',
@@ -45,6 +48,9 @@ class ShipperController extends Controller
             'i',
             'orders',
             'checkout',
+            'checkouts',
+            'tracking',
+            'users',
             'driver'
         ));
     }

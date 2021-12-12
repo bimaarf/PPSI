@@ -68,7 +68,7 @@
                 @include('user.partial.table_masuk')
             </div>
             <div class="tab-pane fade" id="ex1-tabs-2" role="tabpanel" aria-labelledby="ex1-tab-2">
-                <div id="table-proses"></div>
+                <div id="table-proses">@include('user.partial.table_proses')</div>
             </div>
             <div class="tab-pane fade" id="ex1-tabs-3" role="tabpanel" aria-labelledby="ex1-tab-3">
                 <div id="table-selesai"></div>
@@ -81,12 +81,12 @@
     </div>
 @endsection
 <script>
-     function tableProses()
-     {
-        $.get("{{ route('user.partial.table_proses') }}", {}, function(orders, status) {
-            $("#table-proses").html(orders);
-        });
-     }
+    //  function tableProses()
+    //  {
+    //     $.get("{{ route('user.partial.table_proses') }}", {}, function(orders, status) {
+    //         $("#table-proses").html(orders);
+    //     });
+    //  }
      function tableSelesai()
      {
         $.get("{{ route('user.partial.table_selesai') }}", {}, function(orders, status) {

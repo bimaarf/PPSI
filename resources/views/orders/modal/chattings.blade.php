@@ -35,10 +35,3 @@
       </div>
     </div>
   </div>
- <form action="{{ route('chat.store', ['id'=>$track->id]) }}" method="get">
-            @csrf
-        <input type="text" name="chat">
-        <input type="submit" value="submit">
-    </form>
-
-  {{-- {{ route('chat.index', ['id' => $track->id]) }} --}}
