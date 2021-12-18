@@ -46,7 +46,7 @@
         const submit = "#submit" + id
         const read = "#read" + id
 
-        console.log($(contactUsForm).serialize());
+        // console.log($(contactUsForm).serialize());
 
         $.ajax({
             url: url,
