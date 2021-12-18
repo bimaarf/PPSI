@@ -53,4 +53,13 @@
                         </div>
                     </div>
                 </a>
+                <a href="{{ route('admin.berita.index') }}" class="list-group-item list-group-item-action rounded-6 @yield('daftar-berita') mt-3">
+                    <div class="row">
+                        <div class="col-2 far fa-circle fs-1"></div>
+                        <div class="col-1"></div>
+                        <div class="col-8 align-self-center">
+                            <span class="fs-6 ">Daftar Berita</span>
+                        </div>
+                    </div>
+                </a>
                 @endif

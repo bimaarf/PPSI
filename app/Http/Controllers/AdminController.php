@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminActivity;
+use App\Models\Kategori;
 use App\Models\Permission;
 use App\Models\PermissionUser;
 use App\Models\Role;
@@ -130,5 +131,10 @@ class AdminController extends Controller
         $users->status_id = $request->status_id;
         $users->update();
         return back()->with('success', 'Data berhasil diubah!');
+    }
+    public function berita()
+    {
+        $kategori   = Kategori::all();
+        return view('admin.form_berita', compact('kategori'));
     }
 }

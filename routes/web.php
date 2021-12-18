@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ChattingController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\FeedManagerController;
@@ -14,7 +15,6 @@ use App\Http\Controllers\ShipperController;
 use App\Http\Controllers\TrackingController;
 use App\Models\Role;
 use Illuminate\Support\Facades\Artisan;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -72,11 +72,17 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
         Route::post('/edit-admin/{id}', [AdminController::class, 'editAdmin'])->name('admin.edit_admin')->middleware(['auth', 'permission:mengelola-data-admin']);
         Route::post('/edit-driver/{id}', [AdminController::class, 'editDriver'])->name('admin.edit_driver')->middleware(['auth', 'permission:mengelola-data-driver']);
         Route::post('/edit-shipper/{id}', [AdminController::class, 'editShipper'])->name('admin.edit_shipper')->middleware(['auth', 'permission:mengelola-data-shipper']);
+        Route::get('/tambah-berita', [AdminController::class, 'berita'])->name('admin.form_berita');
+        Route::resource('/berita/post', BeritaController::class);
+        Route::get('/berita', [BeritaController::class, 'show'])->name('admin.berita.index');
     });
+    Route::get('/article/u/{slug}', [BeritaController::class, 'showUpdate'])->name('admin.berita.update');
+    Route::get('/article/u/{slug}', [BeritaController::class, 'showUpdate'])->name('admin.berita.update');
+    Route::get('/article/{slug}', [BeritaController::class, 'detail'])->name('admin.berita.detail');
     Route::group(['prefix' => 'shipper', 'middleware' => ['role:shipper']], function()
     {
         // shipper
-        Route::get('/akun-saya', [ShipperController::class, 'dashboard'])->name('user.index');
+        Route::get('/akun-saya', [ShipperController::class, 'akunSaya'])->name('user.index');
         Route::get('/pesanan', [ShipperController::class, 'pesanan'])->name('user.pesanan');
         Route::get('/table-proses', [ShipperController::class, 'tableProses'])->name('user.partial.table_proses');
         Route::get('/table-selesai', [ShipperController::class, 'tableSelesai'])->name('user.partial.table_selesai');

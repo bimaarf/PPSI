@@ -69,19 +69,32 @@
                 <h4 class="text-dark text-capitalize text-center">Jenis Akun</h4>
             </div>
             <div class="card-body">
-                <h5 class="text-dark fa-pull-left">Driver</h5>
-                @if (Auth::user()->status_id == 1)
-                    <a href="#" class="btn btn-success rounded-pill fa-pull-right text-capitalize">Terverifikasi</a>
-                @endif
-                @if (Auth::user()->status_id == 2)
-                    <a href="#" class="btn btn-danger rounded-pill fa-pull-right text-capitalize">Non Aktif</a>
-                @endif
-                @if (Auth::user()->status_id == 3)
-                    <a href="#" class="btn btn-warning rounded-pill fa-pull-right text-capitalize">Sedang dalam orderan</a>
-                @endif
+               <div class="row">
+                   <div class="col-lg-6">
+                    <h5 class="text-dark fa-pull-left">Driver</h5>
+                    
+                   </div>
+                   <div class="col-lg-6">
+                    @if (Auth::user()->status_id == 1)
+                        <a href="#" class="btn btn-success rounded-pill text-capitalize">Terverifikasi</a>
+                    @endif
+                    @if (Auth::user()->status_id == 2)
+                        <a href="#" class="btn btn-danger rounded-pill text-capitalize">Non Aktif</a>
+                    @endif
+                    @if (Auth::user()->status_id == 3)
+                        <a href="#" class="btn btn-warning rounded-pill text-capitalize">Sedang dalam orderan</a>
+                    @endif
+                   </div>
+                   {{-- jalur --}}
+                   <div class="col-lg-6 mt-4"><h5 class="text-dark">Jalur</h5></div>
+                   <div class="col-lg-6 mt-4">
+                       <a href="#" class="btn btn-info rounded-pill text-capitalize" data-mdb-toggle="modal" data-mdb-target="#jalur">Tambahkan Jalur</a>
+                   </div>
+               </div>
             </div>
         </div>
     </div>
 </div>
+@include('driver.modal.modal_jalur')
 
 @endsection

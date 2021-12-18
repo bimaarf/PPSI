@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use App\Models\Permission;
+use App\Models\Role;
 use App\Models\RoleModel;
 use App\Models\Zone;
 

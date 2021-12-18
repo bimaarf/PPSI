@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 class ShipperController extends Controller
 {
-    public function dashboard()
+    public function akunSaya()
     {
         $permission_user = PermissionUser::all();
         $pesananSaya = DB::table('orders')->where('status', null)->where('deleted_at', null)->count();

@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Laratrust\Traits\LaratrustUserTrait;
 use App\Models\RoleUser;
 use App\Models\UserStatus;
-
+use App\Models\Berita;
 class User extends Authenticatable
 {
     use LaratrustUserTrait;
@@ -56,5 +56,9 @@ class User extends Authenticatable
     public function status()
     {
       return $this->belongsTo(UserStatus::class);
+    }
+    public function berita()
+    {
+      return $this->belongsTo(Berita::class);
     }
 }

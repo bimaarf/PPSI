@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-xl  modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Info Pengiriman</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Info Pesanan</h5>
           <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -23,56 +23,19 @@
                         <div class="tab-pane fade" id="ex1-resi-2" role="tabpanel" aria-labelledby="ex1-tab-2">
                         @include('user.modal.elements.track')
                         </div>
-                        <div class="tab-pane fade" id="ex1-resi-3" role="tabpanel" aria-labelledby="ex1-tab-3">
-                          {{-- chat box --}}
-                            <div class="card">
-                              <div class="card-body">
-                                  <div>
-                                    <img src="{{ asset('assets/icon/Driver.svg') }}" width="30" alt="">
-                                    <h6>Driver 1</h6>
-                                  </div>
-                                  <div>
-                                    <img src="{{ asset('assets/icon/Driver.svg') }}" width="30" alt="">
-                                    <h6>Driver 1</h6>
-                                  </div>
-                                  <div>
-                                    <img src="{{ asset('assets/icon/Driver.svg') }}" width="30" alt="">
-                                    <h6>Driver 1</h6>
-                                  </div>
-                              </div>
-                            </div>
-                          {{-- chat box --}}
-                        </div>
                       </div>
                 </div>
-                <div class="col-lg-3 border-start">
-                    <ul class="nav nav-tabs mb-3" id="ex1" role="tablist">
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link active" id="ex1-tab-1" data-mdb-toggle="tab" href="#ex1-resi-1"role="tab"aria-controls="ex1-tabs-1" aria-selected="true"
-                              >Detail Pesanan</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a class="nav-link" id="ex1-tab-2" data-mdb-toggle="tab" href="#ex1-resi-2" role="tab" aria-controls="ex1-tabs-2" aria-selected="false"
-                            >Lacak Pesanan</a
-                          >
-                        </li>
-                        <li class="nav-item" role="presentation">
-                          <a
-                            class="nav-link"
-                            id="ex1-tab-3"
-                            data-mdb-toggle="tab"
-                            href="#ex1-resi-3"
-                            role="tab"
-                            aria-controls="ex1-resi-3"
-                            aria-selected="false"
-                            >Tab 3</a
-                          >
-                        </li>
-                      </ul>
-                      <!-- Tabs navs -->
-                    {{-- <a href="{{ route('orders.tracking', ['id'=>$item->id]) }}" class="btn btn-success rounded-5 btn-lg text-capitalize" style="width:100%">Lacak</a> --}}
-                    <a href="" class="btn btn-outline-white-50 rounded-5 btn-lg mt-1 text-capitalize" style="width:100%">Bantuan</a>
-                </div>
+                  <ul class="col-lg-3 nav nav-tabs mb-3 nav-item" id="ex1" role="tablist">
+                      <li class=" nav-link" role="presentation">
+                          <a class="btn btn-lg btn-info rounded-5 btn-lg mt-1 text-capitalize active" id="ex1-tab-1" data-mdb-toggle="tab" 
+                          href="#ex1-resi-1"role="tab"aria-controls="ex1-tabs-1" aria-selected="true" style="width: 100%"
+                            >Detail Pesanan</a>
+                            <a class="btn btn-lg btn-success rounded-5 btn-lg mt-1 text-capitalize" id="ex1-tab-2" data-mdb-toggle="tab" 
+                            href="#ex1-resi-2" role="tab" aria-controls="ex1-tabs-2" aria-selected="false" style="width: 100%"
+                              >Lacak Pesanan</a>
+                              <a href="" class="btn btn-outline-white-50 rounded-5 btn-lg mt-4 text-capitalize" style="width:100%">Bantuan</a>
+                      </li>
+                    </ul>
             </div>
         </div>
       </div>

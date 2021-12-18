@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8" />
+    
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>
@@ -17,6 +18,10 @@
         @endif
         | Dashboard
     </title>
+    {{-- dinamik input --}}
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    {{-- dinamik input --}}
     <link rel="icon" href="" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
     <link rel="stylesheet" href="https://fontawesome.com/v5.15/icons/circle?style=solid">
@@ -24,6 +29,9 @@
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"> --}}
+    {{-- Trix --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/trix.css') }}">
+    <script type="text/javascript" src="{{ asset('css/trix.js') }}"></script>
     {{-- stepper --}}
     
     <style>
@@ -301,7 +309,7 @@
                 @include('layouts.backend.partial.sidebar')
 
             </div>
-            <div class="col-lg-8">
+            <div class="col-lg-8 badan">
                 @include('layouts.backend.partial.alert')
                 @yield('content')
             </div>
@@ -351,10 +359,6 @@
   overflow-y: auto;
 }
     </style>
-
-
-
-
 </body>
 
 </html>

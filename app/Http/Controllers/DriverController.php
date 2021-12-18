@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\AdminActivity;
 use App\Models\PermissionUser;
+use App\Models\Zone;
 
 class DriverController extends Controller
 {
@@ -23,7 +24,8 @@ class DriverController extends Controller
         $pesananDiproses = DB::table('checkouts')->where('Message', 'Verified')->where('driver_id', Auth::id())->count();
         $pesananDibatalkan = DB::table('checkouts')->where('Message', 'Canceled')->where('driver_id', Auth::id())->count();
         $pesananSelesai = DB::table('checkouts')->where('Message', 'Finished')->where('driver_id', Auth::id())->count();
-        return view('driver.index', compact('pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
+        $zones = Zone::all();
+        return view('driver.index', compact('pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai', 'zones'));
     }
     public function pesananMasuk()
     {

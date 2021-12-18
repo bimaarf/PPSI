@@ -20,10 +20,9 @@
                 
                 {{-- shipper --}}
                 @include('layouts.backend.partial.elements.side_shipper')
-                
             
                 @if (Auth::check())
-                <form method="POST" action="{{ route('logout') }}" class="mb-4 position-relative" style="margin-top: 80px">
+                <form method="POST" action="{{ route('logout') }}" class="mb-4 position-relative" style="margin-top: 20px">
                     @csrf
                 <a href="{{ route('logout') }}" class="list-group-item list-group-item-action rounded-6 mt-3 btn btn-danger" onclick="event.preventDefault(); this.closest('form').submit();">
                     <div class="row">
