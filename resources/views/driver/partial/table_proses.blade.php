@@ -41,7 +41,7 @@
                                             <div class="bi icon dripicons-view-list"></div>Lihat
                                         </a>
                                         <a class="btn btn-success" href="#" onclick="scrollBot({{ $track->id }})" data-mdb-toggle="modal"
-                                            data-mdb-target="#exampleModal{{ $track->id }}">Hubungi Pengirim</a>
+                                            data-mdb-target="#chatting{{ $track->id }}">Hubungi Pengirim</a>
                                         </div>
                                     </td>
                                     @include('driver.modal.modal_proses')

@@ -31,8 +31,19 @@ Route::get('/', function () {
 })->name('dashboard');
 
 Route::get('/laman-profil', function () {
-    return view('test.index');
-});
+    return view('test.profile');
+})->name('profile');
+
+Route::get('/laman-inbox', function () {
+    return view('test.inbox');
+})->name('inbox');
+
+Route::get('/pesan-masuk', [ChattingController::class, 'inbox'])->name('inbox.kontak');
+
+Route::get('/buka/pesan/{id}/{nama}', [ChattingController::class, 'buka'])->name('inbox.buka');
+Route::get('/buka/driver/pesan/{id}', [ChattingController::class, 'bukaDriver'])->name('inbox.bukadriver');
+
+Route::get('/pesan/{id}', [ChattingController::class, 'readChat'])->name('inbox.pesan');
 
 
 require __DIR__ . '/auth.php';
