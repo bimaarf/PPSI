@@ -45,6 +45,8 @@ Route::get('/buka/driver/pesan/{id}', [ChattingController::class, 'bukaDriver'])
 
 Route::get('/pesan/{id}', [ChattingController::class, 'readChat'])->name('inbox.pesan');
 
+Route::view('inbox', 'test.chatting');
+
 
 require __DIR__ . '/auth.php';
 Route::get('/bundamaria', function () {
@@ -102,7 +104,7 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
         Route::get('/hapus-pesanan/{id}', [ShipperController::class, 'hapusPesanan'])->name('user.hapus_pesanan');
         Route::post('/konfirmasi-pesanan/{id}', [ShipperController::class, 'konfirmasiBarang'])->name('shipper.konfirmasi');
         Route::post('/cari-driver/{id}', [FindDriverController::class, 'find'])->name('shipper.find_driver');
-    });    
+    });
 
     Route::group(['prefix' => 'driver', 'middleware' => ['role:driver']], function()
     {
@@ -112,8 +114,8 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
         Route::get('/dashboard/driver/pesanan-diproses', [DriverController::class, 'pesananDiproses'])->name('driver.pesanan_diproses');
         Route::get('/dashboard/driver/pesanan-dibatalkan', [DriverController::class, 'pesananDibatalkan'])->name('driver.pesanan_dibatalkan');
         Route::post('/dashboard/driver/cancel/{id}', [DriverController::class, 'tolak'])->name('driver.tolak');
-        
-        
+
+
         Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');
         // driver akses
         Route::post('/store-input-fields/terima-orderan/{id}', [DriverController::class, 'terima'])->name('driver.terima');

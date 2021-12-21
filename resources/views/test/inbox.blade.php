@@ -18,34 +18,34 @@
     <div class="isi" id="isi">
       @if (Auth::user()->hasRole("shipper"))
         <div id="inbox" class=""></div>
-      
+
         <div id="pesan" class="d-none">
       @else
         <div id="pesan"></div>
       @endif
-      
-      
+
+
     </div>
   </section>
 @endsection
 
-        
+
 @section('script')
     <script>
       let scrollDown = (id)=> {
         // console.log("lagi di scroll")
-        // scroll down   
+        // scroll down
         $("#read" + id).stop().animate({
             scrollTop: 10000
         }, 1000);
         $("#read" + id).attr({ scrollTop: 10000 });
         // end scroll
       }
-      
+
       let bukaChat = (chat)=> {
         $('#pesan').removeClass('d-none')
         $('#inbox').addClass('d-none')
-        const url = "/buka/pesan/" + chat['track_id'] + "/" + chat['nama_driver']
+        const url = "http://localhost/PPSI/public/buka/pesan/" + chat['track_id'] + "/" + chat['nama_driver']
         $.get(url, {}, function (id, nama, status) {
           $("#pesan").html(id, nama);
         });
@@ -57,7 +57,7 @@
       }
 
       let bukaChatDriver = (id)=> {
-        const url = "/buka/driver/pesan/" + id
+        const url = "http://localhost/PPSI/public/buka/driver/pesan/" + id
 
         $.get(url, {}, function (id, nama, status) {
           $("#pesan").html(id, nama);
@@ -68,7 +68,7 @@
       }
 
       let panggil = (id) => {
-        
+
         const read = setInterval(() => { readChat(id) }, 5000);
 
         setInterval(() => {
@@ -81,9 +81,9 @@
       }
 
       let readChat = (id)=> {
-        var url = "/pesan/" + id
+        var url = "http://localhost/PPSI/public/pesan/" + id
         let read = "#read" + id
-        
+
         $.get(url, {}, function (chattings, target_avatar, status) {
           $(read).html(chattings, target_avatar);
         });
@@ -91,7 +91,7 @@
       }
 
       let store = (id)=> {
-        const url = "/dashboard/driver/pesanan-diproses/store/" + id
+        const url = "http://localhost/PPSI/public/dashboard/driver/pesanan-diproses/store/" + id
         const contactUsForm = "#chatForm" + id
         const submit = "#submit" + id
         const read = "#read" + id
@@ -125,7 +125,7 @@
 
       @if (Auth::user()->hasRole("shipper"))
         window.addEventListener("load", getInbox)
-      @else 
+      @else
         // console.log({{ Auth::id() }});
         window.addEventListener("load", bukaChatDriver({{ Auth::id() }}))
       @endif
