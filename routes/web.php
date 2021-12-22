@@ -116,6 +116,7 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
         
         Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');
         // driver akses
+        Route::post('/armada', [DriverController::class, 'armada'])->name('driver.armada');
         Route::post('/store-input-fields/terima-orderan/{id}', [DriverController::class, 'terima'])->name('driver.terima');
         Route::post('/store-input-fields/jemput-barang/{id}', [DriverController::class, 'jemputBarang'])->name('driver.jemput');
         Route::post('/store-input-fields/antar-barang/{id}', [DriverController::class, 'antarBarang'])->name('driver.antar');

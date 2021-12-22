@@ -12,21 +12,83 @@ use App\Models\TrackingStatus;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\AdminActivity;
+use App\Models\Armada;
+use App\Models\DriverArmada;
+use App\Models\DriverJalur;
 use App\Models\PermissionUser;
 use App\Models\Zone;
-
 class DriverController extends Controller
 {
 
     public function akunSaya()
     {
+        $armadas     = Armada::all();
+        $users     = User::all();
         $pesananSaya = DB::table('checkouts')->where('driver_id', Auth::id())->count();
         $pesananDiproses = DB::table('checkouts')->where('Message', 'Verified')->where('driver_id', Auth::id())->count();
         $pesananDibatalkan = DB::table('checkouts')->where('Message', 'Canceled')->where('driver_id', Auth::id())->count();
         $pesananSelesai = DB::table('checkouts')->where('Message', 'Finished')->where('driver_id', Auth::id())->count();
         $zones = Zone::all();
-        return view('driver.index', compact('pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai', 'zones'));
+        $jalurs  = DriverJalur::where('user_id', Auth::id())
+                        ->where('rute', '!=', null)->get();
+        return view('driver.index', compact('jalurs','users',
+            'armadas', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai', 'zones'
+        
+        ));
     }
+    public function armada(Request $request)
+    {
+        $armadaRequest     = DriverArmada::where('user_id', Auth::id())->get();
+        foreach($armadaRequest as $armada)
+        {
+            $armada->delete();
+        }
+        
+        $armadas    = json_encode($request->armada_id);
+        if($request->has(['armada_id']))
+        {
+            foreach(json_decode($armadas) as $armada)
+            {
+                DB::table('d_armada')
+                ->where('user_id', Auth::id())
+                ->insert([
+                    'armada_id'    =>  $armada,
+                    'user_id' =>  Auth::id(),
+                ]);
+            }
+            
+          
+        }else{
+            
+            DB::table('d_armada')
+            ->where('user_id', Auth::id())
+            ->insert([
+                'armada_id'    =>  null,
+                'user_id' =>  Auth::id(),
+            ]);
+        }
+        // Jalur
+        $jalurRequest      = DriverJalur::where('user_id', Auth::id())->get();
+
+        foreach($jalurRequest as $jalur)
+        {
+            $jalur->delete();
+        }
+        if($request->has(['rute']))
+        {
+            DriverJalur::insert([
+                'rute' =>  json_encode($request->rute),
+                'user_id' =>  Auth::id(),
+            ]);
+          
+        }else{
+            DriverJalur::insert([
+                'user_id' =>  Auth::id(),
+            ]);
+        }
+        return back();
+    }
+   
     public function pesananMasuk()
     {
         $i = 1;

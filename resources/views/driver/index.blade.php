@@ -5,7 +5,7 @@
 <div class="card rounded">
     <div class="card-body">
         <div class="fs-5">
-            <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda</b>
+            <em class="fas fa-home text-primary"></em>&emsp;<strong>Beranda</strong>
         </div>
     </div>
 </div>
@@ -16,7 +16,7 @@
             <div class="text-center">
                 <img src="{{ asset('assets/icon/Driver.svg') }}" class="img-fluid rounded mt-4" width="200vh"
                     alt="">
-                <h4 class="text-capitalize text-dark mt-4"><b>{{ Auth::user()->name }}</b></h4>
+                <h4 class="text-capitalize text-dark mt-4"><strong>{{ Auth::user()->name }}</strong></h4>
                 <h5 class="text-lowercase text-dark">{{ Auth::user()->email }}</h5>
                 <form action="">
                     <h6 >Ubah Password</h6>
@@ -46,8 +46,10 @@
                         <h5 class="text-dark">Nomor HP</h5>
                         <h5 class="text-dark">Status</h5>
                         <h5 class="text-dark">Alamat</h5>
+                        <h5 class="text-dark">Rute / Jalur</h5>
                     </div>
                     <div class="col-1">
+                        <h5>:</h5>
                         <h5>:</h5>
                         <h5>:</h5>
                         <h5>:</h5>
@@ -60,6 +62,9 @@
                         <h5 class="text-black-50">{{ Auth::user()->telp }}</h5>
                         <h5 class="text-black-50">{{ Auth::user()->status->status }}</h5>
                         <h5 class="text-black-50">{{ Auth::user()->alamat }}</h5>
+                        <h5 class="text-black-50">
+                        
+                        </h5>
                     </div>
                 </div>
             </div>
@@ -79,7 +84,7 @@
                         <a href="#" class="btn btn-success rounded-pill text-capitalize">Terverifikasi</a>
                     @endif
                     @if (Auth::user()->status_id == 2)
-                        <a href="#" class="btn btn-danger rounded-pill text-capitalize">Non Aktif</a>
+                        <a href="#" class="btn btn-danger rounded-pill text-capitalize">Tidak Aktif</a>
                     @endif
                     @if (Auth::user()->status_id == 3)
                         <a href="#" class="btn btn-warning rounded-pill text-capitalize">Sedang dalam orderan</a>

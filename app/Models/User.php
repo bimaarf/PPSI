@@ -11,6 +11,7 @@ use Laratrust\Traits\LaratrustUserTrait;
 use App\Models\RoleUser;
 use App\Models\UserStatus;
 use App\Models\Berita;
+use App\Models\Jalur;
 class User extends Authenticatable
 {
     use LaratrustUserTrait;
@@ -60,5 +61,9 @@ class User extends Authenticatable
     public function berita()
     {
       return $this->belongsTo(Berita::class);
+    }
+    public function jalurs()
+    {
+      return $this->belongsTo(Jalur::class);
     }
 }

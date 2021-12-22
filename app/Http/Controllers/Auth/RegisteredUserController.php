@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\DriverArmada;
+use App\Models\DriverJalur;
+use App\Models\DriverKendaraan;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -27,7 +30,6 @@ class RegisteredUserController extends Controller
         $zone = Zone::get();
         $roles = RoleModel::all();
         return view('akun.register', compact('roles', 'zone'));
-        // return view('auth.register', compact('roles', 'zone'));
     }
 
     /**
@@ -41,33 +43,51 @@ class RegisteredUserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'telp'      => ['required',  'integer'],
             'alamat'    => ['required', 'string', 'max:255'],
         ]);
-
+        if($request->role == 'driver')
+        {
+            $status_id  =   2;
+        }else{
+            $status_id  =   1;
+        }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'telp'    => $request->telp,
             'alamat'    => $request->alamat,
-            'status_id' => 1,
+            'status_id' => $status_id,
             'avatar'    => 'Shipper.svg',
         ]);
+        
         $role = $request->role;
         $user->attachRole($role);
         event(new Registered($user));
-
+        if($user->hasRole('driver'))
+        {
+            DriverJalur::insert([
+                'user_id' =>  $user->id,
+            ]);
+            DriverArmada::insert([
+                'user_id' =>  $user->id,
+            ]);
+            DriverKendaraan::insert([
+                'driver_id' => $user->id,
+            ]);
+        }
         Auth::login($user);
-        if (Auth::user()->hasRole('admin|super-admin')) {
+        if ($user->hasRole('admin|super-admin')) {
             return redirect()->route('admin.index');
         }
-        if (Auth::user()->hasRole('driver')) {
+        if ($user->hasRole('driver')) {
             return redirect()->route('driver.index');
         }
-        if (Auth::user()->hasRole('shipper')) {
+        if ($user->hasRole('shipper')) {
             return redirect()->route('user.index');
         }
     }

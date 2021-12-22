@@ -60,7 +60,6 @@ class ChattingController extends Controller
         $drivers_avatar = array();
         $chattings = array();
         $times = array();
-
         $chats = array();
         
         

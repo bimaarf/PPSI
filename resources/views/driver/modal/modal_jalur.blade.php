@@ -8,38 +8,27 @@
           <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="">
+            <form action="{{ route('driver.armada') }}" method="POST">
                 @csrf
-                <div class="form-group row">
-                   <div class="col-6">
-                       <input type="checkbox" name="" id="1">
-                    <label for="1">CDD Box</label>
-                    <br>
-                       <input type="checkbox" name="" id="2">
-                    <label for="2">CDD Reefer</label>
-                   </div>
-                   <div class="col-6">
-                       <input type="checkbox" name="" id="3">
-                       <label for="3">Pickup</label>
-                       <br>
-                       <input type="checkbox" name="" id="4">
-                       <label for="4">Blindvan</label>
-                   </div>
-                    {{-- <label for="armada">Jenis Armada</label>
-                    <select class="form-select form-select-lg" name="armada" id="armada" required>
-                        <option value="CDD Box">CDD Box</option>
-                        <option value="CDD Reefer">CDD Reefer</option>
-                        <option value="Pickup">Pickup</option>
-                        <option value="Blindvan">Blindvan</option>
-                    </select> --}}
-                </div>
+              <div class="form-group row">
+                
+                   @foreach ($armadas as $armada)
+                        <div class="col-lg-6 hilang">
+                          <div class="form-check">
+                            <input type="checkbox" name="armada_id[]" value="{{ $armada->id }}" id="{{ $armada->id }}">
+                            <label for="{{ $armada->id }}">{{ $armada->name }}</label>
+                          </div>
+                        </div>
+
+                    @endforeach
+
                 <div class="row">
                     <div class="col-lg-12">
                         <div id="inputFormRow">
                             <div class="input-group mb-3">
-                                <select class="form-select form-select-lg" name="jalur[]" id="jalur"  autocomplete="off">
+                                <select class="form-select form-select-lg" name="rute[]" id="jalur"  autocomplete="off">
                                     @foreach ($zones as $zone)
-                                    <option value="CDD Box">{{ $zone->zone }}</option>
+                                    <option value="{{ $zone->zone }}">{{ $zone->zone }}</option>
                                     @endforeach
                                 </select>
                                 {{-- <input type="text" name="title[]" class="form-control form-control m-input" placeholder="Enter title" autocomplete="off"> --}}
@@ -48,19 +37,18 @@
                                 </div>
                             </div>
                         </div>
-    
                         <div id="newRow"></div>
                         <button id="addRow" type="button" class="btn btn-info">Tambah Jalur</button>
                     </div>
                 </div>
-            </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
             Close
           </button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
         </div>
+      </form>
       </div>
     </div>
   </div>
@@ -70,9 +58,9 @@
         var html = '';
         html += '<div id="inputFormRow">';
         html += '<div class="input-group mb-3">';
-        html += '<select class="form-select form-select-lg" name="jalur[]" id="jalur"  autocomplete="off">'
+        html += '<select class="form-select form-select-lg" name="rute[]" id="rute"  autocomplete="off">'
         html += '@foreach($zones as $zone)'
-        html += '<option value="CDD Reefer">{{ $zone->zone }}</option>'
+        html += '<option value="{{ $zone->zone }}">{{ $zone->zone }}</option>'
         html += '@endforeach'
         html += '</select>'
         html += '<div class="input-group-append">';
