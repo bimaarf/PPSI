@@ -18,8 +18,8 @@ class Chatting extends Model
         'user_id',
         'tracking_id'
     ];
-    protected $hidden;
-    
+    // protected $hidden;
+
     public function getCreatedAtAttribute()
     {
         return \Carbon\Carbon::parse($this->attributes['updated_at'])
