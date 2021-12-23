@@ -12,31 +12,85 @@
                 @csrf
               <div class="form-group row">
                 
-                   @foreach ($armadas as $armada)
-                        <div class="col-lg-6 hilang">
+                   
+
+                    @foreach ($armadas as $armada)
+                         <div class="col-lg-6 hilang">
                           <div class="form-check">
-                            <input type="checkbox" name="armada_id[]" value="{{ $armada->id }}" id="{{ $armada->id }}">
+                            <input type="checkbox" name="armada_id[]" value="{{ $armada->id }}" id="{{ $armada->id }}"
+                            
+                            @foreach ($driverArmada as $dArmada)
+                              @if ($dArmada->armada_id == $armada->id)
+                                  checked='checked'
+                              @endif
+                            @endforeach
+                            
+                            >
                             <label for="{{ $armada->id }}">{{ $armada->name }}</label>
                           </div>
                         </div>
-
                     @endforeach
 
                 <div class="row">
                     <div class="col-lg-12">
-                        <div id="inputFormRow">
+                      
+                      <p>Jumlah Jalur : <span type="text" id="inc">1</p>
+                     @if ($ruteCount > 0)
+                       @foreach ($rutes as $rute)
+                          <div id="inputFormRow">
                             <div class="input-group mb-3">
                                 <select class="form-select form-select-lg" name="rute[]" id="jalur"  autocomplete="off">
                                     @foreach ($zones as $zone)
-                                    <option value="{{ $zone->zone }}">{{ $zone->zone }}</option>
+
+                                        <option value="{{ $zone->zone }}"
+                                          
+                                              
+                                              @if ($rute == $zone->zone)
+                                                  selected
+                                              @endif
+
+                                          >{{ $zone->zone }}</option>
+                                          
                                     @endforeach
                                 </select>
-                                {{-- <input type="text" name="title[]" class="form-control form-control m-input" placeholder="Enter title" autocomplete="off"> --}}
                                 <div class="input-group-append">                
                                     <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
                                 </div>
                             </div>
                         </div>
+                       @endforeach
+                        
+                         @else
+                         
+                         @foreach ($driverJalur['0'] as $rute)
+                        
+                         <div id="inputFormRow">
+                             <div class="input-group mb-3">
+                                 <select class="form-select form-select-lg" name="rute[]" id="jalur"  autocomplete="off">
+                                     @foreach ($zones as $zone)
+ 
+                                         <option value="{{ $zone->zone }}"
+                                          
+                                               
+                                               @if ($rute == $zone->zone)
+                                                   selected
+                                               @endif
+     
+                                           >{{ $zone->zone }}</option>
+                                           
+                                     @endforeach
+                                 </select>
+                                 <div class="input-group-append">                
+                                     <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
+                                 </div>
+                             </div>
+                         </div>
+                         
+                         @endforeach
+                     @endif
+
+                        
+                        
                         <div id="newRow"></div>
                         <button id="addRow" type="button" class="btn btn-info">Tambah Jalur</button>
                     </div>
@@ -55,6 +109,8 @@
   <script type="text/javascript">
     // add row
     $("#addRow").click(function () {
+      ++i;
+      document.getElementById('inc').innerHTML=i+1;
         var html = '';
         html += '<div id="inputFormRow">';
         html += '<div class="input-group mb-3">';
@@ -73,6 +129,12 @@
 
     // remove row
     $(document).on('click', '#removeRow', function () {
+      --i;
+        if(i < 0){
+          document.getElementById('inc').innerHTML=0;
+        }else if(i > -1){
+          document.getElementById('inc').innerHTML=i+1;
+        }
         $(this).closest('#inputFormRow').remove();
     });
 </script>
