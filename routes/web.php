@@ -109,11 +109,11 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
     Route::group(['prefix' => 'driver', 'middleware' => ['role:driver']], function()
     {
         // driver
-        Route::get('/dashboard/driver', [DriverController::class, 'akunSaya'])->name('driver.index');
-        Route::get('/dashboard/driver/pesanan', [DriverController::class, 'pesananMasuk'])->name('driver.pesanan_masuk');
-        Route::get('/dashboard/driver/pesanan-diproses', [DriverController::class, 'pesananDiproses'])->name('driver.pesanan_diproses');
-        Route::get('/dashboard/driver/pesanan-dibatalkan', [DriverController::class, 'pesananDibatalkan'])->name('driver.pesanan_dibatalkan');
-        Route::post('/dashboard/driver/cancel/{id}', [DriverController::class, 'tolak'])->name('driver.tolak');
+        Route::get('/akun-saya', [DriverController::class, 'akunSaya'])->name('driver.index');
+        Route::get('/pesanan-masuk', [DriverController::class, 'pesananMasuk'])->name('driver.pesanan_masuk');
+        Route::get('/pesanan-diproses', [DriverController::class, 'pesananDiproses'])->name('driver.pesanan_diproses');
+        Route::get('/pesanan-dibatalkan', [DriverController::class, 'pesananDibatalkan'])->name('driver.pesanan_dibatalkan');
+        Route::post('/cancel/{id}', [DriverController::class, 'tolak'])->name('driver.tolak');
 
 
         Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');

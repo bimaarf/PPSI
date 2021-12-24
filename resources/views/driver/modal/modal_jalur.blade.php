@@ -24,7 +24,6 @@
                                   checked='checked'
                               @endif
                             @endforeach
-                            
                             >
                             <label for="{{ $armada->id }}">{{ $armada->name }}</label>
                           </div>
@@ -34,7 +33,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                       
-                      <p>Jumlah Jalur : <span type="text" id="inc">1</p>
+                      <p>Jumlah Jalur : <span type="text" id="inc">{{ $ruteCount }}
+                      </p>
                      @if ($ruteCount > 0)
                        @foreach ($rutes as $rute)
                           <div id="inputFormRow">
@@ -43,13 +43,11 @@
                                     @foreach ($zones as $zone)
 
                                         <option value="{{ $zone->zone }}"
-                                          
-                                              
                                               @if ($rute == $zone->zone)
                                                   selected
                                               @endif
-
-                                          >{{ $zone->zone }}</option>
+                                              >{{ $zone->zone }}
+                                        </option>
                                           
                                     @endforeach
                                 </select>
@@ -59,37 +57,9 @@
                             </div>
                         </div>
                        @endforeach
-                        
-                         @else
-                         
-                         @foreach ($driverJalur['0'] as $rute)
-                        
-                         <div id="inputFormRow">
-                             <div class="input-group mb-3">
-                                 <select class="form-select form-select-lg" name="rute[]" id="jalur"  autocomplete="off">
-                                     @foreach ($zones as $zone)
- 
-                                         <option value="{{ $zone->zone }}"
-                                          
-                                               
-                                               @if ($rute == $zone->zone)
-                                                   selected
-                                               @endif
-     
-                                           >{{ $zone->zone }}</option>
-                                           
-                                     @endforeach
-                                 </select>
-                                 <div class="input-group-append">                
-                                     <button id="removeRow" type="button" class="btn btn-danger">Remove</button>
-                                 </div>
-                             </div>
-                         </div>
-                         
-                         @endforeach
+                        @else 
+                        <small class="text-danger font-italic">*anda belum memilih jalur!</small>
                      @endif
-
-                        
                         
                         <div id="newRow"></div>
                         <button id="addRow" type="button" class="btn btn-info">Tambah Jalur</button>
@@ -108,9 +78,18 @@
   </div>
   <script type="text/javascript">
     // add row
+    var i = 1;
+    var c = {{ $ruteCount }};
     $("#addRow").click(function () {
       ++i;
-      document.getElementById('inc').innerHTML=i+1;
+      if(c < 1)
+      {
+      document.getElementById('inc').innerHTML=c+i;
+
+      }else if (c > 0){
+
+        document.getElementById('inc').innerHTML=c+i;
+      }
         var html = '';
         html += '<div id="inputFormRow">';
         html += '<div class="input-group mb-3">';
@@ -129,12 +108,15 @@
 
     // remove row
     $(document).on('click', '#removeRow', function () {
-      --i;
-        if(i < 0){
-          document.getElementById('inc').innerHTML=0;
-        }else if(i > -1){
-          document.getElementById('inc').innerHTML=i+1;
-        }
+        --i;
+        // document.getElementById('inc').innerHTML=c-a;
+      if(i < 1){
+        document.getElementById('inc').innerHTML=c+i;
+
+      }else if(i > 0){
+        document.getElementById('inc').innerHTML=c+i+0;
+
+      }
         $(this).closest('#inputFormRow').remove();
     });
 </script>
