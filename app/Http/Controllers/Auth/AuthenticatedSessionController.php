@@ -66,7 +66,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('admin.index');
         }
         if (Auth::user()->hasRole('driver')) {
-            return redirect()->route('driver.index');
+            return redirect()->route('driver.akun_saya');
         }
         if (Auth::user()->hasRole('shipper')) {
             return redirect()->route('user.index');

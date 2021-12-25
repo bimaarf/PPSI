@@ -4,18 +4,16 @@
     <div class="modal-dialog   modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Pilih Jalur</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Pilih Rute & Armada</h5>
           <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <form action="{{ route('driver.armada') }}" method="POST">
                 @csrf
               <div class="form-group row">
-                
-                   
 
                     @foreach ($armadas as $armada)
-                         <div class="col-lg-6 hilang">
+                         <div class="col-6 hilang">
                           <div class="form-check">
                             <input type="checkbox" name="armada_id[]" value="{{ $armada->id }}" id="{{ $armada->id }}"
                             
@@ -33,7 +31,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                       
-                      <p>Jumlah Jalur : <span type="text" id="inc">{{ $ruteCount }}
+                      <p>Jumlah Rute : <span type="text" id="inc">{{ $ruteCount }}
                       </p>
                      @if ($ruteCount > 0)
                        @foreach ($rutes as $rute)
@@ -68,9 +66,9 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-            Close
+            Tutup
           </button>
-          <button type="submit" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
         </div>
       </form>
       </div>

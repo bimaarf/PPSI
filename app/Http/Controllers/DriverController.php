@@ -68,9 +68,11 @@ class DriverController extends Controller
        
 
         $armadas         = Armada::all();
-        $driverArmada   =   DriverArmada::all();
-                        
-        return view('driver.index', 
+        $driverArmada   =   DriverArmada::where('user_id', Auth::id())
+                                ->where('armada_id', '!=', null)
+                                ->get();
+        
+        return view('driver.akun_saya', 
             compact('driverJalurs','driverJalur','rutes',
                     'jalursCount',
                         'ruteCount',

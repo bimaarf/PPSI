@@ -109,7 +109,7 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
     Route::group(['prefix' => 'driver', 'middleware' => ['role:driver']], function()
     {
         // driver
-        Route::get('/akun-saya', [DriverController::class, 'akunSaya'])->name('driver.index');
+        Route::get('/akun-saya', [DriverController::class, 'akunSaya'])->name('driver.akun_saya');
         Route::get('/pesanan-masuk', [DriverController::class, 'pesananMasuk'])->name('driver.pesanan_masuk');
         Route::get('/pesanan-diproses', [DriverController::class, 'pesananDiproses'])->name('driver.pesanan_diproses');
         Route::get('/pesanan-dibatalkan', [DriverController::class, 'pesananDibatalkan'])->name('driver.pesanan_dibatalkan');

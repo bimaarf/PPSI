@@ -188,9 +188,9 @@
     {{-- stepper --}}
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js"
         integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw=="
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous"></script> --}}
     <style>
         .img-gallery-product img {
             width: 280px;
@@ -303,13 +303,36 @@
         
     @include('layouts.backend.partial.navigation')
     
-    <main class="mt-4 d-lg-block container-lg">
+    <main class="mt-4 d-lg-block container">
         <div class="row">
             <div class="col-lg-4">
                 @include('layouts.backend.partial.sidebar')
 
             </div>
             <div class="col-lg-8 badan">
+                <div class="card rounded d-lg-none d-xm-block">
+                    <div class="p-3">
+                        <div class="d-flex justify-content-between">
+                            <img src="{{ asset('assets/icon/Driver.svg') }}" class="img-fluid img-thumbnail rounded-circle" width="40vh"
+                                    alt="">
+                            <a href="{{ route('driver.akun_saya') }}" 
+                            class="btn btn-outline-danger @yield('akun-saya')">
+                                <i class="fas fa-user fs-4 align-middle" ></i></a>
+
+                            <a href="{{ route('driver.pesanan_masuk') }}" 
+                            class="btn btn-outline-danger @yield('pesanan_anda')">                    
+                                <i class="fas fa-envelope fs-4 align-middle" ></i></a>
+
+                            <a href="#" 
+                            class="btn btn-outline-danger">                    
+                                <i class="fas fa-shipping-fast fs-4 align-middle" ></i></a>
+                                
+                            <a href="#" 
+                            class="btn btn-primary">                           
+                                <i class="fas fa-sign-out-alt fs-4 align-middle" ></i></a>
+                        </div>
+                    </div>
+                </div>
                 @include('layouts.backend.partial.alert')
                 @yield('content')
             </div>
@@ -321,7 +344,7 @@
     <script type="text/javascript" src="{{ asset('assets/js/bootstrap.min.js') }}"></script> --}}
     <script type="text/javascript" src="{{ asset('assets/js/mdb.min.js') }}"></script>
     <!-- Custom scripts -->
-    <script type="text/javascript" src="{{ asset('assets/js/admin.js') }}"></script>
+    {{-- <script type="text/javascript" src="{{ asset('assets/js/admin.js') }}"></script> --}}
     {{-- Dynamic input --}}
 
     <!-- JavaScript -->
