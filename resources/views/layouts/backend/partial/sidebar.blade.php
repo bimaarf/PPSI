@@ -5,7 +5,7 @@
             <div class="list-group list-group-flush pt-4 mx-4">
                 <div class="row">
                     <div class="col-3">
-                        <img src="{{ asset('assets/backend/icon/Shipper.svg') }}" class="img-thumbnail rounded-circle" alt="">
+                        <img src="{{ asset('assets/icon/Shipper.svg') }}" class="img-thumbnail rounded-circle" alt="">
                     </div>
                     <div class="col-9 align-self-center">
                         <h4 class="text-capitalize text-black-100">{{ Auth::user()->name }}</h4>

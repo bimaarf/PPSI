@@ -84,4 +84,15 @@
         console.log(condition);
   
     }
+ 
+    function pesanan()
+    {
+        const url = "/driver/pesanan"
+        $.get(url, {}, function() {
+            const query= "#body" 
+            // console.log(query);
+            $(query).html(url);
+           
+        });
+    }
 </script>

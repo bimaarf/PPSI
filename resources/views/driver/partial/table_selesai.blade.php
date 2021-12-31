@@ -13,7 +13,7 @@
     </thead>
     <tbody>
         @foreach ($checkout as $item)
-            @if ($item->driver_id == Auth::user()->id && $item->message != 'Canceled')
+            @if ($item->driver_id == Auth::user()->id && $item->message == 'Finished')
                 <tr>
                     <td>{{ $i++ }}</td>
                     <td>{{ $item->orders->nama_pengirim }}</td>
@@ -34,10 +34,10 @@
                             <span class="btn btn-success btn-sm rounded-9 text-capitalize py-0 px-1">Selesai</span>
                         @endif
                     </td>
-                    <td><a href="" class="btn btn-sm btn-success" data-mdb-toggle="modal" data-mdb-target="#detail{{ $item->id }}">
+                    <td><a href="" class="btn btn-sm btn-success" data-mdb-toggle="modal" data-mdb-target="#detail-selesai{{ $item->id }}">
                         <div class="bi icon dripicons-view-list"></div>Lihat
                     </a></td>
-                    @include('driver.modal.modal_masuk')
+                    @include('driver.modal.modal_selesai')
                 </tr>
             @endif
         @endforeach

@@ -1,11 +1,3 @@
-<div class="card">
-    <div class="card-header text-center py-3">
-        <h5 class="mb-0 text-center">
-            <strong>Pesanan Saya</strong>
-        </h5>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
             <table class="table table-striped text-nowrap">
                 <!-- Search form -->
                 <thead>
@@ -40,8 +32,5 @@
 
                 </tbody>
             </table>
-        </div>
         {{ $orders->links() }} <small class="text-danger"><i>*You can change this order if the driver status is not
                 accoupied.</i></small>
-    </div>
-</div>

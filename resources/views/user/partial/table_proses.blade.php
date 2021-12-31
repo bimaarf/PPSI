@@ -1,11 +1,3 @@
-<div class="card">
-    <div class="card-header text-center py-3">
-        <h5 class="mb-0 text-center">
-            <strong>Pesanan Sedang Diproses</strong>
-        </h5>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
             <table class="table table-striped text-nowrap">
                 <!-- Search form -->
                 <thead>
@@ -26,7 +18,7 @@
                                 <td>{{ $item->jadwal }}</td>
                                 <td>
                                     <div class="btn-group" role="group" aria-label="Basic example">
-                                        <a href="" class="btn btn-success" data-mdb-toggle="modal" data-mdb-target="#proses{{ $item->id }}">
+                                        <a href="#" class="btn btn-success" data-mdb-toggle="modal" data-mdb-target="#proses{{ $item->id }}">
                                             <div class="bi icon dripicons-view-list"></div>Lihat
                                         </a>
                                     </div>
@@ -37,9 +29,7 @@
                         @foreach ($checkouts->where('orders_id', $item->id) as $check)
                         
                             @foreach ($tracking->where('checkout_id', $check->id) as $track)
-                            <button type="button" class="btn btn-success text-center" data-mdb-dismiss="modal" data-mdb-toggle="modal" onclick="scrollBot({{ $track->id }})" data-mdb-target="#chatting{{ $track->id }}">
-                                <i class="fa fa-comment"></i> Hubungi Driver{{ $track->id }}
-                            </button>
+                            
                                 @include('orders.modal.chattings')
                                 
                             @endforeach
@@ -51,7 +41,4 @@
 
                 </tbody>
             </table>
-        </div>
         {{ $orders->links() }}
-    </div>
-</div>

@@ -1,5 +1,5 @@
 <div class="card-body" id="form" style="display: none">
-    <form action="" class="row" method="post">
+    <form action="{{ route('auth.sunting') }}" class="row" method="post">
         @csrf
         <div class="col-lg-5">
             <div class="text-center">
@@ -9,10 +9,11 @@
                 <h5 class="text-lowercase text-dark">{{ Auth::user()->email }}</h5>
                 <h6 >Ubah Password</h6>
                 <div class="form-group">
-                    <input class="inp" placeholder="Password baru" />
+                    <input class="inp" id="password" name="password" autocomplete="new-password" placeholder="Password baru" required/>
                 </div>
                 <div class="form-group">
-                    <input class="inp" placeholder="Konfirmasi password" />
+                    <input class="inp" id="password_confirmation" name="password_confirmation"
+                     placeholder="Konfirmasi password" required/>
                 </div>
             </div>
         </div>

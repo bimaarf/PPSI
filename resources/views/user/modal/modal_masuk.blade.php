@@ -11,24 +11,23 @@
                     @include('user.modal.elements.resi')
                 </div>
                 <div class="col-lg-3 border-start">
-                  <form action="{{ route('shipper.find_driver', ['id' => $item->id]) }}" method="post" >
+                  <form id="form-find{{ $item->id }}" action="{{ route('shipper.find_driver', ['id' => $item->id]) }}" method="get" >
                     @csrf
                     @foreach ($driver->where('status_id', 1)->slice(0, $item->feed_m) as $drv)
-                      <label for="">Driver id</label> <br>
-                      <input type="text" name="driver_id[]" value="{{ $drv->id }}">
+                      <input id="driver_id" type="text" name="driver_id[]" value="{{ $drv->id }}">
                       
                       @endforeach
                       <br>
                       {{-- <input type="text" name="orders_id" value="{{ $item->id }}"> --}}
-                      <button type="submit" class="btn btn-success rounded-5 btn-lg text-capitalize" style="width:100%">Temukan Driver {{ $item->id }}</button>
+                      <button id="find" type="submit" onclick="finDriver({{ $item->id }})" class="btn btn-success rounded-5 btn-lg text-capitalize" style="width:100%">Temukan Driver</button>
                   </form>
                         
-                  <form action="{{ route('user.hapus_pesanan', ['id' => $item->id]) }}" method="post">
+                  <form id="form-hapus{{ $item->id }}" action="{{ route('user.hapus_pesanan', ['id' => $item->id]) }}" method="get">
                       @csrf
-                      <button id="submit" type="submit" class="btn btn-danger rounded-5 btn-lg mt-2 text-capitalize submit" style="width:100%">Batalkan Pesanan</button>
+                      <button onclick="hapusPesanan({{ $item->id }})" id="submit" type="submit" class="btn btn-danger rounded-5 btn-lg mt-2 text-capitalize submit" style="width:100%">Batalkan Pesanan</button>
 
                   </form>
-                  <a href="" class="btn btn-outline-white-50 rounded-5 btn-lg mt-2 text-capitalize" style="width:100%">Bantuan</a>
+                  <a href="#admin-help" class="btn btn-outline-white-50 rounded-5 btn-lg mt-2 text-capitalize" style="width:100%">Bantuan</a>
                 </div>
             </div>
         </div>

@@ -60,7 +60,7 @@ class AuthenticatedSessionController extends Controller
                 return redirect()->route('user.pesanan')->with('success', 'Terima kasih, silahkan cek kembali pesanan anda.');
             } else
                 $request->session()->forget('pesan');
-                return redirect()->route('user.index');
+                return redirect()->route('user.akun_saya');
         }
         if (Auth::user()->hasRole('admin|super-admin')) {
             return redirect()->route('admin.index');
@@ -69,7 +69,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->route('driver.akun_saya');
         }
         if (Auth::user()->hasRole('shipper')) {
-            return redirect()->route('user.index');
+            return redirect()->route('user.akun_saya');
         }
     }
 

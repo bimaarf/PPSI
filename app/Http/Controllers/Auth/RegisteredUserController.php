@@ -85,10 +85,10 @@ class RegisteredUserController extends Controller
             return redirect()->route('admin.index');
         }
         if ($user->hasRole('driver')) {
-            return redirect()->route('driver.index');
+            return redirect()->route('driver.akun_saya');
         }
         if ($user->hasRole('shipper')) {
-            return redirect()->route('user.index');
+            return redirect()->route('user.akun_saya');
         }
     }
 }

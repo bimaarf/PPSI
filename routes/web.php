@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ChattingController;
 use App\Http\Controllers\DriverController;
@@ -26,6 +27,9 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
 Route::get('/', function () {
     return view('landing_page.landing');
 })->name('dashboard');
@@ -64,6 +68,7 @@ Route::get('/clear-cache', function () {
     Artisan::call('cache:clear', $output);
     dd($output);
 });
+Route::post('sunting-profil', [NewPasswordController::class, 'sunting'])->name('auth.sunting')->middleware('auth');
 // form-orders
 Route::get('/user-form-jemput', [OrderController::class, 'form1'])->name('orders.form_1');
 Route::get('/user-form-tujuan', [OrderController::class, 'form2'])->name('orders.form_2');
@@ -95,34 +100,39 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
     Route::group(['prefix' => 'shipper', 'middleware' => ['role:shipper']], function()
     {
         // shipper
-        Route::get('/akun-saya', [ShipperController::class, 'akunSaya'])->name('user.index');
+        Route::get('/akun-saya', [ShipperController::class, 'akunSaya'])->name('user.akun_saya');
         Route::get('/pesanan', [ShipperController::class, 'pesanan'])->name('user.pesanan');
+        Route::get('/table-masuk', [ShipperController::class, 'tableMasuk'])->name('user.partial.table_masuk');
         Route::get('/table-proses', [ShipperController::class, 'tableProses'])->name('user.partial.table_proses');
         Route::get('/table-selesai', [ShipperController::class, 'tableSelesai'])->name('user.partial.table_selesai');
         Route::get('/table-batal', [ShipperController::class, 'tableBatal'])->name('user.partial.table_batal');
         // shipper akses
         Route::get('/hapus-pesanan/{id}', [ShipperController::class, 'hapusPesanan'])->name('user.hapus_pesanan');
         Route::post('/konfirmasi-pesanan/{id}', [ShipperController::class, 'konfirmasiBarang'])->name('shipper.konfirmasi');
-        Route::post('/cari-driver/{id}', [FindDriverController::class, 'find'])->name('shipper.find_driver');
+        Route::get('/cari-driver/{id}', [FindDriverController::class, 'find'])->name('shipper.find_driver');
     });
 
     Route::group(['prefix' => 'driver', 'middleware' => ['role:driver']], function()
     {
         // driver
+        Route::get('/pesanan', [DriverController::class, 'pesanan'])->name('driver.pesanan');
+        Route::get('/table-masuk', [DriverController::class, 'tableMasuk'])->name('driver.partial.table_masuk');
+        Route::get('/table-proses', [DriverController::class, 'tableProses'])->name('driver.partial.table_proses');
+        Route::get('/table-selesai', [DriverController::class, 'tableSelesai'])->name('driver.partial.table_selesai');
         Route::get('/akun-saya', [DriverController::class, 'akunSaya'])->name('driver.akun_saya');
         Route::get('/pesanan-masuk', [DriverController::class, 'pesananMasuk'])->name('driver.pesanan_masuk');
         Route::get('/pesanan-diproses', [DriverController::class, 'pesananDiproses'])->name('driver.pesanan_diproses');
         Route::get('/pesanan-dibatalkan', [DriverController::class, 'pesananDibatalkan'])->name('driver.pesanan_dibatalkan');
-        Route::post('/cancel/{id}', [DriverController::class, 'tolak'])->name('driver.tolak');
-
-
+        
+        
         Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');
         // driver akses
         Route::post('/armada', [DriverController::class, 'armada'])->name('driver.armada');
-        Route::post('/store-input-fields/terima-orderan/{id}', [DriverController::class, 'terima'])->name('driver.terima');
-        Route::post('/store-input-fields/jemput-barang/{id}', [DriverController::class, 'jemputBarang'])->name('driver.jemput');
-        Route::post('/store-input-fields/antar-barang/{id}', [DriverController::class, 'antarBarang'])->name('driver.antar');
-        Route::post('/store-input-fields/sampai-barang/{id}', [DriverController::class, 'sampaiBarang'])->name('driver.sampai');
+        Route::get('/v/tolak-orderan/{id}', [DriverController::class, 'tolak'])->name('driver.tolak');
+        Route::get('/v/terima-orderan/{id}', [DriverController::class, 'terima'])->name('driver.terima');
+        Route::get('/v/jemput-barang/{id}', [DriverController::class, 'jemputBarang'])->name('driver.jemput');
+        Route::get('/v/antar-barang/{id}', [DriverController::class, 'antarBarang'])->name('driver.antar');
+        Route::get('/v/sampai-barang/{id}', [DriverController::class, 'sampaiBarang'])->name('driver.sampai');
     });
 
 
@@ -142,3 +152,6 @@ Route::get('/orders/proses-modal/{id}', [TrackingController::class, 'timelineMod
 // Route::get('/chatting/{id}', [ChattingController::class, 'chatting'])->name('chat.index');
 // Route::get('/chatting/read/{id}', [ChattingController::class, 'readPage'])->name('chat.elements.read');
 // Route::get('/chatting/store/{id}', [ChattingController::class, 'store'])->name('chat.elements.store');
+
+
+// vue

@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class NewPasswordController extends Controller
 {
@@ -61,5 +64,27 @@ class NewPasswordController extends Controller
                     ? redirect()->route('login')->with('status', __($status))
                     : back()->withInput($request->only('email'))
                             ->withErrors(['email' => __($status)]);
+    }
+    public function sunting(Request $request)
+    {
+        $users  =   $request->validate([
+            'name' => 'required|min:3|max:50',
+            'email' => 'email',
+            'vat_number' => 'max:13',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+            'password_confirmation' => 'min:6'
+        ]);
+        DB::table('users')->where('id', Auth::id())
+                    ->update([
+                        'name'          => $request->name,
+                        'email'         => $request->email,
+                        'password'      => Hash::make($request->password),
+                        'telp'          => $request->telp,
+                        'alamat'        => $request->alamat,
+                        'status_id'     => Auth::user()->status_id,
+                        'avatar'        => Auth::user()->avatar,
+                    ]);
+      
+        return back()->with('success', 'Profil berhasil diubah!');
     }
 }

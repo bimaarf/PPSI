@@ -1,4 +1,4 @@
-@extends('layouts.backend.main')
+@extends('layouts.backend.main_login')
 @section('pesan-armada', 'active')
 @section('content')
 

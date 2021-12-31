@@ -1,11 +1,3 @@
-<div class="card">
-    <div class="card-header text-center py-3">
-        <h5 class="mb-0 text-center">
-            <strong>Pesanan Anda</strong>
-        </h5>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
             <table class="table table-hover text-nowrap">
                 <!-- Search form -->
                 <thead>
@@ -44,7 +36,4 @@
 
                 </tbody>
             </table>
-        </div>
         {{ $orders->links() }} <small class="text-danger font-italic">*Pesanan tidak bisa dibatalkan jika sudah menekan toombol cari driver, Pastikan tidak ada kesalahan dalam memasukkan data!</small>
-    </div>
-</div>

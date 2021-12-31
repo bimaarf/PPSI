@@ -1,6 +1,6 @@
-<div class="modal top fade" id="detail{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal top fade" id="detail-proses{{ $item->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
-    <div class="modal-dialog modal-lg  modal-dialog-centered">
+    <div class="modal-dialog modal-xl  modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Info Pengiriman</h5>
@@ -9,127 +9,23 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-lg-8" id="read">
-                        <div class="row">
-                            <div class="col-4">
-                                Nama Pengirim
-                            </div>
-                            <div class="col-1">
-                                :
-                            </div>
-                            <div class="col-7">
-                                <b class="text-capitalize">{{ $item->orders->nama_pengirim }}</b>
-                            </div>
-    
-                            {{-- breack --}}
-                            <div class="col-4">
-                                No. Resi
-                            </div>
-                            <div class="col-1">
-                                :
-                            </div>
-                            <div class="col-7">
-                                10002692844212
-                            </div>
-    
-                            {{-- breack --}}
-    
-                            <div class="col-4">
-                                Dari
-                            </div>
-                            <div class="col-1">
-                                :
-                            </div>
-                            <div class="col-7">
-                                {{ $item->orders->jemput }}
-                            </div>
-    
-                            {{-- breack --}}
-    
-                            <div class="col-4">
-                                Alamat Jemput
-                            </div>
-                            <div class="col-1">
-                                :
-                            </div>
-                            <div class="col-7">
-                                {{ $item->orders->alamat_jemput }}
-                            </div>
-    
-                            {{-- breack --}}
-    
-                            <div class="col-4">
-                                Tujuan
-                            </div>
-                            <div class="col-1">
-                                :
-                            </div>
-                            <div class="col-7">
-                                <ol>
-                                    @foreach (json_decode($item->orders->tujuan) as $tujuan)
-                                        <li>{{ $tujuan }}</li>
-                                    @endforeach
-                                </ol>
-                            </div>
-                            
-                            {{-- break --}}
-    
-                            <div class="col-4">
-                                Alamat Tujuan
-                            </div>
-                            <div class="col-1">
-                                :
-                            </div>
-    
-                            {{-- break --}}
-                            <div class="col-7">
-                                <ol>
-                                    @foreach (json_decode($item->orders->alamat_tujuan) as $aTujuan)
-                                        <li> {{ $aTujuan }}</li>
-                                    @endforeach
-    
-                                </ol>
-                            </div>
-    
-                            {{-- break --}}
-    
-                            <div class="col-4">
-                                Rentang Waktu
-                            </div>
-                            <div class="col-1">
-                                :
-                            </div>
-                            <div class="col-7">
-                                {{ $item->orders->jadwal }}&emsp;{{ $item->orders->start_time }}&nbsp;s/d&nbsp;{{ $item->orders->arrival_time }}&nbsp;WIB
-                            </div>
-    
-                            {{-- break --}}
-    
-                            <div class="col-4">
-                                <b>Total Harga</b>
-                            </div>
-                            <div class="col-1">
-                                :
-                            </div>
-                            <div class="col-7">
-                                <b class="text-capitalize">Rp 750.000</b>
-                            </div>
-                        </div>
+                        @include('driver.modal.elements.resi')
                     </div>
                     <div class="col-lg-4 border-start">
                         @foreach ($trackings->where('checkout_id', $item->id) as $track)
                             @if ($track->status == 1)
-                                <form action="{{ route('driver.jemput', ['id' => $track->id]) }}" method="post">
+                                <form id="jemput-pesanan{{ $track->id }}" action="{{ route('driver.jemput', ['id' => $track->id]) }}" method="get">
                                     @csrf
-                                    <input type="hidden" value="{{ $item->id }}" name="checkout_id">
-                                    <button type="submit" class="btn btn-success rounded-5 btn-lg mt-2 text-capitalize"
+                                    <input id="checkout_id" type="hidden" value="{{ $item->id }}" name="checkout_id">
+                                    <button onclick="jemputPesanan({{ $track->id }})" type="submit" class="btn btn-success rounded-5 btn-lg mt-2 text-capitalize"
                                         style="width:100%">Jemput Pesanan</button>
                                 </form>
                             @endif
                             @if ($track->status == 2)
-                                <form action="{{ route('driver.antar', ['id' => $track->id]) }}" method="post">
+                                <form id="antar-pesanan{{ $track->id }}" action="{{ route('driver.antar', ['id' => $track->id]) }}" method="get">
                                     @csrf
-                                    <input type="hidden" value="{{ $item->id }}" name="checkout_id">
-                                    <button type="submit" class="btn btn-success rounded-5 btn-lg mt-2 text-capitalize"
+                                    <input id="checkout_id" type="hidden" value="{{ $item->id }}" name="checkout_id">
+                                    <button onclick="antarkanPesanan({{ $track->id }})" type="submit" class="btn btn-info rounded-5 btn-lg mt-2 text-capitalize"
                                         style="width:100%">Antarkan Pesanan</button>
                                 </form>
                             @endif
@@ -137,7 +33,7 @@
                                 <div class="bs-vertical-wizard row">
                                     @foreach ($track_status->where('track_id', $track->id) as $tr)
                                         @if ($tr->status == 'Belum sampai')
-                                            <ul class="">
+                                            <ul>
                                                 <li class="locked ">
                                                     <a href="#"><b class="text-capitalize">{{ $tr->alamat }}</b><i
                                                             class="ico fa fa-lock ico-muted"></i>
@@ -146,11 +42,11 @@
                                                     </a>
                                                 </li>
                                                 <li class=" text-center">
-                                                    <form action="{{ route('driver.sampai', ['id' => $tr->id]) }}"
-                                                        method="post">
+                                                    <form id="konfirmasi-pesanan{{ $tr->id }}" action="{{ route('driver.sampai', ['id' => $tr->id]) }}"
+                                                        method="get">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-success mt-4">
-                                                            Konfirmasi</button>
+                                                        <button onclick="konfirmasiPesanan({{ $tr->id }})" type="submit" class="btn btn-success btn-lg text-capitalize mt-2" style="width: 90%;">
+                                                            Konfirmasi Pesanan</button>
                                                     </form>
                                                 </li>
                                             </ul>

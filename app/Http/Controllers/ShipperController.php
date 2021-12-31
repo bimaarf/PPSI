@@ -23,7 +23,7 @@ class ShipperController extends Controller
         $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
         $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
       
-        return view('user.index', compact('permission_user', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
+        return view('user.akun_saya', compact('permission_user', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
     }
     public function pesanan()
     {
@@ -45,6 +45,26 @@ class ShipperController extends Controller
             'pesananDiproses',
             'pesananDibatalkan',
             'pesananSelesai',
+            'i',
+            'orders',
+            'checkout',
+            'checkouts',
+            'tracking',
+            'users',
+            'driver'
+        ));
+    }
+    public function tableMasuk()
+    {
+        $i = 1;
+        $orders = Order::orderBy('id', 'DESC')->simplePaginate(5);
+        // driver
+        $checkouts = Checkout::orderBy('id', 'DESC')->get();
+        $checkout = Checkout::orderBy('id', 'DESC')->simplePaginate(5);
+        $tracking   = Tracking::orderBy('id', 'ASC')->get();
+        $users  = User::all();
+        $driver = User::whereRoleIs(['driver'])->inRandomOrder()->get();
+        return view('user.partial.table_masuk', compact(
             'i',
             'orders',
             'checkout',

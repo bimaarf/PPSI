@@ -1,11 +1,3 @@
-<div class="card">
-    <div class="card-header text-center py-3">
-        <h5 class="mb-0 text-center">
-            <strong>Pesanan Anda</strong>
-        </h5>
-    </div>
-    <div class="card-body">
-        <div class="table-responsive">
             <table class="table table-hover text-nowrap">
                 <!-- Search form -->
                 <thead>
@@ -31,10 +23,11 @@
                                     <span class="btn btn-success rounded-9 text-capitalize py-0 px-1">Selesai</span>
                                 </td>
                                 <td class="mb-0 fw-normal">
-                                        {{-- {{ route('orders.detail', ['id' => $item->id, 'key' => $item->key]) }} --}}
-                                        <a href="" class="btn btn-success" data-mdb-toggle="modal" data-mdb-target="#pesanan-selesai{{ $item->id }}">
-                                            <div class="bi icon dripicons-view-list"></div>Lihat
-                                        </a>
+                                    {{-- {{ route('orders.detail', ['id' => $item->id, 'key' => $item->key]) }} --}}
+                                    <a href="" class="btn btn-success" data-mdb-toggle="modal"
+                                        data-mdb-target="#pesanan-selesai{{ $item->id }}">
+                                        <div class="bi icon dripicons-view-list"></div>Lihat
+                                    </a>
                                 </td>
                             </tr>
                         @endif
@@ -44,7 +37,5 @@
 
                 </tbody>
             </table>
-        </div>
-        {{ $orders->links() }} <small class="text-danger font-italic">*Pesanan tidak bisa dibatalkan jika sudah menekan toombol cari driver, Pastikan tidak ada kesalahan dalam memasukkan data!</small>
-    </div>
-</div>
+            {{ $orders->links() }} <small class="text-danger font-italic">*Pesanan tidak bisa dibatalkan jika sudah
+                menekan toombol cari driver, Pastikan tidak ada kesalahan dalam memasukkan data!</small>

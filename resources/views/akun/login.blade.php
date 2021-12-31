@@ -34,7 +34,7 @@
 
               <!-- Email Address -->
               <div class="form-group m-4">
-                <input id="email" type="email" name="email" class="form-control input-form" placeholder="Email" required autofocus>
+                <input id="email" type="email" :value="old('email')" name="email" class="form-control input-form" placeholder="Email" required autofocus>
               </div>
 
               <!-- Password -->
