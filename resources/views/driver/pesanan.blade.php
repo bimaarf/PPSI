@@ -171,8 +171,8 @@
         const url = "/driver/v/antar-barang/" + id
         const formAntar = "#antar-pesanan" + id
         const checkout_id = $("#checkout_id").val()
-        const status = "Anda mengantarkan pesanan!"
-        $('.btn').attr('disabled', true);
+        const status = "Anda mengantarkan pesanan!";
+        $('#antar').attr('disabled', true);
         $.ajax({
             url: url,
             type: "get",
@@ -180,7 +180,7 @@
                 checkout_id: checkout_id
             },
             success: function(response) {
-                $('.btn').attr('disabled', false);
+                $('#antar').attr('disabled', false);
                 $(".btn-close").click();
                 tableProses();
                 console.log('pesanan akan diantarkan');

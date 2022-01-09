@@ -34,15 +34,21 @@ class RegisteredByAdminController extends Controller
             'avatar'    => 'Driver.svg',
             
         ]);
-        $role = $request->role;
-        $user->attachRole($role);
-        $permission = json_encode($request->permission);
-        foreach(json_decode($permission) as $permis)
-        {
 
-            $user->attachPermissions([$permis]);
+        if($request->has(['permission'])){
+
+            $role = $request->role;
+            $user->attachRole($role);
+            $permission = json_encode($request->permission);
+            foreach(json_decode($permission) as $permis)
+            {
+    
+                $user->attachPermissions([$permis]);
+            }
+        }else{
+            $role = $request->role;
+            $user->attachRole($role);
         }
-
 
         event(new Registered($user));
         $activity               = new AdminActivity();

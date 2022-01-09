@@ -20,10 +20,7 @@
         <div class="row">
             <div class="col-lg-7">
                 <h5 class="text-dark">Jenis Akun</h5>
-                <p class="text-black-100 ml-4 text-capitalize">
-                    @role('driver')Driver @endrole
-                    @role('shipper')Shipper @endrole
-                </p>
+                <p class="text-black-100 ml-4 text-capitalize">Driver</p>
                 <h5 class="text-dark">Nama Lengkap</h5>
                 <p class="text-black-100 ml-4 text-capitalize">{{ Auth::user()->name }}</p>
                 <h5 class="text-dark">Nomor Handphone</h5>

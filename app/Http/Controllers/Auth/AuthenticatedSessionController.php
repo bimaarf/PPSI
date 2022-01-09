@@ -34,6 +34,7 @@ class AuthenticatedSessionController extends Controller
     {
         $request->authenticate();
         $request->session()->regenerate();
+      
         if (Auth::user()->hasRole('shipper')) {
             if ($request->session()->get('pesan')) {
                 $pesan = $request->session()->get('pesan');
@@ -55,7 +56,13 @@ class AuthenticatedSessionController extends Controller
                 $orders->alamat_tujuan       = $pesan['alamat_tujuan'];
                 $orders->telp_tujuan         = $pesan['telp_tujuan'];
                 $orders->user_id = Auth::id();
-                $orders->save();
+                if($orders->feed_m == 0){
+                    $orders->status = 'Find Checker';
+                    $orders->save();
+
+                }else{
+                    $orders->save();
+                }
                 $request->session()->forget('pesan');
                 return redirect()->route('user.pesanan')->with('success', 'Terima kasih, silahkan cek kembali pesanan anda.');
             } else
@@ -70,6 +77,9 @@ class AuthenticatedSessionController extends Controller
         }
         if (Auth::user()->hasRole('shipper')) {
             return redirect()->route('user.akun_saya');
+        }
+        if (Auth::user()->hasRole('feed-manager')) {
+            return redirect()->route('checker.akun_saya');
         }
     }
 

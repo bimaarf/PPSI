@@ -13,12 +13,12 @@
     <div class="card-header">
         <h4 class="text-capitalize float-left text-dark">Profil Kamu</h4>
         <a href="#" onclick="sunting()" id="sunting" class="float-right btn btn-info text-capitalize"><i class="fas fa-pen-alt"></i>&ensp;
-            Sunting Profil</a>
+            Sunting</a>
     </div>
     @include('akun.sunting')
     <div class="card-body " id="body">
         <h5 class="text-dark">Jenis Akun</h5>
-        <p class="text-black-100 ml-4 text-capitalize">Shipper</p>
+        <p class="text-black-100 ml-4 text-capitalize">Field Manager</p>
         <h5 class="text-dark">Nama Lengkap</h5>
         <p class="text-black-100 ml-4 text-capitalize">{{ Auth::user()->name }}</p>
         <h5 class="text-dark">Nomor Handphone</h5>

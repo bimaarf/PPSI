@@ -17,13 +17,7 @@ class ShipperController extends Controller
 {
     public function akunSaya()
     {
-        $permission_user = PermissionUser::all();
-        $pesananSaya = DB::table('orders')->where('status', null)->where('deleted_at', null)->count();
-        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
-        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
-        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
-      
-        return view('user.akun_saya', compact('permission_user', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
+        return view('user.akun_saya');
     }
     public function pesanan()
     {
@@ -33,7 +27,10 @@ class ShipperController extends Controller
         $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
         // pesanan masuk
         $i = 1;
-        $orders = Order::orderBy('id', 'DESC')->simplePaginate(5);
+        $orders = Order::orderBy('id', 'DESC')
+                        ->where('status', null)
+                        ->where('status', 0)
+                        ->simplePaginate(5);
         // driver
         $checkouts = Checkout::orderBy('id', 'DESC')->get();
         $checkout = Checkout::orderBy('id', 'DESC')->simplePaginate(5);

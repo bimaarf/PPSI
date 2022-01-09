@@ -2,7 +2,7 @@
 @section('pesan-armada', 'active')
 @section('content')
 
-    <div class="py-lg-5" style="margin-top: 60px;">
+    <div class="py-lg-5" >
         <form class="justify-content-center" method="POST" action="{{ route('user.order') }}">
             @csrf
             <div class="card my-3">
@@ -80,10 +80,8 @@
                                         <label for="feed_m3">3</label>
                                         <input type="radio" name="feed_m" class="m-2" value="4" id="feed_m4">
                                         <label for="feed_m4">4</label> <br>
-                                        <div class="d-none">
                                             <input type="radio" name="feed_m" class="m-2" value="0" id="feed_m0">
                                             <label for="feed_m">Feed Manager</label>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -91,7 +89,6 @@
                     </div>
                     <div class="mt-2 fa-pull-right">
                         <button type="submit" class="btn btn-primary btn-lg">Lanjut</button>
-
                     </div>
                 </div>
             </div>

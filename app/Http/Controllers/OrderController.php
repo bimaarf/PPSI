@@ -22,11 +22,7 @@ class OrderController extends Controller
     {
         $zone = Zone::get();
         $orders = $request->session()->get('orders');
-        $pesananSaya = DB::table('orders')->count();
-        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
-        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
-        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
-        return view("orders.form_1", compact('zone', 'orders', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
+        return view("orders.form_1", compact('zone', 'orders'));
     }
     public function form2(Request $request) 
     {
@@ -35,12 +31,7 @@ class OrderController extends Controller
         $pesan = $request->session()->get('pesan');
         $orders = Order::all();
         $orders->feed_m              = $pesan['feed_m'];
-        
-        $pesananSaya = DB::table('orders')->count();
-        $pesananDiproses = DB::table('orders')->where('status', 'Process')->count();
-        $pesananDibatalkan = DB::table('orders')->where('status', 'Canceled')->count();
-        $pesananSelesai = DB::table('orders')->where('status', 'Finished')->count();
-        return view("orders.form_2", compact('zone', 'orders', 'pesananSaya', 'pesananDiproses', 'pesananDibatalkan', 'pesananSelesai'));
+        return view("orders.form_2", compact('zone', 'orders'));
     }
     public function tambah(Request $request)
     {
@@ -89,13 +80,22 @@ class OrderController extends Controller
                 $orders->alamat_tujuan       = $pesan['alamat_tujuan'];
                 $orders->telp_tujuan         = $pesan['telp_tujuan'];
                 $orders->user_id = Auth::id();
-                $orders->save();
                 $request->session()->forget('pesan');
+                if($orders->feed_m == 0){
+                    $orders->status = 'Find Checker';
+                    $orders->save();
+
+                }else{
+                    $orders->save();
+                }
+            $request->session()->forget('pesan');
             return redirect()->route('user.pesanan')->with('success', 'Terima kasih, silahkan cek kembali pesanan anda.');
 
         } else {
             return redirect()->route('login');
         }
+
+        
     }
    
     public function detail($id) 

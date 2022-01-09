@@ -6,6 +6,7 @@ use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\ChattingController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\FeedManagerController;
+use App\Http\Controllers\FieldManagerController;
 use App\Http\Controllers\FindChecker;
 use App\Http\Controllers\FindDriverController;
 use Illuminate\Support\Facades\Route;
@@ -125,7 +126,6 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
         Route::get('/pesanan-dibatalkan', [DriverController::class, 'pesananDibatalkan'])->name('driver.pesanan_dibatalkan');
         
         
-        Route::post('/store-input-fields/feed-manager/{id}{key}', [FeedManagerController::class, 'deleteFeed'])->name('feed.delete');
         // driver akses
         Route::post('/armada', [DriverController::class, 'armada'])->name('driver.armada');
         Route::get('/v/tolak-orderan/{id}', [DriverController::class, 'tolak'])->name('driver.tolak');
@@ -134,9 +134,13 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
         Route::get('/v/antar-barang/{id}', [DriverController::class, 'antarBarang'])->name('driver.antar');
         Route::get('/v/sampai-barang/{id}', [DriverController::class, 'sampaiBarang'])->name('driver.sampai');
     });
+    Route::group(['prefix' => 'field-manager', 'middleware' => ['role:feed-manager']], function()
+    {
+        Route::get('/akun-saya', [FieldManagerController::class, 'akunSaya'])->name('checker.akun_saya');
+        Route::get('/pesanan', [FieldManagerController::class, 'pesanan'])->name('checker.pesanan');
+    });
 
 
-    Route::post('/find/field_manager/{id}', [FindChecker::class, 'find'])->name('feed_manager.find');
 // chatting
 
 Route::get('/driver/status/tracking/chatting/tambah/{id}', [ChattingController::class, 'tambah'])->name('chat.tambah');
