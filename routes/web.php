@@ -138,6 +138,7 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
     {
         Route::get('/akun-saya', [FieldManagerController::class, 'akunSaya'])->name('checker.akun_saya');
         Route::get('/pesanan', [FieldManagerController::class, 'pesanan'])->name('checker.pesanan');
+        Route::get('/cari-driver-by-field/{id}', [FindDriverController::class, 'findByField'])->name('driver.findByField');
     });
 
 

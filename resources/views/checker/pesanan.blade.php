@@ -11,6 +11,7 @@
     <div id="alert-js" class="alert alert-success text-center mt-3" style="display: none;">
         <p id="status"></p>
     </div>
+ 
     <div class="mt-4">
         <div class="card">
             <div class="card-body">
@@ -32,18 +33,18 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($orders as $order)
+                                    @foreach ($orders as $item)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $order->nama_pengirim }}</td>
-                                            <td>{{ $order->jadwal }}</td>
+                                            <td>{{ $item->nama_pengirim }}</td>
+                                            <td>{{ $item->jadwal }}</td>
                                             <td>
-                                                @foreach (json_decode($order->tujuan) as $tujuan)
+                                                @foreach (json_decode($item->tujuan) as $tujuan)
                                                     {{ $tujuan }},
                                                 @endforeach
                                             </td>
                                             <td class="mb-0 fw-normal">
-                                                @if ($order->status == 'Find Checker')
+                                                @if ($item->status == 'Find Checker')
                                                     <span
                                                         class="btn btn-info rounded-9 btn-sm text-capitalize py-1 px-1">Butuh
                                                         bantuan</span>
@@ -51,7 +52,7 @@
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-success btn-sm" data-mdb-toggle="modal"
-                                                    data-mdb-target="#checker{{ $order->id }}">
+                                                    data-mdb-target="#checker{{ $item->id }}">
                                                     Lihat
                                                 </button>
                                             </td>

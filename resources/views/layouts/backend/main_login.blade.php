@@ -27,11 +27,11 @@
 
     {{-- dinamik input add jalur driver --}}
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    {{-- <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     {{-- break --}}
     <link rel="icon" href="" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-    <link rel="stylesheet" href="https://fontawesome.com/v5.15/icons/circle?style=solid">
+    {{-- <link rel="stylesheet" href="https://fontawesome.com/v5.15/icons/circle?style=solid">  berat --}}
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
     <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
 
