@@ -31,7 +31,7 @@
                 @if ($ruteCount > 0)
                 <span class="text-danger d-lg-none d-sm-block float-right" data-mdb-toggle="modal" data-mdb-target="#jalur">Tambah Rute ?</span>
                     @foreach (json_decode($driverJalur->rute) as $jalur)
-                    
+
                     <p class="text-black-100 ml-4 text-capitalize">-&nbsp;{{ $jalur }}</p>
                     @endforeach
                     @else
@@ -58,7 +58,7 @@
         <p class="text-black-100 ml-4 text-capitalize">{{ Auth::user()->alamat }}</p>
         <h5 class="text-dark">Status</h5>
         <p class="text-black-100 ml-4 text-capitalize">{{ Auth::user()->status->status }}</p>
-        
+
     </div>
 </div>
 
@@ -72,24 +72,24 @@
             document.getElementById('form').style.display = 'block';
             document.getElementById('body').style.display = 'none';
             condition = false;
-            
+
         }else if(condition == false){
             document.getElementById('form').style.display = 'none';
             document.getElementById('body').style.display = 'block';
             condition = true;
         }
         console.log(condition);
-  
+
     }
- 
+
     function pesanan()
     {
         const url = "/driver/pesanan"
         $.get(url, {}, function() {
-            const query= "#body" 
+            const query= "#body"
             // console.log(query);
             $(query).html(url);
-           
+
         });
     }
 </script>

@@ -31,9 +31,9 @@ class DriverController extends Controller
         $pesananSaya = DB::table('checkouts')
                         ->where('driver_id', Auth::user()->id)
                         ->count();
-       
+
         return view('driver.partial.table_masuk', compact('i' ,'orders','checkout', 'driver', 'trackings', 'track_status', 'user', 'pesananSaya'));
-        
+
     }
     public function tableProses(Request $request)
     {
@@ -47,7 +47,7 @@ class DriverController extends Controller
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
 
         return view('driver.partial.table_proses', compact('i' ,'orders','checkout', 'driver', 'trackings', 'track_status', 'user'));
-        
+
     }
     public function tableSelesai(Request $request)
     {
@@ -61,14 +61,14 @@ class DriverController extends Controller
         $track_status = TrackingStatus::orderBy('id', 'ASC')->get();
 
         return view('driver.partial.table_selesai', compact('i' ,'orders','checkout', 'driver', 'trackings', 'track_status', 'user'));
-        
+
     }
     public function akunSaya()
     {
         $zones = Zone::all();
         $driverJalurs  = DriverJalur::where('user_id', Auth::id())
-                                // ->where('rute', '!=', null)
-                                ->get();
+        // ->where('rute', '!=', null)
+        ->get();
         $jalursCount    = count($driverJalurs);
 
         foreach($driverJalurs as $driverJalur)
@@ -82,20 +82,20 @@ class DriverController extends Controller
                 }
             }else
             {
-               
+
                 $rutes = $driverJalur;
                 $ruteCount  =   0;
 
             }
-            
+
         }
-       
+
         $armadas         = Armada::all();
         $driverArmada   =   DriverArmada::where('user_id', Auth::id())
                                 ->where('armada_id', '!=', null)
                                 ->get();
-        
-        return view('driver.akun_saya', 
+
+        return view('driver.akun_saya',
             compact('driverJalurs','driverJalur','rutes',
                     'jalursCount',
                         'ruteCount',
@@ -103,7 +103,7 @@ class DriverController extends Controller
                         'armadas',
                         'driverArmada',
                         'zones'
-        
+
         ));
     }
 
@@ -111,7 +111,7 @@ class DriverController extends Controller
     {
         return view('driver.pesanan');
     }
-     
+
     public function armada(Request $request)
     {
         $armadaRequest     = DriverArmada::where('user_id', Auth::id())->get();
@@ -119,7 +119,7 @@ class DriverController extends Controller
         {
             $armada->delete();
         }
-        
+
         $armadas    = json_encode($request->armada_id);
         if($request->has(['armada_id']))
         {
@@ -133,7 +133,7 @@ class DriverController extends Controller
                 ]);
             }
         }else{
-            
+
             DB::table('d_armada')
             ->where('user_id', Auth::id())
             ->insert([
@@ -154,7 +154,7 @@ class DriverController extends Controller
                 'rute' =>  json_encode($request->rute),
                 'user_id' =>  Auth::id(),
             ]);
-          
+
         }else{
             DriverJalur::insert([
                 'user_id' =>  Auth::id(),
@@ -174,22 +174,22 @@ class DriverController extends Controller
             $checkouts->orders_id = $checkout->orders_id;
             $checkouts->driver_id = $request->driver_id;
             $checkouts->save();
-           
+
         }
     }
-   
-    
+
+
     public function terima($id)
     {
         $checkout = Checkout::find($id);
-        
+
         $checkout->message = 'Verified';
         $checkout->update();
 
         $orders = $checkout->orders;
         $orders->status = 'Process';
         $orders->update();
-     
+
         DB::table('users')->where('id', Auth::id())
                         ->update([
                                 'status_id' => 3
@@ -205,7 +205,7 @@ class DriverController extends Controller
         $status->status = 'Terima';
         $status->track_id = $tracking->id;
         $status->save();
-        
+
     }
     public function jemputBarang(Request $request, $id)
     {
@@ -219,7 +219,7 @@ class DriverController extends Controller
         $status->status = 'Jemput';
         $status->track_id = $tracking->id;
         $status->save();
-  
+
     }
 
     public function antarBarang(Request $request, $id)
@@ -243,9 +243,9 @@ class DriverController extends Controller
             $status->alamat      = $almt;
             $status->save();
         }
-   
+
     }
-   
+
     public function sampaiBarang($id)
     {
         $status = TrackingStatus::find($id);
@@ -255,7 +255,7 @@ class DriverController extends Controller
                         ->update([
                                 'status_id' => 1
                             ]);
-  
+
     }
-    
+
 }

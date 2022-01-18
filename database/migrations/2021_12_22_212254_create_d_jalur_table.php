@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\DriverJalur;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +21,20 @@ class CreateDJalurTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
+
+        DriverJalur::insert([
+            [
+                'user_id' => '3',
+            ],
+            [
+                'user_id' => '4',
+            ],
+            [
+                'user_id' => '5',
+            ],
+
+        ]);
+
     }
 
     /**
