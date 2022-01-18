@@ -86,11 +86,11 @@
         var html = '';
         html += '<div id="inputFormRow">';
         html += '<div class="input-group mb-3">';
-        html += '<select class="form-select form-select-lg" name="rute[]" id="rute"  autocomplete="off">'
-        @foreach ($zones as $zone)'
-            html += '<option value="{{ $zone->zone }}">{{ $zone->zone }}</option>'
-            html += '@endforeach '
-        html += '</select>'
+        html += '<select class="form-select form-select-lg" name="rute[]" id="rute"  autocomplete="off">';
+        html += '@foreach ($zones as $zone)';
+        html += '<option value="{{ $zone->zone }}">{{ $zone->zone }}</option>';
+        html += '@endforeach ';
+        html += '</select>';
         html += '<div class="input-group-append">';
         html += '<button id="removeRow" type="button" class="btn btn-danger">Remove</button>';
         html += '</div>';
