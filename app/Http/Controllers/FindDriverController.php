@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Checkout;
 use App\Models\DriverArmada;
+use App\Models\DriverJalur;
 use App\Models\Order;
 use App\Models\User;
 use Exception;
@@ -30,68 +31,103 @@ class FindDriverController extends Controller
             $checkouts->driver_id = $drvDecode;
             $checkouts->save();
         }
-        
+
         return back()->with('success', 'Terima kasih, kami akan carikan anda driver.');
     }
 
-    
+
     public function findByField(Request $request, $id)
     {
         $orders     = Order::find($id);
+        $jemput = $orders->jemput;
+        $tujuan = $orders->tujuan;
         $decJumlah            = $request->input('jumlah', []);
         $armadaArray          = json_encode($request->armada);
-        $backup = array();
+        $backupArmada = array();
+        $backupJalur = array();
         $sum    = 0;
+
+        $driverJalur = DriverJalur::where('rute', '!=', null)->get();
+
+
+        foreach ($driverJalur as $driver) {
+            $x=0;
+            foreach (json_decode($driver->rute) as $rute) {
+                if ($rute == $jemput) {
+                    $x++;
+                }
+
+                foreach (json_decode($tujuan) as $tuju) {
+                    if ($rute == $tuju) {
+                        $x++;
+                    }
+                }
+            }
+                if ($x==count(json_decode($tujuan))+1) {
+                    $data = $driver->user_id;
+                    array_push($backupJalur, $data);
+                }
+        }
+
 
         foreach (json_decode($armadaArray) as $key => $armada) {
             $driver    = DriverArmada::select('user_id')
                                     ->where('armada_id', $armada)
-                                    ->limit($decJumlah[$key])->get();  
-            if ($decJumlah[$key] == count($driver)) {
+                                    ->get();
                 foreach($driver as $key => $driv){
-                    $data = [
-                        'message'      => 'Finded',
-                        'driver_id'     =>$driv->user_id,
-                        'orders_id'  => $orders->id
-                    ];
-                    DB::table('checkouts')->insert($data);
-                    array_push($backup, $data);
+                    $data = $driv->user_id;
+                    array_push($backupArmada, $data);
                 }
                 // return $backup;
 
-            }else {
 
-                // return back()->with('error', 'Jumlah Driver Tidak Mememenui Syarat!');
-         
-                foreach ($backup as $key => $restore) {
-                    // DB::table('checkouts')->where('driver_id', $restore['driver_id'])->delete();
-                    echo $restore['message'];
-                }
-            }
 
         }
+        // $result = [];
 
-        
+        // function serialize_array_values($arr){
+        //     foreach($arr as $key=>$val){
+        //         sort($val);
+        //         $arr[$key]=serialize($val);
+        //     }
+
+        //     return $arr;
+        // }
+
+        // $result = array_map("unserialize", array_intersect(serialize_array_values($backupArmada),serialize_array_values($backupJalur)));
+
+        // echo "\n\n\n";
+        // echo dd($result);
+
+        $result= array_intersect($backupArmada,$backupJalur);
+        for ($i=0; $i < $decJumlah[0]; $i++) {
+            $checkout = new Checkout();
+            $checkout->message = 'Finded';
+            $checkout->driver_id = $result[$i];
+            $checkout->orders_id = $orders->id;
+            $checkout->save();
+        }
+
         // for ($h = 0; $h < count($armadas); $h++) {
 
         //     for($i = 0; $i < $decJumlah[$h]; $i++){
-        //         $driver    = DriverArmada::select('user_id')->where('armada_id', $armadas)->limit($decJumlah[$h])->get();    
-    
-    
+        //         $driver    = DriverArmada::select('user_id')->where('armada_id', $armadas)->limit($decJumlah[$h])->get();
+
+
         //         if(count($driver) == $decJumlah[$i]){
         //             foreach($driver as $driv){
-    
+
         //                 Checkout::insert([
         //                     'message'      => 'Finded',
         //                     'driver_id'     =>$driv->user_id,
         //                     'orders_id'  => $orders->id
-                            
+
         //                 ]);
         //             }
-                    
+
         //         }
         //     }
         // }
     }
-    
+
 }
