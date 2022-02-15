@@ -21,37 +21,37 @@
 
              @include('layouts.backend.partial.sidebar_m')
              <div class="collapse navbar-collapse text-right">
-                <div id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link " aria-current="page" href="#">Solusi Bisnis</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link @yield('pesan-armada')" href="#">Pesan Armada</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Mitra Driver</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Perusahaan
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="#">Tentang</a></li>
-                                <li><a class="dropdown-item" href="#">Kontak</a></li>
-                                <li><a class="dropdown-item" href="#">Blog</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                 <div id="navbarSupportedContent">
+                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                         <li class="nav-item">
+                             <a class="nav-link " aria-current="page" href="#">Solusi Bisnis</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link @yield('pesan-armada')" href="#">Pesan Armada</a>
+                         </li>
+                         <li class="nav-item">
+                             <a class="nav-link" href="#">Mitra Driver</a>
+                         </li>
+                         <li class="nav-item dropdown">
+                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                 data-bs-toggle="dropdown" aria-expanded="false">
+                                 Perusahaan
+                             </a>
+                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                 <li><a class="dropdown-item" href="#">Tentang</a></li>
+                                 <li><a class="dropdown-item" href="#">Kontak</a></li>
+                                 <li><a class="dropdown-item" href="#">Blog</a></li>
+                             </ul>
+                         </li>
+                     </ul>
+                 </div>
              </div>
 
 
 
              <ul class="navbar-nav d-flex flex-row d-none d-sm-flex">
                  @if (Auth::check())
-     
+
                      <!-- Notification dropdown -->
                      <li class="nav-item dropdown">
                          <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#"
@@ -67,7 +67,7 @@
                              </li>
                          </ul>
                      </li>
-     
+
                      <!-- Icon -->
                      <li class="nav-item">
                          <a class="nav-link me-3 me-lg-0" href="#">
@@ -84,23 +84,24 @@
                          <a class="nav-link" href="https://instagram.com/bima_arifa/">
                          </a>
                      </li>
-     
+
                  @endif
                  <!-- Icon dropdown -->
-     
-     
+
+
                  <!-- Avatar -->
                  <li class="nav-item dropdown">
-     
+
                      @if (Auth::check())
-                         <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center btn btn-danger rounded-pill text-white text-capitalize" href="#"
-                             id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-     
+                         <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center btn btn-danger rounded-pill text-white text-capitalize"
+                             href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
+                             aria-expanded="false">
+
                              <img src="{{ asset('assets/icon/' . Auth::user()->avatar) }}"
                                  class="rounded-circle img-thumbnail img-fluid" width="32" alt="" loading="lazy" />
                              &nbsp;<span class="fs-5 font-normal">{{ Auth::user()->name }}</span>&nbsp;
-     
-     
+
+
                          </a>
                      @else
                          <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
@@ -111,13 +112,14 @@
                          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLinkOne">
                              <li><a class="dropdown-item" href="{{ route('login') }}">Masuk</a></li>
                              <li><a class="dropdown-item" href="{{ route('register') }}">Daftar</a></li>
-     
+
                              <li>
-     
+
                                  @if (Auth::check())
+                                     <button class="dropdown-item" onclick="logout()">Logout</button>
                                      <form method="POST" action="{{ route('logout') }}">
                                          @csrf
-                                         <button class="dropdown-item" href="{{ route('logout') }}"
+                                         <button class="dropdown-item d-none" href="{{ route('logout') }}"
                                              onclick="event.preventDefault(); this.closest('form').submit();">Logout</button>
                                      </form>
                                  @endif
@@ -127,13 +129,14 @@
                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
                          <li><a class="dropdown-item" href="#">Profil</a></li>
                          <li><a class="dropdown-item" href="#">Settings</a></li>
-     
+
                          <li>
-     
+
                              @if (Auth::check())
+                                 <button class="dropdown-item" onclick="logout()">Logout</button>
                                  <form method="POST" action="{{ route('logout') }}">
                                      @csrf
-                                     <button class="dropdown-item" href="{{ route('logout') }}"
+                                     <button id="logoutTrue" class="dropdown-item d-none" href="{{ route('logout') }}"
                                          onclick="event.preventDefault(); this.closest('form').submit();">Logout</button>
                                  </form>
                              @endif
@@ -142,9 +145,26 @@
                  </li>
              </ul>
              <!-- Right links -->
-            </div>
-            <!-- Container wrapper -->
-        </nav>
+         </div>
+         <!-- Container wrapper -->
+     </nav>
      <!-- Navbar -->
  </header>
  <!--Main Navigation-->
+
+ <script>
+     function logout() {
+            swal({
+                title: "Log out!",
+                text: "Are you sure you want to log out?",
+                type: "error",
+                confirmButtonClass: "btn-danger",
+                confirmButtonText: "Yes!",
+                showCancelButton: true,
+            }).then((result) => {
+                if (result.dismiss !== 'cancel') {
+                    $("#logoutTrue").click();
+                }
+            })
+        }
+ </script>

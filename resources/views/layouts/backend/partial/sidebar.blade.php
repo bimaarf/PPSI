@@ -25,12 +25,22 @@
                     @endif
                     @if (Auth::user()->hasRole('feed-manager'))
                         @include('layouts.backend.partial.elements.side_checker')
-                    @endif                    
-
-                    <form method="POST" action="{{ route('logout') }}" class="mb-4 position-relative"
+                    @endif
+                    <a href="#"
+                        class="list-group-item list-group-item-action rounded-6 mt-3 btn btn-danger"
+                        onclick="logout()">
+                        <div class="row">
+                            <div class="col-2 fas fa-circle fs-1"></div>
+                            <div class="col-1"></div>
+                            <div class="col-8 align-self-center">
+                                <span class="fs-6 text-capitalize">Keluar</span>
+                            </div>
+                        </div>
+                    </a>
+                    <form method="POST" action="{{ route('logout') }}" class="mb-4 d-none position-relative"
                         style="margin-top: 20px">
                         @csrf
-                        <a href="{{ route('logout') }}"
+                        <a id="logoutTrue" href="{{ route('logout') }}"
                             class="list-group-item list-group-item-action rounded-6 mt-3 btn btn-danger"
                             onclick="event.preventDefault(); this.closest('form').submit();">
                             <div class="row">

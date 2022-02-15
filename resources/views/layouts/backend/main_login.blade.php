@@ -41,11 +41,24 @@
     <link rel="stylesheet" href="{{ asset('assets/css/custome.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}" />
 
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+
+    </style>
+    <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
+
 
 </head>
 
 <body class="mdb-skin-custom " data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="250"
     style="background-color: #f3f2ef;">
+    @if (Session::has('sweet_alert.alert'))
+        <script>
+            swal({!! Session::get('sweet_alert.alert') !!});
+        </script>
+    @endif
     @include('layouts.backend.partial.navigation')
 
     <main class="mt-4 d-lg-block container">

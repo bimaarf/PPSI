@@ -91,11 +91,9 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
         Route::post('/edit-admin/{id}', [AdminController::class, 'editAdmin'])->name('admin.edit_admin')->middleware(['auth', 'permission:mengelola-data-admin']);
         Route::post('/edit-driver/{id}', [AdminController::class, 'editDriver'])->name('admin.edit_driver')->middleware(['auth', 'permission:mengelola-data-driver']);
         Route::post('/edit-shipper/{id}', [AdminController::class, 'editShipper'])->name('admin.edit_shipper')->middleware(['auth', 'permission:mengelola-data-shipper']);
-        Route::get('/tambah-berita', [AdminController::class, 'berita'])->name('admin.form_berita');
         Route::resource('/berita/post', BeritaController::class);
         Route::get('/berita', [BeritaController::class, 'show'])->name('admin.berita.index');
     });
-    Route::get('/article/u/{slug}', [BeritaController::class, 'showUpdate'])->name('admin.berita.update');
     Route::get('/article/u/{slug}', [BeritaController::class, 'showUpdate'])->name('admin.berita.update');
     Route::get('/article/{slug}', [BeritaController::class, 'detail'])->name('admin.berita.detail');
     Route::group(['prefix' => 'shipper', 'middleware' => ['role:shipper']], function()

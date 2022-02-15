@@ -15,6 +15,7 @@ class Berita extends Model
         'title',
         'slug',
         'body',
+        'image',
         'author',
         'kategori_id'
     ];
@@ -22,7 +23,8 @@ class Berita extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
-    public function userss()
+    
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

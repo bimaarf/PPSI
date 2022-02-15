@@ -72,7 +72,7 @@
         html += '<div id="inputFormRow">';
         html += '<div class="input-group mb-3">';
         html += '<select class="form-select form-select-lg" name="armada[]" id="armada"  autocomplete="off">';
-        html +='@foreach ($armadas as $armada)';
+        html += '@foreach ($armadas as $armada)';
         html += '<option value="{{ $armada->id }}">{{ $armada->name }}</option>';
         html += '@endforeach ';
         html += '</select>';

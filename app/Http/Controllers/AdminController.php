@@ -132,9 +132,5 @@ class AdminController extends Controller
         $users->update();
         return back()->with('success', 'Data berhasil diubah!');
     }
-    public function berita()
-    {
-        $kategori   = Kategori::all();
-        return view('admin.form_berita', compact('kategori'));
-    }
+  
 }

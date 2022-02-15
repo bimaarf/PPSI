@@ -13,21 +13,33 @@ class BeritaController extends Controller
 
     public function store(Request $request)
     {
-        
         $request->validate([
             'title'         =>  'required|max:255',
             'kategori_id'          =>  'required',
             'body'          =>  'required',
+            'image'      =>      'required',
+            'image.*'      =>      'mimes:jpeg,jpg,png',
         ]);
-        $data['title']          = $request->title;
-        $data['slug']           = Str::slug($request->title, '-');
-        $data['body']           = $request->body;
-        $data['kategori_id']    = $request->kategori_id;
-        $data['author']         = Auth::id();
-        Berita::insert($data);
+
+        if($request->hasfile('image'))
+        {
+            $file = $request->file('image');
+            $filename        =   time().'.'.$file->getClientOriginalName();
+            $request->image->storeAs('public/berita', $filename);
+         
+            $data['title']          = $request->title;
+            $data['slug']           = Str::slug($request->title, '-');
+            $data['body']           = $request->body;
+            $data['image']          = $filename;
+            $data['kategori_id']    = $request->kategori_id;
+            $data['user_id']         = Auth::id();
+            Berita::insert($data);
+            return redirect()->route('admin.berita.detail', ['slug'=>$data['slug']])->with('success', 'Berita berhasil ditambahkan!');
+        }else {
+            return back()->with('error', 'Pastikan form terisi dengan benar!');
+        }
 
 
-        return redirect()->route('admin.berita.detail', ['slug'=>$data['slug']])->with('success', 'Berita berhasil ditambahkan!');
   
     }
     public function update(Request $request, $slug)
@@ -43,7 +55,7 @@ class BeritaController extends Controller
         $berita->slug               = Str::slug($request->title, '-');
         $berita->body               = $request->body;
         $berita->kategori_id        = $request->kategori_id;
-        $berita->author             = Auth::id();
+        $berita->user_id             = Auth::id();
 
         $berita->update();
 
@@ -56,7 +68,8 @@ class BeritaController extends Controller
     {
         $berita = Berita::orderBy('id', 'DESC')->simplePaginate(10);
         $users   = User::all();
-        return view('admin.berita.index', compact('berita', 'users'));
+        $kategori   = Kategori::all();
+        return view('admin.berita.index', compact('berita', 'users', 'kategori'));
     }
     public function showUpdate($slug)
     {

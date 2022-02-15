@@ -1,19 +1,12 @@
-@extends('layouts.backend.main_login')
-@section('daftar-berita', 'active')
-@section('content')
-<div class="card rounded">
-    <div class="card-body">
-        <div class="fs-5">
-            <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda&emsp;/&emsp;Tambah Berita</b>
-        </div>
-    </div>
-</div>
 
 <div class="mt-2 card">
-    <div class="card-header"><h4 class="text-dark"><strong>Tambah Berita</strong></h4></div>
     <div class="card-body">
-        <form method="POST" action="/admin/berita/post">
+        <form method="POST" action="/admin/berita/post" enctype="multipart/form-data">
             @csrf
+            <div class="form-group">
+                <label class="form-label" for="image">Image</label>
+                <input type="file" name="image" id="image" class="form-controll form-control-file" required>
+            </div>
             <div class="form-outline">
                 <input value="{{ old('title') }}" type="text" class="form-control form-control-lg  @error('title') is-invalid @enderror" name="title" id="title">
                 
@@ -39,5 +32,3 @@
         </form>
     </div>
 </div>
-
-@endsection

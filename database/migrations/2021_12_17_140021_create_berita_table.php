@@ -18,8 +18,9 @@ class CreateBeritaTable extends Migration
             $table->string('title', 255);
             $table->string('slug', 255);
             $table->text('body');
-            $table->unsignedBigInteger('author');
-            $table->foreign('author')->references('id')->on('users');
+            $table->string('image', 255);
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('kategori_id');
             $table->foreign('kategori_id')->references('id')->on('kategori');
             $table->timestamps();
