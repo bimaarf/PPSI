@@ -8,7 +8,7 @@
             </div>
             <div class="modal-body">
                 <!-- Tabs navs -->
-
+asdasdsadsad
 
                 <!-- Tabs content -->
 
@@ -26,12 +26,12 @@
                             </div>
                             <div class="tab-pane fade" id="ex1-resi-2{{ $item->id }}" role="tabpanel"
                                 aria-labelledby="ex1-tab-2{{ $item->id }}">
-                                
+
                                     <div id="newRow"></div>
 
                                     <button id="addRow" type="button" class="btn btn-info">Tambahkan Armada</button>
                                     <span class="text-danger">Jumlah Armada : </span><span id="truck"></span>
-                                   
+
 
                             </div>
                         </div>
@@ -54,7 +54,7 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-lg btn-primary">Submit</button>
                 </div>
-                                    
+
             </form>
             </div>
         </div>
@@ -95,8 +95,8 @@
 
     function finDriver(id) {
         const url       = "/field-manager/cari-driver-by-field/" + id
-        var armada = $('#armada').map(function(){ 
-            return this.value; 
+        var armada = $('#armada').map(function(){
+            return this.value;
         }).get();
         $('#findDriver').attr('disabled', true);
         $.ajax({

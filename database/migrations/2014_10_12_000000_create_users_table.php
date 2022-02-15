@@ -25,6 +25,8 @@ class CreateUsersTable extends Migration
             $table->unsignedBigInteger('status_id');
             $table->foreign('status_id')->references('id')->on('users_status');
             $table->string('avatar',255);
+            $table->string('location',255)->default('Pontianak');
+
             $table->rememberToken();
             $table->timestamps();
         });
