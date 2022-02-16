@@ -93,6 +93,7 @@ Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('
         Route::post('/edit-shipper/{id}', [AdminController::class, 'editShipper'])->name('admin.edit_shipper')->middleware(['auth', 'permission:mengelola-data-shipper']);
         Route::resource('/berita/post', BeritaController::class);
         Route::get('/berita', [BeritaController::class, 'show'])->name('admin.berita.index');
+        Route::get('/berita/edit/{slug}', [BeritaController::class, 'update'])->name('admin.berita.edit');
     });
     Route::get('/article/u/{slug}', [BeritaController::class, 'showUpdate'])->name('admin.berita.update');
     Route::get('/article/{slug}', [BeritaController::class, 'detail'])->name('admin.berita.detail');

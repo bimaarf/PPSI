@@ -11,6 +11,7 @@
                 <input value="{{ old('title') }}" type="text" class="form-control form-control-lg  @error('title') is-invalid @enderror" name="title" id="title">
                 
                 <label class="form-label" for="title">Judul</label>
+               
             </div>
             <div class="form-group mt-4">
                 <select class="form-select form-select-lg" name="kategori_id" id="kategori_id" required>

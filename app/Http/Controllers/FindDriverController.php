@@ -69,7 +69,6 @@ class FindDriverController extends Controller
                 }
         }
 
-
         foreach (json_decode($armadaArray) as $key => $armada) {
             $driver    = DriverArmada::select('user_id')
                                     ->where('armada_id', $armada)
@@ -79,25 +78,7 @@ class FindDriverController extends Controller
                     array_push($backupArmada, $data);
                 }
                 // return $backup;
-
-
-
         }
-        // $result = [];
-
-        // function serialize_array_values($arr){
-        //     foreach($arr as $key=>$val){
-        //         sort($val);
-        //         $arr[$key]=serialize($val);
-        //     }
-
-        //     return $arr;
-        // }
-
-        // $result = array_map("unserialize", array_intersect(serialize_array_values($backupArmada),serialize_array_values($backupJalur)));
-
-        // echo "\n\n\n";
-        // echo dd($result);
 
         $result= array_intersect($backupArmada,$backupJalur);
         for ($i=0; $i < $decJumlah[0]; $i++) {
@@ -108,26 +89,6 @@ class FindDriverController extends Controller
             $checkout->save();
         }
 
-        // for ($h = 0; $h < count($armadas); $h++) {
-
-        //     for($i = 0; $i < $decJumlah[$h]; $i++){
-        //         $driver    = DriverArmada::select('user_id')->where('armada_id', $armadas)->limit($decJumlah[$h])->get();
-
-
-        //         if(count($driver) == $decJumlah[$i]){
-        //             foreach($driver as $driv){
-
-        //                 Checkout::insert([
-        //                     'message'      => 'Finded',
-        //                     'driver_id'     =>$driv->user_id,
-        //                     'orders_id'  => $orders->id
-
-        //                 ]);
-        //             }
-
-        //         }
-        //     }
-        // }
     }
 
 }

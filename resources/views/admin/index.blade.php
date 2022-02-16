@@ -1,4 +1,4 @@
-@extends('layouts.backend.main_login')
+@extends('admin.main')
 @section('dashboard', 'active')
 @section('content')
     
@@ -11,13 +11,13 @@
 </div>
 <div class="card rounded-9 mt-2">
     <div class="row card-body">
-        <div class="col-md-6 mt-2">
+        <div class="col-md-3 col-6 mt-2">
             <div class="card bg-primary">
                 <div class="card-header">
-                    <img class="fa-pull-right" src="{{ asset('assets/icon/Driver.svg') }}" width="50" alt="">
+                    <img class="fa-pull-right d-lg-block collapse" src="{{ asset('assets/icon/Driver.svg') }}" width="50" alt="">
                     <div class="float-start">
                         <h2 class="text-white"><i class="fa fa-users"></i>&emsp;{{ $tDriver }}</h2>
-                        <h6 class="text-white-50">Driver terdaftar</h6>
+                        <h6 class="text-white-50">Driver</h6>
                     </div>
                 </div>
                 <div class="card-body"><i class="text-white-50 fa fa-clock"></i>
@@ -25,13 +25,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mt-2">
+        <div class="col-md-3 col-6 mt-2">
             <div class="card bg-success">
                 <div class="card-header">
-                    <img class="fa-pull-right" src="{{ asset('assets/icon/Shipper.svg') }}" width="50" alt="">
+                    <img class="fa-pull-right d-lg-block collapse" src="{{ asset('assets/icon/Shipper.svg') }}" width="50" alt="">
                     <div class="float-start">
                         <h2 class="text-white"><i class="fa fa-users"></i>&emsp;{{ $tShipper }}</h2>
-                        <h6 class="text-white-50">Shipper terdaftar</h6>
+                        <h6 class="text-white-50">Shipper</h6>
                     </div>
                 </div>
                 <div class="card-body"><i class="text-white-50 fa fa-clock"></i>
@@ -39,13 +39,13 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mt-2">
+        <div class="col-md-3 col-6 mt-2">
             <div class="card bg-secondary">
                 <div class="card-header">
-                    <img class="fa-pull-right" src="{{ asset('assets/icon/Driver.svg') }}" width="50" alt="">
+                    <img class="fa-pull-right d-lg-block collapse" src="{{ asset('assets/icon/Driver.svg') }}" width="50" alt="">
                     <div class="float-start">
                         <h2 class="text-white">$750</h2>
-                        <h6 class="text-white-50">Manajer lapangan</h6>
+                        <h6 class="text-white-50">Field Manager</h6>
                     </div>
                 </div>
                 <div class="card-body"><i class="text-white-50 fa fa-clock"></i>
@@ -53,10 +53,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mt-2">
+        <div class="col-md-3 col-6 mt-2">
             <div class="card bg-gradient-to-b bg-dark">
                 <div class="card-header">
-                    <img class="fa-pull-right" src="{{ asset('assets/icon/Driver.svg') }}" width="50" alt="">
+                    <img class="fa-pull-right d-lg-block collapse" src="{{ asset('assets/icon/Driver.svg') }}" width="50" alt="">
                     <div class="float-start">
                         <h2 class="text-white"><i class="fa fa-users"></i>&emsp;{{ $tAdmin }}</h2>
                         <h6 class="text-white-50">Admin</h6>
@@ -69,26 +69,28 @@
         </div>
     </div>
 </div>
-<div class="card rounded-9 mt-2">
-    <div class="card-header">
-        <h4 class="text-dark"><b>Aktivitas Admin</b></h4>
-    </div>
-    <div class="card-body example komen" style="height:300px;
-    overflow-y: scroll;">
-
-        @foreach ($activity as $activ)
-            <div class="mt-1">
-                <img class="rounded-circle img-thumbnail" width="40"
-                    src="{{ asset('assets/icon/Driver.svg') }}" alt="">
-                <span class="text-dark text-capitalize"><b>{{ $activ->title }}</b></span>
-
-                {{-- <img src="{{ asset('assets/verified/verified.svg') }}" class="float-start mt-2 px-1" width="19" alt=""> --}}
-
-                <span class="px-1">{{ $activ->message }}</span>
-                <small style="font-size: 10px" class="position-relative">{{ $activ->created_at }}</small>
-            </div>
-        @endforeach
-
+<div class="row">
+    <div class="card col-lg-6 rounded-9 mt-2">
+        <div class="card-header">
+            <h4 class="text-dark"><b>Aktivitas Admin</b></h4>
+        </div>
+        <div class="card-body example komen" style="height:200px;
+        overflow-y: scroll;">
+    
+            @foreach ($activity as $activ)
+                <div class="mt-1">
+                    <img class="rounded-circle img-thumbnail" width="40"
+                        src="{{ asset('assets/icon/Driver.svg') }}" alt="">
+                    <span class="text-dark text-capitalize"><b>{{ $activ->title }}</b></span>
+    
+                    {{-- <img src="{{ asset('assets/verified/verified.svg') }}" class="float-start mt-2 px-1" width="19" alt=""> --}}
+    
+                    <span class="px-1">{{ $activ->message }}</span>
+                    <small style="font-size: 10px" class="position-relative">{{ $activ->created_at }}</small>
+                </div>
+            @endforeach
+    
+        </div>
     </div>
 </div>
 @endsection

@@ -1,4 +1,4 @@
-@extends('layouts.backend.main_login')
+@extends('admin.main')
 @section('daftar-berita', 'active')
 @section('content')
         <div class="card">
