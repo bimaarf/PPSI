@@ -45,7 +45,7 @@ class AdminController extends Controller
         if($request->has('search')){
             $users = User::where('name', 'LIKE', '%'.$request->search. '%')->whereRoleIs(['admin'])->simplePaginate(10);
         }else{
-            $users = User::whereRoleIs(['admin'])->simplePaginate();
+            $users = User::whereRoleIs(['admin'])->simplePaginate(10);
         }
         $i = 1;
         $role_user = RoleUser::get();
@@ -99,7 +99,7 @@ class AdminController extends Controller
         $users = User::find($id);
         $users->status_id = $request->status_id;
         
-        if($users->isAbleToCreateUsers())
+        if(!empty($request->permissions))
         {
             $users->update();
             $permission = PermissionUser::all();
@@ -116,9 +116,15 @@ class AdminController extends Controller
             }
         }else{
             $users->update();
+            $permission = PermissionUser::all();
+    
+            foreach($permission->where('user_id', $users->id) as $permis)
+            {
+                $users->detachPermissions([$permis]);
+            }
         }
         
-        return back()->with('success', 'Data berhasil diubah!');
+        return back()->with('success', 'Data admin berhasil diubah!');
     }
     public function editDriver(Request $request, $id)
     {
