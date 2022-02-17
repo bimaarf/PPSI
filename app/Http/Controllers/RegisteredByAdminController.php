@@ -28,7 +28,7 @@ class RegisteredByAdminController extends Controller
             'name'      => $request->name,
             'email'     => $request->email,
             'password'  => Hash::make($request->password),
-            'telp'      => $request->telp,
+            'telp'      => '62' . $request->telp,
             'alamat'    => $request->alamat,
             'status_id' => 1,
             'avatar'    => 'Driver.svg',
@@ -57,7 +57,6 @@ class RegisteredByAdminController extends Controller
         $activity->message      = 'Menambahkan ' . $user->name ;
         $activity->member_id    = $user->id;
         $activity->save(); 
-        
-        return redirect()->route('admin.add_user')->with('success', 'Anda berhasil menambahkan pengguna baru!');
+            return redirect()->route('admin.add_user')->with('error', 'Berhasil ditambahkan!');
     }
 }
