@@ -45,11 +45,19 @@ class FindDriverController extends Controller
         $armadaArray          = json_encode($request->armada);
         $backupArmada = array();
         $backupJalur = array();
+        $backupLocation = array();
         $sum    = 0;
 
         $driverJalur = DriverJalur::where('rute', '!=', null)->get();
+        // filter by driver's location
+        $drivers = User::where('location', $jemput)->get();
+        foreach ($drivers as $driver) {
+            $data = $driver->id;
+            array_push($backupLocation, $data);
+        }
 
 
+        // filter by jalur
         foreach ($driverJalur as $driver) {
             $x=0;
             foreach (json_decode($driver->rute) as $rute) {
@@ -69,6 +77,7 @@ class FindDriverController extends Controller
                 }
         }
 
+        // filter by armada
         foreach (json_decode($armadaArray) as $key => $armada) {
             $driver    = DriverArmada::select('user_id')
                                     ->where('armada_id', $armada)
@@ -80,7 +89,7 @@ class FindDriverController extends Controller
                 // return $backup;
         }
 
-        $result= array_intersect($backupArmada,$backupJalur);
+        $result= array_intersect($backupArmada,$backupJalur, $backupLocation);
         for ($i=0; $i < $decJumlah[0]; $i++) {
             $checkout = new Checkout();
             $checkout->message = 'Finded';

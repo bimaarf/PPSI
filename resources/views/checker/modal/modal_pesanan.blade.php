@@ -8,7 +8,6 @@
             </div>
             <div class="modal-body">
                 <!-- Tabs navs -->
-asdasdsadsad
 
                 <!-- Tabs content -->
 
