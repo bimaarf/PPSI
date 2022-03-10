@@ -59,7 +59,7 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'telp'    => $request->telp,
+            'telp'    => '62' . $request->telp,
             'alamat'    => $request->alamat,
             'status_id' => $status_id,
             'avatar'    => 'Shipper.svg',

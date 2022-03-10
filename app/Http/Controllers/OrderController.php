@@ -16,8 +16,6 @@ use Session;
 class OrderController extends Controller
 {
    
-   
-
     public function form1(Request $request) 
     {
         $zone = Zone::get();
@@ -40,7 +38,7 @@ class OrderController extends Controller
         $pesan['nama_pengirim']       = $request->nama_pengirim;
         $pesan['start_time']          = $request->start_time;
         $pesan['arrival_time']        = $request->arrival_time;
-        $pesan['telp_jemput']         = $request->telp_jemput;
+        $pesan['telp_jemput']         = 62 . $request->telp_jemput;
         $pesan['alamat_jemput']       = $request->alamat_jemput;
         $pesan['armada']              = $request->armada;
         $pesan['jadwal']              = $request->jadwal;

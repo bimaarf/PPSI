@@ -33,7 +33,17 @@ Route::get('/welcome', function () {
 })->name('welcome');
 Route::get('/', function () {
     return view('landing_page.landing');
-})->name('dashboard');
+});
+
+Route::get('/pesan-armada', function () {
+    return view('landing_page.pesan_armada');
+});
+Route::get('/mitra-driver', function () {
+    return view('landing_page.mitra_driver');
+});
+Route::get('/contact', function () {
+    return view('landing_page.contact');
+});
 
 Route::get('/laman-profil', function () {
     return view('test.profile');
@@ -71,12 +81,12 @@ Route::get('/clear-cache', function () {
 });
 Route::post('sunting-profil', [NewPasswordController::class, 'sunting'])->name('auth.sunting')->middleware('auth');
 // form-orders
-Route::get('/user-form-jemput', [OrderController::class, 'form1'])->name('orders.form_1');
-Route::get('/user-form-tujuan', [OrderController::class, 'form2'])->name('orders.form_2');
+Route::get('/form-jemput', [OrderController::class, 'form1'])->name('orders.form_1');
+Route::get('/form-tujuan', [OrderController::class, 'form2'])->name('orders.form_2');
 Route::get('/dashboard/user-form/{id}{key}', [OrderController::class, 'detail'])->name('orders.detail')->middleware('auth');
 Route::get('/dashboard/user-form/delete/{id}', [OrderController::class, 'hapus'])->name('orders.hapus')->middleware('auth');
-Route::post('/store-input-fields', [OrderController::class, 'tambah'])->name('user.order');
-Route::post('/store-input-fields2', [OrderController::class, 'tambah2'])->name('user.order2');
+Route::get('/store-pesanan-1', [OrderController::class, 'tambah'])->name('user.order');
+Route::post('/store-pesanan-2', [OrderController::class, 'tambah2'])->name('user.order2');
 
     Route::group(['prefix' => 'admin', 'middleware' => ['role:admin|super-admin']], function()
     {

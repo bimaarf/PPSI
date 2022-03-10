@@ -5,7 +5,7 @@
             @csrf
             <div class="form-group">
                 <label class="form-label" for="image">Image</label>
-                <input type="file" name="image" id="image" class="form-controll form-control-file" required>
+                <input type="file" name="image" id="image" class="form-control form-control-lg w-lg-50 form-control-file" required>
             </div>
             <div class="form-outline">
                 <input value="{{ old('title') }}" type="text" class="form-control form-control-lg  @error('title') is-invalid @enderror" name="title" id="title">

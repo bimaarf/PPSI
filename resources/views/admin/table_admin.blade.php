@@ -1,6 +1,7 @@
 @extends('admin.main')
 @section('daftar-admin', 'active')
 @section('content')
+
     <div class="card rounded">
         <div class="card-body">
             <div class="fs-5">
@@ -18,14 +19,10 @@
     </div>
     <div class="mt-2">
         <div class="card rounded mt-2">
-            <div class="card-header">
-                <h5 class="mb-0 text-center">
-                    <strong>Daftar Admin</strong>
-                </h5>
-            </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table id="selectedColumn results" class="table table-striped table-hover" cellspacing="0" width="100%">
+                <div class="table-responsive" >
+                    <table id="selectedColumn results " class="table table-striped table-hover" cellspacing="0"
+                        width="100%">
                         <thead>
                             <tr>
                                 <th class="th-sm">#</th>
@@ -74,51 +71,52 @@
                                                 <button type="button" class="btn-close" data-mdb-dismiss="modal"
                                                     aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
-                                                <form action="{{ route('admin.edit_admin', ['id' => $item->id]) }}"
-                                                    method="POST">
+                                            <form action="{{ route('admin.edit_admin', ['id' => $item->id]) }}"
+                                                method="POST">
+                                                <div class="modal-body">
                                                     @csrf
                                                     <div class="row mt-2">
-                                                        <div class="col-lg-4">
-                                                            <div class="form-group">
-                                                                <label for="name">Username</label>
-                                                                <input type="text" id="name" class="form-control"
-                                                                    value="{{ $item->name }}" disabled>
-                                                            </div>
-                                                            <div class="form-group mt-2">
-                                                                <label for="telp">No. Telepon</label>
-                                                                <input type="text" class="form-control"
-                                                                    value="{{ $item->telp }}" disabled>
-                                                            </div>
-                                                            <div class="row mt-2">
-                                                                <div class="col-3">
-                                                                    <img src="{{ asset('assets/icon/Driver.svg') }}"
-                                                                        width="100" alt="">
+                                                        <div class="col-lg-8">
+                                                            <div class="row">
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label for="name">Username</label>
+                                                                        <input type="text" id="name"
+                                                                            class="form-control form-control-lg"
+                                                                            value="{{ $item->name }}" disabled>
+                                                                    </div>
+                                                                    <div class="form-group mt-2">
+                                                                        <label for="status_id">Status</label>
+                                                                        <select name="status_id" id="status_id"
+                                                                            class="form-select form-select-lg">
+                                                                            @foreach ($users_status as $status)
+                                                                                <option value="{{ $status->id }}"
+                                                                                    {{ $item->status_id == $status->id ? 'selected' : '' }}>
+                                                                                    {{ $status->status }}</option>
+                                                                            @endforeach
+                                                                        </select>
+                                                                    </div>
                                                                 </div>
-                                                                <div class="form-group col-9">
-                                                                    <label for="status_id">Status</label>
-                                                                    <select name="status_id" id="status_id"
-                                                                        class="form-control">
-                                                                        @foreach ($users_status as $status)
-                                                                            <option value="{{ $status->id }}"
-                                                                                {{ $item->status_id == $status->id ? 'selected' : '' }}>
-                                                                                {{ $status->status }}</option>
-                                                                        @endforeach
-                                                                    </select>
-
+                                                                <div class="col-lg-6">
+                                                                    <div class="form-group">
+                                                                        <label for="email">Email</label>
+                                                                        <input type="text" id="email"
+                                                                            class="form-control form-control-lg"
+                                                                            value="{{ $item->email }}" disabled>
+                                                                    </div>
+                                                                    <div class="form-group mt-2">
+                                                                        <label for="telp">No. Telepon</label>
+                                                                        <input type="text"
+                                                                            class="form-control form-control-lg"
+                                                                            value="+{{ $item->telp }}" disabled>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-4">
-                                                            <div class="form-group">
-                                                                <label for="email">Email</label>
-                                                                <input type="text" id="email" class="form-control"
-                                                                    value="{{ $item->email }}" disabled>
                                                             </div>
                                                             <div class="form-group mt-2">
                                                                 <label for="alamat">Alamat</label>
-                                                                <textarea name="alamat" class="form-control" id="alamat"
-                                                                    rows="10" disabled>{{ $item->alamat }}</textarea>
+                                                                <textarea name="alamat" class="form-control form-control-lg"
+                                                                    id="alamat" rows="5"
+                                                                    disabled>{{ $item->alamat }}</textarea>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4">
@@ -134,20 +132,18 @@
                                                                 </div>
                                                             @endforeach
                                                         </div>
+
                                                     </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href="https://wa.me/{{ $item->telp }}?text=Hallo {{ $item->name }},"
-                                                    target="__blank" class="btn btn-success text-capitalize"><i
-                                                        class="fab fa-whatsapp text-white"></i>&nbsp;Whatsapp</a>
-                                                <button type="button" class="btn btn-secondary text-capitalize"
-                                                    data-mdb-dismiss="modal">
-                                                    Close
-                                                </button>
-                                                <button type="submit" class="btn btn-primary text-capitalize">Save
-                                                    changes</button>
-                                                </form>
-                                            </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="https://wa.me/{{ $item->telp }}?text=Hallo {{ $item->name }},"
+                                                        target="__blank" class="btn btn-lg btn-success text-capitalize"><i
+                                                            class="fab fa-whatsapp text-white"></i>&nbsp;Whatsapp</a>
+
+                                                    <button type="submit"
+                                                        class="btn btn-lg btn-info text-capitalize">Simpan</button>
+                                                </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
@@ -157,8 +153,8 @@
                         </tbody>
                     </table>
                 </div>
+                {{ $users->links() }}
             </div>
         </div>
-        {{ $users->links() }}
     </div>
 @endsection

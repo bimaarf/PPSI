@@ -11,17 +11,20 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-8 my-2"></div>
-        <div class="col-12 col-lg-4 mt-2">
-            <form class="input-group btn-group w-100 my-auto" action="{{ route('admin.berita.index') }}">
+    <div class="row my-2">
+        <div class="col-3 col-lg-8 mt-2">
+            <a href="#" onclick="pageChange()" id="page-change" class="btn btn-danger text-capitalize d-lg-none" style=" height: 40px;"><i
+                class="fas fa-plus pt-2"></i></a>
+        </div>
+        
+        <div class="col-9 col-lg-4 mt-2">
+            <form id="search" class="input-group btn-group w-100 my-auto" action="{{ route('admin.berita.index') }}">
                 <input type="text" value="{{ request('title') }}" class="form-control" name="title"
                     placeholder='Cari judul' style="width: 200px; height: 40px;">
 
-                <button class="btn badge-danger" type="submit"><i class="fas fa-search"></i></button>
-                <a href="#" onclick="pageChange()" id="page-change" class="btn btn-info text-capitalize d-lg-none"><i
-                        class="fas fa-plus pt-2"></i></a>
+                <button class="btn bg-info text-white" type="submit"><i class="fas fa-search"></i></button>
             </form>
+            
         </div>
     </div>
     <div id="form-berita" class="d-none">
@@ -71,11 +74,13 @@
     function pageChange() {
         if (condition == true) {
             $('#form-berita').removeClass('d-none');
+            $('#search').addClass('d-none');
             $('#berita').addClass('d-none');
             condition = false;
 
         } else if (condition == false) {
             $('#form-berita').addClass('d-none');
+            $('#search').removeClass('d-none');
             $('#berita').removeClass('d-none');
             condition = true;
         }

@@ -1,0 +1,67 @@
+/* Style umum */
+.d-none {
+    display: none !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+.opacity-zero {
+    opacity: 0 !important;
+}
+
+.opacity-one {
+    opacity: 1 !important;
+}
+
+.bg-white {
+    background-color: var(--white) !important;
+}
+
+.bg-dark {
+    background-color: var(--dark) !important;
+}
+
+.border-dark {
+    border-color: var(--dark) !important;
+}
+
+.text-dark {
+    color: var(--dark) !important;
+}
+
+.title {
+    text-transform: capitalize !important;
+}
+
+.landing-section {
+    padding: 50px !important;
+}
+
+.float-left {
+    float: left !important;
+}
+
+.float-right {
+    float: right !important;
+}
+
+.h-0{
+    height: 0 !important;
+}
+
+.translate-x-105{
+    transform: translateX(-105%);
+}
+
+.quote {
+    font-family: var(--spirit);
+}
+
+@media screen and (max-width: 426px){
+    .landing-section{
+        padding: 80px 25px;
+    }
+}
+/* ---------- */

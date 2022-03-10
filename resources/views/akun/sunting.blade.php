@@ -9,11 +9,11 @@
                 <h5 class="text-lowercase text-dark">{{ Auth::user()->email }}</h5>
                 <h6 >Ubah Password</h6>
                 <div class="form-group">
-                    <input class="inp" id="password" name="password" autocomplete="new-password" placeholder="Password baru" required/>
+                    <input class="inp" id="password" name="password" autocomplete="new-password" placeholder="Password baru" />
                 </div>
                 <div class="form-group">
                     <input class="inp" id="password_confirmation" name="password_confirmation"
-                     placeholder="Konfirmasi password" required/>
+                     placeholder="Konfirmasi password" />
                 </div>
             </div>
         </div>

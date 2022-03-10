@@ -58,7 +58,7 @@ class BeritaController extends Controller
     
         $berita                     = Berita::where('slug', $slug)->first();
         $berita->title              = $request->title;
-        $berita->slug               = Str::slug($request->title, '-');
+        $berita->slug               = Str::slug($request->title, '-') . '.html';
         $berita->body               = $request->body;
         $berita->kategori_id        = $request->kategori_id;
         $berita->user_id             = Auth::id();

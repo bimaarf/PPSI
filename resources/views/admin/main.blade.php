@@ -29,9 +29,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}" />
 
     <style>
-        /* trix-toolbar [data-trix-button-group="file-tools"] {
+        trix-toolbar [data-trix-button-group="file-tools"] {
             display: none;
-        } */
+        }
 
         .trix-content img {
             width: 300px;
@@ -40,8 +40,6 @@
 
     </style>
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
-    
-
 
 </head>
 

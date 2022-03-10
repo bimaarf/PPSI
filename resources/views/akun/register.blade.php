@@ -31,36 +31,58 @@
             <h2 class="card-title text-center">Register</h2>
             <form action="{{ route('register') }}" method="POST" class="login-form mx-lg-3 mx-lg-4">
                 @csrf
-                <div class="form-group m-3 m-lg-4">
-                    <input class="form-control input-form" type="text" name="role" id="role" :value="old('role')"placeholder="Role" hidden autofocus>
-                </div>
-                <div class="form-group m-3 m-lg-4">
-                    <input class="form-control input-form" type="text" name="name" id="name" :value="old('name')"placeholder="Nama Pengguna" required autofocus>
-                </div>
-                <div class="form-group m-3 m-lg-4">
-                    <input class="form-control input-form" type="email" name="email" id="email" :value="old('email')" placeholder="example@gmail.com" required>
-                </div>
-                <div class="form-group m-3 m-lg-4">
-                    <input type="text" class="form-control input-form" :value="old('alamat')" name="alamat" id="alamat" placeholder="Alamat" required autofocus>
-                </div>
-                <div class="form-group m-3 m-lg-4">
-                    <input type="number" class="form-control input-form" name="telp" id="telp"  :value="old('telp')" placeholder="628XXXX" required autofocus>
-                </div>
-                <div class="form-group m-3 m-lg-4">
-                    <input type="password" class="form-control input-form" name="password" id="password" placeholder="Password" required autocomplete="new-password">
-                </div>
-                <div class="form-group m-3 m-lg-4">
-                    <input type="password" class="form-control input-form" name="password_confirmation" id="password_confirmation" required placeholder="Konfirmasi Password">
-                </div>
-                <div class="form-group mx-sm-0 mx-md-4 mx-lg-4 row align-items-center check">
-                    <div class="form-check col-sm-6 col-md-7 col-lg-7 p-0 remember order-2 order-sm-1 mt-2"> <h6>Sudah punya akun? <a href="{{ route('login') }}">Masuk</a></h6>  
-                        
+                <div class="row">
+                    <div class="form-group">
+                        <label for="name" :value="__('Name')">Username</label>
+                        <input class="form-control form-control-lg" type="text" name="name" id="name"
+                            :value="old('name')" required autofocus>
                     </div>
-                    <div class="col-5 px-0 login-button order-1 order-sm-2 mb-2 mb-sm-0">
-                        <button type="submit" class="btn btn-primary float-end">Daftar</button>
+                    <div class="col-md-6">
+                        <div class="form-group mt-2">
+                            <label for="email" :value="__('Email')">Email</label>
+                            <input class="form-control form-control-lg" type="email" name="email" id="email"
+                                :value="old('email')" placeholder="example@gmail.com" required>
+                        </div>
+                        <div class="form-group mt-4">
+                            <label for="password" :value="__('Password')">Password</label>
+                            <input class="form-control form-control-lg" type="password" name="password" id="password"
+                                required autocomplete="new-password">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        {{-- telp --}}
+                        <div class="form-group mt-2">
+                            <label for="telp" :value="__('Telp')"><i
+                                    class="fab fa-whatsapp text-success"></i>&nbsp;Whatsapp</label>
+                            <div class="input-group input-group-lg mb-3">
+                                <span class="input-group-text" id="inputGroup-sizing-lg">+62</span>
+                                <input class="form-control" type="num" name="telp" id="telp" :value="old('telp')"
+                                    required autofocus>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group mt-4">
+                            <label for="password_confirmation" :value="__('Confirm Password')">Konfirmasi
+                                Password</label>
+                            <input type="password" class="form-control form-control-lg" name="password_confirmation"
+                                id="password_confirmation" required>
+                        </div>
+                        <div class="form-group m-3 m-lg-4">
+                            <input class="form-control input-form" type="text" name="role" id="role" :value="old('role')"placeholder="Role" hidden autofocus>
+                        </div>
+
+
                     </div>
                 </div>
+                <div class="form-group mt-4">
+                    <label for="alamat" :value="__('Alamat')">Alamat lengkap</label>
+                    <textarea class="form-control" :value="old('alamat')" name="alamat" id="alamat" cols="30"
+                        rows="5"></textarea>
+                </div>
+                    <button type="submit" class="btn mt-2 btn-primary float-end">Daftar</button>
             </form>
+            
         </div>
     </div>
 

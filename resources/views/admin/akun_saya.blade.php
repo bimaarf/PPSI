@@ -51,7 +51,7 @@
                     <h4 class="text-capitalize float-left text-dark">Hak Akses</h4>
                 </div>
                 <div class="card-body">
-                    @foreach ($permission_user as $permission)
+                    @foreach ($permission_user->where('user_id', Auth::user()->id) as $permission)
                         <div class="form-check form-switch mt-2">
                             <input type="checkbox" class="form-check-input" checked disabled>
                             <label class="text-black">

@@ -20,18 +20,17 @@ class AdminController extends Controller
     public function dashboard()
     {
         $permission_user = PermissionUser::all();
-        $tAdmin = DB::table('role_user')
-                        ->where('role_id', 2)
+        $tAdmin   = User::whereRoleIs(['admin'])
                         ->count();
-        $tDriver = DB::table('role_user')
-                        ->where('role_id', 3)
+        $tDriver  = User::whereRoleIs(['driver'])
+                        ->count();  
+        $tShipper = User::whereRoleIs(['shipper'])
                         ->count();
-        $tShipper = DB::table('role_user')
-                        ->where('role_id', 4)
+        $tChecker = User::whereRoleIs(['feed-manager'])
                         ->count();
         $activity = AdminActivity::orderBy('id', 'DESC')->get();
       
-        return view('admin.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'activity'));
+        return view('admin.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'tChecker', 'activity'));
     }
     public function akunSaya()
     {
@@ -42,11 +41,14 @@ class AdminController extends Controller
 
     public function daftarAdmin(Request $request)
     {
+        
         if($request->has('search')){
-            $users = User::where('name', 'LIKE', '%'.$request->search. '%')->whereRoleIs(['admin'])->simplePaginate(10);
+            $users = User::where('name', 'LIKE', '%'.$request->search. '%')->whereRoleIs([$request->role])->simplePaginate(10);
         }else{
             $users = User::whereRoleIs(['admin'])->simplePaginate(10);
         }
+
+        
         $i = 1;
         $role_user = RoleUser::get();
         $role = Role::all();
@@ -91,8 +93,7 @@ class AdminController extends Controller
     public function addUser()
     {
         $permission = Permission::all();
-        $roles = RoleModel::all();
-        return view('admin.add_user', compact('permission', 'roles'));
+        return view('admin.add_user', compact('permission'));
     }
     public function editAdmin(Request $request, $id)
     {

@@ -40,15 +40,10 @@
                                 <div class="col-md-6">
                                     <div class="form-group mt-2">
                                         <label for="role">Role</label>
-                                        <select id="role" name="role" class="form-select form-select-lg">
-                                            @foreach ($roles as $rol)
-                                                @if ($rol->id == 2)
-                                                    <option value="{{ $rol->name }}"> {{ $rol->display_name }}</option>
-                                                @endif
-                                                @if ($rol->id == 5)
-                                                    <option value="{{ $rol->name }}"> {{ $rol->display_name }}</option>
-                                                @endif
-                                            @endforeach
+                                        <select id="role" name="role" class="form-select form-select-lg" onclick="fieldManager()">
+                                             
+                                            <option value="admin">Admin</option>
+                                            <option value="feed-manager">Field Manager</option>
 
                                         </select>
                                         <div class="form-group mt-4">
@@ -71,15 +66,18 @@
 
                                 </div>
                             </div>
-                            <div class="form-group mt-4">
+                            <div class="form-group mt-2">
                                 <label for="alamat" :value="__('Alamat')">Alamat lengkap</label>
                                 <textarea class="form-control" :value="old('alamat')" name="alamat" id="alamat" cols="30"
                                     rows="5"></textarea>
                             </div>
+                            <button id="submit" onclick="reigster()"
+                                        class="btn btn-primary mt-4 fa-pull-right">Register</button>
+                                    <button id="submit-error" class="d-none" type="submit">Register</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-5 mt-2">
+                <div class="col-lg-5 mt-2" id="hak-akses">
                     <div class="card">
                         <div class="card-body">
                             @foreach ($permission as $permis)
@@ -91,9 +89,7 @@
                                 </div>
                             @endforeach
 
-                            <button id="submit" onclick="reigster()"
-                                class="btn btn-primary mt-4 fa-pull-right">Register</button>
-                            <button id="submit-error" class="d-none" type="submit">Register</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -125,6 +121,13 @@
                     $('.btn').attr('disabled', false);
                 }
             })
+        };
+        function fieldManager() {
+            if($("#role").val() == 'feed-manager'){
+                $('#hak-akses').addClass('d-none');
+            }else {
+                $('#hak-akses').removeClass('d-none');
+            }
         };
     </script>
 @endsection

@@ -67,23 +67,41 @@ class NewPasswordController extends Controller
     }
     public function sunting(Request $request)
     {
-        $users  =   $request->validate([
-            'name' => 'required|min:3|max:50',
-            'email' => 'email',
-            'vat_number' => 'max:13',
-            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
-            'password_confirmation' => 'min:6'
-        ]);
-        DB::table('users')->where('id', Auth::id())
-                    ->update([
-                        'name'          => $request->name,
-                        'email'         => $request->email,
-                        'password'      => Hash::make($request->password),
-                        'telp'          => $request->telp,
-                        'alamat'        => $request->alamat,
-                        'status_id'     => Auth::user()->status_id,
-                        'avatar'        => Auth::user()->avatar,
-                    ]);
+        if($request->password != null) {
+            $request->validate([
+                'name' => 'required|min:3|max:50',
+                'email' => 'email',
+                'vat_number' => 'max:13',
+                'password' => 'min:6|required_with:password_confirmation|same:password_confirmation',
+                'password_confirmation' => 'min:6'
+            ]);
+
+            DB::table('users')->where('id', Auth::id())
+                        ->update([
+                            'name'          => $request->name,
+                            'email'         => $request->email,
+                            'password'      => Hash::make($request->password),
+                            'telp'          => $request->telp,
+                            'alamat'        => $request->alamat,
+                            'status_id'     => Auth::user()->status_id,
+                            'avatar'        => Auth::user()->avatar,
+                        ]);
+        }else {
+            $request->validate([
+                'name' => 'required|min:3|max:50',
+                'email' => 'email',
+                'vat_number' => 'max:13',
+            ]);
+            DB::table('users')->where('id', Auth::id())
+                        ->update([
+                            'name'          => $request->name,
+                            'email'         => $request->email,
+                            'telp'          => $request->telp,
+                            'alamat'        => $request->alamat,
+                            'status_id'     => Auth::user()->status_id,
+                            'avatar'        => Auth::user()->avatar,
+                        ]);
+        }
       
         return back()->with('success', 'Profil berhasil diubah!');
     }

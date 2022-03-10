@@ -139,59 +139,6 @@
     </script>
 
 
-    {{-- asd --}}
-    {{-- <script>
- 
-    function promise() {
-        return new Promise(resolve => {
-            setTimeout(() => {
-                pesanan();
-            }, 1000);
-        });
-    }
-    async function loadAsync() {
-            pesanan();
-            // $('#tbody').html('<tr><td>load</td><td>load</td><td>load</td></tr>');
-            console.log('lama');
-        
-    }
-    loadAsync();
-
-
-    
-    function pesanan(){
-        $.ajax({
-            url: "api/pesanan",
-            success : function(data){
-                try{
-                    var json = data[0];
-                    var html = [];
-                    var yourId  = {{ Auth::id() }};
-                    if(json.length > 0){
-                        for(var i = 0; i < json.length; i++){
-                            var dataPesanan = json[i];
-                            var driver_id = dataPesanan.driver_id;
-                            if(driver_id == yourId){
-                                var id = dataPesanan.id;
-                                var message = dataPesanan.message;
-                                var iteration= i+1;
-                                var tbody = $('#tbody');
-                                var sakau = $('#sakau');
-                                sakau.append('<tr><td>'+iteration+'</td><td id="id-pesanan">'+id+'</td><td id="message-pesanan">'+message+'</td></tr>')
-                            }
-                            tbody.html('');
-                            tbody.innerHTML+=sakau;
-                        }
-                    }
-                    console.log(dataPesanan);
-                }catch{
-                    alert('error');
-                }
-            }
-        });
-    }
-
-    </script> --}}
 </body>
 
 </html>
