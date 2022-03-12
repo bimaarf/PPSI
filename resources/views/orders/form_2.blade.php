@@ -100,7 +100,6 @@
             html += '<span class="input-group-text" id="inputGroup-sizing-lg">+62</span>';
             html += '<input type="number" name="telp_tujuan[]" id="telp_tujuan" class="form-control form-control-lg" pattern="\d{1,15}" maxlength="15">';
             html += '</div>';
-           
             html += '</div>';
             html += '</div>';
             html += '<div class="col-md-6">';
@@ -108,10 +107,7 @@
             html += '<label class="fw-bold" for="nama_penerima">Nama Penerima</label>';
             html += '<input class="form-control form-control-lg" type="text" name="nama_penerima[]">';
             html += '</div>';
-           
             html += '</div>';
-            
-                   
             html += '<div class="form-group">';
             html += '<label class="fw-bold" for="alamat_tujuan">Alamat Lengkap</label>';
             html += '<textarea class="form-control form-control-lg" name="alamat_tujuan[]" id="alamat_tujuan" rows="5"></textarea>';

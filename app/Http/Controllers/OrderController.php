@@ -24,12 +24,15 @@ class OrderController extends Controller
     }
     public function form2(Request $request) 
     {
-        $zone = Zone::get();
-        $request->session()->get('pesan');
-        $pesan = $request->session()->get('pesan');
-        $orders = Order::all();
-        $orders->feed_m              = $pesan['feed_m'];
-        return view("orders.form_2", compact('zone', 'orders'));
+        if ($request->session()->get('pesan')) {
+            $zone = Zone::get();
+            $orders = Order::all();
+            $pesan = $request->session()->get('pesan');
+            $orders->feed_m              = $pesan['feed_m'];
+            return view("orders.form_2", compact('zone', 'orders'));
+        }else {
+            return redirect()->route("orders.form_1");
+        }
     }
     public function tambah(Request $request)
     {

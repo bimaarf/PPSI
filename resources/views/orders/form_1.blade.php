@@ -115,11 +115,11 @@
             if (a == '' || b == '' || c == '' || d == '' || e == '' || f == '') {
                 swal({
                     title: "Kosong!",
-                    text: "Pastikan semua sudah terisi dengan benar",
+                    text: "Pastikan semua sudah terisi dengan benar!",
                     type: "error",
                     confirmButtonClass: "btn-danger",
-                    confirmButtonText: "Yes!",
-                    showCancelButton: true,
+                    confirmButtonText: "Oke!",
+                    showCancelButton: false,
                 }).then((result) => {
                     if (result.dismiss !== 'cancel') {
                         $("#logoutTrue").click();
