@@ -2,18 +2,18 @@
 @section('akun-saya', 'active')
 @section('content')
 
-<div class="card rounded d-xs-none d-lg-block d-md-none collapse">
-    <div class="card-body">
-        <div class="fs-5 ">
-            <em class="fas fa-home text-primary"></em>&emsp;<strong>Beranda</strong>
+<div class="card shadow-none">
+    <div class="p-4 card-header">
+        <div class="float-left">
+
+            <h4 class="text-capitalize fw-bold text-dark">Profil Kamu</h4>
         </div>
-    </div>
-</div>
-<div class="card mt-4">
-    <div class="card-header">
-        <h4 class="text-capitalize float-left text-dark">Profil Kamu</h4>
-        <a href="#" onclick="sunting()" id="sunting" class="float-right btn btn-info text-capitalize"><i class="fas fa-pen-alt"></i>&ensp;
-            Sunting Profil</a>
+        <div class="float-right">
+            <a href="#" onclick="sunting()" id="sunting" class="btn btn-outline-info fw-bold text-capitalize">
+                Perbarui Profil</a>
+            <a href="#" onclick="batal()" id="backs" class="btn btn-outline-info fw-bold d-none text-capitalize">
+                Batal</a>
+        </div>
     </div>
     @include('akun.sunting')
     <div class="card-body " id="body">
@@ -35,19 +35,17 @@
 
 @endsection
 <script>
-    var condition = true;
-    function sunting(){
-        if(condition == true){
-            document.getElementById('form').style.display = 'block';
-            document.getElementById('body').style.display = 'none';
-            condition = false;
-            
-        }else if(condition == false){
-            document.getElementById('form').style.display = 'none';
-            document.getElementById('body').style.display = 'block';
-            condition = true;
-        }
-        console.log(condition);
-  
+    function sunting() {
+        $('#body').addClass('d-none');
+        $('#form').removeClass('d-none');
+        $('#sunting').addClass('d-none');
+        $('#backs').removeClass('d-none');
     }
+    function batal() {
+        $('#body').removeClass('d-none');
+        $('#form').addClass('d-none');
+        $('#backs').addClass('d-none');
+        $('#sunting').removeClass('d-none');
+    }
+
 </script>

@@ -1,35 +1,28 @@
 @extends('layouts.backend.main_login')
 @section('pesanan', 'active')
 @section('content')
-<div class="card rounded d-xs-none d-lg-block d-md-none collapse">
-    <div class="card-body">
-        <div class="fs-5 ">
-            <i class="fas fa-home text-primary"></i>&emsp;<strong>Beranda&emsp;/&emsp;Pesanan</strong>
-        </div>
-    </div>
-</div>
+
 <div id="alert-js" class="alert alert-success text-center mt-3" style="display: none;">
     <p id="status"></p>
 </div>
-<div class="mt-4">
-    <div class="card">
+    <div class="card shadow-none">
         <div class="card-header">
             <!-- Pills navs -->
             <ul class="nav nav-pills nav-fill mb-3" id="ex1" role="tablist">
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link active" id="ex2-tab-1" data-mdb-toggle="pill" href="#ex2-pills-1" role="tab"
+                    <a class="nav-link active shadow-none" id="ex2-tab-1" data-mdb-toggle="pill" href="#ex2-pills-1" role="tab"
                         aria-controls="ex2-pills-1" onclick="tableMasuk()" aria-selected="true">Semua</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="ex2-tab-2" data-mdb-toggle="pill" href="#ex2-pills-2" role="tab"
+                    <a class="nav-link shadow-none" id="ex2-tab-2" data-mdb-toggle="pill" href="#ex2-pills-2" role="tab"
                         aria-controls="ex2-pills-2" onclick="tableProses()" aria-selected="false">Diproses</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="ex2-tab-3" data-mdb-toggle="pill" href="#ex2-pills-3" role="tab"
+                    <a class="nav-link shadow-none" id="ex2-tab-3" data-mdb-toggle="pill" href="#ex2-pills-3" role="tab"
                         aria-controls="ex2-pills-3" onclick="tableSelesai()" aria-selected="false">Selesai</a>
                 </li>
                 <li class="nav-item" role="presentation">
-                    <a class="nav-link" id="ex2-tab-4" data-mdb-toggle="pill" href="#ex2-pills-4" role="tab"
+                    <a class="nav-link shadow-none" id="ex2-tab-4" data-mdb-toggle="pill" href="#ex2-pills-4" role="tab"
                         aria-controls="ex2-pills-4" onclick="tableBatal()" aria-selected="false">Batal</a>
                 </li>
             </ul>
@@ -64,7 +57,6 @@
 
         </div>
     </div>
-</div>
 @endsection
 <script>
      function tableMasuk()

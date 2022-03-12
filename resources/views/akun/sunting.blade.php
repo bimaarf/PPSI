@@ -1,4 +1,4 @@
-<div class="card-body" id="form" style="display: none">
+<div class="card-body d-none" id="form">
     <form action="{{ route('auth.sunting') }}" class="row" method="post">
         @csrf
         <div class="col-lg-5">
@@ -35,7 +35,7 @@
                 <textarea class="form-control form-control-lg" name="alamat" id="alamat"
                     rows="5" required>{{ Auth::user()->alamat }}</textarea>
             </div>
-            <input type="submit" value="Simpan Perubahan" class="text-capitalize px-4 btn btn-success mt-2 fa-pull-right">
+            <input type="submit" value="Simpan Perubahan" class="text-capitalize shadow-none px-4 btn btn-success mt-2 fa-pull-right">
         </div>
     </form>
 </div>

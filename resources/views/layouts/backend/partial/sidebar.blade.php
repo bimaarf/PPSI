@@ -1,6 +1,6 @@
 <nav class="d-lg-block collapse" style="z-index: 9; height: 700px">
     <!-- Search form -->
-    <div class="card" style="border-top-left-radius: 50px; border-bottom-left-radius: 50px; height:100%;">
+    <div class="bg-white" style="border-top-left-radius: 50px; border-bottom-left-radius: 50px; height:100%;">
         <div class="position-sticky">
             <div class="list-group list-group-flush pt-4 mx-4">
                 <div class="row">

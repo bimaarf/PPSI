@@ -14,6 +14,8 @@
         @foreach ($checkout->where('driver_id', Auth::user()->id) as $item)
             @foreach ($trackings->where('checkout_id', $item->id) as $track)
                 @include('orders.modal.chattings')
+            @endforeach
+
                 @if ($item->message == 'Verified')
                     <tr>
                         <td>{{ $i++ }}</td>
@@ -41,7 +43,6 @@
                     </tr>
                 @endif
 
-            @endforeach
 
         @endforeach
     </tbody>

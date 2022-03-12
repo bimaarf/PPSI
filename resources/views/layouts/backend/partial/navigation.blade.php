@@ -3,7 +3,7 @@
 
      <!-- Sidebar -->
      <!-- Navbar -->
-     <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+     <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-none">
          <!-- Container wrapper -->
          <div class="container-fluid">
              <!-- Toggle button -->
@@ -50,52 +50,13 @@
 
 
              <ul class="navbar-nav d-flex flex-row d-none d-sm-flex">
-                 @if (Auth::check())
-
-                     <!-- Notification dropdown -->
-                     <li class="nav-item dropdown">
-                         <a class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow" href="#"
-                             id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
-                             <i class="fas fa-bell"></i>
-                             <span class="badge rounded-pill badge-notification bg-danger">1</span>
-                         </a>
-                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                             <li><a class="dropdown-item" href="#">Some news</a></li>
-                             <li><a class="dropdown-item" href="#">Another news</a></li>
-                             <li>
-                                 <a class="dropdown-item" href="#">Something else</a>
-                             </li>
-                         </ul>
-                     </li>
-
-                     <!-- Icon -->
-                     <li class="nav-item">
-                         <a class="nav-link me-3 me-lg-0" href="#">
-                             <i class="fas fa-fill-drip"></i>
-                         </a>
-                     </li>
-                     <!-- Icon -->
-                     <li class="nav-item me-3 me-lg-0">
-                         <a class="nav-link" href="https://instagram.com/bima_arifa/">
-                             <i class="fab fa-instagram"></i>
-                         </a>
-                     </li>
-                     <li class="nav-item me-3 me-lg-0">
-                         <a class="nav-link" href="https://instagram.com/bima_arifa/">
-                         </a>
-                     </li>
-
-                 @endif
-                 <!-- Icon dropdown -->
-
 
                  <!-- Avatar -->
                  <li class="nav-item dropdown">
 
                      @if (Auth::check())
-                         <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center btn btn-danger rounded-pill text-white text-capitalize"
-                             href="#" id="navbarDropdownMenuLink" role="button" data-mdb-toggle="dropdown"
-                             aria-expanded="false">
+                         <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center btn btn-danger rounded-pill text-white text-capitalize shadow-none"
+                         onclick="logout()">
 
                              <img src="{{ asset('assets/icon/' . Auth::user()->avatar) }}"
                                  class="rounded-circle img-thumbnail img-fluid" width="32" alt="" loading="lazy" />
@@ -104,7 +65,7 @@
 
                          </a>
                      @else
-                         <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center" href="#"
+                         <a class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center shadow-none" href="#"
                              id="navbarDropdownMenuLinkOne" role="button" data-mdb-toggle="dropdown"
                              aria-expanded="false">
                              <i class="fa fa-user"></i> &nbsp;Masuk
@@ -127,9 +88,6 @@
                          </ul>
                      @endif
                      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                         <li><a class="dropdown-item" href="#">Profil</a></li>
-                         <li><a class="dropdown-item" href="#">Settings</a></li>
-
                          <li>
 
                              @if (Auth::check())
