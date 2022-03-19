@@ -149,7 +149,7 @@
 @section('script')
     <script>
         if ("{{ $field }}" != "0") {
-            $(".tujuan").change(function() {
+            $("#tujuan").change(function() {
                 let d = document.getElementById("tujuan")
                 let bmArea = d.options[d.selectedIndex].text
                 let bsArea = "{{ $address }}"
@@ -198,11 +198,11 @@
                 let displayText = document.getElementById("harga").textContent = "*Perkiraan Harga Rp " + harga1*{{ $field }} +
                     " - Rp " + harga2*{{ $field }}
                 }
-
-
             })
         } else {
+            $("#tujuan").change(function() {
                 let displayText = document.getElementById("harga").textContent = "*Perkiraan harga tidak tersedia jika menggunakan field manager"
+            })
         }
     </script>
 @endsection
