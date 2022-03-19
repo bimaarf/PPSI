@@ -15,21 +15,23 @@ use Illuminate\Support\Facades\DB;
 use Session;
 class OrderController extends Controller
 {
-   
-    public function form1(Request $request) 
+
+    public function form1(Request $request)
     {
         $zone = Zone::get();
         $orders = $request->session()->get('orders');
         return view("orders.form_1", compact('zone', 'orders'));
     }
-    public function form2(Request $request) 
+    public function form2(Request $request)
     {
         if ($request->session()->get('pesan')) {
             $zone = Zone::get();
             $orders = Order::all();
             $pesan = $request->session()->get('pesan');
+            $address = session()->get('pesan')['jemput'];
+            $field = session()->get('pesan')['feed_m'];
             $orders->feed_m              = $pesan['feed_m'];
-            return view("orders.form_2", compact('zone', 'orders'));
+            return view("orders.form_2", compact('zone', 'orders', 'address', 'field'));
         }else {
             return redirect()->route("orders.form_1");
         }
@@ -49,7 +51,7 @@ class OrderController extends Controller
 
         $request->session()->put('pesan', $pesan);
             return redirect()->route('orders.form_2');
-           
+
     }
     public function tambah2(Request $request)
     {
@@ -96,10 +98,10 @@ class OrderController extends Controller
             return redirect()->route('login');
         }
 
-        
+
     }
-   
-    public function detail($id) 
+
+    public function detail($id)
     {
         $orders = Order::find($id);
         $tujuan        = explode(",", str_replace(array('[', '"', ']'), ' ', $orders->tujuan));
@@ -112,5 +114,5 @@ class OrderController extends Controller
 
         return view("orders.detail", compact('orders', 'tujuan', 'nama_penerima', 'alamat_tujuan', 'telp_tujuan', 'driver', 'feed_manager', 'user' ));
     }
-    
+
 }

@@ -6,7 +6,7 @@
             <div class="bg-white">
                 <div class="card-body">
                     <h5 class="text-bold">Form Pesanan</h5>
-                    <p>Mohon di isi dengan benar dan sesuai dengan data asli nya.</p>
+                    <p>Mohon di isi dengan benar dan sesuai dengan data aslinya.</p>
                 </div>
             </div>
         </div>
@@ -80,13 +80,12 @@
                                     <input type="radio" name="feed_m" class="m-2" value="4" id="feed_m4">
                                     <label for="feed_m4">4</label> <br>
                                     <input type="radio" name="feed_m" class="m-2" value="0" id="feed_m0">
-                                    <label for="feed_m">Feed Manager</label>
+                                    <label for="feed_m">Field Manager</label>
                                 </div>
                             </div>
                             <div class="form-group mt-4">
                                 <label class="fw-bold" for="alamat_jemput">Alamat Lengkap</label>
-                                <textarea class="form-control form-control-lg" name="alamat_jemput" id="alamat_jemput"
-                                    rows="5"></textarea>
+                                <textarea class="form-control form-control-lg" name="alamat_jemput" id="alamat_jemput" rows="5"></textarea>
                             </div>
                             <div class="mt-4">
                                 <a href="#" onclick="next()" class="btn btn-info btn-lg fa-pull-right">Lanjut</a>
@@ -97,7 +96,7 @@
             </div>
             <div id="demo"></div>
             <div class="bg-warning d-none" id="last-page">
-       
+
                 page 2
                 <button type="submit" onclick="back()" class="btn btn-warning btn-lg fa-pull-right">Kembali</button>
             </div>

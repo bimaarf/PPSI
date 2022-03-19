@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/admin.css') }}" />
 
     <script src="https://unpkg.com/sweetalert2@7.18.0/dist/sweetalert2.all.js"></script>
-
+    @yield('style')
 </head>
 
 <body class="mdb-skin-custom " data-mdb-spy="scroll" data-mdb-target="#scrollspy" data-mdb-offset="250"
@@ -68,6 +68,7 @@
             }, 1000);
         }
     </script>
+    @yield('script')
 
 </body>
 
