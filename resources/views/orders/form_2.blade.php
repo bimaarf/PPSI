@@ -52,6 +52,7 @@
                             <div class="col-md-6">
                                 <label class="fw-bold" for="tujuan">Tujuan</label>
                                 <select class="form-select form-select-lg tujuan" name="tujuan[]" id="tujuan" required>
+                                    <option value="" selected>--Pilih Tujuan--</option>
                                     @foreach ($zone as $item)
                                         <option value="{{ $item->zone }}">{{ $item->zone }}</option>
                                     @endforeach
@@ -147,53 +148,61 @@
 @endsection
 @section('script')
     <script>
-        $(".tujuan").change(function() {
-            let d = document.getElementById("tujuan")
-            let bmArea = d.options[d.selectedIndex].text
-            let bsArea = "{{ $address }}"
-            const Area = {
-                "Pontianak": [350000, 500000, 0],
-                "Sungai Pinyuh": [500000, 550000, 57],
-                "Mempawah": [700000, 800000, 75],
-                "Singkawang": [1000000, 1200000, 151],
-                "Pemangkat": [1250000, 1300000, 181],
-                "Tebas": [1500000, 1550000, 203],
-                "Sambas": [1650000, 1750000, 226],
-                "Simpang Ampar": [700000, 800000, 104],
-                "Sosok": [1000000, 1150000, 154],
-                "Bodok": [1250000, 1300000, 171],
-                "Sanggau": [1500000, 1600000, 195],
-                "Sekadau": [1650000, 1850000, 240],
-                "Sintang": [2100000, 2200000, 321],
-                "Tayan": [700000, 800000, 106],
-                "Balai Bekuak": [1300000, 1400000, 195],
-                "Sandai": [1500000, 1650000, 304],
-                "Nanga Tayap": [1800000, 1900000, 346],
-                "Ketapang": [2400000, 3000000, 354],
-            }
+        if ("{{ $field }}" != "0") {
+            $(".tujuan").change(function() {
+                let d = document.getElementById("tujuan")
+                let bmArea = d.options[d.selectedIndex].text
+                let bsArea = "{{ $address }}"
+                const Area = {
+                    "Pontianak": [350000, 500000, 0],
+                    "Sungai Pinyuh": [500000, 550000, 57],
+                    "Mempawah": [700000, 800000, 75],
+                    "Singkawang": [1000000, 1200000, 151],
+                    "Pemangkat": [1250000, 1300000, 181],
+                    "Tebas": [1500000, 1550000, 203],
+                    "Sambas": [1650000, 1750000, 226],
+                    "Simpang Ampar": [700000, 800000, 104],
+                    "Sosok": [1000000, 1150000, 154],
+                    "Bodok": [1250000, 1300000, 171],
+                    "Sanggau": [1500000, 1600000, 195],
+                    "Sekadau": [1650000, 1850000, 240],
+                    "Sintang": [2100000, 2200000, 321],
+                    "Tayan": [700000, 800000, 106],
+                    "Balai Bekuak": [1300000, 1400000, 195],
+                    "Sandai": [1500000, 1650000, 304],
+                    "Nanga Tayap": [1800000, 1900000, 346],
+                    "Ketapang": [2400000, 3000000, 354],
+                }
 
-            const jarak = Math.abs(Area[bmArea][2] - Area[bsArea][2])
-            const hargaBMArea = Area[bmArea]
-            const hargaBsArea = Area[bsArea]
-            let jarakBMArea
-            if (hargaBMArea[2] == 0) {
-                jarakBMArea = 1
-            } else {
-                jarakBMArea = hargaBMArea[2]
-            }
-            let harga1
-            let harga2
-            if (jarak == 0) {
-                harga2 = hargaBsArea[1]
-                harga1 = hargaBsArea[0]
-            } else {
-                harga1 = (Math.abs(hargaBMArea[0] - hargaBsArea[0]) * jarak) / jarakBMArea + hargaBsArea[0]
-                harga2 = (Math.abs(hargaBMArea[1] - hargaBsArea[1]) * jarak) / jarakBMArea + hargaBsArea[1]
-            }
+                if (bmArea in Area) {
+                    const jarak = Math.abs(Area[bmArea][2] - Area[bsArea][2])
+                const hargaBMArea = Area[bmArea]
+                const hargaBsArea = Area[bsArea]
+                let jarakBMArea
+                if (hargaBMArea[2] == 0) {
+                    jarakBMArea = 1
+                } else {
+                    jarakBMArea = hargaBMArea[2]
+                }
+                let harga1
+                let harga2
+                if (jarak == 0) {
+                    harga2 = hargaBsArea[1]
+                    harga1 = hargaBsArea[0]
+                } else {
+                    harga1 = (Math.abs(hargaBMArea[0] - hargaBsArea[0]) * jarak) / jarakBMArea + hargaBsArea[0]
+                    harga2 = (Math.abs(hargaBMArea[1] - hargaBsArea[1]) * jarak) / jarakBMArea + hargaBsArea[1]
+                }
 
 
-            let displayText = document.getElementById("harga").textContent = "*Perkiraan Harga Rp " + harga1 +
-                " - Rp " + harga2
-        })
+                let displayText = document.getElementById("harga").textContent = "*Perkiraan Harga Rp " + harga1*{{ $field }} +
+                    " - Rp " + harga2*{{ $field }}
+                }
+
+
+            })
+        } else {
+                let displayText = document.getElementById("harga").textContent = "*Perkiraan harga tidak tersedia jika menggunakan field manager"
+        }
     </script>
 @endsection
