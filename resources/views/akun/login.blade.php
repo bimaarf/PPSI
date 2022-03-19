@@ -14,7 +14,7 @@
   <!-- Vendor CSS Files -->
   <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/akun.css') }}">
-  
+
 </head>
 
 <body>
@@ -22,10 +22,10 @@
     <div class="miring-bottom position-fixed bg-danger"></div>
 
     <div class="card rounded shadow mx-auto row card-akun">
-      
+
         <div class="col-lg-6 col-md-6 rounded-left image-akun">
-          <img src="{{ asset('assets/img/landing/Logo2.png') }}" alt="" class="logo-mitruck logo-white">
-          <img src="{{ asset('assets/img/landing/Logo3.png') }}" alt="" class="logo-mitruck logo-black">
+          <img src="{{ asset('assets/img/Logo2.png') }}" alt="" class="logo-mitruck logo-white">
+          <img src="{{ asset('assets/img/Logo3.png') }}" alt="" class="logo-mitruck logo-black">
         </div>
         <div class="col-lg-6 col-md-6 card-body p-5 body-akun">
             <h2 class="card-title text-center mx-4 mx-md-0 mx-lg-4 mt-2 mt-lg-4">Temui truk Anda, dan muat!</h2>

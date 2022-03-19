@@ -29,7 +29,7 @@ body {
 .image-akun {
     height: 80vh;
     background-color: var(--primary);
-    background-image: url("../img/landing/mt_bg1.png");
+    background-image: url("../img/mt_bg1.png");
     background-size: cover;
 }
 
@@ -157,7 +157,7 @@ span.line-center-text::after {
     .login-button button {
         width: 94%;
     }
-    
+
     .card-akun {
         width: 70%;
     }
