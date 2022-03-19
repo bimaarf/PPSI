@@ -6,6 +6,16 @@
     <p id="status"></p>
 </div>
     <div class="card shadow-none">
+        <div class="p-4 card-header">
+            <div class="float-left">
+
+                <h4 class="text-capitalize fw-bold text-dark">Pesanan Kamu</h4>
+            </div>
+            <div class="float-right">
+                <a href="{{route('orders.form_1')}}" id="sunting" class="btn btn-outline-info fw-bold text-capitalize">
+                    Buat Pesanan</a>
+            </div>
+        </div>
         <div class="card-header">
             <!-- Pills navs -->
             <ul class="nav nav-pills nav-fill mb-3" id="ex1" role="tablist">
@@ -88,8 +98,8 @@
     function finDriver(id) {
         const url       = "/shipper/cari-driver/" + id
 
-        var driver_id = $('#driver_id').map(function(){ 
-            return this.value; 
+        var driver_id = $('#driver_id').map(function(){
+            return this.value;
         }).get();
         $('#find').attr('disabled', true);
         $.ajax({
