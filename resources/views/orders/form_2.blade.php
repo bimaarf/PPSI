@@ -14,7 +14,7 @@
             <div class="bg-white">
                 <div class="card-body">
                     <h5 class="text-bold">Form Pesanan</h5>
-                    <p>Mohon di isi dengan benar dan sesuai dengan data asli nya. {{ $address }}. {{ $field }}
+                    <p>Mohon di isi dengan benar dan sesuai dengan data asli nya.
                     </p>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                             <p>Multi Stop : <span type="text">1</p>
                             <div class="col-md-6">
                                 <label class="fw-bold" for="tujuan">Tujuan</label>
-                                <select class="form-select form-select-lg" name="tujuan[]" id="tujuan" required>
+                                <select class="form-select form-select-lg tujuan" name="tujuan[]" id="tujuan" required>
                                     @foreach ($zone as $item)
                                         <option value="{{ $item->zone }}">{{ $item->zone }}</option>
                                     @endforeach
@@ -80,7 +80,7 @@
                             <div id="newRow"></div>
                             <button id="addRow" type="button" class="btn btn-info mt-4">Tambah Tujuan</button>
                         @endif
-                        <div id="harga"></div>
+                        <br><small class="text-danger font-italic" id="harga"></small><br>
                         <button type="submit" class="btn btn-primary">Kirim</button>
 
                     </form>
@@ -95,20 +95,19 @@
             document.getElementById("harga").textContent = displayText
         })
         // add row
-        let i = 1;
+        let multi = 1;
         $("#addRow").click(function() {
-            ++i;
+            ++multi;
             let html = '';
             html += '<div class="row mt-2" id="inputFormRow" style="border: 1px solid #f0f0f0; padding:10px">';
-            html += '<p>Multi Stop : <span type="text" id="inc">' + (i + 1) + ' </p>';
+            html += '<p>Multi Stop : <span type="text" id="inc">' + (multi + 1) + ' </p>';
             html += '<div class="col-md-6">';
             html += '<label class="fw-bold" for="nama_penerima">Tujuan</label>';
-            html += '<select class="form-select form-select-lg" name="tujuan[]" required>';
-            @foreach ($zone as $item)
-                ';
+            html += '<select class="form-select form-select-lg tujuan" name="tujuan[]" required>';
+            html += '@foreach ($zone as $item)';
+
                 html += '<option value="{{ $item->zone }}">{{ $item->zone }}</option>';
-                html += '
-            @endforeach ';
+                html += '@endforeach ';
             html += '</select>';
             html += '<div class="mt-4">';
             html += '<label class="fw-bold" for="telp_tujuan">No. Telp Penerima</label>';
@@ -139,7 +138,7 @@
 
         // remove row
         $(document).on('click', '#removeRow', function() {
-            --i;
+            --multi;
 
             $(this).closest('#inputFormRow').remove();
         });
@@ -148,7 +147,7 @@
 @endsection
 @section('script')
     <script>
-        $("#tujuan").change(function() {
+        $(".tujuan").change(function() {
             let d = document.getElementById("tujuan")
             let bmArea = d.options[d.selectedIndex].text
             let bsArea = "{{ $address }}"
@@ -161,32 +160,39 @@
                 "Tebas": [1500000, 1550000, 203],
                 "Sambas": [1650000, 1750000, 226],
                 "Simpang Ampar": [700000, 800000, 104],
-                "Sosok": [700000, 800000],
-                "Bodok": [700000, 800000],
-                "Sanggau": [700000, 800000],
-                "Sekadau": [700000, 800000],
-                "Sintang": [700000, 800000],
-                "Tayan": [700000, 800000],
-                "Balai Bekuak": [700000, 800000],
-                "Sandai": [700000, 800000],
-                "Nanga Tayap": [700000, 800000],
-                "Ketapang": [700000, 800000],
+                "Sosok": [1000000, 1150000, 154],
+                "Bodok": [1250000, 1300000, 171],
+                "Sanggau": [1500000, 1600000, 195],
+                "Sekadau": [1650000, 1850000, 240],
+                "Sintang": [2100000, 2200000, 321],
+                "Tayan": [700000, 800000, 106],
+                "Balai Bekuak": [1300000, 1400000, 195],
+                "Sandai": [1500000, 1650000, 304],
+                "Nanga Tayap": [1800000, 1900000, 346],
+                "Ketapang": [2400000, 3000000, 354],
             }
+
             const jarak = Math.abs(Area[bmArea][2] - Area[bsArea][2])
             const hargaBMArea = Area[bmArea]
             const hargaBsArea = Area[bsArea]
+            let jarakBMArea
+            if (hargaBMArea[2] == 0) {
+                jarakBMArea = 1
+            } else {
+                jarakBMArea = hargaBMArea[2]
+            }
             let harga1
             let harga2
             if (jarak == 0) {
                 harga2 = hargaBsArea[1]
                 harga1 = hargaBsArea[0]
             } else {
-                harga1 = ((hargaBMArea[0] - hargaBsArea[0]) * jarak) / hargaBMArea[2] + hargaBsArea[0]
-                harga2 = ((hargaBMArea[1] - hargaBsArea[1]) * jarak) / hargaBMArea[2] + hargaBsArea[1]
+                harga1 = (Math.abs(hargaBMArea[0] - hargaBsArea[0]) * jarak) / jarakBMArea + hargaBsArea[0]
+                harga2 = (Math.abs(hargaBMArea[1] - hargaBsArea[1]) * jarak) / jarakBMArea + hargaBsArea[1]
             }
 
 
-            let displayText = document.getElementById("harga").textContent = "Perkiraan Harga Rp " + harga1 +
+            let displayText = document.getElementById("harga").textContent = "*Perkiraan Harga Rp " + harga1 +
                 " - Rp " + harga2
         })
     </script>
