@@ -22,7 +22,7 @@
                 <p>Ayo, kirim barang anda disini.</p>
             </div>
             <div class="sd-link">
-                <a href="#" class="sd-link">Lebih Lanjut</a>
+                <a href="{{ route('orders.form_1') }}" class="sd-link">Lebih Lanjut</a>
             </div>
         </div>
         <div class="sdcard">
@@ -32,7 +32,7 @@
                 <p>Mari bergabung dan dapatkan order.</p>
             </div>
             <div class="sd-link">
-                <a href="#" class="sd-link">Lebih Lanjut</a>
+                <a href="/register?role=driver" class="sd-link">Lebih Lanjut</a>
             </div>
         </div>
     </div>

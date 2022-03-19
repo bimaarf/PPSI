@@ -9,7 +9,7 @@
     <title>
         Admin
         | Dashboard
-    </title>
+    </title>    
 
     {{-- dinamik input add jalur driver --}}
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">

@@ -1,4 +1,4 @@
-@extends('layouts.backend.main_login')
+@extends('admin.main')
 @section('akun-saya', 'active')
 @section('content')
 

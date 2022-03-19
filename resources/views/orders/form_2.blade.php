@@ -79,7 +79,7 @@
                         </div>
                         @if ($orders->feed_m == 1)
                             <div id="newRow"></div>
-                            <button id="addRow" type="button" class="btn btn-info mt-4">Tambah Tujuan</button>
+                            <button id="addRow" type="button" class="btn btn-info mt-4" onclick="getSelect()">Tambah Tujuan</button>
                         @endif
                         <br><small class="text-danger font-italic" id="harga"></small><br>
                         <button type="submit" class="btn btn-primary">Kirim</button>
@@ -131,7 +131,7 @@
                 '<textarea class="form-control form-control-lg" name="alamat_tujuan[]" id="alamat_tujuan" rows="5"></textarea>';
             html += '</div>';
             html += '<div class="input-group-append">';
-            html += '<button id="removeRow" type="button" class="btn btn-danger">Remove</button>';
+            html += '<button id="removeRow" type="button" class="btn btn-danger" onclick="getSelect()">Remove</button>';
             html += '</div>';
 
             $('#newRow').append(html);
@@ -149,7 +149,7 @@
 @section('script')
     <script>
         if ("{{ $field }}" != "0") {
-            $("#tujuan").change(function() {
+            $(".tujuan").change(function() {
                 let d = document.getElementById("tujuan")
                 let bmArea = d.options[d.selectedIndex].text
                 let bsArea = "{{ $address }}"
@@ -175,34 +175,42 @@
                 }
 
                 if (bmArea in Area) {
-                    const jarak = Math.abs(Area[bmArea][2] - Area[bsArea][2])
+                    let jarak = Math.abs(Area[bmArea][2] - Area[bsArea][2])
                 const hargaBMArea = Area[bmArea]
                 const hargaBsArea = Area[bsArea]
-                let jarakBMArea
+                // let jarak = 
                 if (hargaBMArea[2] == 0) {
-                    jarakBMArea = 1
-                } else {
-                    jarakBMArea = hargaBMArea[2]
-                }
+                    jarak = hargaBsArea[2]
+                } 
+                //     jarak = hargaBMArea[2]
+                // }
                 let harga1
                 let harga2
                 if (jarak == 0) {
                     harga2 = hargaBsArea[1]
                     harga1 = hargaBsArea[0]
                 } else {
-                    harga1 = (Math.abs(hargaBMArea[0] - hargaBsArea[0]) * jarak) / jarakBMArea + hargaBsArea[0]
-                    harga2 = (Math.abs(hargaBMArea[1] - hargaBsArea[1]) * jarak) / jarakBMArea + hargaBsArea[1]
+                    if (hargaBMArea[0] > hargaBsArea[0]) {
+                        harga1 = (Math.abs(hargaBMArea[0] - hargaBsArea[0]) * jarak) / jarak + hargaBsArea[0]
+                        harga2 = (Math.abs(hargaBMArea[1] - hargaBsArea[1]) * jarak) / jarak + hargaBsArea[1]
+                    } else {
+                        harga1 = (Math.abs(hargaBsArea[0] - hargaBMArea[0]) * jarak) / jarak + hargaBMArea[0]
+                        harga2 = (Math.abs(hargaBsArea[1] - hargaBMArea[1]) * jarak) / jarak + hargaBMArea[1]
+                        
+                    }
                 }
-
 
                 let displayText = document.getElementById("harga").textContent = "*Perkiraan Harga Rp " + harga1*{{ $field }} +
                     " - Rp " + harga2*{{ $field }}
                 }
+
+
             })
+            
+
+            
         } else {
-            $("#tujuan").change(function() {
                 let displayText = document.getElementById("harga").textContent = "*Perkiraan harga tidak tersedia jika menggunakan field manager"
-            })
         }
     </script>
 @endsection

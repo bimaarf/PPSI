@@ -1,4 +1,4 @@
-@extends('layouts.backend.main_login')
+@extends('admin.main')
 @section('pesanan', 'active')
 @section('content')
     <div class="card rounded d-xs-none d-lg-block d-md-none collapse">

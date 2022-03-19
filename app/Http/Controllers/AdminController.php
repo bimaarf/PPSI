@@ -44,7 +44,7 @@ class AdminController extends Controller
     {
         
         if($request->has('search')){
-            $users = User::where('name', 'LIKE', '%'.$request->search. '%')->whereRoleIs([$request->role])->simplePaginate(10);
+            $users = User::where('name', 'LIKE', '%'.$request->search. '%')->whereRoleIs(['admin'])->simplePaginate(10);
         }else{
             $users = User::whereRoleIs(['admin'])->simplePaginate(10);
         }
