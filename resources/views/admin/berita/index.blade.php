@@ -1,11 +1,11 @@
 @extends('admin.main')
 @section('daftar-berita', 'active')
 @section('content')
-    <div class="card rounded d-xs-none d-lg-block d-md-none collapse">
+    <div class="card shadow-none rounded d-xs-none d-lg-block d-md-none collapse">
         <div class="card-body">
             <div class="fs-5">
                 <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda&emsp;/&emsp;Daftar Berita</b>
-                <a href="#" onclick="pageChange()" id="page-change" class="float-right btn btn-info text-capitalize"><i
+                <a href="#" onclick="pageChange()" id="page-change" class="float-right btn btn-info text-capitalize shadow-none"><i
                         class="fas fa-plus"></i>&ensp;
                     Tambah</a>
             </div>
@@ -13,12 +13,12 @@
     </div>
     <div class="row my-2">
         <div class="col-3 col-lg-8 mt-2">
-            <a href="#" onclick="pageChange()" id="page-change" class="btn btn-danger text-capitalize d-lg-none" style=" height: 40px;"><i
+            <a href="#" onclick="pageChange()" id="page-change" class="btn btn-danger text-capitalize d-lg-none shadow-none" style=" height: 40px;"><i
                 class="fas fa-plus pt-2"></i></a>
         </div>
         
         <div class="col-9 col-lg-4 mt-2">
-            <form id="search" class="input-group btn-group w-100 my-auto" action="{{ route('admin.berita.index') }}">
+            <form id="search" class="input-group btn-group w-100 my-auto shadow-none" action="{{ route('admin.berita.index') }}">
                 <input type="text" value="{{ request('title') }}" class="form-control" name="title"
                     placeholder='Cari judul' style="width: 200px; height: 40px;">
 
@@ -41,7 +41,7 @@
                         alt="Sunset Over the Sea"
                         style="height: 150px; object-position: center;overflow: hidden;object-fit: cover;" />
 
-                    <div class="card rounded-6 mt-n4">
+                    <div class="card shadow-none rounded-6 mt-n4">
                         <div class="card-body">
                             <input class="border-bottom border-0 border-success mx-4 my-1" type="hidden" value="1"
                                 name="jumlah" id="jumlah">

@@ -77,7 +77,7 @@
                     <li class="text-center">
                         <form action="{{ route('shipper.konfirmasi', ['id' => $status->id]) }}" method="post">
                             @csrf
-                            <button onclick="konfirmasi()" type="submit" class="btn btn-primary ">Konfirmasi</button>
+                            <button onclick="konfirmasi()" type="submit" class="btn btn-danger text-capitalize">Anda menerima paket</button>
                         </form>
                     </li>
                 </ul>

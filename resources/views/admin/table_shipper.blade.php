@@ -1,7 +1,7 @@
 @extends('admin.main')
 @section('daftar-shipper', 'active')
 @section('content')
-<div class="card rounded">
+<div class="card shadow-none rounded">
     <div class="card-body">
         <div class="fs-5">
             <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda&emsp;/&emsp;Daftar Driver</b>
@@ -9,13 +9,13 @@
                 <input type="text" value="{{ request('search') }}" class="form-control" name="search" placeholder='Cari username'
                     onfocus="this.placeholder = ''" onblur="this.placeholder = 'Cari username'">
                 <!-- <span class="input-group-text border-0"><i class="fas fa-search"></i></span> -->
-                <button class="btn btn-primary" type="su bmit"><i class="fas fa-search"></i></button>
+                <button class="btn btn-primary shadow-none" type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
     </div>
 </div>
 <div class="mt-2">
-    <div class="card rounded">
+    <div class="card shadow-none">
         <div class="card-header">
             <h5 class="mb-0 text-center">
                 <strong>Daftar Pengguna</strong>
@@ -38,17 +38,17 @@
                                 <td>{{ $i++ }}</td>
                                 <td>{{ $item->name }}</td>
                                 @if ($item->status_id == 1)
-                                <td><a href="" class="btn btn-success btn-sm rounded-6 text-capitalize">Aktif</a></td>
+                                <td><a href="" class="btn btn-success shadow-none btn-sm rounded-6 text-capitalize">Aktif</a></td>
                                 @endif
                                 @if ($item->status_id == 2)
-                                <td><a href="" class="btn btn-danger btn-sm rounded-6 text-capitalize">Tidak Aktif</a></td>
+                                <td><a href="" class="btn btn-danger shadow-none btn-sm rounded-6 text-capitalize">Tidak Aktif</a></td>
                                 @endif
                                 @if ($item->status_id == 3)
-                                <td><a href="" class="btn btn-warning btn-sm rounded-6 text-capitalize">Sibuk</a></td>
+                                <td><a href="" class="btn btn-warning shadow-none btn-sm rounded-6 text-capitalize">Sibuk</a></td>
                                 @endif
                                 <td>
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-primary" data-mdb-toggle="modal"
+                                    <div class="btn-group shadow-none" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-info" data-mdb-toggle="modal"
                                             data-mdb-target="#exampleModal{{ $item->id }}">Lihat</button>
                                     </div>
                                 </td>

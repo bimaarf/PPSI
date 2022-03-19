@@ -17,7 +17,7 @@ use Illuminate\Pagination\Paginator;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    public function dashboard(Request $request)
     {
         $permission_user = PermissionUser::all();
         $tAdmin   = User::whereRoleIs(['admin'])
@@ -29,6 +29,7 @@ class AdminController extends Controller
         $tChecker = User::whereRoleIs(['feed-manager'])
                         ->count();
         $activity = AdminActivity::orderBy('id', 'DESC')->get();
+
       
         return view('admin.index', compact('permission_user', 'tAdmin', 'tDriver', 'tShipper', 'tChecker', 'activity'));
     }
@@ -47,7 +48,6 @@ class AdminController extends Controller
         }else{
             $users = User::whereRoleIs(['admin'])->simplePaginate(10);
         }
-
         
         $i = 1;
         $role_user = RoleUser::get();

@@ -2,14 +2,14 @@
 @section('dashboard', 'active')
 @section('content')
     
-<div class="card rounded">
+<div class="card shadow-none rounded">
     <div class="card-body">
         <div class="fs-5">
             <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda</b>
         </div>
     </div>
 </div>
-<div class="card mt-2">
+<div class="card shadow-none mt-2">
     <div class="row card-body">
         <div class="col-md-3 col-6 mt-2">
             <div class="card bg-primary">
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="col-md-3 col-6 mt-2">
-            <div class="card bg-gradient-to-b bg-dark">
+            <div class="card shadow-none bg-gradient-to-b bg-dark">
                 <div class="card-header">
                     <img class="fa-pull-right d-lg-block collapse" src="{{ asset('assets/icon/Driver.svg') }}" width="50" alt="">
                     <div class="float-start">
@@ -72,7 +72,7 @@
 <div class="row mt-2">
     <div class="col-lg-6">
 
-        <div class="card">
+        <div class="card shadow-none">
             <div class="card-header">
                 <h4 class="text-dark"><b>Aktivitas Admin</b></h4>
             </div>
@@ -96,9 +96,9 @@
         </div>
     </div>
     <div class="col-lg-6">
-        <div class="card">
+        <div class="card shadow-none">
             <div class="card-body">
-                <a href="{{ route('orders.form_1') }}" class="btn btn-lg btn-success text-capitalize">Tambahkan Pesanan</a>
+                <a href="{{ route('orders.form_1') }}" class="btn btn-lg btn-success text-capitalize shadow-none">Tambahkan Pesanan</a>
             </div>
         </div>
     </div>

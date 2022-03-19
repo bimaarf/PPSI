@@ -19,6 +19,11 @@ class Berita extends Model
         'author',
         'kategori_id'
     ];
+    public function getCreatedAtAttribute()
+    {
+        return \Carbon\Carbon::parse($this->attributes['updated_at'])
+       ->diffForHumans();
+    }
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);

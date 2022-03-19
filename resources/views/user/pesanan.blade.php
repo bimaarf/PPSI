@@ -86,7 +86,7 @@
 
     //  shipper access
     function finDriver(id) {
-        const url       = "/shipper/cari-driver/" + id
+        const url       = "/cari-driver/" + id
 
         var driver_id = $('#driver_id').map(function(){ 
             return this.value; 
@@ -107,7 +107,7 @@
     }
 
     function hapusPesanan(id) {
-        const url       = "/shipper/hapus-pesanan/" + id
+        const url       = "/hapus-pesanan/" + id
         const formHapus = "#form-hapus" + id
         $.ajax({
             url: url,

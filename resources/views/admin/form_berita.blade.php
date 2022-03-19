@@ -1,5 +1,5 @@
 
-<div class="mt-2 card">
+<div class="mt-2 shadow-none card">
     <div class="card-body">
         <form method="POST" action="/admin/berita/post" enctype="multipart/form-data">
             @csrf
@@ -29,7 +29,7 @@
                 <input id="body" type="hidden" name="body" value="{{ old('body') }}">
                 <trix-editor input="body"></trix-editor>
             </div>
-            <input class="btn btn-lg btn-primary mt-4" type="submit" value="Submit">
+            <input class="btn btn-lg btn-danger float-right mt-4 shadow-none" type="submit" value="Submit">
         </form>
     </div>
 </div>

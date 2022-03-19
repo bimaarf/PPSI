@@ -129,7 +129,8 @@
     </script>
 
     {{-- jquery ajax --}}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
+   
     <script>
         function scrollBot(id) {
             setInterval(function() {
@@ -137,7 +138,6 @@
             }, 1000);
         }
     </script>
-
 
 </body>
 

@@ -9,6 +9,7 @@ use App\Http\Controllers\FeedManagerController;
 use App\Http\Controllers\FieldManagerController;
 use App\Http\Controllers\FindChecker;
 use App\Http\Controllers\FindDriverController;
+use App\Http\Controllers\LandingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\RegisteredByAdmin;
@@ -53,6 +54,8 @@ Route::get('/laman-inbox', function () {
     return view('test.inbox');
 })->name('inbox');
 
+Route::get('/blog', [LandingController::class, 'blog'])->name('landing_page.blog');
+Route::get('/v/{slug}', [LandingController::class, 'preview'])->name('landing_page.preview');
 Route::get('/pesan-masuk', [ChattingController::class, 'inbox'])->name('inbox.kontak');
 
 Route::get('/buka/pesan/{id}/{nama}', [ChattingController::class, 'buka'])->name('inbox.buka');
@@ -104,22 +107,25 @@ Route::post('/store-pesanan-2', [OrderController::class, 'tambah2'])->name('user
         Route::resource('/berita/post', BeritaController::class);
         Route::get('/berita', [BeritaController::class, 'show'])->name('admin.berita.index');
         Route::get('/berita/edit/{slug}', [BeritaController::class, 'update'])->name('admin.berita.edit');
+        // pesanan
+        
     });
     Route::get('/article/u/{slug}', [BeritaController::class, 'showUpdate'])->name('admin.berita.update');
     Route::get('/article/{slug}', [BeritaController::class, 'detail'])->name('admin.berita.detail');
+    Route::get('/pesanan', [ShipperController::class, 'pesanan'])->name('user.pesanan');
+    Route::get('/table-masuk', [ShipperController::class, 'tableMasuk'])->name('user.partial.table_masuk');
+    Route::get('/table-proses', [ShipperController::class, 'tableProses'])->name('user.partial.table_proses');
+    Route::get('/table-selesai', [ShipperController::class, 'tableSelesai'])->name('user.partial.table_selesai');
+    Route::get('/table-batal', [ShipperController::class, 'tableBatal'])->name('user.partial.table_batal');
+    // shipper akses
+    Route::get('/hapus-pesanan/{id}', [ShipperController::class, 'hapusPesanan'])->name('user.hapus_pesanan');
+    Route::post('/konfirmasi-pesanan/{id}', [ShipperController::class, 'konfirmasiBarang'])->name('shipper.konfirmasi');
+    Route::get('/cari-driver/{id}', [FindDriverController::class, 'find'])->name('shipper.find_driver');
+    
     Route::group(['prefix' => 'shipper', 'middleware' => ['role:shipper']], function()
     {
         // shipper
         Route::get('/akun-saya', [ShipperController::class, 'akunSaya'])->name('user.akun_saya');
-        Route::get('/pesanan', [ShipperController::class, 'pesanan'])->name('user.pesanan');
-        Route::get('/table-masuk', [ShipperController::class, 'tableMasuk'])->name('user.partial.table_masuk');
-        Route::get('/table-proses', [ShipperController::class, 'tableProses'])->name('user.partial.table_proses');
-        Route::get('/table-selesai', [ShipperController::class, 'tableSelesai'])->name('user.partial.table_selesai');
-        Route::get('/table-batal', [ShipperController::class, 'tableBatal'])->name('user.partial.table_batal');
-        // shipper akses
-        Route::get('/hapus-pesanan/{id}', [ShipperController::class, 'hapusPesanan'])->name('user.hapus_pesanan');
-        Route::post('/konfirmasi-pesanan/{id}', [ShipperController::class, 'konfirmasiBarang'])->name('shipper.konfirmasi');
-        Route::get('/cari-driver/{id}', [FindDriverController::class, 'find'])->name('shipper.find_driver');
     });
 
     Route::group(['prefix' => 'driver', 'middleware' => ['role:driver']], function()

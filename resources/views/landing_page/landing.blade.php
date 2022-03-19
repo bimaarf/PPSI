@@ -1,19 +1,43 @@
 @extends('landing_page.main')
-@section('solusi-bisnis', 'active')
 @section('content')
-      <!-- ***** Welcome Area Start ***** -->
-      <div class="welcome-area" id="welcome">
+    <!-- ***** Welcome Area Start ***** -->
+    <div class="welcome-area" id="welcome">
         <div class="hero-container">
             <div class="hero-image">
-                <img src="{{ asset('assets/img/pexels-tima-miroshnichenko-6169670.jpg') }}" alt="">
+                <img src="assets/img/mt_bg.png" alt="">
             </div>
-            <div class="hero-text" id="other-hero">
-                <h1>Solusi Pengiriman<br> Untuk Bisnis Anda</h1>
-                <p>Pengiriman handal dari <br> Mitruck untuk barang anda</p>
+            <div class="hero-text">
+                <h1>Just meet your truck, <br> and load! </h1>
             </div>
         </div>
     </div>
     <!-- ***** Welcome Area End ***** -->
+
+    <!-- ***** Shipper Driver Card Start ***** -->
+    <div class="sdcards-container">
+        <div class="sdcard">
+            <img src="assets/img/shipper.png" alt="shipper" class="sd-image">
+            <div class="sd-text">
+                <h3>Shipper</h3>
+                <p>Ayo, kirim barang anda disini.</p>
+            </div>
+            <div class="sd-link">
+                <a href="#" class="sd-link">Lebih Lanjut</a>
+            </div>
+        </div>
+        <div class="sdcard">
+            <img src="assets/img/driver.png" alt="driver" class="sd-image">
+            <div class="sd-text">
+                <h3>Driver</h3>
+                <p>Mari bergabung dan dapatkan order.</p>
+            </div>
+            <div class="sd-link">
+                <a href="#" class="sd-link">Lebih Lanjut</a>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Shipper Driver Card End ***** -->
+
     <!-- ***** Power Section Start ***** -->
     <div class="power-section landing-section">
         <div class="power-header">
@@ -22,7 +46,7 @@
         </div>
         <div class="power-content">
             <div class="power-image">
-                <img src="assets/img/pexels-rodnae-productions-7363102.jpg" alt="power image">
+                <img src="assets/img/f1.jpg" alt="power image">
             </div>
             <div class="power-text">
                 <div class="power">
@@ -43,68 +67,14 @@
                     <img src="assets/img/aman.png" alt="lebih mudah" width="48px">
                     <div>
                         <h3>Aman</h3>
-                        <p>Selalu memastikan driver dan kendaraan dengan performa baik, dan dengan i asuransi menjadi
-                            lebih tenang</p>
+                        <p>Selalu memastikan driver dan kendaraan dengan performa baik, dan dengan i asuransi menjadi lebih
+                            tenang</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- ***** Power Section End ***** -->
-
-    <!-- ***** How Works Start ***** -->
-    <div class="how-works landing-section">
-        <div class="how-works-title title">
-            <h1>Bagaimana cara kerja sistem pemesanan?</h1>
-        </div>
-        <div class="power-content">
-            <div class="power-image other-power-image">
-                <img src="assets/img/smartphone (1).png" alt="power image">
-            </div>
-            <div class="power-text other-power-text">
-                <div class="power">
-                    <div class="how-works-number">1</div>
-                    <div>
-                        <h3>Pilih Armada dan Waktu Pengiriman</h3>
-                        <p>Anda dapat memilih dengan kendaraan apa barang anda ingin diantar dan waktu yang tepat untuk
-                            pengiriman barang anda</p>
-                    </div>
-                </div>
-                <div class="power">
-                    <div class="how-works-number">2</div>
-                    <div>
-                        <h3>Data Pengirim</h3>
-                        <p>Inputkan data anda yang berupa pengirim</p>
-                    </div>
-                </div>
-                <div class="power">
-                    <div class="how-works-number">3</div>
-                    <div>
-                        <h3>Produk</h3>
-                        <p>Inputkan data barang yang ingin anda kirim. Setelah mengisi data barang, anda dapat melihat
-                            estimasi biaya yang harus dikeluarkan untuk mengirim produk anda</p>
-                    </div>
-                </div>
-                <div class="power">
-                    <div class="how-works-number">4</div>
-                    <div>
-                        <h3>Data Penerima</h3>
-                        <p>Masukkan data lengkap dari penerima barang</p>
-                    </div>
-                </div>
-                <div class="power">
-                    <div class="how-works-number">5</div>
-                    <div>
-                        <h3>Finish</h3>
-
-                        <p>Proses pemesanan selesai, anda hanya perlu menunggu driver menjemput barang anda</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button type="submit" class="kontak-info-btn">Order Sekarang</button>
-    </div>
-    <!-- ***** How Works End ***** -->
 
     <!-- ***** Break Point Start ***** -->
     <div class="break">
@@ -160,67 +130,10 @@
     </div>
     <!-- ***** Armada Area End ***** -->
 
-    <!-- ***** FAQ Start ***** -->
-    <div class="landing-section">
-        <div class="power-header">
-            <h2 class="title">frequntly asked question</h2>
-        </div>
-        <div class="power-content">
-            <div class="power-image other-power-image">
-                <img src="assets/img/customer-service.png" alt="power image">
-            </div>
-            <div class="power-text other-power-text">
-                <div class="power faq">
-                    <div class="faq-q">
-                        <h3>Question 1 ?</h3>
-                        <i class="fas fa-chevron-left" id="drop-icon"></i>
-                    </div>
-                    <div class="faq-a">
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consectetur quaerat asperiores
-                            minus iusto laudantium reiciendis dolorem modi maiores, velit nisi, saepe maxime, suscipit
-                            quidem! Nostrum placeat molestiae neque beatae dolorem.</p>
-                    </div>
-                </div>
-                <div class="power faq">
-                    <div class="faq-q">
-                        <h3>Is this question 2</h3>
-                        <i class="fas fa-chevron-left" id="drop-icon"></i>
-                    </div>
-                    <div class="faq-a">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit sapiente est necessitatibus
-                            expedita mollitia minus provident dolores nihil consequuntur sunt?</p>
-                    </div>
-                </div>
-                <div class="power faq">
-                    <div class="faq-q">
-                        <h3>What happen with question number 3?</h3>
-                        <i class="fas fa-chevron-left" id="drop-icon"></i>
-                    </div>
-                    <div class="faq-a">
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias sequi praesentium saepe
-                            consequuntur nostrum quidem!</p>
-                    </div>
-                </div>
-                <div class="power faq">
-                    <div class="faq-q">
-                        <h3>This is Question number 4</h3>
-                        <i class="fas fa-chevron-left" id="drop-icon"></i>
-                    </div>
-                    <div class="faq-a">
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, consequuntur.</p>
-                    </div>
-                </div>
-                <div class="power faq">
-                    <div class="faq-q">
-                        <h3>Question number 4</h3>
-                        <i class="fas fa-chevron-left" id="drop-icon"></i>
-                    </div>
-                    <div class="faq-a">
-                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio, consequuntur.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- ***** Kontak Info Start ***** -->
+    <div class="kontak-info landing-section">
+        <h2 class="kontak-info-title title">Sebagai solusi korporasi <br>& info lainnya.</h2>
+        <button type="submit" class="kontak-info-btn">Kontak Segera</button>
     </div>
-    <!-- ***** FAQ End ***** -->
+    <!-- ***** Kontak Info End ***** -->
 @endsection

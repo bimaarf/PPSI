@@ -47,8 +47,7 @@
                 </span>
                 <div id="dropdown-menu" class="dropdown-menu">
                     <a href="/contact" class="dropdown-item @yield('contact')">Contact</a>
-                    <a href="blog.html" class="dropdown-item">Blog</a>
-                    <a href="join.html" class="dropdown-item">Join With Us!</a>
+                    <a href="/blog" class="dropdown-item">Blog</a>
                 </div>
             </div>
         </nav>
@@ -64,7 +63,7 @@
                         onclick="event.preventDefault(); this.closest('form').submit();">Logout</button>
                 </form>
             @else
-                <a href="{{ route('login') }}" class="btn-logged">
+                <a href="{{ route('login') }}" class="btn-logged" style="text-decoration: none">
                     Masuk
                 </a>
             @endif

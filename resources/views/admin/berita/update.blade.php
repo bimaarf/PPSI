@@ -1,7 +1,7 @@
 @extends('admin.main')
 @section('daftar-berita', 'active')
 @section('content')
-    <div class="card rounded">
+    <div class="card shadow-none rounded">
         <div class="card-body">
             <div class="fs-5">
                 <i class="fas fa-home text-primary"></i>&emsp;<b>Beranda&emsp;/&emsp;Edit Berita</b>
@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <div class="mt-2 card">
+    <div class="mt-2 card shadow-none">
         <div class="card-header">
             <h4 class="text-dark"><strong>Edit Berita</strong></h4>
         </div>
@@ -35,7 +35,7 @@
                     <input id="body" type="hidden" name="body" value="{{ old('body', $berita->body) }}">
                     <trix-editor input="body"></trix-editor>
                 </div>
-                <button type="submit" class="btn btn-info">Simpan</button>
+                <button type="submit" class="btn btn-danger shadow-none float-right btn-lg">Simpan</button>
             </form>
         </div>
     </div>
